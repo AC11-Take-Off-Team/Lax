@@ -1,2 +1,8 @@
 <h1>Project</h1>
 <%= link_to "新增專案",new_project_path  %>
+
+<% @projects.each do |project| %>
+
+  <%= link_to project.title, project %>
+
+<% end%>
