@@ -1,5 +1,14 @@
 <h1>新增任務</h1>
-<%= form_with model:@kanban,url: new_project_kanban do |form| %>
+<% if @task.errors.any? %>
+  <ul>
+    <% @task.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<%= form_with model: @task ,url: project_tasks_path do |form| %>
 
   <div>任務標題：<%= form.text_field :title %></div>
 
