@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :rooms
   resources :projects do
-    resources :kanbans,except: [:show]
+    resources :tasks
+    resource :kanbans,except: [:show]
   end
 end
