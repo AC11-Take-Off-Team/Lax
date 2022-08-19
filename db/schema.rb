@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_17_095428) do
+ActiveRecord::Schema.define(version: 2022_08_19_102652) do
+
+  create_table "projects", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
@@ -18,4 +26,24 @@ ActiveRecord::Schema.define(version: 2022_08_17_095428) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "start_time"
+    t.string "status"
+    t.integer "project_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_tasks_on_deleted_at"
+    t.index ["project_id"], name: "index_tasks_on_project_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "tasks", "projects"
 end
