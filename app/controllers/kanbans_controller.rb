@@ -1,14 +1,20 @@
 class KanbansController < ApplicationController
   
   def index
+    @kanbans = Task.all
   end
 
   def new
-    @kanban = Kanban.new
+    @kanban = Task.new
   end
 
   def create
-    @kanban = Project.kanbans.new(kanban_params)
+    @kanban = Project.tasks.new(kanban_params)
+    if @kanban.save
+      redirect_to kanbans_path
+    else
+      render :new
+    end
   end
 
   def edit

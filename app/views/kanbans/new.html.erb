@@ -1,0 +1,12 @@
+<h1>新增任務</h1>
+<%= form_with model:@kanban do |form| %>
+
+  <div>任務標題：<%= form.text_field :title %></div>
+
+  <div>任務敘述：<%= form.text_field :content %></div>
+
+  <div>任務時間：<%= form.text_field :start_time %></div> 
+
+  <%= form.submit  %>
+
+<% end %>
