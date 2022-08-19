@@ -9,9 +9,9 @@ class KanbansController < ApplicationController
   end
 
   def create
-    @kanban = Project.tasks.new(kanban_params)
+    @kanban = Project.find(params[:id]).tasks.new(kanban_params)
     if @kanban.save
-      redirect_to kanbans_path
+      redirect_to project_kanbans_path
     else
       render :new
     end
@@ -29,7 +29,7 @@ class KanbansController < ApplicationController
   private
 
   def kanban_params
-    params.require(:params).permit(:title,:content,:start_time,:status)
+    params.require(:kanban).permit(:title,:content,:start_time,:status)
   end
 
 

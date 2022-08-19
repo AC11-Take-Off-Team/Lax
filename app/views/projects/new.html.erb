@@ -1,0 +1,5 @@
+<%= form_with model:@project  do |form| %>
+  <div>專案名稱：<%= form.text_field :title %></div>
+  <div>專案內容：<%= form.text_area :content %></div>
+  <%= form.submit %>
+<% end %>
