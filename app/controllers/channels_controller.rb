@@ -3,25 +3,23 @@ class ChannelsController < ApplicationController
 	before_action :find_channel,only:[:show , :edit , :update,:destroy]
 
 	def new
-		@channel = Channel.new
+    @channel = Channel.new
 	end
 
 	def index
     @channel = Channel.all
-		@q = Channel.ransack(params[:q])
-		@channel = @q.result(distinct: true)
+	  @q = Channel.ransack(params[:q])
+	  @channel = @q.result(distinct: true)
 	end
 
-
-	def show
-
-	end
+  def show
+  end
 
 
 	def create
     @channel = Channel.new(clean)
 		if @channel.save
-			redirect_to channels_path
+		  redirect_to channels_path
 		else
 		  redirect_to channels_path
 		end
