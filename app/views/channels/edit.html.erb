@@ -1,18 +1,19 @@
 <h1>創建頻道</h1>
 
 
-<%= form_with model:@channel do |channel| %>
-
-<%= label.channel :頻道名稱 %>
-<%= label.text_field :name %>
-
-<%= label.channel :主題 %>
-<%= label.text_field :content %>
-
-<%= label.channel :描述 %>
-<%= label.text_field :description %>
+<%= form_for @channel do |form| %>
+  <div>
+    名稱：<%= form.text_field :title %>
+  </div>
 
 
-<%= channel.submit %>
+  <div>
+    描述：<%= form.text_field :description %>
+  </div>
 
+  <div>
+    公開或私人：<%= form.text_field :status %>
+  </div>
+
+  <%= form.submit %>
 <% end %>

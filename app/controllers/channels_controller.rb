@@ -1,22 +1,25 @@
 class ChannelsController < ApplicationController
 
-	def new
-		@channel = channel.new
+	before_action :find_channel,only:[:show , :edit , :update,:destroy]
 
+	def new
+		@channel = Channel.new
 	end
 
 	def index
-    @channel = channel.all
+    @channel = Channel.all
+		@q = Channel.ransack(params[:q])
+		@channel = @q.result(distinct: true)
 	end
 
 
 	def show
-    @channel = channel.find(params[:id])
+
 	end
 
 
 	def create
-    @channel = channel.new(clean)
+    @channel = Channel.new(clean)
 		if @channel.save
 			redirect_to channels_path
 		else
@@ -25,15 +28,34 @@ class ChannelsController < ApplicationController
 	end
 
   def edit
-    @channel = channel.find(params[:id])
+
+	end
+
+	def update
+
+		if @channel.update(clean)
+			redirect_to channels_path
+		else
+			render :edit
+		end
 	end
 
 	def destroy
-    @channel = channel.find(params[:id])
+    if @channel.destroy
+		  redirect_to channels_path
+		else
+			redirect_to channels_path
+		end
 	end
 
+private
 
 	def clean
-    params.require(:channel).permit(:description , :name,:status)
+    params.require(:channel).permit(:description ,:title,:status , :content)
 	end
+
+	def find_channel
+    @channel = Channel.find(params[:id])
+	end
+
 end

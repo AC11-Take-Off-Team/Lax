@@ -1,0 +1,7 @@
+<%= search_form_for @q do |f| %>
+
+  <%= f.label "Search Channels" %>
+	<%= f.search_field :title_or_description_cont, placeholder:"Search..." %>
+	<%= f.submit "Search!" %>
+
+<% end %>

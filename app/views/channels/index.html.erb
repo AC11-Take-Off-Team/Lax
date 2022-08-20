@@ -1,6 +1,7 @@
 <h1>所有頻道</h1>
 
-
+<%= render 'channels/search_form.html.erb' %>
+<%= link_to "創建頻道" ,new_channel_path %>
 <ul>
   <% @channel.each do |channel| %>
     <li>
@@ -12,4 +13,5 @@
            data: {confirm: "是否刪除"} %>
     </li>
   <% end %>
+
 </ul>
