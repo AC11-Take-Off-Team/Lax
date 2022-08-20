@@ -1,0 +1,15 @@
+<h1>所有頻道</h1>
+
+
+<ul>
+  <% @channel.each do |channel| %>
+    <li>
+
+      <%= link_to channel.id ,channel  %>
+      <%= link_to "編輯", edit_channel_path(channel) %>
+      <%= link_to "刪除", channel,
+           method: "delete",
+           data: {confirm: "是否刪除"} %>
+    </li>
+  <% end %>
+</ul>

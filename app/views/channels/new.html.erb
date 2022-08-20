@@ -1,0 +1,17 @@
+<h1>創建頻道</h1>
+
+
+<%= form_with model:@channel do |channel| %>
+
+<%= label.channel :名稱 %>
+<%= label.text_field :name %>
+
+<%= label.channel :描述 %>
+<%= label.text_field :description %>
+
+<%= label.channel :設為私人 %>
+<%= label.text_field :status %>
+
+<%= channel.submit %>
+
+<% end %>

@@ -1,0 +1,18 @@
+<h1>創建頻道</h1>
+
+
+<%= form_with model:@channel do |channel| %>
+
+<%= label.channel :頻道名稱 %>
+<%= label.text_field :name %>
+
+<%= label.channel :主題 %>
+<%= label.text_field :content %>
+
+<%= label.channel :描述 %>
+<%= label.text_field :description %>
+
+
+<%= channel.submit %>
+
+<% end %>
