@@ -8,6 +8,7 @@ class Task < ApplicationRecord
   #驗證
   validates :title,presence: true
 
+  #state-machine
   aasm column: "status" ,no_direct_assignment: true do
     state :to_do, initial: true
     state :doing, :done
