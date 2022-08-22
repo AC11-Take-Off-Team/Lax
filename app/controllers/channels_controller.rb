@@ -1,5 +1,5 @@
 class ChannelsController < ApplicationController
-
+  before_action :authenticate_user!
   before_action :find_channel,only:[:show , :edit , :update,:destroy , :join , :quit]
 
   def new
@@ -48,8 +48,10 @@ class ChannelsController < ApplicationController
 
 
   def join
+    # render html:params
     if !current_user.is_member_of?(@channel)
       current_user.join(@channel)
+
     else
       flash[:notice] = "已加入"
     end
@@ -64,10 +66,6 @@ class ChannelsController < ApplicationController
   end
 
 
-
-
-
-
 private
 
   def clean
@@ -79,3 +77,7 @@ private
   end
 
 end
+
+
+
+

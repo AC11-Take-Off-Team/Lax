@@ -4,10 +4,9 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :channels do
     member do
-      post :join
+      post :join , to: "channels#join"
       post :quit
     end
   end
-
 
 end

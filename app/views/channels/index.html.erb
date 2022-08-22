@@ -9,18 +9,10 @@
 <section class="section">
   <div class="container">
     <% @channel.each do |channel| %>
-      <div class="card">
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <p class="title is-4"> <%= link_to channel.title, channel %></p>
-            </div>
-          <div>
-          <div class="content">
-            <%= channel.description %>
-          </div>
-        </div>
-      </div>
+      <%= link_to channel.title, channel %></p>
+      <%= channel.description %>
+      <%= link_to "加入" , join_channel_path(channel.id),method: "post" %>
+      <%= link_to "退出" , new_channel_path(channel.id)  %>
     <% end %>
   </div>
 </section>
