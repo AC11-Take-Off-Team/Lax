@@ -1,17 +1,26 @@
 <h1>所有頻道</h1>
 
-<%= render 'channels/search_form.html.erb' %>
+
 <%= link_to "創建頻道" ,new_channel_path %>
-<ul>
-  <% @channel.each do |channel| %>
-    <li>
 
-      <%= link_to channel.id ,channel  %>
-      <%= link_to "編輯", edit_channel_path(channel) %>
-      <%= link_to "刪除", channel,
-           method: "delete",
-           data: {confirm: "是否刪除"} %>
-    </li>
-  <% end %>
+<%= render 'channels/search_form.html.erb' %>
 
-</ul>
+
+<section class="section">
+  <div class="container">
+    <% @channel.each do |channel| %>
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4"> <%= link_to channel.title, channel %></p>
+            </div>
+          <div>
+          <div class="content">
+            <%= channel.description %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

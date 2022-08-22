@@ -1,4 +1,15 @@
-<h1>show</h1>
+<h1>所有頻道</h1>
 
-<%= @channel.title %>
-<%= @channel.description %>
+<section class="section">
+  <div>
+    <strong>頻道</strong>
+	</div>
+
+	<div>
+	  <%= link_to "退出" , channels_path  %>
+	</div>
+		<hr>
+		<div class="description">
+		  <%= @channel.title %>
+  </div>
+</section>

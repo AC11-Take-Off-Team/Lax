@@ -86,6 +86,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_invitable (2.0.6)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     digest (3.1.0)
     erubi (1.11.0)
     faker (2.22.0)
@@ -241,6 +244,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
+  devise_invitable (~> 2.0.0)
   faker
   jbuilder (~> 2.7)
   listen (~> 3.3)
