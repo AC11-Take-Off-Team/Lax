@@ -1,0 +1,8 @@
+<h1>工作看板</h1>
+<section data-controller="board">
+  <% @task_to_do.each do |task|%>
+  
+    <div><%= task.title %></div>
+
+  <% end %>
+</section>

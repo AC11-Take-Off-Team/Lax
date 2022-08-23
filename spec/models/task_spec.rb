@@ -2,18 +2,22 @@ require 'rails_helper'
 
 RSpec.describe Task, type: :model do
   it "可以建立task" do
-    project = Project.create(title: "test",content: "test-content")
-
-    task = project.tasks.create(title: "test",content: "test-content")
+    task = create(:task)
 
     expect(task.persisted?).to be true
   end
 
-  it "task的title不能是空的" do
-    project = Project.create(title: "test",content: "test-content")
 
-    task = project.tasks.create(title: "",content: "test-content")
+  it "可以將user加到task裡面" do
+    task = create(:task)
+    user = create(:user)
 
-    expect(task.persisted?).to be false
+    task.user_tasks.create(user_id: user.id)
+
+    # p "-"*50
+    # p UserTask.all
+    # p "-"*50
+
+    expect(UserTask.first.persisted?).to be true
   end
 end

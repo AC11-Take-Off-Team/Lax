@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   resources :rooms
   resources :projects do
     resources :tasks
-    resource :kanbans,except: [:show]
+    resources :boards do
+      member do
+      post :add_users
+      end
+    end
   end
 end

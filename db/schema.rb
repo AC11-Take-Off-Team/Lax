@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_19_105136) do
+ActiveRecord::Schema.define(version: 2022_08_23_030517) do
 
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.datetime "status"
+    t.text "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_projects_on_deleted_at"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -35,6 +37,7 @@ ActiveRecord::Schema.define(version: 2022_08_19_105136) do
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "end_time"
     t.index ["deleted_at"], name: "index_tasks_on_deleted_at"
     t.index ["project_id"], name: "index_tasks_on_project_id"
   end
