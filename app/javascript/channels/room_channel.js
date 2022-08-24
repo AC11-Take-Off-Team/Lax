@@ -29,7 +29,7 @@ document.addEventListener('turbolinks:load', () => {
       if (user_id === data.message.user_id) {
         html = data.mine
       } else {
-        html = data.theirs
+        html = data.their
       }
 
       const messageContainer = document.getElementById('messages')

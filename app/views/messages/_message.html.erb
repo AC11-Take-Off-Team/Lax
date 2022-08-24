@@ -1,3 +1,5 @@
-<%= 'me' if message.user == current_user %>
-      <%= message.content %>
-      <%= message.user.username %>
+<div>
+  <%= 'me:' if message.user == current_user %>
+  <%= message.content %>
+  <%= message.user.username %>
+</div>
