@@ -24,9 +24,16 @@ class ProjectsController < ApplicationController
   end
   
   def update
+    if @project = current_user.projects.update(project_params)
+      redirect_to projects_path
+    elsif 
+      render :edit
+    end
   end
   
   def destroy
+    @project.destroy
+    redirect_to projects_path
   end
 
   private

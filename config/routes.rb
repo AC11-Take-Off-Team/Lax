@@ -5,6 +5,18 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :projects do
-    resources :tasks
+    resources :tasks   
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :projects,except: [] do
+        member do
+          post :join_team
+          #邀請成員加入project的api，請輸入 email:
+        end
+      end
+    end
+  end
+
 end
