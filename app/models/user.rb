@@ -7,4 +7,16 @@ class User < ApplicationRecord
 
   has_many :channels
   has_many :groups ,through: :channels
+
+  def is_member_of?(group)
+    channels.include?(group)
+  end
+
+  def join!(group)
+    channels << group
+  end
+
+  def quit!(group)
+    channels.delete(group)
+  end
 end
