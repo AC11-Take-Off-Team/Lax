@@ -20,6 +20,11 @@ Rails.application.routes.draw do
           #邀請成員加入project的api，請輸入 email:
         end
       end
+
+  resources :groups do
+    member do
+      post :join
+      post :quit
     end
   end
 
