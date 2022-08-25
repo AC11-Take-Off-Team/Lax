@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
   end
 
   def index
-    @group = Group.order("created_at DESC")
+    @groups = current_user.groups.recent
     @group = @q.result(distinct: true)
 
   end
@@ -17,7 +17,8 @@ class GroupsController < ApplicationController
 
 
   def create
-    @group = current_user.groups.build(clean)
+    @group = current_user.groups.build(group_params)
+    #@group.user = current_user
     if @group.save
       redirect_to groups_path
     else
@@ -30,7 +31,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    if @group.update(clean)
+    if @group.update(group_params)
       redirect_to @group
     else
       render :edit
@@ -48,8 +49,8 @@ class GroupsController < ApplicationController
 
   def join
     # render html:params
-    if !current_user.is_member_of?(@group)
-      current_user.joins(@group)
+    if not current_user.is_member_of?(@group)
+      current_user.join!(@group)
 
     else
       flash[:notice] = "已加入"
@@ -58,32 +59,22 @@ class GroupsController < ApplicationController
 
   def quit
     if current_user.is_member_of?(@group)
-      current_user.quits(@group)
+      current_user.quit!(@group)
     else
       flash[:notice] = "已退出"
     end
   end
 
-    def is_member_of?
-    participated_groups.include?(group)
-  end
 
-  def joins(group)
-    participated_groups << group
-  end
-
-  def quits(group)
-    participated_groups.delete(group)
-  end
 
 
 private
 
-  def clean
+  def group_params
     params.require(:group).permit(:description ,:title)
   end
 
-  def find_channel
+  def find_group
     @group = Group.find(params[:id])
   end
 
