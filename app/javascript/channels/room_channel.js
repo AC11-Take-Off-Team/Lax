@@ -1,14 +1,11 @@
 import consumer from "./consumer"
 
 document.addEventListener('turbolinks:load', () => {
+
   const room_element = document.getElementById('room-id');
   const room_id = room_element.getAttribute('data-room-id');
 
-  console.log(consumer.subscriptions)
-
-  consumer.subscriptions.subscriptions.forEach((subscription) => {
-    consumer.subscriptions.remove(subscription)
-  })
+  console.log(room_id)
 
   consumer.subscriptions.create({ channel: "RoomChannel", room_id: room_id }, {
     connected() {
@@ -27,9 +24,9 @@ document.addEventListener('turbolinks:load', () => {
       let html;
 
       if (user_id === data.message.user_id) {
-        html = data.mine
+        html = data.my_message
       } else {
-        html = data.their
+        html = data.their_message
       }
 
       const messageContainer = document.getElementById('messages')
