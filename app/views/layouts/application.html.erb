@@ -13,6 +13,10 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+
+    <%= link_to "頻道" , groups_path %>
+    <%= render 'layouts/shared/search_form' %>
+
     <%= yield %>
   </body>
 </html>
