@@ -5,8 +5,8 @@
       <%= link_to group.title, group %>
       <%= group.description %>
 
-        <%= link_to "加入" , join_group_path(@group),method: "post" %>
-        <%= link_to "退出" , quit_group_path(@group),method: "post"  %>
+        <%= link_to "加入" , join_group_path(group),method: "post" %>
+        <%= link_to "退出" , quit_group_path(group),method: "post"  %>
 
     </div>
   <% end %>
