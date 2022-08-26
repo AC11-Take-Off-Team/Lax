@@ -9,14 +9,15 @@ class GroupsController < ApplicationController
 
   def index
     @groups = @group_query.result.recent
+    # @groups_user = current_user.groups.all
   end
 
-  def show; end
+  def show
+  end
 
   def create
-    @group = current_user.groups.new(group_params)
-
-    if @group.save
+    current_user.groups.build(group_params)
+    if current_user.save
       redirect_to groups_path
     else
       render :new
@@ -35,17 +36,18 @@ class GroupsController < ApplicationController
   end
 
   def join
-    if not current_user.member_of?(@group)
-      current_user.join!(@group)
-      flash[:notice] = '已加入'
-    end
+    current_user.groups << [@group]
+    redirect_to group_path
+    flash[:notice] = '已加入'
   end
 
   def quit
-    if current_user.member_of?(@group)
-      current_user.quit!(@group)
+    # # debugger
+    # if current_user.groups.find_by(id: params[id]).present?
+      current_user.groups.destroy(params[:id])
+      redirect_to groups_path
       flash[:notice] = '已退出'
-    end
+    # end
   end
 
   private

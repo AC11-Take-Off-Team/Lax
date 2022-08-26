@@ -4,10 +4,12 @@
     <div>
       <%= link_to group.title, group %>
       <%= group.description %>
-
-        <%= link_to "加入" , join_group_path(group),method: "post" %>
-        <%= link_to "退出" , quit_group_path(group),method: "post"  %>
-
+        <% if current_user.join?(group) %>
+        <%# 如果使用者有加入這個頻道 %>
+          <%= link_to "退出" , quit_group_path(group),method: "post" %>
+        <% else %>
+          <%= link_to "加入" , join_group_path(group),method: "post" %>
+        <% end %>
     </div>
   <% end %>
 

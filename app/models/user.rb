@@ -9,16 +9,7 @@ class User < ApplicationRecord
   has_many :channels
   has_many :groups, through: :channels
 
-  def member_of?(group)
-    channels.find_by(group_id: group.id).present?
-  end
-
-  def join!(group)
-    #channels << group
-     channels.create(group: group)
-  end
-
-  def quit!(group)
-    channels.delete(group)
+  def join?(group)
+    groups.find_by(id: group).present?
   end
 end
