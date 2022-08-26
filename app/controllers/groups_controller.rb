@@ -23,7 +23,8 @@ class GroupsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     if @group.update(group_params)
@@ -33,19 +34,19 @@ class GroupsController < ApplicationController
     end
   end
 
-  # def join
-  #   if not current_user.member_of?(@group)
-  #     current_user.join!(@group)
-  #     flash[:notice] = '已加入'
-  #   end
-  # end
+  def join
+    if not current_user.member_of?(@group)
+      current_user.join!(@group)
+      flash[:notice] = '已加入'
+    end
+  end
 
-  # def quit
-  #   if current_user.member_of?(@group)
-  #     current_user.quit!(@group)
-  #     flash[:notice] = '已退出'
-  #   end
-  # end
+  def quit
+    if current_user.member_of?(@group)
+      current_user.quit!(@group)
+      flash[:notice] = '已退出'
+    end
+  end
 
   private
 
