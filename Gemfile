@@ -47,6 +47,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'rubocop', '~> 1.35', require: false
+  gem "rubocop-rails", "~> 2.15"
 end
 
 group :test do
@@ -63,3 +64,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "net-smtp", "~> 0.3.1",require: false
 
 gem "acts_as_list", "~> 1.0"
+
+

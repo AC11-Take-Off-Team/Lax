@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :projects,except: [] do
+      resources :projects,only: [] do
         member do
           post :join_team
           #邀請成員加入project的api，請輸入 email:
