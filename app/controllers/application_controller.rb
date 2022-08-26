@@ -1,7 +1,9 @@
-class ApplicationController < ActionController::Base
-  before_action :search
+# frozen_string_literal: true
 
-  def search
-    @q = Group.ransack(params[:q])
+class ApplicationController < ActionController::Base
+  before_action :search_group
+
+  def search_group
+    @group_query = Group.ransack(params[:q])
   end
 end
