@@ -9,11 +9,13 @@ class User < ApplicationRecord
   has_many :groups ,through: :channels
 
   def is_member_of?(group)
-    channels.include?(group)
+    channels.find_by(group_id: group.id).present?
+    # channels.include?(group)
   end
 
   def join!(group)
     channels << group
+    # channels.create(group: group)
   end
 
   def quit!(group)

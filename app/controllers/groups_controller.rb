@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 
-  before_action :find_group,only:[:show , :edit , :update,:destroy , :join , :quit]
+  before_action :find_group,only:[:show , :edit , :update,:destroy ,:join ,:quit]
 
   def new
     @group = Group.new
@@ -17,8 +17,9 @@ class GroupsController < ApplicationController
 
 
   def create
-    @group = current_user.groups.build(group_params)
-    #@group.user = current_user
+    @group = current_user.groups.new(group_params)
+    # render html: params
+    @group.user = current_user
     if @group.save
       redirect_to groups_path
     else
@@ -48,12 +49,11 @@ class GroupsController < ApplicationController
 
 
   def join
-    # render html:params
-    if not current_user.is_member_of?(@group)
-      current_user.join!(@group)
 
-    else
+    if current_user.is_member_of?(@group)
       flash[:notice] = "已加入"
+    else
+      current_user.join!(@group)
     end
   end
 
