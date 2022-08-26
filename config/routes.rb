@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :projects do
-    resources :tasks   
+    resources :tasks
+    member do
+      delete :leave_project
+    end
   end
 
   namespace :api do

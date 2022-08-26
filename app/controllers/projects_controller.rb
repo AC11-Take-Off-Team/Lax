@@ -37,6 +37,11 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
+  def leave_project
+    Project.find(params[:id]).users.destroy([current_user])
+    redirect_to projects_path
+  end
+
   private
 
   def project_params
