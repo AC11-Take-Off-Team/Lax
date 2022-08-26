@@ -13,12 +13,12 @@ class User < ApplicationRecord
     channels.find_by(group_id: group.id).present?
   end
 
-  # def join!(group)
-  #   #channels << group
-  #    channels.create(group: group)
-  # end
+  def join!(group)
+    #channels << group
+     channels.create(group: group)
+  end
 
-  # def quit!(group)
-  #   channels.delete(group)
-  # end
+  def quit!(group)
+    channels.delete(group)
+  end
 end
