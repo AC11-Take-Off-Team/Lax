@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :user_projects
   has_many :projects, through: :user_projects
+
+  validates :nickname, presence: true, uniqueness: true
 end

@@ -38,8 +38,18 @@ class ProjectsController < ApplicationController
   end
 
   def leave_project
-    Project.find(params[:id]).users.destroy([current_user])
+    remove_project(params[:id], current_user)
     redirect_to projects_path
+  end
+
+  def remove_from_project
+    user = User.find(params[:id])
+    remove_project(params[:project_id], user)
+    if user == current_user
+      redirect_to projects_path
+    else
+      redirect_to project_path(params[:project_id])
+    end
   end
 
   private
@@ -50,5 +60,9 @@ class ProjectsController < ApplicationController
 
   def find_user_project
     @project = current_user.projects.find(params[:id])
+  end
+
+  def remove_project(project_id, user_id)
+    Project.find(project_id).users.destroy([user_id])
   end
 end
