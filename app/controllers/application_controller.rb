@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -17,11 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-class ApplicationController < ActionController::Base
-  before_action :search_group
-
   def search_group
     @group_query = Group.ransack(params[:q])
-
   end
 end
