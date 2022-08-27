@@ -83,3 +83,4 @@ gem 'net-smtp'
 >>>>>>> e15547a8 (修改判斷會員)
 gem 'ransack'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
