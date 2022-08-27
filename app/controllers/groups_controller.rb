@@ -42,12 +42,11 @@ class GroupsController < ApplicationController
   end
 
   def quit
-    # # debugger
-    # if current_user.groups.find_by(id: params[id]).present?
-      current_user.groups.destroy(params[:id])
-      redirect_to groups_path
-      flash[:notice] = '已退出'
-    # end
+
+    current_user.groups.destroy(params[:id])
+    redirect_to groups_path
+    flash[:notice] = '已退出'
+
   end
 
   private
