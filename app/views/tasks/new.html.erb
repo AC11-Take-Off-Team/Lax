@@ -1,0 +1,16 @@
+<h1>新增任務</h1>
+
+<%= form_with model:@task do |form| %>
+
+  <div>任務名稱<%= form.text_field :title%></div>
+
+  <div>任務內容<%= form.text_area :content%></div>
+
+  <div>開始日期</div>
+  <div>截止日期</div>
+
+  <div>指派成員</div>
+
+  <%= form.submit  "加入任務"%>
+
+<% end %>
