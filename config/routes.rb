@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     resources :tasks
     member do
       delete :leave_project
-      delete :remove_from_project
+      delete :kick_out
+      get :board
     end
   end
 

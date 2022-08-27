@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :find_user_project, only: %i[show edit update destroy]
+  before_action :find_user_project, only: %i[show edit update destroy board]
 
   def index
     @projects = current_user.projects.all
@@ -39,11 +39,13 @@ class ProjectsController < ApplicationController
   end
 
   def leave_project
+    # 自己退出project，remove_project方法寫在private
     remove_project(params[:id], current_user)
     redirect_to projects_path
   end
 
-  def remove_from_project
+  def kick_out
+    # 把人踢出project
     user = User.find(params[:id])
     remove_project(params[:project_id], user)
     if user == current_user
@@ -51,6 +53,13 @@ class ProjectsController < ApplicationController
     else
       redirect_to project_path(params[:project_id])
     end
+  end
+
+  def board
+    @task = Task.new
+    @task_todo = Task.where(status: 'todo')
+    @task_doing = Task.where(status: 'doing')
+    @task_done = Task.where(status: 'done')
   end
 
   private

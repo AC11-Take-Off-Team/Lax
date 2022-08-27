@@ -1,39 +1,24 @@
 class TasksController < ApplicationController
   before_action :find_task, only: %i[show edit update destroy]
-
-  def index
-  end
-
-  def new
-    @task = Task.new
-  end
+  before_action :find_project, only: %i[create update]
 
   def create
-    @task = Project.find(params[:id]).tasks.new(task_params)
+    @task = @project.tasks.new(task_params.merge(status: 'todo'))
     if @task.save
-      redirect_to projects_path
+      redirect_to board_project_path(@project)
     else
-      render :new
+      redirect_to board_project_path(@project), notice: '任務建立失敗'
     end
-  end
-
-  def show
-  end
-
-  def edit
   end
 
   def update
-    if @task.update(task_params)
-      redirect_to projects_path
-    else
-      render :edit
-    end
+    @task.update(task_params)
+    redirect_to board_project_path(@project)
   end
 
   def destroy
     @task.destroy
-    redirect_to projects_path
+    redirect_to board_project_path(@project)
   end
 
   private
@@ -44,5 +29,9 @@ class TasksController < ApplicationController
 
   def find_task
     @task = Task.find(params[:id])
+  end
+
+  def find_project
+    @project = Project.find(params[:project_id])
   end
 end

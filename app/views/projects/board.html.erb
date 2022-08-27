@@ -1,0 +1,10 @@
+<%= form_with model:[@project,@task] do |form| %>
+  <div>新增任務：<%= form.text_field :title%></div>
+  <%= form.submit "建立任務" %>
+<% end %>
+
+<% @task_todo.each do |task|  %>
+
+  <div class="task-card"><%= task.title %></div>
+  
+<% end %>
