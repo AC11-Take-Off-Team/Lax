@@ -10,7 +10,8 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    current_user.projects.build(project_params)
+    current_user.projects.build(project_params.merge(owner_id: current_user.id))
+    # owner_id: 用來記錄誰建立/擁有這個project。
     if current_user.save
       redirect_to projects_path
     else
@@ -55,7 +56,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :content, :status, :deleted_at)
+    params.require(:project).permit(:title, :content, :status, :deleted_at, :owner_id)
   end
 
   def find_user_project
