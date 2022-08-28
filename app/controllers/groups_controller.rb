@@ -16,8 +16,8 @@ class GroupsController < ApplicationController
   end
 
   def create
-    current_user.groups.build(group_params)
-    if current_user.save
+    @group = current_user.groups.build(group_params)
+    if @group.save
       redirect_to groups_path
     else
       render :new
@@ -42,11 +42,9 @@ class GroupsController < ApplicationController
   end
 
   def quit
-
     current_user.groups.destroy(params[:id])
     redirect_to groups_path
     flash[:notice] = '已退出'
-
   end
 
   private

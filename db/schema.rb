@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_25_165945) do
+ActiveRecord::Schema.define(version: 2022_08_28_102801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 2022_08_25_165945) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "joins", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_joins_on_group_id"
+    t.index ["user_id", "group_id"], name: "index_joins_on_user_id_and_group_id", unique: true
+    t.index ["user_id"], name: "index_joins_on_user_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -65,6 +75,8 @@ ActiveRecord::Schema.define(version: 2022_08_25_165945) do
 
   add_foreign_key "channels", "groups"
   add_foreign_key "channels", "users"
+  add_foreign_key "joins", "groups"
+  add_foreign_key "joins", "users"
   add_foreign_key "teams", "groups"
   add_foreign_key "teams", "users"
 end
