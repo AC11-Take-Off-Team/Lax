@@ -1,0 +1,7 @@
+<h1><%= @project.title %></h1>
+
+<% @project.users.each do |user_name| %>
+  <%= link_to user_name.nickname, remove_from_project_project_path(user_name, project_id: @project.id ), method: "delete" ,data: { confirm: "是否將此人退出Project?"} %>
+<% end  %>
+
+<%= link_to "退出project", leave_project_project_path, method: "delete", data: { confirm: "是否退出此Project?"} %>
