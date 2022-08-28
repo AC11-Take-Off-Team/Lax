@@ -1,9 +1,18 @@
 <nav>
   <% if user_signed_in? %>
     <%= current_user.email %>
-    <%= link_to "log out", destroy_user_session_path, method: 'delete' %>
+    <div>
+      <%= link_to "log out", destroy_user_session_path, method: 'delete' %>
+    </div>
   <% else %>
-    <%= link_to "sign in", new_user_session_path %>
-    <%= link_to "sign up", new_user_registration_path %>
+    <div>
+      <%= link_to "sign in", new_user_session_path %>
+      <%= link_to "sign up", new_user_registration_path %>
+    </div>
   <% end %>
+  <div>
+    <%= link_to "中文版", :controller => controller_name, :action => action_name, :locale => "zh-TW" %>
+    <%= link_to "English", :controller => controller_name, :action => action_name, :locale => "en" %>
+  </div>
+  
 </nav>

@@ -30,6 +30,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem "paranoia", "~> 2.2"
 gem 'devise'
 gem 'aasm'
+gem "devise-i18n"
+gem 'rails-i18n', '~> 7.0', '>= 7.0.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,6 +50,7 @@ group :development do
   gem 'spring'
   gem 'rubocop', '~> 1.35', require: false
   gem "rubocop-rails", "~> 2.15"
+  gem "foreman", "~> 0.87.2"
 end
 
 group :test do
