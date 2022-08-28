@@ -1,35 +1,21 @@
-
+<section  class="w-full h-full fixed left-0 top-0 mx-auto flex justify-center items-center bg-green-400">
+  <div class="w-1/2 p-2.5 bg-white text-center">
     <h2>創建頻道</h2>
-    <h2>創建私人頻道</h2>
 
     <p>频道是你的團隊進行通信的地方。圍繞主题進行組織時其效果最佳，例如#市場營銷#。</p>
 
     <%= form_for @group do |form| %>
-
       <div>
         名稱：<%= form.text_field :title %>
       </div>
-
       <div>
         描述：<%= form.text_field :description %>
       </div>
-
       <%= form.submit %>
-
     <% end %>
 
-    <div>
-    設為私人
-    當频道設置為私人時，只有受邀請之後才能查看或加入。
-    </div>
-    <div>
-    設為私人
-    這無法撤銷。私人频道之后不能變為公共频道。
-    </div>
-
-
-
-
+  </div>
+</section>
 
 
 

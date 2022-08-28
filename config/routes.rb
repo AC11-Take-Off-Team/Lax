@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     member do
       post :join
       post :quit
+      post :content
     end
   end
 end
