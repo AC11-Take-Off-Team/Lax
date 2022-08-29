@@ -11,4 +11,12 @@ class Api::V1::ProjectsController < ApplicationController
       redirect_to projects_path, notice: '成員加入project！'
     end
   end
+
+  def sort_position
+    @task = Project.find_by(id: params[:id]).tasks.find_by(id: params[:task_id])
+    @task.insert_at(params[:position].to_i + 1)
+    @task.status = params[:status]
+    @task.save
+    render json: { state: 'OK' }
+  end
 end

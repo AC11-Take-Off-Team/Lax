@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2022_08_27_082720) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "owner_id"
-    t.integer "position"
     t.index ["deleted_at"], name: "index_projects_on_deleted_at"
   end
 
@@ -37,6 +36,7 @@ ActiveRecord::Schema.define(version: 2022_08_27_082720) do
     t.string "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
     t.index ["deleted_at"], name: "index_tasks_on_deleted_at"
     t.index ["project_id"], name: "index_tasks_on_project_id"
   end

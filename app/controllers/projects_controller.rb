@@ -57,9 +57,9 @@ class ProjectsController < ApplicationController
 
   def board
     @task = Task.new
-    @task_todo = Task.where(status: 'todo')
-    @task_doing = Task.where(status: 'doing')
-    @task_done = Task.where(status: 'done')
+    @task_todo = @project.tasks.where(status: 'todo')
+    @task_doing = @project.tasks.where(status: 'doing')
+    @task_done = @project.tasks.where(status: 'done')
   end
 
   private

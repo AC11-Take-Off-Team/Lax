@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         member do
           post :join_team
           #邀請成員加入project的api，請輸入 email:
+          post :sort_position
         end
       end
     end
