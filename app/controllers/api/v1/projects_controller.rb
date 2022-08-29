@@ -15,6 +15,7 @@ class Api::V1::ProjectsController < ApplicationController
   def sort_position
     @task = Project.find_by(id: params[:id]).tasks.find_by(id: params[:task_id])
     @task.insert_at(params[:position].to_i + 1)
+    # position要+1的原因是position的起始值是1，但是newIndex的起始值是0
     @task.status = params[:status]
     @task.save
     render json: { state: 'OK' }

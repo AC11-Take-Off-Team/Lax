@@ -1,6 +1,6 @@
 import { Controller } from "stimulus";
 import Sortable from 'sortablejs';
-import Ri from '@rails/ujs';
+import Rails from '@rails/ujs';
 
 
 export default class extends Controller {
@@ -10,15 +10,19 @@ export default class extends Controller {
     let projectID = this.element.dataset.projectId
     const sortEvent = {
       animation: 150,
+      handle: ".card-list",
+      draggable: ".card",
       group: 'shared',
-      onEnd:(evt)=>{
-        let status = evt.to.dataset.boardTarget
-        let taskID = evt.item.dataset.taskId
+      onEnd:(event)=>{
+        let status = event.to.dataset.boardTarget
+        let taskID = event.item.dataset.taskId
         var data = new FormData();
-        data.append("position",evt.newIndex);
+        // data 會在下方ajax打進api
+        data.append("position",event.newIndex);
+        // event.newIndex是移動後的index值，起始值是0
         data.append("task_id",taskID)
         data.append("status",status)
-        Ri.ajax({
+        Rails.ajax({
           url:`/api/v1/projects/${projectID}/sort_position`,
           type: "post",
           data: data,
