@@ -1,10 +1,30 @@
+<h1>Board</h1>
 <%= form_with model:[@project,@task] do |form| %>
   <div>新增任務：<%= form.text_field :title%></div>
   <%= form.submit "建立任務" %>
 <% end %>
 
-<% @task_todo.each do |task|  %>
-
-  <div class="task-card"><%= task.title %></div>
+<section data-controller="board" class="flex">
   
-<% end %>
+
+  <div class="card-list todo mx-4" data-board-target="todo">
+    <h2>ToDo</h2>
+    <% @task_todo.each do |task|  %>
+      <div class="card bg-yellow-500 m-2 w-28" data-task-id="<%=task.id%>"><%= task.title %></div>
+    <% end %>
+  </div>
+  <div class="card-list doing mx-4" data-board-target="doing">
+    <h2>Doing</h2>
+    <% @task_doing.each do |task|  %>
+      <div class="card bg-yellow-500 m-2 w-28"><%= task.title %></div>
+    <% end %>
+  </div>
+  <div class="card-list done mx-4" data-board-target="done">
+    <h2>Done</h2>
+    <% @task_done.each do |task|  %>
+      <div class="card bg-yellow-500 m-2 w-28"><%= task.title %></div>
+    <% end %>
+  </div>
+
+  
+</section>
