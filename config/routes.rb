@@ -32,4 +32,20 @@ Rails.application.routes.draw do
     end
   end
 
+<<<<<<< HEAD
+=======
+  resources :groups do
+    member do
+      post :join
+      post :quit
+      post :content
+    end
+  end
+
+  resources :invites do
+    collection do
+      post :send_mail
+    end
+  end
+>>>>>>> d4f47c19 (add)
 end
