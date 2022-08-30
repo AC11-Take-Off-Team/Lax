@@ -29,7 +29,11 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem "paranoia", "~> 2.2"
 gem 'devise'
+<<<<<<< HEAD
 gem 'aasm'
+=======
+
+>>>>>>> d5f1559f (修改)
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -45,9 +49,17 @@ group :development do
   # gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+<<<<<<< HEAD
   gem 'spring'
   gem 'rubocop', '~> 1.35', require: false
   gem "rubocop-rails", "~> 2.15"
+=======
+  gem 'rubocop', '~> 1.35', require: false
+
+  gem "rubocop-rails", "~> 2.15"
+  gem 'spring'
+
+>>>>>>> d5f1559f (修改)
 end
 
 group :test do
@@ -59,10 +71,22 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5f1559f (修改)
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "net-smtp", "~> 0.3.1",require: false
 
 gem "acts_as_list", "~> 1.0"
 
+<<<<<<< HEAD
+=======
+gem 'aasm'
+
+gem 'ransack'
+
+gem 'paranoia', '~> 2.2'
+>>>>>>> d5f1559f (修改)
 
