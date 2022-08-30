@@ -8,7 +8,6 @@ import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 import "../application.css";
-// import "../groups/new";
 
 Rails.start();
 Turbolinks.start();
