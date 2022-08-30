@@ -12,3 +12,7 @@ import "../application.css"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import 'calendar'
+
+import "controllers"
