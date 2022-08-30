@@ -1,0 +1,13 @@
+<section  class="w-full h-full fixed left-0 top-0 mx-auto flex justify-center items-center bg-black bg-opacity-30">
+  <div class="w-1/3 h-3/5 p-2.5 bg-white rounded-3xl">
+    <strong class="my-6 text-3xl">邀請人員加入</strong>
+    <%= form_with url: send_mail_invites_path do |form|  %>
+      <%= form.email_field :email %>
+      <%= form.submit %>
+    <% end %>
+  </div>
+</section>
+
+
+
+

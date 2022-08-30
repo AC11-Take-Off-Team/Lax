@@ -15,7 +15,8 @@
     <%= render "shared/navbar" %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= link_to "頻道" , groups_path %>
+    <div><%= link_to "頻道" , groups_path %></div>
+    <div><%= link_to "添加團隊成員" , invites_path %></div>
     <%= render 'layouts/shared/search_form' %>
     <div class="w-full h-full flex">
       <aside data-controller="sidebar" class="relative">

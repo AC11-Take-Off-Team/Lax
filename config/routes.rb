@@ -33,4 +33,10 @@ Rails.application.routes.draw do
       post :content
     end
   end
+
+  resources :invites do
+    collection do
+      post :send_mail
+    end
+  end
 end
