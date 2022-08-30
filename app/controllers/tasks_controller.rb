@@ -1,9 +1,13 @@
 class TasksController < ApplicationController
-  before_action :find_task, only: %i[show edit update destroy]
   before_action :find_project, only: %i[create update]
 
   def create
-    @task = @project.tasks.new(task_params.merge(status: 'todo'))
+    debugger
+    date = params[:task][":start_time, :end_time"].split(" to ")
+    start_time = Time.parse(date.first)
+    end_time = Time.parse(date.last)
+    params[:task]["username"]
+    @task = @project.tasks.new(task_params.merge(status: 'todo', start_time: start_time, end_time: end_time))
     if @task.save
       redirect_to board_project_path(@project)
     else
@@ -17,18 +21,15 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @task = Task.find(params[:id])
     @task.destroy
-    redirect_to board_project_path(@project)
+    redirect_to board_project_path(@task.project.id)
   end
 
   private
 
   def task_params
     params.require(:task).permit(:title, :content, :start_time, :end_time, :status, :deleted_at)
-  end
-
-  def find_task
-    @task = Task.find(params[:id])
   end
 
   def find_project

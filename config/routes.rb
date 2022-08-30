@@ -5,13 +5,14 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :projects do
-    resources :tasks
+    resources :tasks, shallow: true, only: [:create, :update, :destroy]
     member do
       delete :leave_project
       delete :kick_out
       get :board
     end
   end
+
 
   namespace :api do
     namespace :v1 do

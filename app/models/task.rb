@@ -6,5 +6,5 @@ class Task < ApplicationRecord
   has_many :user_tasks
   has_many :users, through: :user_tasks
 
-  acts_as_list scope: :project
+  validates :title, presence: true
 end

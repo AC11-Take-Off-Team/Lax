@@ -1,7 +1,12 @@
 <h1>Board</h1>
 <%= form_with model:[@project,@task] do |form| %>
   <div>新增任務：<%= form.text_field :title%></div>
-  <%= form.submit "建立任務" %>
+
+  <div>任務日期：<%= form.text_field [:start_time, :end_time], data: {  controller: "task", action: "input->task#selectdate"  } %></div>
+
+  <div>指派任務:</div>
+  
+  <%= form.submit "建立任務", data: { action: "taskcreate" } %>
 <% end %>
 
 <section data-controller="board" data-project-id="<%= @project.id%>"class="flex">
@@ -13,6 +18,7 @@
 
       <div data-task-id="<%=task.id%>"class="card bg-yellow-500 m-2 w-28" >
         <%= task.title %>
+        <%= link_to "x",task_path(task),method: "delete"%>
       </div>
 
     <% end %>
@@ -25,6 +31,7 @@
 
       <div data-task-id="<%=task.id%>"class="card bg-yellow-500 m-2 w-28" >
         <%= task.title %>
+        <%= link_to "x",task_path(task),method: "delete"%>
       </div>
 
     <% end %>
@@ -36,6 +43,7 @@
 
       <div data-task-id="<%=task.id%>"class="card bg-yellow-500 m-2 w-28" >
         <%= task.title %>
+        <%= link_to "x",task,method: "delete"%>
       </div>
 
     <% end %>
