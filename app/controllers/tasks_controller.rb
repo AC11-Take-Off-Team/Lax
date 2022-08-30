@@ -2,12 +2,10 @@ class TasksController < ApplicationController
   before_action :find_project, only: %i[create update]
 
   def create
-    debugger
-    date = params[:task][":start_time, :end_time"].split(" to ")
-    start_time = Time.parse(date.first)
-    end_time = Time.parse(date.last)
-    params[:task]["username"]
-    @task = @project.tasks.new(task_params.merge(status: 'todo', start_time: start_time, end_time: end_time))
+    @task = @project.tasks.new(task_params.merge(create_task_params))
+    # create_task_params在private
+    @task.users << task_user if @task_user.blank? && task_user.present?
+    # task_user在private
     if @task.save
       redirect_to board_project_path(@project)
     else
@@ -34,5 +32,16 @@ class TasksController < ApplicationController
 
   def find_project
     @project = Project.find(params[:project_id])
+  end
+
+  def create_task_params
+    date = params[:task][":start_time, :end_time"].split(" to ")
+    start_time = Time.parse(date.first)
+    end_time = Time.parse(date.last)
+    { status: 'todo', start_time:, end_time: }
+  end
+
+  def task_user
+    User.find_by(nickname: params[:task]["task_user"])
   end
 end

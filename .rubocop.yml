@@ -38,3 +38,5 @@ Style/FrozenStringLiteralComment:
 
 Style/ClassAndModuleChildren:
   Enabled: false
+Style/StringLiterals:
+  Enabled: false
