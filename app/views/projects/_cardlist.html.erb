@@ -1,0 +1,43 @@
+<% columns.each do |column| %>
+<div class="w-72 flex-shrink-0 flex flex-col flex-wrap" data-controller="task" data-column-id="<%= column.id %>">
+  <header class="h-9 flex items-center mb-2 justify-between">
+    <h2 class="column_status text-xl text-center pb-9 relative"><%= column.status %></h2>
+   <%= form_with model: @column ,url: column_path(column),method: "patch" do |form| %> <%= form.text_field :status,:class=>"display column_update bg-gray-100 text-xl text-center pb-9" %> <% end %>
+    <nav class="flex items-center gap-x-1 pb-9">
+      <button class="w-7 h-7 rounded text-icon hover:bg-hover flex items-center justify-center">
+        <svg class="fill-current" height="16" focusable="false" viewBox="0 0 32 32">
+          <path
+            d="M26,14h-8V6c0-1.1-0.9-2-2-2l0,0c-1.1,0-2,0.9-2,2v8H6c-1.1,0-2,0.9-2,2l0,0c0,1.1,0.9,2,2,2h8v8c0,1.1,0.9,2,2,2l0,0c1.1,0,2-0.9,2-2v-8h8c1.1,0,2-0.9,2-2l0,0C28,14.9,27.1,14,26,14z"
+          ></path>
+        </svg>
+      </button>
+      <div class="group z-10">
+        <button data-action="click->board#column_display" class="w-7 h-7 rounded text-icon hover:bg-hover group-focus-within:bg-hover flex items-center justify-center">
+          <svg class="fill-current" height="16" focusable="false" viewBox="0 0 32 32">
+            <path
+              d="M16,13c1.7,0,3,1.3,3,3s-1.3,3-3,3s-3-1.3-3-3S14.3,13,16,13z M3,13c1.7,0,3,1.3,3,3s-1.3,3-3,3s-3-1.3-3-3S1.3,13,3,13z M29,13c1.7,0,3,1.3,3,3s-1.3,3-3,3s-3-1.3-3-3S27.3,13,29,13z"
+            ></path>
+          </svg>
+        </button>
+        <nav class="top-full right-0 translate-y-1 shadow-box rounded bg-white py-1 w-45 opacity-0 invisible transition-all group-focus-within:opacity-100 group-focus-within:visible"></nav>
+        <div class="column_display flex absolute flex-col">
+          <button data-action="click->board#updateColumn">重新命名區段</button>
+          <%= link_to "刪除本區段",column,method: "delete",data: {confirm: "是否刪除本區段"} %>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="card-list max-h-full flex-1 flex flex-col gap-y-2 overflow-auto rounded-lg p-3" data-board-target="status_list" data-column-id="<%= column.id%>">
+    <%= render "card", column: column, user: @user%>
+    <button data-action="click->task#display_change" class="h-9 flex flex-shrink-0 items-center transition-all w-full text-sm text-icon font-medium justify-center rounded hover:bg-hover">
+      <svg class="fill-current mr-2" height="12" focusable="false" viewBox="0 0 24 24">
+        <path d="M10,10V4c0-1.1,0.9-2,2-2s2,0.9,2,2v6h6c1.1,0,2,0.9,2,2s-0.9,2-2,2h-6v6c0,1.1-0.9,2-2,2s-2-0.9-2-2v-6H4c-1.1,0-2-0.9-2-2s0.9-2,2-2H10z"></path>
+      </svg>
+      新增任務
+    </button>
+  </div>
+  <div class="display m-3 w-1/3 rounded-md resize-none pb-2 fixed z-10 bottom-0 bg-white rounded-md" data-task-target="task_display">
+    <%= render "TaskForm", model: model,user: user, url: project_tasks_path(project,column_id: column.id)%>
+  </div>
+</div>
+<% end %>

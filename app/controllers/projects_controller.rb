@@ -11,8 +11,8 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    current_user.projects.build(project_params.merge(owner_id: current_user.id))
-    # owner_id: 用來記錄誰建立/擁有這個project。
+    current_user.projects.new(project_params.merge(owner_id: current_user.id))
+
     if current_user.save
       redirect_to projects_path
     else
@@ -46,7 +46,6 @@ class ProjectsController < ApplicationController
   end
 
   def kick_out
-    # 把人踢出project
     user = User.find(params[:id])
     remove_project(params[:project_id], user)
     if user == current_user
@@ -58,9 +57,9 @@ class ProjectsController < ApplicationController
 
   def board
     @task = Task.new
-    @task_todo = @project.tasks.where(status: 'todo')
-    @task_doing = @project.tasks.where(status: 'doing')
-    @task_done = @project.tasks.where(status: 'done')
+    @column = Column.new
+    @columns = @project.columns.order(position: :asc)
+    @tasks = Task.all
     @user = @project.users.all
   end
 
@@ -77,4 +76,5 @@ class ProjectsController < ApplicationController
   def remove_project(project_id, user_id)
     Project.find(project_id).users.destroy([user_id])
   end
+
 end

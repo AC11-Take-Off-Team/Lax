@@ -19,7 +19,7 @@ export default class extends Controller {
         console.log(resp);
       },
       error: (err) => {
-        console.log("error" + err)
+        alert(err)
       },
     })
 
