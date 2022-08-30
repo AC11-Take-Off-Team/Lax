@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,27 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2022_08_26_064943) do
 
-=======
-ActiveRecord::Schema.define(version: 20_220_826_032_549) do
->>>>>>> e15547a8 (修改判斷會員)
-=======
-ActiveRecord::Schema.define(version: 2022_08_25_165945) do
-
->>>>>>> c55b091d (刪除migrate (group_id))
-=======
-ActiveRecord::Schema.define(version: 20_220_828_102_801) do
->>>>>>> 26547da0 (修改index.show增加update與小部分版面)
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+  create_table "channels", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_channels_on_group_id"
+    t.index ["user_id"], name: "index_channels_on_user_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -75,56 +73,6 @@ ActiveRecord::Schema.define(version: 20_220_828_102_801) do
     t.index ["user_id"], name: "index_user_tasks_on_user_id"
   end
 
-=======
->>>>>>> c55b091d (刪除migrate (group_id))
-  create_table "channels", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "group_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_channels_on_group_id"
-    t.index ["user_id"], name: "index_channels_on_user_id"
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 26547da0 (修改index.show增加update與小部分版面)
-  create_table 'channels', force: :cascade do |t|
-    t.bigint 'user_id', null: false
-    t.bigint 'group_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['group_id'], name: 'index_channels_on_group_id'
-    t.index ['user_id'], name: 'index_channels_on_user_id'
-<<<<<<< HEAD
->>>>>>> e15547a8 (修改判斷會員)
-=======
->>>>>>> c55b091d (刪除migrate (group_id))
-=======
->>>>>>> 26547da0 (修改index.show增加update與小部分版面)
-  end
-
-  create_table 'groups', force: :cascade do |t|
-    t.string 'title'
-    t.string 'description'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-  end
-
-  create_table 'joins', force: :cascade do |t|
-    t.bigint 'user_id', null: false
-    t.bigint 'group_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['group_id'], name: 'index_joins_on_group_id'
-    t.index %w[user_id group_id], name: 'index_joins_on_user_id_and_group_id', unique: true
-    t.index ['user_id'], name: 'index_joins_on_user_id'
-  end
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> c55b091d (刪除migrate (group_id))
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -133,110 +81,16 @@ ActiveRecord::Schema.define(version: 20_220_828_102_801) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-<<<<<<< HEAD
     t.string "nickname"
-=======
->>>>>>> c55b091d (刪除migrate (group_id))
-    t.string "invitation_token"
-    t.datetime "invitation_created_at"
-    t.datetime "invitation_sent_at"
-    t.datetime "invitation_accepted_at"
-    t.integer "invitation_limit"
-    t.string "invited_by_type"
-    t.bigint "invited_by_id"
-    t.integer "invitations_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
-    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-<<<<<<< HEAD
   end
 
+  add_foreign_key "channels", "groups"
+  add_foreign_key "channels", "users"
   add_foreign_key "tasks", "projects"
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
   add_foreign_key "user_tasks", "tasks"
   add_foreign_key "user_tasks", "users"
-  add_foreign_key "channels", "groups"
-  add_foreign_key "channels", "users"
-  add_foreign_key "teams", "groups"
-  add_foreign_key "teams", "users"
-=======
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.string 'invitation_token'
-    t.datetime 'invitation_created_at'
-    t.datetime 'invitation_sent_at'
-    t.datetime 'invitation_accepted_at'
-    t.integer 'invitation_limit'
-    t.string 'invited_by_type'
-    t.bigint 'invited_by_id'
-    t.integer 'invitations_count', default: 0
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['invitation_token'], name: 'index_users_on_invitation_token', unique: true
-    t.index ['invited_by_id'], name: 'index_users_on_invited_by_id'
-    t.index %w[invited_by_type invited_by_id], name: 'index_users_on_invited_by'
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
-  end
-
-  add_foreign_key 'channels', 'groups'
-  add_foreign_key 'channels', 'users'
-  add_foreign_key 'teams', 'groups'
-  add_foreign_key 'teams', 'users'
->>>>>>> e15547a8 (修改判斷會員)
-=======
-  end
-
-  add_foreign_key "channels", "groups"
-  add_foreign_key "channels", "users"
-  add_foreign_key "teams", "groups"
-  add_foreign_key "teams", "users"
->>>>>>> c55b091d (刪除migrate (group_id))
-=======
-  create_table 'teams', force: :cascade do |t|
-    t.bigint 'user_id', null: false
-    t.bigint 'group_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['group_id'], name: 'index_teams_on_group_id'
-    t.index ['user_id'], name: 'index_teams_on_user_id'
-  end
-
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.string 'invitation_token'
-    t.datetime 'invitation_created_at'
-    t.datetime 'invitation_sent_at'
-    t.datetime 'invitation_accepted_at'
-    t.integer 'invitation_limit'
-    t.string 'invited_by_type'
-    t.bigint 'invited_by_id'
-    t.integer 'invitations_count', default: 0
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['invitation_token'], name: 'index_users_on_invitation_token', unique: true
-    t.index ['invited_by_id'], name: 'index_users_on_invited_by_id'
-    t.index %w[invited_by_type invited_by_id], name: 'index_users_on_invited_by'
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
-  end
-
-  add_foreign_key 'channels', 'groups'
-  add_foreign_key 'channels', 'users'
-  add_foreign_key 'joins', 'groups'
-  add_foreign_key 'joins', 'users'
-  add_foreign_key 'teams', 'groups'
-  add_foreign_key 'teams', 'users'
->>>>>>> 26547da0 (修改index.show增加update與小部分版面)
 end

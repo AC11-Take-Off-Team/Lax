@@ -8,10 +8,8 @@ class User < ApplicationRecord
   has_many :user_projects
   has_many :projects, through: :user_projects
 
-<<<<<<< HEAD
   validates :nickname, presence: true, uniqueness: true
-=======
->>>>>>> e15547a8 (修改判斷會員)
+
   has_many :channels
   has_many :groups, through: :channels
 

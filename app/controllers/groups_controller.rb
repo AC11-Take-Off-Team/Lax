@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GroupsController < ApplicationController
-  before_action :find_group, only: %i[show edit update destroy join quit content update_status]
+  before_action :find_group, only: %i[show edit update destroy join quit content]
 
   def new
     @group = Group.new
@@ -14,14 +14,9 @@ class GroupsController < ApplicationController
 
   def show; end
 
-  def update_status
-    @group.update(status: params[:status])
-    redirect_to @group, notice: "status changed to #{@group.status}"
-  end
-
   def create
-    @group = current_user.groups.build(group_params)
-    if @group.save
+    current_user.groups.build(group_params)
+    if current_user.save
       redirect_to groups_path
     else
       render :new
