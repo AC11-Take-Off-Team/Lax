@@ -14,10 +14,18 @@
     <%= render "shared/navbar" %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+<<<<<<< HEAD
 
     <%= link_to "頻道" , groups_path %>
+=======
+    <% if current_user %>
+      <%= link_to "頻道" , groups_path %>
+    <% end %>
+>>>>>>> 75213501 (add_tailwind)
     <%= render 'layouts/shared/search_form' %>
 
     <%= yield %>
+
+
   </body>
 </html>

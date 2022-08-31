@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
   # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   before_action :configure_permitted_parameters, if: :devise_controller?
+
   # if: :devise_controller? 告訴ApplicationController，這是device的方法
+
+  before_action :search
 
   private
 
@@ -17,7 +20,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
   end
 
-  def search_group
+  def search
     @group_query = Group.ransack(params[:q])
   end
 

@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   before_action :find_group, only: %i[show edit update destroy join quit content]
 
   def new
-    @group = Group.new
+    @group = current_user.groups.new
   end
 
   def index
@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
   def show; end
 
   def create
-    current_user.groups.build(group_params)
+    current_user.groups.new(group_params)
     if current_user.save
       redirect_to groups_path
     else
