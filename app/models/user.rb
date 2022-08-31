@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :user_projects
   has_many :projects, through: :user_projects
 
-  # validates :nickname, presence: true, uniqueness: true
+  validates :nickname, presence: true, uniqueness: true
 
   # google oauth2
   def self.from_omniauth(access_token)
