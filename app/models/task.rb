@@ -3,8 +3,8 @@ class Task < ApplicationRecord
   acts_as_list
 
   belongs_to :project
-  has_many :user_tasks
-  has_many :users, through: :user_tasks
+  has_one :user_task
+  has_one :user, through: :user_task
 
   validates :title, presence: true
 end

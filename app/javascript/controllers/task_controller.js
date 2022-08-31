@@ -14,6 +14,7 @@ export default class extends Controller {
     const datePicker = picker(this.element,{
       mode: "range"
     })
+    console.log(datePicker);
     var start_time = datePicker.selectedDates[0]
     console.log(start_time);
     var end_time = datePicker.selectedDates[1]
@@ -23,9 +24,8 @@ export default class extends Controller {
       data.append("end_time",end_time) 
     }
   }
-  taskcreate(){
+  taskPost(){
     let projectID = this.element.dataset.projectId
-    console.log(projectID);
     Rails.ajax({
       url: `/projects/${projectID}/tasks`,
       type: "post",

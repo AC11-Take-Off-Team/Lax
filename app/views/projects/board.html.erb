@@ -1,55 +1,23 @@
 <h1>Board</h1>
-<%= form_with model:[@project,@task] do |form| %>
-  <div>新增任務：<%= form.text_field :title%></div>
-
-  <div>任務描述：<%= form.text_field :content%></div>
-
-  <div>任務日期：<%= form.text_field [:start_time, :end_time], data: {  controller: "task", action: "input->task#selectdate"  } %></div>
-
-  <div>指派任務:<%= form.text_field :task_user %></div>
-  
-  <%= form.submit "建立任務", data: { action: "taskcreate" } %>
-<% end %>
+<%= render "TaskForm", model: [@project,@task] %>
 
 <section data-controller="board" data-project-id="<%= @project.id%>"class="flex">
   
     
   <div class="card-list todo mx-4" data-board-target="todo">
     <h2>待辦事項</h2>
-    <% @task_todo.each do |task| %>
-
-      <div data-task-id="<%=task.id%>"class="card bg-yellow-500 m-2 w-28" >
-        <%= task.title %>
-        <%= link_to "x",task_path(task),method: "delete"%>
-      </div>
-
-    <% end %>
+    <%= render "card",tasks: @task_todo %>
   </div>
 
 
   <div class="card-list doing mx-4" data-board-target="doing">
     <h2>進行中</h2>
-    <% @task_doing.each do |task| %>
-
-      <div data-task-id="<%=task.id%>"class="card bg-yellow-500 m-2 w-28" >
-        <%= task.title %>
-        <%= link_to "x",task_path(task),method: "delete"%>
-      </div>
-
-    <% end %>
+    <%= render "card",tasks: @task_doing %>
   </div>
 
   <div class="card-list done mx-4" data-board-target="done">
     <h2>已完成</h2>  
-    <% @task_done.each do |task| %>
-
-      <div data-task-id="<%=task.id%>"class="card bg-yellow-500 m-2 w-28" >
-        <%= task.title %>
-        <%= link_to "x",task,method: "delete"%>
-      </div>
-
-    <% end %>
-   
+    <%= render "card",tasks: @task_done %>
   </div>
 
  
