@@ -1,19 +1,20 @@
-<section  class="w-full h-full fixed left-0 top-0 mx-auto flex justify-center items-center bg-green-400">
-  <div class="w-1/2 p-2.5 bg-white text-center">
-    <h2>創建頻道</h2>
-
-    <p>频道是你的團隊進行通信的地方。圍繞主题進行組織時其效果最佳，例如#市場營銷#。</p>
-
+<section  class="w-full h-full fixed left-0 top-0 mx-auto flex justify-center items-center bg-black bg-opacity-30">
+  <div class="w-1/3 h-3/5 p-2.5 bg-white rounded-3xl">
+    <h2 class="my-6 text-3xl ">創建頻道</h2>
+    <p class="my-10 text-gray-500">频道是你的團隊進行通信的地方。圍繞主题進行組織時其效果最佳，例如#市場營銷#。</p>
     <%= form_for @group do |form| %>
+      名稱：
       <div>
-        名稱：<%= form.text_field :title %>
+        <%= form.text_field :title ,:class=>"my-2 border-2 rounded text-2xl" %>
       </div>
+      描述:
       <div>
-        描述：<%= form.text_field :description %>
+        <%= form.text_field :description, :class=>"my-2 border-2 rounded text-2xl" %>
       </div>
-      <%= form.submit %>
+      <button>
+        <%= form.submit "創建" ,:class=>"mb-2 mt-6  bg-blue-500 hover:bg-blue-700 text-white rounded py-2 px-4" %>
+      </button>
     <% end %>
-
   </div>
 </section>
 
