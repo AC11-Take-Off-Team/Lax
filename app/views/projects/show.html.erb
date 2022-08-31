@@ -1,9 +1,15 @@
 <h1><%= @project.title %></h1>
 
 <% @project.users.each do |user_name| %>
-  <%= link_to user_name.nickname, kick_out_project_path(user_name, project_id: @project.id ), method: "delete" ,data: { confirm: "是否將此人退出Project?"} %>
+  <%= user_name.nickname %>
+  <%= link_to "踢出專案", kick_out_project_path(user_name, project_id: @project.id ), method: "delete" ,data: { confirm: "是否將此人退出專案?"} %>
 <% end  %>
 
-<%= link_to "退出project", leave_project_project_path, method: "delete", data: { confirm: "是否退出此Project?"} %>
+<%= link_to "退出project", leave_project_project_path, method: "delete", data: { confirm: "是否退出此專案?"} %>
+
+<div data-controller="join" data-id="<%= @project.id %>">
+  <input data-join-target="email" type="text" placeholder="請輸入電子信箱">
+  <button data-action="click->join#join_member">加入成員</button>
+</div>
 
 <%= link_to "看板", board_project_path(@project) %>

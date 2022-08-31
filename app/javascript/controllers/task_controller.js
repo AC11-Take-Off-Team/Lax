@@ -8,15 +8,13 @@ export default class extends Controller {
   connect(){
     const datePicker = picker(this.element,{
       mode: "range"
-    })
+    }) //使this.element變成月曆畫面
   }
   selectdate(){
     const datePicker = picker(this.element,{
       mode: "range"
     })
-    console.log(datePicker);
     var start_time = datePicker.selectedDates[0]
-    console.log(start_time);
     var end_time = datePicker.selectedDates[1]
     var data = new FormData();
     data.append("start_time",start_time)
@@ -30,8 +28,8 @@ export default class extends Controller {
       url: `/projects/${projectID}/tasks`,
       type: "post",
       data: data,
-      success: ({state}) => {
-        console.log("ok");
+      success: (resp) => {
+        console.log(resp);
       },
       error: (err) => {
         console.log("error" + err)

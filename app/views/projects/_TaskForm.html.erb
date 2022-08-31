@@ -1,11 +1,11 @@
 <%= form_with model: model do |form| %>
-  <div>任務名稱：<%= form.text_field :title%></div>
+  <div>任務名稱：<%= form.text_field :title, placeholder: "寫入任務名稱" %></div>
 
   <div>任務描述：<%= form.text_field :content%></div>
 
-  <div>任務日期：<%= form.text_field [:start_time, :end_time], data: {  controller: "task", action: "input->task#selectdate"  } %></div>
+  <div>任務日期：<%= form.text_field [:start_time, :end_time], data: {  controller: "task", action: "input->task#selectdate"  }, placeholder: "輸入開始日期&截止日期" %></div>
 
-  <div>指派任務:<%= form.text_field :task_user %></div>
+  <div>指派任務：<%= form.text_field :task_user, placeholder: "請輸入指派人暱稱或信箱" %></div>
   
   <%= form.submit "送出任務", data: { action: "input->task#taskPost" } %>
 <% end %>

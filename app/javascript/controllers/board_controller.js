@@ -10,8 +10,8 @@ export default class extends Controller {
     let projectID = this.element.dataset.projectId
     const sortEvent = {
       animation: 150,
-      handle: ".card-list",
-      draggable: ".card",
+      handle: ".card-list",//拖拉的範圍
+      draggable: ".card", //可拖拉的物件
       group: 'shared',
       onEnd:(event)=>{
         let status = event.to.dataset.boardTarget

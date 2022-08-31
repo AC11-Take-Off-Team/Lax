@@ -3,10 +3,9 @@
     <div>任務名稱：<%= task.title %></div>
     <div>任務描述：<%= task.content %></div>
     <div>開始日期：<%= task.start_time&.strftime('%Y-%m-%d')%></div>
-    <div>截止日期<%= task.end_time&.strftime('%Y-%m-%d') %></div>
-    <div>執行人：<%= task.user&.nickname %></div>
-    <%= link_to "x",task_path(task),method: "delete"%>
-    <%= link_to "修改",edit_task_path(task) %>
-     <button data-action="click->updateCreate#update_block">修改</button>
+    <div>截止日期：<%= task.end_time&.strftime('%Y-%m-%d') %></div>
+    <div>執行人員：<%= task.user&.nickname %></div>
+    <div><%= link_to "x",task_path(task),method: "delete", data: { confirm: "是否刪除此任務" } %></div>
+    <div><%= link_to "修改",edit_task_path(task) %></div>
   </div>
 <% end  %>
