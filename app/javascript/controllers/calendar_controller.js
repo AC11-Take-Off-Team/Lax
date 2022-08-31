@@ -11,20 +11,21 @@ import { Controller } from "stimulus"
 import Calendar from '@toast-ui/calendar'
 import '@toast-ui/calendar/dist/toastui-calendar.min.css'
 
+
+
 export default class extends Controller {
-  static targets = [ "output" ]
 
   connect() {
     const calendar = new Calendar('#calendar', {
       defaultView: 'week',
       template: {
         time(event) {
-          const { start, end, title } = event;
+          const { start, end, title } = event
     
-          return `<span style="color: white;">${formatTime(start)}~${formatTime(end)} ${title}</span>`;
+          return `<span style="color: white;">${formatTime(start)}~${formatTime(end)} ${title}</span>`
         },
         allday(event) {
-          return `<span style="color: gray;">${event.title}</span>`;
+          return `<span style="color: gray;">${event.title}</span>`
         },
       },
       calendars: [
@@ -39,6 +40,6 @@ export default class extends Controller {
           backgroundColor: '#00a9ff',
         },
       ],
-    });
+    })
   }
 }
