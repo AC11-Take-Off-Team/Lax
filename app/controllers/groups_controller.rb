@@ -4,18 +4,17 @@ class GroupsController < ApplicationController
   before_action :find_group, only: %i[show edit update destroy join quit content]
 
   def new
-    @group = Group.new
+    @group = current_user.groups.new
   end
 
   def index
     @groups = @group_query.result.recent
-    # @groups_user = current_user.groups.all
   end
 
   def show; end
 
   def create
-    current_user.groups.build(group_params)
+    current_user.groups.new(group_params)
     if current_user.save
       redirect_to groups_path
     else
@@ -45,7 +44,10 @@ class GroupsController < ApplicationController
     flash[:notice] = '已退出'
   end
 
-  def content; end
+  def content
+
+    @nickname = current_user.nickname
+  end
 
   private
 

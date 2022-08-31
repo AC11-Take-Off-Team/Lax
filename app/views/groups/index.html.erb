@@ -1,30 +1,40 @@
-<section class="mx-auto w-5/6 md:w-4/6">
-  <div class="flex justify-between  border-b-2" >
+<section class=" mx-auto ">
+  <div class="flex justify-between items-center border-b-2" >
     <div>
-      <h3 class="text-2xl my-2">所有頻道</h3>
+      <h3 class="text-2xl p-3 my-2">所有頻道</h3>
     </div>
     <div>
-      <%= link_to "創建頻道" ,new_group_path %>
+      <h3 class="mr-9 p-1 border-2 rounded"><%= link_to "創建頻道" ,new_group_path %></h3>
     </div>
   </div>
-  <h4><%= Group.count %>個頻道<h4>
-    <% @groups.each do |group| %>
-      <div class="mb-4 py-2 border-b-2 p-2">
-        <h4 class="text-xl"><%= link_to group.title, group %></h4>
 
-          <div class="text-sm">
-            <span><%= group.users.count %>個會員</span>
+  <div class="mx-auto w-5/6 ">
+    <div>
+      <h4 class="my-2 border-b-2 p-2 "><%= Group.count %>個頻道<h4></h4>
+    </div>
+
+    <% @groups.each do |group| %>
+      <div class="my-2 border-b-2 p-2">
+      <div class="flex justify-between align-center">
+        <div class="">
+          <h4 class="text-2xl"><%= link_to group.title, group %></h4>
+          <div class="text-sm mb-2">
+            <span><%= group.users.count %>個成員</span>
             <span><%= group.description %></span>
           </div>
+        </div>
         <% if current_user.join?(group) %>
-         <%# 如果使用者有加入這個頻道 %>
-          <%="已加入"%>
-          <%= link_to "退出" , quit_group_path(group),method: "post" %>
+          <span class="mb-2 text-green-400"><%="已加入"%></span>
+          <button class="mb-2 bg-white hover:bg-gray-100 py-2 px-4 rounded shadow "><%= link_to "退出" , quit_group_path(group),method: "post" %></button>
         <% else %>
-          <%= link_to "加入" , join_group_path(group),method: "post" %>
+          <button class="mb-2 bg-blue-500 hover:bg-blue-700 text-white rounded py-2 px-4"><%= link_to "加入" , join_group_path(group),method: "post" %></button>
+
         <% end %>
       </div>
+
+      </div>
     <% end %>
+  </div>
 </section>
 
 
