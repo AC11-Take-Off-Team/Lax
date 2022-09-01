@@ -1,4 +1,3 @@
-
 import { Controller } from "stimulus"
 import Calendar from '@toast-ui/calendar'
 import '@toast-ui/calendar/dist/toastui-calendar.min.css'
@@ -54,24 +53,24 @@ export default class extends Controller {
     })
   
   // 新增
-  this.calendar.on('beforeCreateEvent', (eventObj) => {
-    this.calendar.createEvents([
-      {
-        ...eventObj,
-        id: uuid(),
-      },
-    ])
-  })
+    this.calendar.on('beforeCreateEvent', (eventObj) => {
+      this.calendar.createEvents([
+        {
+          ...eventObj,
+          id: uuid(),
+        },
+      ])
+    })
 
   // 更新
-  this.calendar.on('beforeUpdateEvent', ({ event, changes }) => {
-    this.calendar.updateEvent(event.id, event.calendarId, changes);
-  });
+    this.calendar.on('beforeUpdateEvent', ({ event, changes }) => {
+      this.calendar.updateEvent(event.id, event.calendarId, changes);
+    })
 
   // 刪除
-  this.calendar.on('beforeDeleteEvent', (eventObj) => {
-    this.calendar.deleteEvent(eventObj.id, eventObj.calendarId);
-  })
+    this.calendar.on('beforeDeleteEvent', (eventObj) => {
+      this.calendar.deleteEvent(eventObj.id, eventObj.calendarId);
+    })
 }
 
   // 跳出新增視窗
