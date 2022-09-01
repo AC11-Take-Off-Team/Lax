@@ -4,11 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
-
   has_many :user_projects
   has_many :projects, through: :user_projects
-
   validates :nickname, presence: true, uniqueness: true
+  has_many :channels
+  has_many :groups, through: :channels
+
+  def join?(group)
+    groups.find_by(id: group).present?
+  end
 
   # google oauth2
   def self.from_omniauth(access_token)
@@ -51,4 +55,6 @@ class User < ApplicationRecord
   #     end
   #   end
   # end
+
+
 end

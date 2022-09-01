@@ -1,0 +1,15 @@
+<section class="w-full h-full fixed left-0 top-0 mx-auto flex justify-center items-center bg-current">
+  <div class="w-1/2 p-2.5 bg-white text-center">
+
+    <strong><%= @group.title %></strong>
+
+    <%= link_to "加入頻道" , join_group_path(@group),method: "post" %>
+
+      <div>
+        描述<%= @group.description %>
+        <%= @group.id %>
+      </div>
+
+   </div>
+</section>
+
