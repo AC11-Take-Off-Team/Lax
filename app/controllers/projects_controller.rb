@@ -60,6 +60,7 @@ class ProjectsController < ApplicationController
     @task_todo = @project.tasks.where(status: 'todo')
     @task_doing = @project.tasks.where(status: 'doing')
     @task_done = @project.tasks.where(status: 'done')
+    @user = @project.users.all
   end
 
   private

@@ -23,6 +23,11 @@ Rails.application.routes.draw do
           post :sort_position
         end
       end
+      resources :tasks,only: [] do
+        member do
+          post :status_done
+        end
+      end
     end
   end
 

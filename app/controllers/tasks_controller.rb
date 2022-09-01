@@ -3,10 +3,9 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[edit update destroy]
   def create
     @task = @project.tasks.new(task_params.merge(status: 'todo'))
-
     # create_task_params在private
-    @task.user = task_user if task_user.present?
-    # debugger
+    user = User.find_by(id: params[:task]["user_id"])
+    @task.user = user if user.present?
     # task_user在private
     if @task.save
       redirect_to board_project_path(@project)
@@ -16,10 +15,12 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @user = @task.project.users.all
   end
 
   def update
-    @task.user = task_user if task_user.present?
+    user = User.find_by(id: params[:task]["user_id"])
+    @task.user = user if user.present?
     @task.update(task_params)
     redirect_to board_project_path(@task.project.id)
   end
@@ -48,7 +49,4 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
   end
 
-  def task_user
-    User.find_by(nickname: params[:task]["task_user"]) || User.find_by(email: params[:task]["task_user"])
-  end
 end

@@ -1,6 +1,13 @@
 <% tasks.each do |task| %>
-  <div data-task-id="<%=task.id%>"class="card bg-yellow-400 m-2 w-50" >
-    <div>任務名稱：<%= task.title %></div>
+  <div data-controller="done"
+       data-task-id="<%=task.id%>"
+       data-status="<%=task.status%>"
+       class="card bg-yellow-400 m-2 p-3 w-50" >
+    <div>
+      <button data-action="click->done#status_done"
+              data-done-target="doneBtn">☐</button>
+      任務名稱：<%= task.title %>
+    </div>
     <div>任務描述：<%= task.content %></div>
     <div>開始日期：<%= task.start_time&.strftime('%Y-%m-%d')%></div>
     <div>截止日期：<%= task.end_time&.strftime('%Y-%m-%d') %></div>

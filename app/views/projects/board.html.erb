@@ -1,14 +1,12 @@
 <h1>Board</h1>
-<%= render "TaskForm", model: [@project,@task] %>
+<%= render "TaskForm", model: [@project,@task],user: @user %>
 
 <section data-controller="board" data-project-id="<%= @project.id%>"class="flex">
-  
-    
+
   <div class="card-list todo mx-4" data-board-target="todo">
     <h2>待辦事項</h2>
     <%= render "card",tasks: @task_todo %>
   </div>
-
 
   <div class="card-list doing mx-4" data-board-target="doing">
     <h2>進行中</h2>
@@ -19,8 +17,5 @@
     <h2>已完成</h2>  
     <%= render "card",tasks: @task_done %>
   </div>
-
- 
-    
 
 </section>

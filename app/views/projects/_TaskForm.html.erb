@@ -5,7 +5,8 @@
 
   <div>任務日期：<%= form.text_field [:start_time, :end_time], data: {  controller: "task", action: "input->task#selectdate"  }, placeholder: "輸入開始日期&截止日期" %></div>
 
-  <div>指派任務：<%= form.text_field :task_user, placeholder: "請輸入指派人暱稱或信箱" %></div>
+  <%# <div>指派任務：<%= form.text_field :task_user, placeholder: "請輸入指派人暱稱或信箱" </div> %>
+  <div>指派任務：<%= form.collection_select(:user_id, user, :id, :nickname, {:prompt => '選擇指派人員'}) %></div>
   
   <%= form.submit "送出任務", data: { action: "input->task#taskPost" } %>
 <% end %>
