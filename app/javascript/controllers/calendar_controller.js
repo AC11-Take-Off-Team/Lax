@@ -71,7 +71,7 @@ export default class extends Controller {
     this.calendar.on('beforeDeleteEvent', (eventObj) => {
       this.calendar.deleteEvent(eventObj.id, eventObj.calendarId);
     })
-}
+  }
 
   // 跳出新增視窗
   addTask() {
