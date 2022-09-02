@@ -9,7 +9,6 @@ class GroupsController < ApplicationController
 
   def index
     @groups = @group_query.result.recent
-    # @groups_user = current_user.groups.all
   end
 
   def show; end
