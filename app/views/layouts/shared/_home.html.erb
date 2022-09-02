@@ -1,0 +1,21 @@
+<header class="h-[6.188rem] flex px-6 items-center justify-between border-b border-gray-200">
+  <div class="flex flex-col w-full h-full">
+    <div class="flex justify-between items-center mt-auto">
+      <div class="flex items-center">
+        <div class="w-12 h-12 rounded-lg mr-4 bg-[color:var(--color)] flex items-center text-white justify-center text-white">
+        </div>
+        <div class="flex items-center gap-x-1">
+          <h1><%= link_to "LAX" ,root_path ,:class=>"text-xl" %></h1>
+        </div>
+      </div>
+      <div class="flex items-center gap-x-3">
+        <label class="relative group z-30">
+          <%= render "layouts/shared/search_form",:class=>"h-10 flex
+          items-center text-sm px-4 text-gray-700 hover:bg-gray-100" %>
+          <nav class="absolute z-10 top-full opacity-0 invisible group-focus-within:visible group-focus-within:opacity-100 transition-all left-0 w-full overflow-hidden rounded-md bg-white shadow-box">
+          </nav>
+        </label>
+      </div>
+    </div>
+  </div>
+</header>
