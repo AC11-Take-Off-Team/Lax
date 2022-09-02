@@ -1,9 +1,37 @@
-<h1>Home</h1>
-<h2>我的任務</h2>
+<div class="max-w-[46.75rem] mx-auto grid gap-y-24 mt-10">
+  <%= Time.now.strftime("%Y-%m月%d日") %>
+  <div>
+    <h4 class="text-xl font-medium outline-none" contenteditable>
+      <%= current_user.nickname %> 你好!
+    </h4>
+  </div>
+  <div>
+    <button class="flex w-full items-center p-2 transition-all rounded-md text-sm font-semibold text-gray-600 hover:bg-light">
+      <div class="w-8 h-8 rounded-full mr-3 border border-icon flex items-center justify-center text-icon border-dashed">
+      </div>
+      專案
+    </button>
+    <div class="grid grid-cols-2 gap-2">
+      <button class="flex w-full items-center p-2 transition-all rounded-md text-sm font-semibold text-gray-600 hover:bg-light">
+        <div class="w-8 h-8 rounded-full mr-3 border border-icon flex items-center justify-center text-icon border-dashed">
+          <svg
+            class="fill-current"
+            height="16"
+            focusable="false"
+            viewBox="0 0 32 32">
+            <path d="M26,14h-8V6c0-1.1-0.9-2-2-2l0,0c-1.1,0-2,0.9-2,2v8H6c-1.1,0-2,0.9-2,2l0,0c0,1.1,0.9,2,2,2h8v8c0,1.1,0.9,2,2,2l0,0c1.1,0,2-0.9,2-2v-8h8c1.1,0,2-0.9,2-2l0,0C28,14.9,27.1,14,26,14z"></path>
+          </svg>
+        </div>
+        <%= link_to "建立專案" , new_project_path %>
+      </button>
+      <% @projects.each do |project| %>
+        <div class="flex w-full items-center p-2 transition-all rounded-md text-sm font-semibold text-gray-600 hover:bg-light">
+        <div class="w-8 h-8 rounded-full mr-3 border border-icon flex items-center justify-center text-icon border-dashed">
+        </div>
+        <%= link_to project.title,project %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<h2>專案</h2>
-<%= link_to "建立專案",new_project_path %>
-
-<% @projects.each do |project| %>
-  <%= link_to project.title,project %>
-<% end %>

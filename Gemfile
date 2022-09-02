@@ -31,6 +31,7 @@ gem "paranoia", "~> 2.2"
 gem 'devise'
 gem 'aasm'
 
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -63,7 +64,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 gem "net-smtp", "~> 0.3.1",require: false
-
+gem "ransack"
 gem "acts_as_list", "~> 1.0"
 
 

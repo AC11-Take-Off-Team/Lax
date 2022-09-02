@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%# <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %> 
+    <%# <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="bg-light" style="--color: #5a7896">
+  <body>
+    <%= render 'layouts/shared/home' %>
+    <%= render 'layouts/shared/search_form' %>
     <%= render "shared/navbar" %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+
     <%= yield %>
   </body>
 </html>

@@ -11,13 +11,11 @@
     <% @groups.each do |group| %>
       <div class="mb-4 py-2 border-b-2 p-2">
         <h4 class="text-xl"><%= link_to group.title, group %></h4>
-
           <div class="text-sm">
             <span><%= group.users.count %>個會員</span>
             <span><%= group.description %></span>
           </div>
         <% if current_user.join?(group) %>
-         <%# 如果使用者有加入這個頻道 %>
           <%="已加入"%>
           <%= link_to "退出" , quit_group_path(group),method: "post" %>
         <% else %>
