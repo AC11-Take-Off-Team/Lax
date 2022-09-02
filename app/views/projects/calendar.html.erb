@@ -68,7 +68,7 @@
                 </a>
             </nav>
             <div class="h-px bg-white bg-opacity-10"></div>
-            <nav data-id="favorite" class="py-4">
+            <nav class="py-4">
                 <h3 class="px-6 cursor-pointer pb-2 hover:text-white hover:text-opacity-60 flex items-center justify-between text-icon text-sm text-white font-semibold">
                     Favorites
                     <button data-action="click->sidebar#setFav">
@@ -78,7 +78,7 @@
                         </svg>
                     </button>
                 </h3>
-                <div>
+                <div data-sidebar-target="favList" >
                     <a href="#" class="text-sm text-white flex items-center text-lighter h-8 px-6 hover:bg-white hover:bg-opacity-10">
                         All Items
                     </a>
