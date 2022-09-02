@@ -37,7 +37,7 @@ export default class extends Controller {
         },
         allday(event) {
           return `<span style="color: gray;">${event.title}</span>`;
-        }
+        },
       },
       calendars: [
         {
@@ -50,15 +50,17 @@ export default class extends Controller {
           name: "Work",
           backgroundColor: "#00a9ff"
         }
-      ]
+      ],
     });
 
     // 新增
     this.calendar.on("beforeCreateEvent", (eventObj) => {
+      console.log(eventObj);
+      
       this.calendar.createEvents([
         {
           ...eventObj,
-          id: uuid()
+          id: uuid(),
         }
       ]);
     });
@@ -94,4 +96,6 @@ export default class extends Controller {
   changeToDay() {
     this.calendar.changeView("day");
   }
+
+
 }
