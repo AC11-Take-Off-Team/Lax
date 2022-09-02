@@ -18,6 +18,8 @@ function uuid() {
 }
 
 export default class extends Controller {
+  static targets = ["calendar"];
+
   // 初始化，讓其他方法都選得到 calendar
   initialize() {
     this.calendar = null;
@@ -78,5 +80,18 @@ export default class extends Controller {
       useFormPopup: true,
       useDetailPopup: true
     });
+  }
+
+  // 轉換成月曆
+  changeToMonth() {
+    this.calendar.changeView("month");
+  }
+  // 轉換成週曆
+  changeToWeek() {
+    this.calendar.changeView("week");
+  }
+  // 轉換成日曆
+  changeToDay() {
+    this.calendar.changeView("day");
   }
 }
