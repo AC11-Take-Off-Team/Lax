@@ -41,7 +41,6 @@ gem 'omniauth-rails_csrf_protection'
 
 gem "acts_as_list", "~> 1.0"
 gem 'acts_as_paranoid'
-gem 'ransack'
 
 
 group :development, :test do
@@ -85,4 +84,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "net-smtp", "~> 0.3.1",require: false
 
+
 gem 'paranoia', '~> 2.2'
+
+gem "ransack"
+gem "acts_as_list", "~> 1.0"

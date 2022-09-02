@@ -8,6 +8,10 @@ class GroupsController < ApplicationController
 
   def index
     @groups = @group_query.result.recent
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5781db0 (解衝突)
   end
 
   def show; end
