@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
-  before_action :find_project, only: %i[new create]
+  before_action :authenticate_user!
+  before_action :find_project, only: %i[create]
   before_action :find_task, only: %i[update destroy]
 
   def create

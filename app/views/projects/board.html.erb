@@ -7,17 +7,17 @@
   <div class="flex justify-around bg-gray-200 my-3">
     <div class="card-list todo mx-4 w-1/4" data-board-target="todo">
     <h2 class="text-xl text-center">待辦事項</h2>
-    <%= render "card",tasks: @task_todo %>
+    <%= render "card",tasks: @task_todo,user: @user %>
   </div>
 
   <div class="card-list doing mx-4 w-1/4" data-board-target="doing">
     <h2 class="text-xl text-center">進行中</h2>
-    <%= render "card",tasks: @task_doing %>
+    <%= render "card",tasks: @task_doing,user: @user %>
   </div>
 
   <div class="card-list done mx-4 w-1/4" data-board-target="done">
     <h2 class="text-xl text-center">已完成</h2>  
-    <%= render "card",tasks: @task_done %>
+    <%= render "card",tasks: @task_done,user: @user %>
   </div>
 
   </div>

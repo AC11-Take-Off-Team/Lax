@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_user_project, only: %i[show edit update destroy board]
 
   def index

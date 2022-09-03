@@ -5,15 +5,12 @@ import Rails from "@rails/ujs"
 
 
 export default class extends Controller {
-  connect(){
-    const datePicker = picker(this.element,{
+  initialize(){
+    this.datePicker = picker(this.element,{
       mode: "range"
-    }) //使this.element變成月曆畫面
+    })//使this.element變成月曆畫面
   }
   selectdate(){
-    const datePicker = picker(this.element,{
-      mode: "range"
-    })
     var start_time = datePicker.selectedDates[0]
     var end_time = datePicker.selectedDates[1]
     var data = new FormData();
