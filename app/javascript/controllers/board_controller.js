@@ -4,8 +4,7 @@ import Rails from '@rails/ujs';
 
 
 export default class extends Controller {
-  static targets = [ "todo","doing","done" ]
-
+  static targets = [ "todo","doing","done","task_create_display" ]
   connect() {
     let projectID = this.element.dataset.projectId
     const sortEvent = {
@@ -39,5 +38,27 @@ export default class extends Controller {
     var todo = new Sortable(this.todoTarget,sortEvent)
     var doing = new Sortable(this.doingTarget,sortEvent)
     var done = new Sortable(this.doneTarget,sortEvent)
+
+    // task update
+    const updateBtn = document.querySelectorAll(".updateBtn")
+    updateBtn.forEach((update)=>{
+      update.addEventListener("click",(e)=>{
+        let display = e.target.parentElement.querySelector('.task_update')
+        console.log(display);
+        if (display.style.display == "block"){
+          display.style.display = "none"
+        } else{
+          display.style.display = "block"
+        }
+    })
+  })
+  }
+  create(){
+    const display = this.task_create_displayTarget
+    if (display.style.display == "block"){
+      display.style.display = "none"
+    } else{
+      display.style.display = "block"
+    }
   }
 }

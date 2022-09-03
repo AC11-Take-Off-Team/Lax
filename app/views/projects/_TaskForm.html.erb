@@ -1,12 +1,34 @@
-<%= form_with model: model do |form| %>
-  <div>任務名稱：<%= form.text_field :title, placeholder: "寫入任務名稱" %></div>
-
-  <div>任務描述：<%= form.text_field :content%></div>
-
-  <div>任務日期：<%= form.text_field [:start_time, :end_time], data: {  controller: "task", action: "input->task#selectdate"  }, placeholder: "輸入開始日期&截止日期" %></div>
-
-  <%# <div>指派任務：<%= form.text_field :task_user, placeholder: "請輸入指派人暱稱或信箱" </div> %>
-  <div>指派任務：<%= form.collection_select(:user_id, user, :id, :nickname, {:prompt => '選擇指派人員'}) %></div>
-  
-  <%= form.submit "送出任務", data: { action: "input->task#taskPost" } %>
-<% end %>
+<div class="flex flex-col">
+  <%= form_with model: model,url: url  do |form| %>
+  <ul class="">
+    <li class="flex p-3">
+      <label class="w-28 h-9 items-center text-icon text-xl">任務名稱：</label>
+        <%= form.text_field :title, :class=>"text-xl line-clamp-1 w-56", placeholder: "輸入任務名稱"  %>
+    </li>
+   
+    <li class="flex pl-3">
+       <label class="w-28 h-9 items-center text-icon text-xl">
+			任務日期：</label>
+      <%= form.text_field [:start_time, :end_time], data: { controller: "task", action: "input->task#selectdate" }, placeholder: "輸入開始日期&截止日期",:class=>"w-56" %>
+    </li>
+    <li class="flex pl-3">
+       <label class="w-28 h-9 items-center text-icon text-xl">
+			指派任務：</label>
+      <%= form.collection_select(:user_id, user, :id, :nickname, {:prompt => '無指派對象'}) %>
+    </li>
+    <li class="flex pl-3">
+       <label class="w-28 h-9 items-center text-icon text-xl">
+			優先順序：</label>
+      <%= form.select(:priority,[['-','-'],['高','高'],['中','中'],['低','低']])%>
+    </li>
+     <li class="p-3">
+       <label class="w-28 h-9 items-center text-icon text-xl block">
+			任務描述：</label>
+      <%= form.text_area :content, :class=>"h-20 border border-transparent border-gray-300 focus:border-gray-400 rounded-md p-3 text-xl  outline-none justify-center w-full", :cols=>"30", :rows=>"10"%>
+    </li>
+     <li class="text-center">
+        <%= form.submit "送出任務", data: { action: "input->task#taskPost" }, :class=>" text-blue-100 no-underline bg-blue-500 rounded hover:bg-blue-600 hover:text-blue-200 text-xl p-1" %>
+    </li>
+  </ul>
+  <% end %>
+</div>

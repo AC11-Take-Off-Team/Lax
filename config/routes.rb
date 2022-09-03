@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :projects do
-    resources :tasks, shallow: true, only: [:create, :edit, :update, :destroy]
+    resources :tasks, shallow: true, only: [:create, :update, :destroy]
     member do
       delete :leave_project
       delete :kick_out
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resources :tasks,only: [] do
         member do
           post :status_done
+          # 一鍵完成功能
         end
       end
     end
