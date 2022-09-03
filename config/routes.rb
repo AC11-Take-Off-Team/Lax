@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   namespace :api do
     namespace :v1 do
       resources :projects,only: [] do
@@ -23,23 +22,21 @@ Rails.application.routes.draw do
           post :sort_position
         end
       end
+    end
+  end
+
       resources :tasks,only: [] do
         member do
           post :status_done
           # 一鍵完成功能
         end
       end
-<<<<<<< HEAD
-=======
-    end
-  end
 
   resources :groups do
     member do
       post :join
       post :quit
       post :content
->>>>>>> d5f1559f (修改)
     end
   end
 
