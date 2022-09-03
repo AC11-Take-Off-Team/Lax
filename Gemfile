@@ -29,15 +29,10 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem "paranoia", "~> 2.2"
 gem 'devise'
-<<<<<<< HEAD
+
 gem 'aasm'
-=======
+
 gem 'mailgun-ruby', '~>1.2.5'
-
-
-
-
->>>>>>> d4f47c19 (add)
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
