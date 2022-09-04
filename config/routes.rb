@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       delete :leave_project
       delete :remove_from_project
+      get :calendar
     end
   end
 
