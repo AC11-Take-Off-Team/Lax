@@ -30,4 +30,11 @@ export default class extends Controller {
     const event = new CustomEvent("changeToDay");
     window.dispatchEvent(event);
   }
+
+  taskList() {
+    const event = new CustomEvent("taskList");
+    console.log(event);
+    window.dispatchEvent(event);
+  }
+  
 }

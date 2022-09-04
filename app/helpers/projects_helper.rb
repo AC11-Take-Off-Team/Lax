@@ -1,2 +1,3 @@
-module ProjectsHelper
+module ProjectssHelper
 end
+  
