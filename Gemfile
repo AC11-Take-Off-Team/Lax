@@ -50,7 +50,6 @@ group :development do
 
   gem "rubocop-rails", "~> 2.15"
   gem 'spring'
-
 end
 
 group :test do

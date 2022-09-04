@@ -7,11 +7,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :user_projects
   has_many :projects, through: :user_projects
+  has_many :channels
+  has_many :groups, through: :channels
+  has_many :orders
 
   validates :nickname, presence: true, uniqueness: true
 
-  has_many :channels
-  has_many :groups, through: :channels
+
 
   def join?(group)
     groups.find_by(id: group).present?

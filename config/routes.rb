@@ -32,4 +32,12 @@ Rails.application.routes.draw do
       post :content
     end
   end
+
+  resource :plans
+  resources :orders, except: [:edit, :update, :destroy] do
+    member do
+      delete :cancel
+    end
+  end
+
 end
