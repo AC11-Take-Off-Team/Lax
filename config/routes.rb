@@ -33,9 +33,11 @@ Rails.application.routes.draw do
     end
   end
 
+  #金流
   resource :plans
   resources :orders, except: [:edit, :update, :destroy] do
     member do
+      get :pay
       delete :cancel
     end
   end

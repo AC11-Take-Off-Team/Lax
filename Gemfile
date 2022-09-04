@@ -29,7 +29,15 @@ gem 'jbuilder', '~> 2.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+# 會員
 gem 'devise'
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "net-smtp", "~> 0.3.1",require: false
+gem "acts_as_list", "~> 1.0"
+gem 'aasm'
+gem 'ransack'
+gem 'paranoia', '~> 2.2'
 
 
 group :development, :test do
@@ -50,6 +58,7 @@ group :development do
 
   gem "rubocop-rails", "~> 2.15"
   gem 'spring'
+  gem 'foreman', '~> 0.87.2'
 end
 
 group :test do
@@ -59,18 +68,3 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem "net-smtp", "~> 0.3.1",require: false
-
-gem "acts_as_list", "~> 1.0"
-
-gem 'aasm'
-
-gem 'ransack'
-
-gem 'paranoia', '~> 2.2'
-
