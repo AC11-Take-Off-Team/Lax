@@ -584,26 +584,9 @@
             </nav>
         </div>  
         <section>
-            <div data-calendar-target="taskPopUp">
-                <div class="">
-                    title：
-                    <input type="text">
-                </div> 
-                <div class="">
-                    start：
-                    <input type="text">
-                </div> 
-                <div class="">
-                    end：
-                    <input type="text">
-                </div> 
-                <button data-action="click->calendar#submitTask">submit</button>
+            <div>
+                <div data-controller="calendar" id="calendar" data-action="changeToMonth@window->calendar#changeToMonth changeToWeek@window->calendar#changeToWeek changeToDay@window->calendar#changeToDay taskList@window->calendar#taskList" style="height: 800px"></div>
             </div>
-            <div data-controller="calendar">
-                <div data-calendar-target="calendar" data-action="click->calendar#addTask" class="w-full h-full">
-                    <div id="calendar" data-action="click->calendar#addTask changeToMonth@window->calendar#changeToMonth changeToWeek@window->calendar#changeToWeek changeToDay@window->calendar#changeToDay taskList@window->calendar#taskList" style="height: 800px"></div>
-                </div>
-            </div>
-    </section>
+        </section>
 </main>
     
