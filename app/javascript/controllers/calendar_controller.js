@@ -10,28 +10,29 @@ export default class extends Controller {
   initialize() {
     this.calendar = null;
     this.projectId = 0;
+    this.task = []
   }
 
   connect() {
     this.projectId = this.element.dataset.projectId;
     this.createCalendar();
+    this.eventHandler();
     this.fetchTask();
   }
 
-  addTask({ id, title, content, status: category, start_time: start, end_time: end }) {
+  addTask({ id, title, content, status: status, start_time: start, end_time: end }) {
     const calendarId = `cal-${this.projectId}`;
-    return { id, calendarId, title, content, start, end, category };
+    return { id, calendarId, title, content, start, end, status };
   }
 
   fetchTask() {
     Rails.ajax({
       url: `/projects/${this.projectId}/tasks`,
       type: "GET",
-      success: (tasks) => {
-        tasks = Object.keys(tasks);
+      success: ({tasks}) => {
         this.calendar.createEvents(
           tasks.map((task) => {
-            this.addTask(task);
+            return this.addTask(task);
           })
         );
       },
@@ -57,7 +58,7 @@ export default class extends Controller {
         },
         allday(event) {
           return `<span style="color: gray;">${title}</span>`;
-        }
+        },
       },
       calendars: [
         {
@@ -77,6 +78,32 @@ export default class extends Controller {
         }
       ]
     });
+  }
+
+  eventHandler(){
+    this.calendar.on('beforeCreateEvent', (eventObj) => {
+      const {title, start, end, status} = eventObj
+      
+      const data = new FormData();
+      data.append("task[title]", title);
+      data.append("task[start_time]", dayjs(start).toISOString());
+      data.append("task[end_time]", dayjs(end).toISOString());
+      data.append("task[status]", status);
+      
+
+      Rails.ajax({
+        url: `/projects/${this.projectId}/tasks`,
+        type: 'POST',
+        data,
+        success: ({task}) => {
+          return this.calendar.createEvents([this.addTask(task)])
+        },
+        errors: (err) => {
+          console.log('err' + err);
+        }
+      })
+
+    })
   }
 
   //  // 新增

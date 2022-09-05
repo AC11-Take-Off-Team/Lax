@@ -584,8 +584,8 @@
             </nav>
         </div>  
         <section>
-            <div>
-                <div data-controller="calendar" id="calendar" data-project-id="<%= @project.id %>" data-action="changeToMonth@window->calendar#changeToMonth changeToWeek@window->calendar#changeToWeek changeToDay@window->calendar#changeToDay taskList@window->calendar#taskList" style="height: 800px"></div>
+            <div data-controller="calendar" data-project-id="<%= @project.id %>" data-action="changeToMonth@window->calendar#changeToMonth changeToWeek@window->calendar#changeToWeek changeToDay@window->calendar#changeToDay taskList@window->calendar#taskList">
+                    <div id="calendar" style="height: 800px"></div>
             </div>
         </section>
 </main>
