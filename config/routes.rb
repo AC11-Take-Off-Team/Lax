@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   namespace :api do
     namespace :v1 do
       resources :projects,only: [] do
@@ -32,8 +31,6 @@ Rails.application.routes.draw do
     end
   end
 
-<<<<<<< HEAD
-=======
   resources :groups do
     member do
       post :join
@@ -47,5 +44,5 @@ Rails.application.routes.draw do
       post :send_mail
     end
   end
->>>>>>> d4f47c19 (add)
+
 end

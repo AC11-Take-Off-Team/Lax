@@ -1,7 +1,7 @@
 class InvitesController < ApplicationController
 
   def send_mail
-    InvitesMailer.welcome_email('feather080300@gmail.com', params[:email]).deliver_now
+    InvitesMailer.welcome_email('smtp.mailgun.org', params[:email]).deliver_now
     redirect_to groups_path, notice: 'welcome to join us.'
   end
   # 把在mailer定義寄信的方法拿來使用並設定寄件人與收件人
