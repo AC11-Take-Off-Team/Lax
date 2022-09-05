@@ -1,4 +1,4 @@
-<%= link_to "new project",new_project_path  %>
+<%= link_to "new project",new_project_path %>
 <% @projects.each do |project| %>
   <div class="">title:<%= link_to project.title, project %></div>
   <div class=""><%= link_to "update",edit_project_path(project) %></div>

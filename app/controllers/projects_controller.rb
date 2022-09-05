@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :find_user_project, only: %i[show edit update destroy]
+  before_action :authenticate_user!
+  before_action :find_user_project, only: %i[show edit update destroy board]
 
   def index
     @projects = current_user.projects.all
@@ -10,14 +11,14 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    current_user.projects.build(project_params)
+    current_user.projects.build(project_params.merge(owner_id: current_user.id))
+    # owner_id: 用來記錄誰建立/擁有這個project。
     if current_user.save
       redirect_to projects_path
     else
       render :new
     end
   end
-
 
   def show
   end
@@ -39,11 +40,13 @@ class ProjectsController < ApplicationController
   end
 
   def leave_project
+    # 自己退出project，remove_project方法寫在private
     remove_project(params[:id], current_user)
     redirect_to projects_path
   end
 
-  def remove_from_project
+  def kick_out
+    # 把人踢出project
     user = User.find(params[:id])
     remove_project(params[:project_id], user)
     if user == current_user
@@ -53,10 +56,18 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def board
+    @task = Task.new
+    @task_todo = @project.tasks.where(status: 'todo')
+    @task_doing = @project.tasks.where(status: 'doing')
+    @task_done = @project.tasks.where(status: 'done')
+    @user = @project.users.all
+  end
+
   private
 
   def project_params
-    params.require(:project).permit(:title, :content, :status, :deleted_at)
+    params.require(:project).permit(:title, :content, :status, :deleted_at, :owner_id)
   end
 
   def find_user_project
