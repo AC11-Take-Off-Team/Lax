@@ -1,0 +1,14 @@
+<% columns.each do |column| %>
+<div class="todo mx-4 w-1/4 flex flex-col "  data-controller="task" data-column-id="<%= column.id%>">
+  <h2 class="text-xl text-center pb-12"><%= column.status %></h2>
+  <div class="card-list pb-8" data-board-target="status_list">
+     <%= render "card", column: column, user: @user%>
+  </div>
+  <button data-action="click->task#display_change" class=" m-3 px-6 py-3 text-blue-100 no-underline bg-blue-500 rounded hover:bg-blue-600 hover:underline hover:text-blue-200 relative">
+    +新增任務
+  </button>
+  <div class="display m-3 w-1/3 rounded-md resize-none pb-2 fixed z-10 bottom-0 bg-white rounded-md" data-task-target="task_display">
+    <%= render "TaskForm", model: model,user: user, url: project_tasks_path(project,column_id: column.id)%>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,10 @@
+<h1 class="m-3 text-2xl ">Board</h1>
+
+<section data-controller="board" data-project-id="<%= @project.id%>" class=" bg-gray-100 flex justify-center relative">
+  <%= render "cardlist",columns: @columns,user: @user,model: [@project,@task],project: @project %>
+  <%= form_with model:[@project,@column] ,url:project_columns_path(@project) do |form| %>
+   <label>+ 新增階段</label>
+   <%= form.text_field :status %>
+  <% end %>
+
+</section>
