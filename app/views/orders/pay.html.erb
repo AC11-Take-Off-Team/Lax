@@ -1,0 +1,19 @@
+<section w-full>
+    <div class="flex justify-center">
+        <h1 class="text-xl">訂單編號： <%= @order.serial %></h1>
+    </div>
+
+    <%= form_with url: pay_order_path(id: @order.serial),
+                  methol: "post", 
+                  data: {
+                    controller: "braintree",
+                    token: @token,
+                    action: "sumbit->braintree#pay"
+                    }  do |f| %>
+    <div class = "flex justify-center" >
+        <div data-braintree-target="payment"></div>
+    </div>
+        
+    <% end %>
+</section>
+  
