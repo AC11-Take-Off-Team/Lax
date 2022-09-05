@@ -25,6 +25,11 @@ class TasksController < ApplicationController
         end
     end
 
+    def destroy
+        @task = @project.tasks.find(params[:id])
+        @task.destroy
+    end
+
     private
     def find_user_project
         @project = current_user.projects.find(params[:project_id])

@@ -128,7 +128,27 @@ export default class extends Controller {
           }
       })
     });
+
+    this.calendar.on("beforeDeleteEvent", (eventObj) => {
+      const { id, calendarId } = eventObj
+
+      Rails.ajax({
+        url: `/tasks/${id}?project_id=${this.projectId}`,
+        type: 'DELETE',
+        success: () => {
+          this.calendar.deleteEvent(id, calendarId);
+        },
+        errors: (err) => {
+          console.log('err' + err);
+          
+        }
+      })
+      
+
+      // this.calendar.deleteEvent(eventObj.id, eventObj.calendarId);
+    });
   }
+
 
 
   // // 刪除
