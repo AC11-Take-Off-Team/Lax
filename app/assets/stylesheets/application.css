@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+input[type='text']{
+  text-align:center;
+}
