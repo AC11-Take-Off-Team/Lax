@@ -3,15 +3,42 @@ import Calendar from "@toast-ui/calendar";
 import "@toast-ui/calendar/dist/toastui-calendar.min.css";
 import "tui-date-picker/dist/tui-date-picker.css";
 import "tui-time-picker/dist/tui-time-picker.css";
+import Rails from "@rails/ujs";
 import dayjs from "dayjs";
 
 export default class extends Controller {
   initialize() {
     this.calendar = null;
+    this.projectId = 0;
   }
 
   connect() {
+    this.projectId = this.element.dataset.projectId;
     this.createCalendar();
+    this.fetchTask();
+  }
+
+  addTask({ id, title, content, status: category, start_time: start, end_time: end }) {
+    const calendarId = `cal-${this.projectId}`;
+    return { id, calendarId, title, content, start, end, category };
+  }
+
+  fetchTask() {
+    Rails.ajax({
+      url: `/projects/${this.projectId}/tasks`,
+      type: "GET",
+      success: (tasks) => {
+        tasks = Object.keys(tasks);
+        this.calendar.createEvents(
+          tasks.map((task) => {
+            this.addTask(task);
+          })
+        );
+      },
+      error: (err) => {
+        console.log("err" + err);
+      }
+    });
   }
 
   createCalendar() {

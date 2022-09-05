@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :find_user_project, only: %i[show edit update destroy]
+  before_action :find_user_project, only: %i[show edit update destroy calendar]
 
   def index
     @projects = current_user.projects.all
@@ -51,6 +51,9 @@ class ProjectsController < ApplicationController
     else
       redirect_to project_path(params[:project_id])
     end
+  end
+
+  def calendar
   end
 
   private
