@@ -10,7 +10,7 @@ export class RichText {
       this.toggleEmojiPicker.bind(this)
     );
     document
-      .querySelector("[field]")
+      .querySelector(".emoji-field")
       .prepend(this.emojiButton);
   }
   toggleEmojiPicker(event) {

@@ -13,11 +13,13 @@
   <%= content_tag(:div, "", class:"pickerContainer", data: {
      emoji_picker_target: "pickerContainer"
    }) %>
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content, data: {
-       emoji_picker_target: "trixEditor"
-     } %>
+  <div class="field emoji-field">
+    <div class="pb-6 px-4 flex-none">
+            <div class="flex rounded-lg border-2 border-grey overflow-hidden">
+                  <%= form.text_area :content, rows: 5 ,style: 'width: 100%', placeholder: "Enter message here!", data: {emoji_picker_target: "trixEditor"} %>
+            </div>
+        </div>
+    
   </div>
   <%= form.hidden_field :room_id, value: room.id %>
 
@@ -25,4 +27,5 @@
     <%= form.submit data: { disable_with: false } %>
   </div>
 <% end %>
+
  

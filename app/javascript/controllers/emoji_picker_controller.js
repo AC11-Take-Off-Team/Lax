@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
- 
+import { RichText } from "../classes/RichText.js";
 
  // Connects to data-controller="emoji-picker"
  export default class extends Controller {
@@ -9,6 +9,7 @@ import { Controller } from "@hotwired/stimulus";
   const buttonString = this.emojiButtonString();
      const emojiButton = this.emojiButtonTemplate(buttonString);
      let picker;
+     console.log(emojiButton)
      let richText = new RichText(picker, emojiButton);
    }
      emojiButtonTemplate(buttonString) {

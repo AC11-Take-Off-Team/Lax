@@ -1,14 +1,12 @@
-<div>
-<!-- Chat messages -->
-        <div class="px-6 py-4 flex-1 overflow-y-scroll">
-            <!-- A message -->
+<!-- A message -->
             <div class="flex items-start mb-4 text-sm">
+            <%= image_tag "otter.png", height:50, width:50  %>
                 <div class="flex-1 overflow-hidden">
                     <div>
                         <span class="font-bold"><%= message.user.email %></span>
-                        <span class="text-grey text-xs"><%= message.created_at %></span>
+                        <span class="text-grey text-xs"><%= message.created_at.localtime %></span>
                     </div>
                     <p class="text-black leading-normal"><%= message.content %></p>
+                    <%= link_to "delete", message_path(message.id), method: "delete", data: {confirm: "Sure to delete?"}%>
                 </div>
             </div>
-</div>
