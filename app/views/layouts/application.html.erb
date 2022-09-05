@@ -14,12 +14,8 @@
     <%= render "shared/navbar" %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <% if current_user %>
-      <%= link_to "頻道" , groups_path %>
-    <% end %>
+    <%= link_to "頻道" , groups_path %>
     <%= render 'layouts/shared/search_form' %>
     <%= yield %>
-
-
   </body>
 </html>

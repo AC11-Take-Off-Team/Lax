@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2022_08_26_064943) do
+=======
+ActiveRecord::Schema.define(version: 2022_08_29_160027) do
+>>>>>>> dev
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +86,15 @@ ActiveRecord::Schema.define(version: 2022_08_26_064943) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "nickname"
+<<<<<<< HEAD
+=======
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "google_uid"
+    t.string "google_token"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+>>>>>>> dev
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

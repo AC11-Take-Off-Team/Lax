@@ -15,7 +15,11 @@ class GroupsController < ApplicationController
   def show; end
 
   def create
+<<<<<<< HEAD
     current_user.groups.new(group_params)
+=======
+    current_user.groups.build(group_params)
+>>>>>>> dev
     if current_user.save
       redirect_to groups_path
     else

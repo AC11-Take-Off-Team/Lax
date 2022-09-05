@@ -15,7 +15,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
   end
 
+<<<<<<< HEAD
   def search
+=======
+  def search_group
+>>>>>>> dev
     @group_query = Group.ransack(params[:q])
   end
 end
