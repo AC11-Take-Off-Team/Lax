@@ -1,6 +1,6 @@
 class Api::V1::ProjectsController < ApplicationController
-  before_action :find_column,only: %i[sort_task_position sort_column_position]
-  
+  before_action :find_column, only: %i[sort_task_position sort_column_position]
+
   def join_team
     user = User.find_by(email: params[:email])
     project = Project.find(params[:id])

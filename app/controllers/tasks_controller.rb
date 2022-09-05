@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :find_user_project
-  before_action :find_column,only: %i[create]
+  before_action :find_column, only: %i[create]
 
   def index
     render json: { tasks: @project.tasks }
@@ -33,6 +33,7 @@ class TasksController < ApplicationController
   end
 
   private
+
   def find_user_project
     @project = current_user.projects.find(params[:project_id])
   end
@@ -43,6 +44,6 @@ class TasksController < ApplicationController
 
   def find_column
     @column = @project.columns.find_by(status: "待辦事項")
-    @column = @project.columns.create(status: "待辦事項") unless @column
+    @column ||= @project.columns.create(status: "待辦事項")
   end
 end

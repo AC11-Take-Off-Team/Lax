@@ -15,9 +15,9 @@ class User < ApplicationRecord
     groups.find_by(id: group).present?
   end
 
-  # validates :nickname, presence: true, uniqueness: true
+  # validates :nickname, presence: true
 
-  # 第三方登入
+  # google 登入
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(email: data['email']).first
@@ -29,5 +29,4 @@ class User < ApplicationRecord
     )
     user
   end
-
 end
