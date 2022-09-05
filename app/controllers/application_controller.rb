@@ -18,4 +18,5 @@ class ApplicationController < ActionController::Base
   def search
     @group_query = Group.ransack(params[:q])
   end
+
 end
