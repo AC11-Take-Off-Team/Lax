@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :projects do
-    resources :tasks
+    resources :tasks, shallow: true, only: [:index, :create, :update, :destroy]
     member do
       delete :leave_project
       delete :remove_from_project

@@ -15,6 +15,16 @@ class TasksController < ApplicationController
         end
     end
 
+    def update
+        @task = @project.tasks.find(params[:id])
+
+        if @task.update(params_task)
+            render json: { state: "updated success" }
+        else
+            render json: { state: "errors", errors: @task.errors.full_messages }
+        end
+    end
+
     private
     def find_user_project
         @project = current_user.projects.find(params[:project_id])

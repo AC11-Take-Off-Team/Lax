@@ -102,18 +102,34 @@ export default class extends Controller {
           console.log('err' + err);
         }
       })
-
     })
+
+    this.calendar.on("beforeUpdateEvent", ({ event, changes }) => {
+      const {id, calendarId} = event
+
+      const { title, start, end, status } = changes
+
+      const data = new FormData();
+      title && data.append("task[title]", title);
+      start && data.append("task[start_time]", start);
+      end && data.append("task[end_time]", end);
+      status && data.append("task[status]", status);
+      
+      Object.keys(changes).length !== 0 &&
+        Rails.ajax({
+          url: `/tasks/${id}?project_id=${this.projectId}`,
+          type: 'PATCH',
+          data,
+          success: () => {
+            this.calendar.updateEvent(id, calendarId, changes)
+          },
+          errors: (err) => {
+            console.log('err' + err);
+          }
+      })
+    });
   }
 
-  //  // 新增
-  //  this.calendar.on("beforeCreateEvent", (eventObj) => {
-  // });
-
-  // // 更新
-  // this.calendar.on("beforeUpdateEvent", ({ event, changes }) => {
-  //   // this.calendar.updateEvent(event.id, event.calendarId, changes);
-  // });
 
   // // 刪除
   // this.calendar.on("beforeDeleteEvent", (eventObj) => {
@@ -121,15 +137,16 @@ export default class extends Controller {
   // });
   // }
 
-  // // 轉換成月曆
-  // changeToMonth() {
-  // this.calendar.changeView("month");
-  // }
-  // // 轉換成週曆
-  // changeToWeek() {
-  // this.calendar.changeView("week");
-  // }
-  // // 轉換成日曆
-  // changeToDay() {
-  // this.calendar.changeView("day");
+  // 轉換成月曆
+  changeToMonth() {
+  this.calendar.changeView("month");
+  }
+  // 轉換成週曆
+  changeToWeek() {
+  this.calendar.changeView("week");
+  }
+  // 轉換成日曆
+  changeToDay() {
+  this.calendar.changeView("day");
+  }
 }
