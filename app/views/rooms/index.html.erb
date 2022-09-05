@@ -1,42 +1,44 @@
-<div class="h-screen w-full relative">
-  <div class="flex justify-between items-center">
-    <h1 class="text-lg ml-4 mt-4 mb-4 border-0 hover:bg-gray-300 hover:rounded-md	"># <%= link_to @group.title, edit_group_path(@group) %> ▼ </h1>
-    <div class="border border-4 border-solid border-gray-500 h-12 flex justify-around mr-4 items-center rounded-md">
-      <p class="mr-2 px-2">頻道成員</p>
+<div id="room-id" data-room-id="<%= @room.try(:id) %>"></div>
+<div id="user-id" data-user-id="<%= current_user.id %>"></div>
+<div class="relative w-full h-screen">
+  <div class="flex items-center justify-between">
+    <h1 class="mt-4 mb-4 ml-4 text-lg border-0 hover:bg-gray-300 hover:rounded-md "># <%= link_to @group.title, edit_group_path(@group) %> ▼ </h1>
+    <div class="flex items-center justify-around h-12 mr-4 border-4 border-gray-500 border-solid rounded-md ">
+      <p class="px-2 mr-2">頻道成員</p>
       <% @group.users.each do |user| %>
         <% if user.username %>
-          <div class="w-10 p-1 relative mr-2">
+          <div class="relative w-10 p-1 mr-2">
             <img src="https://cdn-icons-png.flaticon.com/512/5111/5111178.png" class="">
-            <p class="absolute left-3	top-2	text-white">
+            <p class="absolute text-white left-3 top-2">
               <%= user.username.first(2) %>
             </p>
           </div>
         <% else %>
             <% if user.email.include?('gmail') %>
-            <div class="w-10 p-1 relative mr-2">
+            <div class="relative w-10 p-1 mr-2">
               <img src="https://cdn-icons-png.flaticon.com/512/5111/5111178.png" class="">
-              <p class="absolute left-3	top-2	text-white">
+              <p class="absolute text-white left-3 top-2">
                 <%= user.email.first(2) %>
               </p>
             </div>
           <% elsif message.user.email.include?('yahoo') %>
-            <div class="w-10 p-1 relative mr-2">
+            <div class="relative w-10 p-1 mr-2">
               <img src="https://cdn-icons-png.flaticon.com/512/594/594846.png" class="">
-              <p class="absolute left-3	top-2	text-white">
+              <p class="absolute text-white left-3 top-2">
                 <%= user.email.first(2) %>
               </p>
             </div>
           <% else %>
-            <div class="w-10 p-1 relative mr-2">
+            <div class="relative w-10 p-1 mr-2">
               <img src="https://cdn-icons-png.flaticon.com/512/5853/5853933.png" class="">
-              <p class="absolute left-3	top-2	text-white">
-                <%= user.email.first(2) %>
+              <p class="absolute text-white left-3 top-2">
+                <%= user.username.first(2) %>
               </p>
             </div>
           <% end %>
         <% end %>
       <% end %>
-      <div class="ml-6 pr-2" >
+      <div class="pr-2 ml-6" >
         <%= link_to "✚ 邀請" , invite_group_path(@group),method:"post",:class=>"px-3 py-2 transition duration-300 border-b-2 rounded-lg bg-momo hover:bg-kohbai text-base text-white -ml-4" %>
       </div>
     </div>
@@ -44,10 +46,11 @@
   <hr>
   <!-- Messages -->
   <div class="bg-gray-100 h-5/6">
-    <div class="px-4 py-2 text-gray-800 border-b border-solid border-gray-500">
+    <div class="px-4 py-2 text-gray-800 border-b border-gray-500 border-solid">
       <%= Time.now.strftime("%m月%d日") %>
     </div>
-    <div class="flex-1 px-6 py-4 h-full overflow-y-auto">
+    <div id = "messages">
+    <div class="flex-1 h-full px-6 py-4 overflow-y-auto">
       <% if @room.messages.count > 0 %>
         <% @room.messages.each do |message| %>
           <%= render 'messages/message', message: message %>
@@ -61,7 +64,7 @@
       <% end %>
     </div> 
   </div>
-  <div class="fixed bottom-0 h-18 w-5/6 bg-gray-500 p-5">
+  <div class="fixed bottom-0 w-5/6 p-5 bg-gray-500 h-18">
     <%= render 'messages/form', message: Message.new, room: @room %>
   </div>
 </div>
@@ -72,8 +75,8 @@
       <div class="flex justify-end">
         <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100"><%= link_to "X", groups_path %></span>
       </div>
-      <div class="flex flex-col	justify-center align-center">
-        <span class="p-4 my-6 text-2xl font-semibold text-gray-900 m-auto"><%= notice %></span>
+      <div class="flex flex-col justify-center align-center">
+        <span class="p-4 m-auto my-6 text-2xl font-semibold text-gray-900"><%= notice %></span>
       </div>
   </section>
 <% end %>
