@@ -6,6 +6,7 @@ import Rails from '@rails/ujs';
 export default class extends Controller {
   static targets = [ "status_list" ]
   connect() {
+    console.log(this.status_listTargets);
     let projectID = this.element.dataset.projectId
     const sortEvent = {
       animation: 150,
@@ -35,6 +36,7 @@ export default class extends Controller {
       }
     }
     this.status_listTargets.forEach((list)=>{
+      console.log(list);
       new Sortable(list,sortEvent)
     })
     const column_sort = new Sortable(this.element,{
