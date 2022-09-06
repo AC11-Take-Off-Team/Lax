@@ -15,6 +15,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :groups do
+    member do
+      post :join
+      post :quit
+      post :content
+    end
+  end
+
 
   namespace :api do
     namespace :v1 do
