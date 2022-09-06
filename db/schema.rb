@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
+
 ActiveRecord::Schema.define(version: 2022_09_01_063557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "room_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
 
   create_table "channels", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -74,6 +92,7 @@ ActiveRecord::Schema.define(version: 2022_09_01_063557) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["task_id"], name: "index_user_tasks_on_task_id"
     t.index ["user_id"], name: "index_user_tasks_on_user_id"
+
   end
 
   create_table "users", force: :cascade do |t|
@@ -89,6 +108,8 @@ ActiveRecord::Schema.define(version: 2022_09_01_063557) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "channels", "groups"
   add_foreign_key "channels", "users"
   add_foreign_key "tasks", "projects"
@@ -96,4 +117,5 @@ ActiveRecord::Schema.define(version: 2022_09_01_063557) do
   add_foreign_key "user_projects", "users"
   add_foreign_key "user_tasks", "tasks"
   add_foreign_key "user_tasks", "users"
+
 end
