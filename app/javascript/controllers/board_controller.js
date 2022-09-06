@@ -6,7 +6,6 @@ import Rails from '@rails/ujs';
 export default class extends Controller {
   static targets = [ "status_list" ]
   connect() {
-    console.log(this.status_listTargets);
     let projectID = this.element.dataset.projectId
     const sortEvent = {
       animation: 150,
@@ -17,7 +16,6 @@ export default class extends Controller {
         let columnID = event.to.dataset.columnId
         let taskID = event.item.dataset.taskId
         let data = new FormData();
-        // data 會在下方ajax打進api
         data.append("position",event.newIndex);
         // event.newIndex是移動後的index值，起始值是0
         data.append("task_id",taskID)
@@ -36,7 +34,6 @@ export default class extends Controller {
       }
     }
     this.status_listTargets.forEach((list)=>{
-      console.log(list);
       new Sortable(list,sortEvent)
     })
     const column_sort = new Sortable(this.element,{
@@ -71,5 +68,13 @@ export default class extends Controller {
         }
     })
   })
+  }
+  column_display(event){
+    let display = event.target.parentElement.parentElement.querySelector(".column_display")
+    if (display.style.visibility == "visible"){
+      display.style.visibility = "hidden"
+    } else{
+      display.style.visibility = "visible"
+    }
   }
 }

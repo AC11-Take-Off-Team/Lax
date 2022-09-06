@@ -1,10 +1,10 @@
 <% column.tasks.each do |task|%>
 <div data-controller="done" data-task-id="<%=task.id%>" class="card p-4 shadow-small rounded-md relative group bg-white">
-  <div class="flex justify-between border-b-stone-300 border-y">
-    <div classs=""><button data-action="click->done#status_done" data-done-target="doneBtn" class="pl-0.5">☐</button> 任務名稱：<%= task.title %></div>
+  <div class="flex justify-between text-icon items-center mb-3">
+    <div classs=""><button data-action="click->done#status_done" data-done-target="doneBtn" class="line-clamp-1 text-sm text-black">☐</button> 任務名稱：<%= task.title %></div>
     <div><%= link_to "྾",task_path(task),method: "delete", data: { confirm: "是否刪除此任務" } %></div>
   </div>
-  <div class="pb-0.5 pl-5">任務描述：<%= task.content %></div>
+  <div class="pb-0.5 pl-5">任務描述:<%= task.content%></div>
   <div class="pb-0.5 pl-5">開始日期：</div>
   <div class="pb-0.5 pl-5">截止日期：<%= taipei_time(task.start_time)%>-<%=taipei_time(task.end_time)%></div>
   <div class="pb-0.5 pl-5">執行人員：<%= task.user&.nickname %></div>

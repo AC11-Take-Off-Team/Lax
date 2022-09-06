@@ -1,9 +1,10 @@
 <div class="flex flex-col">
   <%= form_with model: model,url: url  do |form| %>
   <ul class="">
-    <li class="flex p-3">
+    <li class="flex p-3 justify-between">
       <label class="w-28 h-9 items-center text-icon text-xl">任務名稱：</label>
         <%= form.text_field :title, :class=>"text-xl line-clamp-1 w-56", placeholder: "輸入任務名稱"%>
+        <button data-action="click->task#closePost">x</button>
     </li>
    
     <li class="flex pl-3">

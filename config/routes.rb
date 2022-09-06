@@ -20,7 +20,6 @@ Rails.application.routes.draw do
       resources :projects,only: [] do
         member do
           post :join_team
-          #邀請成員加入project的api，請輸入 email:
           post :sort_position
           post :column_position
           get :column
@@ -29,7 +28,6 @@ Rails.application.routes.draw do
       resources :tasks,only: [] do
         member do
           post :status_done
-          # 一鍵完成功能
         end
       end
     end

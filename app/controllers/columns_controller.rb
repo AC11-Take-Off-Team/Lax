@@ -5,6 +5,13 @@ class ColumnsController < ApplicationController
     @project.save
     redirect_to board_project_path(@project)
   end
+
+  def destroy
+    column = Column.find(params[:id])
+    column.destroy
+    redirect_to board_project_path(column.project)
+  end
+
   private
   
     def column_params
