@@ -73,6 +73,10 @@
     </div>
   </div>
   <% else %>
+    <div class="mx-auto items-center flex flex-col">
+      <div>歡迎來到<%= @group.title %></div>
+      <div>這是此頻道的新開始</div>
+    </div>
     <div class="bg-gray-200 h-full flex flex-col justify-center items-center" >
       <div class="text-2xl p-3 my-2"><%= @group.title %></div>
       <p class="mb-5 text-xl text-gray-600">這個頻道適用於<%= @group.title %>的所有內容,與你的團隊一起召開會議.共享文檔做出決策</p>
@@ -84,5 +88,3 @@
     </div>
   <% end %>
 </div>
-
-

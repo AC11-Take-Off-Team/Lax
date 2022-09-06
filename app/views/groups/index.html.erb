@@ -19,7 +19,6 @@
               <h4 class="text-1xl text-blue-500"><%= link_to group.title, group %></h4>
               <div class="text-sm mb-2">
                 <div><%= group.users.count %>個成員</div>
-
               </div>
             </div>
             <% if current_user.join?(group) %>
