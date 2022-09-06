@@ -14,7 +14,6 @@ class Api::V1::ProjectsController < ApplicationController
   def sort_position
     @column = Column.find_by(id: params[:column_id])
     @task = Task.find_by(id: params[:task_id])
-    # debugger
     @task.insert_at(params[:position].to_i + 1)
     # position要+1的原因是position的起始值是1，但是newIndex的起始值是0
     @task.column = @column

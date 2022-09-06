@@ -12,8 +12,6 @@ export default class extends Controller {
       mode: "range"
     })//使this.element變成月曆畫面
   }
-  connect(){
-  }
   display_change(){
     const display = this.task_displayTarget
     if (display.style.display == "block"){

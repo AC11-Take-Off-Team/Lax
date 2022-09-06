@@ -5,7 +5,6 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[update destroy]
 
   def create
-    # debugger
     @task = @column.tasks.new(task_params)
     assign_user(params[:task]["user_id"].to_i)
     # assign_user在private 判斷user_id如果在project，就存入
@@ -53,11 +52,7 @@ class TasksController < ApplicationController
   end
 
   def assign_user(user_id)
-    if @project.users.ids.include?(user_id)
-      user = User.find_by(id: user_id)
-      @task.user = user
-    else
-      @task&.user&.destroy(user_id)
-    end
+    user = User.find_by(id: user_id)
+    @task.user = user
   end
 end
