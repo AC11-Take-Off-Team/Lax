@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  # if: :devise_controller? 告訴ApplicationController，這是device的方法
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
   # I18n 
@@ -24,4 +23,5 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
   end
+
 end

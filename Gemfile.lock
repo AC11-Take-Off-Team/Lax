@@ -139,7 +139,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.8-arm64-darwin)
+    nokogiri (1.13.8-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.13.8-x86_64-darwin)
       racc (~> 1.4)
@@ -220,6 +220,7 @@ GEM
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.7.1)
     regexp_parser (2.5.0)
     responders (3.0.1)
       actionpack (>= 5.0)
@@ -285,6 +286,8 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    tailwindcss-rails (2.0.12-x86_64-darwin)
+      railties (>= 6.0.0)
     thor (1.2.1)
     tilt (2.0.11)
     timeout (0.3.0)
@@ -319,7 +322,9 @@ GEM
     zeitwerk (2.6.0)
 
 PLATFORMS
+
   arm64-darwin-21
+
   x86_64-darwin-21
 
 DEPENDENCIES
@@ -344,12 +349,14 @@ DEPENDENCIES
   rails (~> 6.1.6, >= 6.1.6.1)
   rails-i18n (~> 7.0, >= 7.0.5)
   ransack
+  redis (~> 4.0)
   rspec-rails (~> 5.0.0)
   rubocop (~> 1.35)
   rubocop-rails (~> 2.15)
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
   spring
+  tailwindcss-rails (~> 2.0)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
@@ -360,4 +367,4 @@ RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.3.20
+   2.3.21
