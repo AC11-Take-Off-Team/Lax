@@ -22,13 +22,13 @@
       <input type="hidden" name="remember" value="true">
       <div>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="rounded-md shadow-sm -space-y-px">
+          <div class="flex flex-col text-xs text-gray-500">
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Email address", name: "email", type: "email" %>
           </div>
-
-          <div>
-            <%= f.label :password %>
+          <br/>
+          <div class="flex flex-col text-xs text-gray-500">
+            <%= f.label :password %><br />
             <%= f.password_field :password, autocomplete: "current-password",  autocomplete: "current-password", class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Password", id: "password", name:"password", type:"password" %>
           </div>
 
