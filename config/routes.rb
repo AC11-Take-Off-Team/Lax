@@ -26,7 +26,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :meet
       resources :projects,only: [] do
         member do
           post :join_team
@@ -40,6 +39,14 @@ Rails.application.routes.draw do
           # 一鍵完成功能
         end
       end
+    end
+  end
+
+  resources :groups do
+    member do
+      post :join
+      post :quit
+      post :content
     end
   end
 

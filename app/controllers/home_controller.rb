@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @projects = Project.all
+    @projects = Project.current_user.all
   end
 end
