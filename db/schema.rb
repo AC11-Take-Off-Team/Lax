@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 2022_09_03_190114) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "room_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -51,6 +61,12 @@ ActiveRecord::Schema.define(version: 2022_09_03_190114) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "owner_id"
     t.index ["deleted_at"], name: "index_projects_on_deleted_at"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -102,6 +118,8 @@ ActiveRecord::Schema.define(version: 2022_09_03_190114) do
   add_foreign_key "channels", "groups"
   add_foreign_key "channels", "users"
   add_foreign_key "columns", "projects"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
   add_foreign_key "user_tasks", "tasks"

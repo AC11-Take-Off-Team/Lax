@@ -45,6 +45,6 @@ export default class extends Controller {
     })
   }
   closePost(){
-    this.task_displayTarget.style.display
+    this.task_displayTarget.style.display = "none"
   }
 }

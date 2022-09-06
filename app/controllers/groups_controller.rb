@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GroupsController < ApplicationController
   before_action :find_group, only: %i[show edit update destroy join quit content]
 
