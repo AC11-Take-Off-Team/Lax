@@ -10,4 +10,9 @@ class User < ApplicationRecord
   has_many :tasks, through: :user_tasks
 
   validates :nickname, presence: true, uniqueness: true
+
+
+  def join?(group)
+    groups.find_by(id: group).present?
+  end
 end
