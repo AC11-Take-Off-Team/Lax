@@ -9,18 +9,15 @@ class User < ApplicationRecord
   has_many :user_tasks
   has_many :tasks, through: :user_tasks
   validates :nickname, presence: true, uniqueness: true
-<<<<<<< HEAD
 
-=======
+
   has_many :channels
   has_many :groups, through: :channels
->>>>>>> dev
+
 
   def join?(group)
     groups.find_by(id: group).present?
   end
-<<<<<<< HEAD
-=======
 
   # google oauth2
   def self.from_omniauth(access_token)
@@ -37,11 +34,9 @@ class User < ApplicationRecord
     user
   end
 
-
-
   # def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
   #   data = access_token.info
-  #   user = User.where(google_token: access_token.credentials.token, google_uid: access_token.uid ).first    
+  #   user = User.where(google_token: access_token.credentials.token, google_uid: access_token.uid ).first
   #   if user
   #     return user
   #   else
@@ -64,6 +59,4 @@ class User < ApplicationRecord
   #   end
   # end
 
-
->>>>>>> dev
 end

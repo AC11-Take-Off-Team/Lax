@@ -1,11 +1,11 @@
-<div class="w-3/5 mx-auto grid gap-y-24 mt-10">
+<div class="w-4/5 mx-auto grid gap-y-24 mt-10">
   <%= Time.now.strftime("%Y-%m月%d日") %>
   <div>
     <h3 class="text-xl font-medium outline-none" contenteditable>
       <%= current_user.nickname %> 你好!
     </h3>
   </div>
-  <div class="flex justify-between ">
+  <div class="flex justify-between min-w-max">
     <div class=" border-2 rounded-2xl flex-grow p-10">
       <button class="flex w-full items-center p-2 transition-all rounded-md text-sm font-semibold text-gray-600 hover:bg-light">
         <div class="w-8 h-8 rounded-full mr-3 border border-icon flex items-center justify-center text-icon border-dashed">

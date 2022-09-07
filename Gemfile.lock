@@ -138,11 +138,9 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-<<<<<<< HEAD
-    nokogiri (1.13.8-x86_64-darwin)
-      racc (~> 1.4)
-=======
     nokogiri (1.13.8-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.13.8-x86_64-darwin)
       racc (~> 1.4)
     oauth2 (2.0.8)
       faraday (>= 0.17.3, < 3.0)
@@ -166,7 +164,6 @@ GEM
     omniauth-rails_csrf_protection (1.0.1)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
->>>>>>> dev
     orm_adapter (0.5.0)
     parallel (1.22.1)
     paranoia (2.6.0)
@@ -327,11 +324,8 @@ GEM
     zeitwerk (2.6.0)
 
 PLATFORMS
-<<<<<<< HEAD
-  x86_64-darwin-20
-=======
   arm64-darwin-21
->>>>>>> dev
+  x86_64-darwin-20
 
 DEPENDENCIES
   aasm
@@ -353,10 +347,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 6.1.6, >= 6.1.6.1)
-<<<<<<< HEAD
-=======
   rails-i18n (~> 7.0, >= 7.0.5)
->>>>>>> dev
   ransack
   redis (~> 4.0)
   rspec-rails (~> 5.0.0)
