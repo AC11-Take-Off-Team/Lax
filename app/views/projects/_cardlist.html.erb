@@ -2,7 +2,7 @@
 <div class="w-72 flex-shrink-0 flex flex-col flex-wrap" data-controller="task" data-column-id="<%= column.id %>">
   <header class="h-9 flex items-center mb-2 justify-between">
     <h2 class="column_status text-xl text-center pb-9 relative"><%= column.status %></h2>
-   <%= form_with model: @column ,url: column_path(column),method: "patch" do |form| %> <%= form.text_field :status,:class=>"display column_update bg-gray-100 text-xl text-center pb-9" %> <% end %>
+    <%= form_with model: @column ,url: column_path(column),method: "patch" do |form| %> <%= form.text_field :status,:class=>"display column_update bg-gray-100 text-xl text-center pb-9" %> <% end %>
     <nav class="flex items-center gap-x-1 pb-9">
       <button class="w-7 h-7 rounded text-icon hover:bg-hover flex items-center justify-center">
         <svg class="fill-current" height="16" focusable="false" viewBox="0 0 32 32">
