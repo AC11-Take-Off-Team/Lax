@@ -15,6 +15,8 @@ class User < ApplicationRecord
     groups.find_by(id: group).present?
   end
 
+  validates :nickname, presence: true, uniqueness: true
+
   # google 登入
   def self.from_omniauth(access_token)
     data = access_token.info
