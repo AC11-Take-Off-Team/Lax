@@ -17,19 +17,19 @@ class Api::V1::ProjectsController < ApplicationController
     task = Task.find_by(id: params[:task_id])
     task.insert_at(params[:position].to_i + 1)
     # position要+1的原因是position的起始值是1，但是newIndex的起始值是0
-    task.column = column
+    task.column = @column
     task.save
     render json: { state: 'OK' }
   end
 
   def column_position
-    column.insert_at(params[:position].to_i + 1)
-    column.save
+    @column.insert_at(params[:position].to_i + 1)
+    @column.save
   end
 
   private
 
   def find_column
-    column = Column.find_by(id: params[:column_id])
+    @column = Column.find_by(id: params[:column_id])
   end
 end
