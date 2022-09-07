@@ -17,9 +17,7 @@ class ApplicationController < ActionController::Base
            layout: false,
            status: 404
   end
-
-  # device用來為增加欄位(清洗)的方法
-
+  
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
   end

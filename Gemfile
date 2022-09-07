@@ -30,7 +30,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem "paranoia", "~> 2.2"
 gem 'devise'
 gem 'aasm'
-gem "devise-i18n"
 gem 'rails-i18n', '~> 7.0', '>= 7.0.5'
 # omniauth
 gem 'omniauth'
@@ -39,7 +38,6 @@ gem 'omniauth-rails_csrf_protection'
 
 gem "acts_as_list", "~> 1.0"
 gem 'ransack'
-gem 'paranoia', '~> 2.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -61,7 +59,6 @@ group :development do
 
   gem "rubocop-rails", "~> 2.15"
   gem "foreman", "~> 0.87.2"
-  gem 'spring'
 
 end
 
