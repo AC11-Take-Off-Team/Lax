@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   resources :messages
   resources :rooms
-  devise_for :users
   # get 'users/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: 'home#index'
+  devise_scope :user do
+    authenticated :user do
+      root 'home#index', as: :authenticated_root
+    end
+  
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
 
   resources :projects do
     resources :tasks, shallow: true, only: [:create, :update, :destroy]
@@ -32,6 +40,14 @@ Rails.application.routes.draw do
           post :status_done
         end
       end
+    end
+  end
+
+  resources :groups do
+    member do
+      post :join
+      post :quit
+      post :content
     end
   end
 
