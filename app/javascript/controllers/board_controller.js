@@ -71,4 +71,15 @@ export default class extends Controller {
       display.style.visibility = "visible"
     }
   }
+  updateColumn(event){
+    let ststus = event.target.parentElement.parentElement.parentElement.parentElement.querySelector('h2')
+    let column_update = event.target.parentElement.parentElement.parentElement.parentElement.querySelector('.column_update')
+    if (column_update.style.display == "block"){
+      column_update.style.display = "none"
+      ststus.style.display = "block"
+    } else{
+      ststus.style.display = "none"
+      column_update.style.display = "block"
+    }
+  }
 }
