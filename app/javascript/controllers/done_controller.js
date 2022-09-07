@@ -16,7 +16,7 @@ export default class extends Controller {
       url:` /api/v1/tasks/${taskID}/status_done`,
       type: "post",
       error(err){
-        console.log(err);
+        alert(err)
       }
     })
   }

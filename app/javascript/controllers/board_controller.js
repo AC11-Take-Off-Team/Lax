@@ -24,11 +24,8 @@ export default class extends Controller {
           url:`/api/v1/projects/${projectID}/sort_position`,
           type: "post",
           data: data,
-          success: ({state})=> {
-            console.log(state);
-          },
           error: (err) => {
-            console.log(err);
+            alert(err)
           }
         })
       }
@@ -46,11 +43,8 @@ export default class extends Controller {
           url:`/api/v1/projects/${projectID}/column_position`,
           type: "post",
           data: data,
-          success: ({state})=> {
-            console.log(state);
-          },
           error: (err) => {
-            console.log(err);
+            alert(err)
           }
         })
       }

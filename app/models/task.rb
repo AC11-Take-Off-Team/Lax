@@ -7,4 +7,8 @@ class Task < ApplicationRecord
   has_one :user, through: :user_task
 
   validates :title, presence: true
+
+  def user_name
+    self.user.email.split('@').first if self.user
+  end
 end

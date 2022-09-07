@@ -7,7 +7,7 @@
   <div class="pb-0.5 pl-5">任務描述:<%= task.content%></div>
   <div class="pb-0.5 pl-5">開始日期：</div>
   <div class="pb-0.5 pl-5">截止日期：<%= taipei_time(task.start_time)%>-<%=taipei_time(task.end_time)%></div>
-  <div class="pb-0.5 pl-5">執行人員：<%= task.user&.nickname %></div>
+  <div class="pb-0.5 pl-5">執行人員：<%= task.user_name %></div>
   <div class="pb-0.5 pl-5">優先順序：<%= task.priority %></div>
   <div class="pb-0.5 pl-5">
     <button class="updateBtn">修改</button>

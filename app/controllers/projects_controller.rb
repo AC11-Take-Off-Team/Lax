@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
 
   def create
     current_user.projects.new(project_params.merge(owner_id: current_user.id))
-    # owner_id: 用來記錄誰建立/擁有這個project。
+
     if current_user.save
       redirect_to projects_path
     else
@@ -46,7 +46,6 @@ class ProjectsController < ApplicationController
   end
 
   def kick_out
-    # 把人踢出project
     user = User.find(params[:id])
     remove_project(params[:project_id], user)
     if user == current_user

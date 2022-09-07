@@ -8,6 +8,8 @@ class Project < ApplicationRecord
 
   validates :title, presence: true
 
+  private
+
   def create_column
     self.columns.create(status: "待辦事項")
     self.columns.create(status: "進行中")

@@ -15,7 +15,7 @@
     <li class="flex pl-3">
        <label class="w-28 h-9 items-center text-icon text-xl">
 			指派任務：</label>
-      <%= form.collection_select(:user_id, user, :id, :nickname, {:prompt => '無指派對象'}) %>
+      <%= form.collection_select(:user_id, user, :id, :email, {:prompt => '無指派對象'}) %>
     </li>
     <li class="flex pl-3">
        <label class="w-28 h-9 items-center text-icon text-xl">

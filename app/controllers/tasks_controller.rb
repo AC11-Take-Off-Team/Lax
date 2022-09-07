@@ -7,8 +7,7 @@ class TasksController < ApplicationController
   def create
     @task = @column.tasks.new(task_params)
     assign_user(params[:task]["user_id"].to_i)
-    # assign_user在private 判斷user_id如果在project，就存入
-    
+
     if @task.save
       redirect_to board_project_path(@project)
     else
