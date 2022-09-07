@@ -1,0 +1,5 @@
+<%= form_with model:@project do |f| %>
+  <div class="">標題：<%= f.text_field :title %></div>
+  <div class="">Project描述：<%= f.text_area :content %></div> 
+  <%= f.submit %>
+<% end %>
