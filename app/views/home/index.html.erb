@@ -56,13 +56,13 @@
           </div>
           <%= link_to "建立專案" , new_project_path %>
         </button>
-        <% @projects.each do |project| %>
+        <%  @tasks = current_user.tasks %>
           <div class="flex w-full items-center p-2 transition-all rounded-md text-sm font-semibold text-gray-600 hover:bg-light">
           <div class="w-8 h-8 rounded-full mr-3 border border-icon flex items-center justify-center text-icon border-dashed">
           </div>
-          <%= link_to project.title,project %>
+
           </div>
-        <% end %>
+
       </div>
     </div>
   </div>
