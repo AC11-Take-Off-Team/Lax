@@ -5,12 +5,13 @@ import "tui-date-picker/dist/tui-date-picker.css";
 import "tui-time-picker/dist/tui-time-picker.css";
 import Rails from "@rails/ujs";
 import dayjs from "dayjs";
+import Swal from "sweetalert2";
 
 export default class extends Controller {
   initialize() {
     this.calendar = null;
     this.projectId = 0;
-    this.task = []
+    this.task = [];
   }
 
   connect() {
@@ -20,24 +21,29 @@ export default class extends Controller {
     this.fetchTask();
   }
 
-  addTask({ id, title, content, status: status, start_time: start, end_time: end }) {
+  addTask({ id, title, status, start_time: start, end_time: end }) {
     const calendarId = `cal-${this.projectId}`;
-    return { id, calendarId, title, content, start, end, status };
+    return { id, title, status, start, end, calendarId };
   }
 
   fetchTask() {
     Rails.ajax({
       url: `/projects/${this.projectId}/tasks`,
       type: "GET",
-      success: ({tasks}) => {
+      success: ({ tasks }) => {
         this.calendar.createEvents(
           tasks.map((task) => {
             return this.addTask(task);
           })
         );
       },
-      error: (err) => {
-        console.log("err" + err);
+      error: () => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="/">Back to Home</a>'
+        });
       }
     });
   }
@@ -51,28 +57,25 @@ export default class extends Controller {
         time(event) {
           const { start, end, title } = event;
 
-          return `<span style="color: white;">${dayjs(start, "HH:mm")}~${dayjs(
-            end,
-            "HH:mm"
-          )} ${title}</span>`;
+          return `<span style="color: white;">${dayjs(start, "HH:mm")}~${dayjs(end, "HH:mm")} ${title}</span>`;
         },
         allday(event) {
-          return `<span style="color: gray;">${title}</span>`;
-        },
+          return `<span style="color: gray;">${event.title}</span>`;
+        }
       },
       calendars: [
         {
-          id: "status_todo",
+          id: "cal1",
           name: "Todo",
           backgroundColor: "#FCE542"
         },
         {
-          id: "status_doing",
+          id: "cal2",
           name: "Doing",
           backgroundColor: "#00a9ff"
         },
         {
-          id: "status_done",
+          id: "cal3",
           name: "Done",
           backgroundColor: "#03bd9e"
         }
@@ -80,93 +83,94 @@ export default class extends Controller {
     });
   }
 
-  eventHandler(){
-    this.calendar.on('beforeCreateEvent', (eventObj) => {
-      const {title, start, end, status} = eventObj
-      
+  eventHandler() {
+    this.calendar.on("beforeCreateEvent", (eventObj) => {
+      const { title, start, end, status } = eventObj;
+
       const data = new FormData();
       data.append("task[title]", title);
       data.append("task[start_time]", dayjs(start).toISOString());
       data.append("task[end_time]", dayjs(end).toISOString());
       data.append("task[status]", status);
-      
 
       Rails.ajax({
         url: `/projects/${this.projectId}/tasks`,
-        type: 'POST',
+        type: "POST",
         data,
-        success: ({task}) => {
-          return this.calendar.createEvents([this.addTask(task)])
+        success: ({ task }) => {
+          return this.calendar.createEvents([this.addTask(task)]);
         },
-        errors: (err) => {
-          console.log('err' + err);
+        errors: () => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer:'<a href="/projects/${this.projectId}/calendar">Try again</a>'
+          });
         }
-      })
-    })
+      });
+    });
 
     this.calendar.on("beforeUpdateEvent", ({ event, changes }) => {
-      const {id, calendarId} = event
+      const { id, calendarId } = event;
 
-      const { title, start, end, status } = changes
+      const { title, start, end, status } = changes;
 
       const data = new FormData();
       title && data.append("task[title]", title);
       start && data.append("task[start_time]", start);
       end && data.append("task[end_time]", end);
       status && data.append("task[status]", status);
-      
+
       Object.keys(changes).length !== 0 &&
         Rails.ajax({
           url: `/tasks/${id}?project_id=${this.projectId}`,
-          type: 'PATCH',
+          type: "PATCH",
           data,
           success: () => {
-            this.calendar.updateEvent(id, calendarId, changes)
+            this.calendar.updateEvent(id, calendarId, changes);
           },
-          errors: (err) => {
-            console.log('err' + err);
+          errors: () => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",
+              footer: '<a href="/projects/${this.projectId}/calendar">Try again</a>'
+            });
           }
-      })
+        });
     });
 
     this.calendar.on("beforeDeleteEvent", (eventObj) => {
-      const { id, calendarId } = eventObj
+      const { id, calendarId } = eventObj;
 
       Rails.ajax({
         url: `/tasks/${id}?project_id=${this.projectId}`,
-        type: 'DELETE',
+        type: "DELETE",
         success: () => {
           this.calendar.deleteEvent(id, calendarId);
         },
-        errors: (err) => {
-          console.log('err' + err);
-          
+        errors: () => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="/projects/${this.projectId}/calendar">Try again</a>'
+          });
         }
-      })
-      
-
-      // this.calendar.deleteEvent(eventObj.id, eventObj.calendarId);
+      });
     });
   }
 
-
-
-  // // 刪除
-  // this.calendar.on("beforeDeleteEvent", (eventObj) => {
-  //   // this.calendar.deleteEvent(eventObj.id, eventObj.calendarId);
-  // });
-  // }
-
-  // 轉換成月曆
   changeToMonth() {
-  this.calendar.changeView("month");
+    this.calendar.changeView("month");
   }
-  // 轉換成週曆
+
   changeToWeek() {
-  this.calendar.changeView("week");
+    this.calendar.changeView("week");
   }
-  // 轉換成日曆
+
   changeToDay() {
-  this.calendar.changeView("day");
+    this.calendar.changeView("day");
   }
 }

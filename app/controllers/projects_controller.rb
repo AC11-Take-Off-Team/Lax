@@ -18,7 +18,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-
   def show
   end
 
