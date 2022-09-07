@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-
-ActiveRecord::Schema.define(version: 2022_09_01_063557) do
+ActiveRecord::Schema.define(version: 2022_09_03_155334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,15 +31,6 @@ ActiveRecord::Schema.define(version: 2022_09_01_063557) do
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["deleted_at"], name: "index_columns_on_deleted_at"
-    t.index ["project_id"], name: "index_columns_on_project_id"
-  end
-
-  create_table "groups", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -54,6 +43,18 @@ ActiveRecord::Schema.define(version: 2022_09_01_063557) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "serial"
+    t.integer "price"
+    t.string "state"
+    t.bigint "user_id"
+    t.text "note"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+>>>>>>> dev
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -125,9 +126,7 @@ ActiveRecord::Schema.define(version: 2022_09_01_063557) do
 
   add_foreign_key "channels", "groups"
   add_foreign_key "channels", "users"
-  add_foreign_key "columns", "projects"
-  add_foreign_key "messages", "rooms"
-  add_foreign_key "messages", "users"
+  add_foreign_key "tasks", "projects"
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
   add_foreign_key "user_tasks", "tasks"
