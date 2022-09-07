@@ -1,5 +1,5 @@
 <% columns.each do |column| %>
-<div class="w-72 flex-shrink-0 flex flex-col flex-wrap" data-controller="task">
+<div class="w-72 flex-shrink-0 flex flex-col flex-wrap" data-controller="task" data-column-id="<%= column.id %>">
   <header class="h-9 flex items-center mb-2 justify-between">
     <h2 class="column_status text-xl text-center pb-9 relative"><%= column.status %></h2>
     <nav class="flex items-center gap-x-1 pb-9">

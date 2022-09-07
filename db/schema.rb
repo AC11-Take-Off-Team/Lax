@@ -126,6 +126,8 @@ ActiveRecord::Schema.define(version: 2022_09_03_155334) do
 
   add_foreign_key "channels", "groups"
   add_foreign_key "channels", "users"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "tasks", "projects"
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
