@@ -76,3 +76,4 @@ gem 'ransack'
 gem 'paranoia', '~> 2.2'
 
 
+
