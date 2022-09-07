@@ -4,7 +4,7 @@ import Rails from '@rails/ujs';
 
 
 export default class extends Controller {
-  static targets = [ "todo","doing","done","task_create_display" ]
+  static targets = [ "status_list" ]
   connect() {
     let projectID = this.element.dataset.projectId
     const sortEvent = {
@@ -13,38 +13,48 @@ export default class extends Controller {
       draggable: ".card", //可拖拉的物件
       group: 'shared',
       onEnd:(event)=>{
-        let status = event.to.dataset.boardTarget
+        let columnID = event.to.dataset.columnId
         let taskID = event.item.dataset.taskId
-        var data = new FormData();
-        // data 會在下方ajax打進api
+        let data = new FormData();
         data.append("position",event.newIndex);
         // event.newIndex是移動後的index值，起始值是0
         data.append("task_id",taskID)
-        data.append("status",status)
+        data.append("column_id",columnID)
         Rails.ajax({
           url:`/api/v1/projects/${projectID}/sort_position`,
           type: "post",
           data: data,
-          success: ({state})=> {
-            console.log(state);
-          },
           error: (err) => {
-            console.log(err);
+            alert(err)
           }
         })
       }
     }
-    
-    var todo = new Sortable(this.todoTarget,sortEvent)
-    var doing = new Sortable(this.doingTarget,sortEvent)
-    var done = new Sortable(this.doneTarget,sortEvent)
+    this.status_listTargets.forEach((list)=>{
+      new Sortable(list,sortEvent)
+    })
+    const column_sort = new Sortable(this.element,{
+      onEnd:(event)=>{
+        let columnID = event.item.dataset.columnId
+        let data = new FormData();
+        data.append("position",event.newIndex)
+        data.append("column_id",columnID)
+        Rails.ajax({
+          url:`/api/v1/projects/${projectID}/column_position`,
+          type: "post",
+          data: data,
+          error: (err) => {
+            alert(err)
+          }
+        })
+      }
+    })
 
     // task update
     const updateBtn = document.querySelectorAll(".updateBtn")
     updateBtn.forEach((update)=>{
       update.addEventListener("click",(e)=>{
         let display = e.target.parentElement.querySelector('.task_update')
-        console.log(display);
         if (display.style.display == "block"){
           display.style.display = "none"
         } else{
@@ -53,12 +63,12 @@ export default class extends Controller {
     })
   })
   }
-  create(){
-    const display = this.task_create_displayTarget
-    if (display.style.display == "block"){
-      display.style.display = "none"
+  column_display(event){
+    let display = event.target.parentElement.parentElement.querySelector(".column_display")
+    if (display.style.visibility == "visible"){
+      display.style.visibility = "hidden"
     } else{
-      display.style.display = "block"
+      display.style.visibility = "visible"
     }
   }
 }
