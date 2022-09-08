@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :projects do
-    resources :tasks, shallow: true, only: [:create, :update, :destroy]
+    resources :tasks, shallow: true, only: [:index, :create, :update, :destroy]
     member do
       delete :leave_project
       delete :kick_out
