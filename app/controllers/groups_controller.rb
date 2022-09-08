@@ -34,8 +34,14 @@ class GroupsController < ApplicationController
   end
 
   def join
-    current_user.groups << [@group]
-    redirect_to group_path , notice: '已加入'
+
+    if @group.private == true
+    flash[:notice] = 'private'
+
+    else
+      current_user.groups << [@group]
+      redirect_to group_path
+    end
 
   end
 
