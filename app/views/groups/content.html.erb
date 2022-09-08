@@ -4,11 +4,13 @@
       <span class="my-6 text-2xl text-gray-900 font-semibold ml-6"><%= @group.title %></span>
       <span class="my-6 text-gray-400 text-2xl mr-6 bg-white hover:bg-gray-100 py-1 px-2 rounded-lg "><%= link_to "X", @group %></span>
     </div>
-      <div class="my-2 text-2xl ml-6">
-        <div class="text-gray-700 font-bold py-2">描述:</div>
-        <div class="p-1 mt-5"><%= @group.description %></div>
-      </div>
-    <button class="bg-blue-500 hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white"><%= link_to "加入頻道",join_group_path(@group),method:"post" %></button>
+    <div class="my-2 text-2xl ml-6">
+      <div class="text-gray-700 font-bold py-2">描述:</div>
+      <div class="p-1 mt-5"><%= @group.description %></div>
+    </div>
+    <button class=" bg-kohbai hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white mt-10 ml-6"><%= link_to "加入頻道",join_group_path(@group),method:"post" %></button>
   </div>
 </section>
+
+
 

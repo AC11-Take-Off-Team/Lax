@@ -5,7 +5,7 @@
         <h2 class="text-2xl p-3 my-2">所有頻道</h2>
       </div>
       <div>
-        <h3 class="max-w-full bg-blue-500 hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white"><%= link_to "創建頻道" ,new_group_path %></h3>
+        <h3 class="max-w-full bg-kohbai hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white"><%= link_to "創建頻道" ,new_group_path %></h3>
       </div>
     </div>
     <div class="mx-auto w-5/6 ">
@@ -22,9 +22,9 @@
               </div>
             </div>
             <% if current_user.join?(group) %>
-              <button class="bg-gray-400 hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white"><%= link_to "退出" , quit_group_path(group),method: "post" %></button>
+              <button class="bg-gray-400 hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white"><%= link_to "退出" , quit_group_path(group),method: "delete" %></button>
             <% else %>
-              <button class="bg-blue-500 hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white"><%= link_to "加入" , join_group_path(group),method: "post" %></button>
+              <button class="bg-kohbai hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white"><%= link_to "加入" , join_group_path(group),method: "post" %></button>
             <% end %>
           </div>
         </div>

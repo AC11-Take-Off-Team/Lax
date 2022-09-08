@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     authenticated :user do
       root 'home#index', as: :authenticated_root
     end
-  
+
     unauthenticated do
       root 'devise/sessions#new', as: :unauthenticated_root
     end
@@ -43,8 +43,8 @@ Rails.application.routes.draw do
   resources :groups do
     member do
       post :join
-      post :quit
-      post :content
+      delete :quit
+      get :content
     end
   end
 
