@@ -1,13 +1,13 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :find_project, only: %i[create]
+  before_action :find_column, only: %i[create]
   before_action :find_task, only: %i[update destroy]
 
   def create
-    @task = @project.tasks.new(task_params.merge(status: 'todo'))
-    # create_task_params在private
+    @task = @column.tasks.new(task_params)
     assign_user(params[:task]["user_id"].to_i)
-    # assign_user在private 判斷user_id如果在project，就存入
+
     if @task.save
       redirect_to board_project_path(@project)
     else
@@ -16,15 +16,15 @@ class TasksController < ApplicationController
   end
 
   def update
-    @project = @task.project
+    @project = @task.column.project
     assign_user(params[:task]["user_id"].to_i)
     @task.update(task_params)
-    redirect_to board_project_path(@task.project.id)
+    redirect_to board_project_path(@project)
   end
 
   def destroy
     @task.destroy
-    redirect_to board_project_path(@task.project.id)
+    redirect_to board_project_path(@task.column.project)
   end
 
   private
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
       start_time = Time.parse(date.first)
       end_time = Time.parse(date.last)
     end
-    params.require(:task).permit(:title, :content, :start_time, :end_time, :status, :deleted_at, :priority).merge({ start_time:, end_time: })
+    params.require(:task).permit(:title, :content, :start_time, :end_time, :deleted_at, :priority).merge({ start_time:, end_time: })
   end
 
   def find_task
@@ -46,9 +46,11 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
   end
 
-  def assign_user(user_id)
-    return unless @project.users.ids.include?(user_id)
+  def find_column
+    @column = Column.find_by(id: params[:column_id].to_i)
+  end
 
+  def assign_user(user_id)
     user = User.find_by(id: user_id)
     @task.user = user
   end

@@ -1,0 +1,31 @@
+<%= form_with(model: message , local:true, data: {controller: "emoji-picker"}) do |form| %>
+  <% if message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+      <ul>
+        <% message.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= content_tag(:div, "", class:"pickerContainer", data: {
+     emoji_picker_target: "pickerContainer"
+   }) %>
+  <div class="field emoji-field">
+    <div class="pb-6 px-4 flex-none">
+            <div class="flex rounded-lg border-2 border-grey overflow-hidden">
+                  <%= form.text_area :content, rows: 5 ,style: 'width: 100%', placeholder: "Enter message here!", data: {emoji_picker_target: "trixEditor"} %>
+            </div>
+        </div>
+    
+  </div>
+  <%= form.hidden_field :room_id, value: room.id %>
+
+  <div class="actions">
+    <%= form.submit data: { disable_with: false } %>
+  </div>
+<% end %>
+
+ 

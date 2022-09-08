@@ -15,11 +15,8 @@ export default class extends Controller {
     Rails.ajax({
       url:` /api/v1/tasks/${taskID}/status_done`,
       type: "post",
-      success(resp){
-        console.log(resp);
-      },
       error(err){
-        console.log(err);
+        alert(err)
       }
     })
   }

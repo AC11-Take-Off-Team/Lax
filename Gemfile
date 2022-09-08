@@ -20,7 +20,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -32,10 +32,23 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 
 
+gem 'aasm'
+gem 'rails-i18n', '~> 7.0', '>= 7.0.5'
+# omniauth
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+
+gem "acts_as_list", "~> 1.0"
+gem 'acts_as_paranoid'
+gem 'ransack'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 5.0.0'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -49,7 +62,10 @@ group :development do
   gem 'rubocop', '~> 1.35', require: false
 
   gem "rubocop-rails", "~> 2.15"
+
   gem 'spring'
+
+  gem "foreman", "~> 0.87.2"
 
 end
 
@@ -65,15 +81,7 @@ end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+
 gem "net-smtp", "~> 0.3.1",require: false
 
-gem "acts_as_list", "~> 1.0"
-
-gem 'aasm'
-
-gem 'ransack'
-
 gem 'paranoia', '~> 2.2'
-
-
-
