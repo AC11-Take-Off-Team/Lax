@@ -21,7 +21,7 @@ export default class extends Controller {
         data.append("task_id",taskID)
         data.append("column_id",columnID)
         Rails.ajax({
-          url:`/api/v1/projects/${projectID}/sort_position`,
+          url:`/api/v1/projects/${projectID}/sort_task_position`,
           type: "post",
           data: data,
           error: (err) => {
@@ -40,7 +40,7 @@ export default class extends Controller {
         data.append("position",event.newIndex)
         data.append("column_id",columnID)
         Rails.ajax({
-          url:`/api/v1/projects/${projectID}/column_position`,
+          url:`/api/v1/projects/${projectID}/sort_column_position`,
           type: "post",
           data: data,
           error: (err) => {
