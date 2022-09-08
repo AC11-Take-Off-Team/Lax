@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_03_155334) do
+ActiveRecord::Schema.define(version: 2022_09_03_190114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,22 @@ ActiveRecord::Schema.define(version: 2022_09_03_155334) do
     t.integer "position"
     t.bigint "project_id", null: false
     t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_columns_on_deleted_at"
+    t.index ["project_id"], name: "index_columns_on_project_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "meets", force: :cascade do |t|
+    t.string "name"
+    t.string "vonage_session_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -54,7 +70,6 @@ ActiveRecord::Schema.define(version: 2022_09_03_155334) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
->>>>>>> dev
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -77,6 +92,7 @@ ActiveRecord::Schema.define(version: 2022_09_03_155334) do
     t.text "content"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "position"
@@ -85,6 +101,7 @@ ActiveRecord::Schema.define(version: 2022_09_03_155334) do
     t.datetime "deleted_at"
     t.index ["column_id"], name: "index_tasks_on_column_id"
     t.index ["deleted_at"], name: "index_tasks_on_deleted_at"
+    t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
   create_table "user_projects", force: :cascade do |t|
@@ -126,6 +143,7 @@ ActiveRecord::Schema.define(version: 2022_09_03_155334) do
 
   add_foreign_key "channels", "groups"
   add_foreign_key "channels", "users"
+  add_foreign_key "columns", "projects"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "tasks", "projects"

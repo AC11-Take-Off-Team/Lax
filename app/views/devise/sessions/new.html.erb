@@ -1,83 +1,41 @@
-<div class="min-h-full flex items-center justify-center py-12 px-8 sm:px-6 lg:px-8 ">
-  <div class="max-w-md w-2/5 space-y-8 py-8 px-10 bg-white shadow-md	rounded-md">
-    <div>
-      <a href="#" class="mb-12 flex justify-center mt-10">
-        <span class="w-12"><%= image_tag("logo.png")%></span>
-      </a>
-      <h2 class="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900 mb-8 ">Log in to Lax</h2>
-      <button type="submit" class="group relative w-full flex justify-center py-2 px-4  mb-5 border border-gray-100 bg-coolGray-100 flex-1 hover:bg-coolGray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-coolGray-50">
-        <img src="https://img.icons8.com/fluency/48/40C057/google-logo.png" class="absolute left-5 inset-y-2 w-5"/>
-        <span >
-          <%- if devise_mapping.omniauthable? %>
-            <%- resource_class.omniauth_providers.each do |provider| %>
-              <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post, class: "font-medium rounded-md	text-gray text-sm" %>
-            <% end %>
-          <% end %>
-        </span>
-      </button>
-      <p class="mt-2 text-center text-sm text-gray-600">Or</p>
-    </div>
+<section class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md space-y-8 -space-y-px mx-auto px-10 py-12 rounded-md shadow-2xl">
+        <div cless="title">
+            <img class="mx-auto h-12 w-auto" alt="Lax" src="/assets/logo.png"/>
+            <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 ">登入至 Lax</h2>
+        </div>
+        <br/>
+        <div class="flex justify-center mt-8 space-y-6">
+            <button class="flex w-full h-12 px-4 text-gray-600 items-center justify-center border border-gray-300 rounded-md transition-all hover:bg-gray-50">
+                <svg class="mr-auto" width="18" height="18" viewBox="0 0 18 18"><path d="M17.64,9.20454545 C17.64,8.56636364 17.5827273,7.95272727 17.4763636,7.36363636 L9,7.36363636 L9,10.845 L13.8436364,10.845 C13.635,11.97 13.0009091,12.9231818 12.0477273,13.5613636 L12.0477273,15.8195455 L14.9563636,15.8195455 C16.6581818,14.2527273 17.64,11.9454545 17.64,9.20454545 L17.64,9.20454545 Z" fill="#4285F4"></path><path d="M9,18 C11.43,18 13.4672727,17.1940909 14.9563636,15.8195455 L12.0477273,13.5613636 C11.2418182,14.1013636 10.2109091,14.4204545 9,14.4204545 C6.65590909,14.4204545 4.67181818,12.8372727 3.96409091,10.71 L0.957272727,10.71 L0.957272727,13.0418182 C2.43818182,15.9831818 5.48181818,18 9,18 L9,18 Z" fill="#34A853"></path><path d="M3.96409091,10.71 C3.78409091,10.17 3.68181818,9.59318182 3.68181818,9 C3.68181818,8.40681818 3.78409091,7.83 3.96409091,7.29 L3.96409091,4.95818182 L0.957272727,4.95818182 C0.347727273,6.17318182 0,7.54772727 0,9 C0,10.4522727 0.347727273,11.8268182 0.957272727,13.0418182 L3.96409091,10.71 L3.96409091,10.71 Z" fill="#FBBC05"></path><path d="M9,3.57954545 C10.3213636,3.57954545 11.5077273,4.03363636 12.4404545,4.92545455 L15.0218182,2.34409091 C13.4631818,0.891818182 11.4259091,0 9,0 C5.48181818,0 2.43818182,2.01681818 0.957272727,4.95818182 L3.96409091,7.29 C4.67181818,5.16272727 6.65590909,3.57954545 9,3.57954545 L9,3.57954545 Z" fill="#EA4335"></path></svg>
+                <span class="mr-auto"><%= link_to "繼續使用 Google ", user_google_oauth2_omniauth_authorize_url, method: :post %></span>
+            </button>
+        </div>
+        <div class="border-b border-gray-200 flex justify-center">
+            <span class="bg-white px-4 text-gray-300 relative top-3">or</span>
+        </div>
 
-    <form class="mt-8 space-y-6" action="#" method="POST">
-      <input type="hidden" name="remember" value="true">
-      <div>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="flex flex-col text-xs text-gray-500">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Email address", name: "email", type: "email" %>
-          </div>
-          <br/>
-          <div class="flex flex-col text-xs text-gray-500">
-            <%= f.label :password %><br />
-            <%= f.password_field :password, autocomplete: "current-password",  autocomplete: "current-password", class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Password", id: "password", name:"password", type:"password" %>
-          </div>
+            <%= render "devise/shared/error_messages", resource: resource %>
 
-          <div class="py-4">
-            <%= f.submit "Log in", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-              <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-              </span>
-          </div>
+            <div class="flex flex-col text-sm text-gray-500 mt-6">
+                <%= f.label :email %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"name@company.com",class:"mt-2 h-9 border border-gray-300 rounded outline-none px-3 text-black focus:border-gray-400" %>
+            </div>
 
-          <div class="flex items-center justify-center py-4">
-            <% if devise_mapping.rememberable? %>
-              <%= f.check_box :remember_me, class: "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded", name: "remember-me"%>
-              <%= f.label :remember_me, class: "ml-2 block text-sm text-gray-900" %>
-            <% end %>
-          </div>
+            <div class="flex flex-col text-sm text-gray-500 mt-6">
+                <%= f.label :password %>
+                <%= f.password_field :password, autocomplete: "new-password",placeholder:"長度至少6個字元",class:"mt-2 h-9 border border-gray-300 rounded outline-none px-3 text-black focus:border-gray-400"%>
+            </div>
+
+            <button class="flex w-full h-9 mt-8 px-4 items-center border border-gray-300 rounded-md transition-all bg-momo hover:bg-kohbai">
+                <%= f.submit "登入",class:"text-sm text-white mx-auto bg-transparent"%>
+            </button>
+            
+            <div class="flex justify-center mt-6">
+                <p class="text-sm text-gray-500">沒有帳戶嗎？</p>
+                <%= link_to "註冊", new_registration_path(resource_name), class:"link-hover text-sm text-momo hover:text-kohbai" %>
+            </div>
         <% end %>
-      </div>
-
-      <p class="text-sm mt-7 text-center">
-        Don't have an account? 
-        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-          <%= link_to "Sign up", new_registration_path(resource_name),  class: "text-blue-600" %>
-        <% end %>
-      </p>
-
-      <div class="text-sm text-center">
-        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-          <%= link_to "Forgot your password?", new_password_path(resource_name), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
-        <% end %>
-      </div>
-
-      <p class="text-xs text-center text-gray-400">
-        This site is protected by reCAPTCHA and the Google <a href="" class="underline">Privacy Policy</a> and <a href="" class="underline">Terms of Service</a> apply.
-      </p>
-    </form>
-  </div>
-</div>
-
-<ul class="flex flex-wrap max-w-md w-2/5 m-auto	justify-center list-disc text-xs text-center text-gray-400 mb-10">
-  <li class="pr-5">Asana.com</li>
-  <li class="pr-5">Support</li>
-  <li class="pr-5">Integrations</li>
-  <li class="pr-5">Forum</li>
-  <li class="pr-5">Developers & API</li>
-  <li class="pr-5">Resources</li>
-  <li class="pr-5">Guide</li>
-  <li class="pr-5">Templates</li>
-  <li class="pr-5">Pricing</li>
-  <li class="pr-5">Terms</li>
-  <li class="pr-5">Privacy</li>
-</ul>
+    </div>
+</section>

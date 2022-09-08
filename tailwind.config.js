@@ -6,7 +6,13 @@ module.exports = {
     './app/views/**/*',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        'momo': '#F596AA',
+        'kohbai': '#E16B8C',
+        'sakura': '#FEDFE1',
+      },
+    },
   },
   plugins: [],
 }

@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-  resources :messages
-  resources :rooms
-  # get 'users/index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
   devise_scope :user do
     authenticated :user do
       root 'home#index', as: :authenticated_root
@@ -50,5 +47,8 @@ Rails.application.routes.draw do
       post :content
     end
   end
+
+  resources :messages
+  resources :rooms
 
 end
