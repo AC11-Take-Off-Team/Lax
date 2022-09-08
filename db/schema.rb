@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_08_164712) do
+ActiveRecord::Schema.define(version: 2022_09_08_200549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(version: 2022_09_08_164712) do
     t.text "content"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "position"
@@ -84,7 +83,6 @@ ActiveRecord::Schema.define(version: 2022_09_08_164712) do
     t.datetime "deleted_at"
     t.index ["column_id"], name: "index_tasks_on_column_id"
     t.index ["deleted_at"], name: "index_tasks_on_deleted_at"
-    t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
   create_table "user_projects", force: :cascade do |t|
@@ -129,7 +127,6 @@ ActiveRecord::Schema.define(version: 2022_09_08_164712) do
   add_foreign_key "columns", "projects"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "tasks", "projects"
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
   add_foreign_key "user_tasks", "tasks"
