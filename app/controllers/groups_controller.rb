@@ -3,12 +3,16 @@
 class GroupsController < ApplicationController
   before_action :find_group, only: %i[show edit update destroy join quit content]
 
+
+
   def new
     @group = Group.new
   end
 
+
   def index
-    @groups = @group_query.result.recent
+
+    @groups = @group.recent
 
   end
 
@@ -56,4 +60,14 @@ class GroupsController < ApplicationController
   def find_group
     @group = Group.find(params[:id])
   end
+
+  def search
+
+    @group_query = Group.ransack(params[:q])
+
+  end
+
+
 end
+
+
