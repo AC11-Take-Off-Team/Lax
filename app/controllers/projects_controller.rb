@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_user_project, only: %i[show edit update destroy board]
+  before_action :find_user_project, only: %i[show edit update destroy board calendar]
 
   def index
     @projects = current_user.projects.all
@@ -61,6 +61,9 @@ class ProjectsController < ApplicationController
     @columns = @project.columns.order(position: :asc)
     @tasks = Task.all
     @user = @project.users.all
+  end
+
+  def calendar
   end
 
   private
