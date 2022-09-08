@@ -1,5 +1,5 @@
 class Api::V1::ProjectsController < ApplicationController
-  before_action :find_column,only: %i[sort_position column_position]
+  before_action :find_column,only: %i[sort_task_position sort_column_position]
   
   def join_team
     user = User.find_by(email: params[:email])
@@ -13,23 +13,21 @@ class Api::V1::ProjectsController < ApplicationController
     end
   end
 
-  def sort_position
-    task = Task.find_by(id: params[:task_id])
-    task.insert_at(params[:position].to_i + 1)
+  def sort_task_position
+    task = Task.find(params[:task_id])
     # position要+1的原因是position的起始值是1，但是newIndex的起始值是0
-    task.column = @column
-    task.save
+    task.insert_at(params[:position].to_i + 1)
+    task.update(column: @column)
     render json: { state: 'OK' }
   end
 
-  def column_position
+  def sort_column_position
     @column.insert_at(params[:position].to_i + 1)
-    @column.save
   end
 
   private
 
   def find_column
-    @column = Column.find_by(id: params[:column_id])
+    @column = Column.find(params[:column_id])
   end
 end

@@ -23,8 +23,8 @@ class ColumnsController < ApplicationController
   end
 
   def create_task
-    @column.tasks.new(task_params)
-    assign_user(params[:task]["user_id"].to_i)
+    @column.tasks.new(task_params.merge(project_id: @column.project.id))
+    assign_user(params[:task]["user_id"])
 
     if @column.save
       redirect_to board_project_path(@column.project)

@@ -13,19 +13,20 @@ export default class extends Controller {
       draggable: ".card", //可拖拉的物件
       group: 'shared',
       onEnd:(event)=>{
-        let columnID = event.to.dataset.columnId
-        let taskID = event.item.dataset.taskId
-        let data = new FormData();
+        const columnID = event.to.dataset.columnId
+        const taskID = event.item.dataset.taskId
+        const data = new FormData();
         data.append("position",event.newIndex);
         // event.newIndex是移動後的index值，起始值是0
         data.append("task_id",taskID)
         data.append("column_id",columnID)
         Rails.ajax({
           url:`/api/v1/projects/${projectID}/sort_task_position`,
-          type: "post",
+          type: "patch",
           data: data,
           error: (err) => {
-            alert(err)
+            // alert(err)
+            console.log(err);
           }
         })
       }
@@ -41,7 +42,7 @@ export default class extends Controller {
         data.append("column_id",columnID)
         Rails.ajax({
           url:`/api/v1/projects/${projectID}/sort_column_position`,
-          type: "post",
+          type: "patch",
           data: data,
           error: (err) => {
             alert(err)
