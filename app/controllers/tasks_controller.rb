@@ -6,6 +6,10 @@ class TasksController < ApplicationController
     render json: { tasks: @project.tasks }
   end
 
+  def index
+    render json: { tasks: @project.tasks }
+  end
+
   def create
     @task = @project.tasks.new(params_task)
 
@@ -27,6 +31,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @task = @project.tasks.find(params[:id])
     @task = @project.tasks.find(params[:id])
     @task.destroy
   end
