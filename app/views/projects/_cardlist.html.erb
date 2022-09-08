@@ -37,7 +37,7 @@
     </button>
   </div>
   <div class="display m-3 w-1/3 rounded-md resize-none pb-2 fixed z-10 bottom-0 bg-white rounded-md" data-task-target="task_display">
-    <%= render "TaskForm", model: model,user: user, url: project_tasks_path(project,column_id: column.id)%>
+    <%= render "TaskForm", model: model,user: user, url: create_task_column_path(column)%>
   </div>
 </div>
 <% end %>

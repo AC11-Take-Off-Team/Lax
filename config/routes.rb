@@ -18,7 +18,13 @@ Rails.application.routes.draw do
       delete :kick_out
       get :board
     end
-    resources :columns, shallow: true, only: [:create, :update, :destroy]
+    resources :columns, shallow: true, only: [:create, :update, :destroy] do
+      member do
+        post :create_task
+        patch :update_task
+        delete :destroy_task
+      end
+    end
   end
 
 
@@ -29,7 +35,6 @@ Rails.application.routes.draw do
           post :join_team
           post :sort_position
           post :column_position
-          get :column
         end
       end
       resources :tasks,only: [] do

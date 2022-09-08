@@ -41,6 +41,7 @@ export default class extends Controller {
         console.log("error" + err)
       },
     })
+    this.task_displayTarget.style.display = "none"
   }
   closePost(){
     this.task_displayTarget.style.display = "none"
