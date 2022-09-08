@@ -1,13 +1,33 @@
-# Chinese (Taiwan) translations for Devise 4.2.1
-# 4.1.1: By MitsunChieh at https://gist.github.com/MitsunChieh/8b4249859274acd15df5f4d757e55bc2
-# 4.2.1: By Artoria2e5 (this file)
-#  - Fixes pluralization problems (zh only takes "other")
-#  - Misc translation improvements, you know what these grammar things are
-#    - Actually a lot?
-#  - Should be minor enough to claim CC0 for my changes.
-# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
-
 zh-TW:
+  activerecord:
+    attributes:
+      user:
+        username: 使用者名稱
+        confirmation_sent_at: 確認信已寄於
+        confirmation_token: 確認令牌
+        confirmed_at: 已確認於
+        created_at: 建立於
+        current_password: 原始密碼
+        current_sign_in_at: 現在登入狀態開始於
+        current_sign_in_ip: 現在登入中的IP位址
+        email: 電子信箱
+        encrypted_password: 加密過的密碼
+        failed_attempts: 錯誤嘗試次數
+        last_sign_in_at: 上次登入於
+        last_sign_in_ip: 上次登入的IP位址
+        locked_at: 鎖定於
+        password: 密碼
+        password_confirmation: 確認密碼
+        remember_created_at: 記住信息寄於
+        remember_me: 記住我的資訊
+        reset_password_sent_at: 密碼重設信寄於
+        reset_password_token: 密碼重置金鑰
+        sign_in_count: 登入次數
+        unconfirmed_email: 電子信箱未確認
+        unlock_token: 解鎖令牌
+        updated_at: 更新於
+    models:
+      user: 使用者
   devise:
     confirmations:
       confirmed: "您的帳號已通過驗證，現在您已成功登入。"
@@ -52,8 +72,6 @@ zh-TW:
       update_needs_confirmation: "您已經成功的更新帳號資訊，但我們仍需確認您的電子信箱，請至新信箱收信並點擊連結以確認您的新電子郵件帳號。"
       updated: "您已經成功的更新帳號資訊。"
       updated_but_not_signed_in: "您已經成功的更新帳號資訊。但因為您變更了密碼，請重新登入。"
-      nickname: "暱稱"
-
     sessions:
       signed_in: "成功登入了。"
       signed_out: "成功登出了。"
