@@ -20,11 +20,7 @@ export default class extends Controller {
   }
   display_change() {
     const display = this.task_displayTarget;
-    if (display.style.display == 'block') {
-      display.style.display = 'none';
-    } else {
-      display.style.display = 'block';
-    }
+    display.style.display == 'block' ? (display.style.display = 'none') : (display.style.display = 'block');
   }
   selectdate() {
     const start_time = this.datePicker.selectedDates[0];
@@ -44,7 +40,9 @@ export default class extends Controller {
         console.log(resp);
       },
       error: (err) => {
-        console.error('error' + err);
+        Swal.fire(
+          "日期指定失敗"
+        )
       },
     });
     this.task_displayTarget.style.display = 'none';
