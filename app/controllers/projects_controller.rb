@@ -78,5 +78,4 @@ class ProjectsController < ApplicationController
     project = user.projects.find(project_id)
     project.users.destroy(user)
   end
-
 end
