@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       delete :leave_project
       delete :kick_out
       get :board
+      get :calendar
     end
     resources :columns, shallow: true, only: [:create, :update, :destroy]
   end
