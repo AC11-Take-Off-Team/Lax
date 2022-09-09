@@ -23,10 +23,10 @@ class ColumnsController < ApplicationController
   end
 
   def create_task
-    @column.tasks.new(task_params.merge(project_id: @column.project.id))
+    @task  = @column.tasks.new(task_params.merge(project_id: @column.project.id))
     assign_user(params[:task]["user_id"])
 
-    if @column.save
+    if @task.save
       redirect_to board_project_path(@column.project)
     else
       redirect_to board_project_path(@column.project), notice: '任務建立失敗'
@@ -73,7 +73,8 @@ class ColumnsController < ApplicationController
     end
 
     def assign_user(user_id)
+      # 用find_by 是為了有些任務還沒有人接取
       user = User.find_by(id: user_id)
-      @task.user = user if user
+      @task.user = user 
     end
 end

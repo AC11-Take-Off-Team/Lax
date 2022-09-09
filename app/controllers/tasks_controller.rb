@@ -29,7 +29,6 @@ class TasksController < ApplicationController
 
   def destroy
     @task = @project.tasks.find(params[:id])
-    @task = @project.tasks.find(params[:id])
     @task.destroy
   end
 
