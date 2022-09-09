@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
+         :recoverable, :rememberable, :validatable, 
          :omniauthable, omniauth_providers: [:google_oauth2]
   has_many :user_projects
   has_many :projects, through: :user_projects
@@ -15,7 +15,10 @@ class User < ApplicationRecord
     groups.find_by(id: group).present?
   end
 
-  # validates :nickname, presence: true, uniqueness: true
+  # 使用者名稱
+  def display_name
+    nickname || email
+  end
 
   # google 登入
   def self.from_omniauth(access_token)
