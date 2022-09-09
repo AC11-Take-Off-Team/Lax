@@ -15,22 +15,21 @@ class User < ApplicationRecord
     groups.find_by(id: group).present?
   end
 
-  # 使用者名稱
   def display_name
-    nickname || email
+    username || email
   end
 
-  # google 登入
+  # 第三方登入
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(email: data['email']).first
     # Uncomment the section below if you want users to be created if they don't exist
-    unless user
-        user = User.create(
-          email: data['email'],
-          password: Devise.friendly_token[0,20]
-        )
-    end
+    user ||= User.create(
+      email: data['email'],
+      username: data['username'] || data['email'].split('@').first,
+      password: Devise.friendly_token[0, 20]
+    )
     user
   end
+
 end
