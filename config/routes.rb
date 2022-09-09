@@ -19,7 +19,13 @@ Rails.application.routes.draw do
       get :board
       get :calendar
     end
-    resources :columns, shallow: true, only: [:create, :update, :destroy]
+    resources :columns, shallow: true, only: [:create, :update, :destroy] do
+      member do
+        post :create_task
+        patch :update_task
+        delete :destroy_task
+      end
+    end
   end
 
 
@@ -28,9 +34,8 @@ Rails.application.routes.draw do
       resources :projects,only: [] do
         member do
           post :join_team
-          post :sort_position
-          post :column_position
-          get :column
+          patch :sort_task_position
+          patch :sort_column_position
         end
       end
       resources :tasks,only: [] do
