@@ -6,17 +6,15 @@ class GroupsController < ApplicationController
     @group = current_user.groups.new
   end
 
-
   def index
     @groups = @group_query.result.recent
-
   end
 
   def show; end
 
   def create
-    current_user.groups.new(group_params)
-    if current_user.save
+    @group = current_user.groups.new(group_params)
+    if @group.save
       redirect_to groups_path
     else
       render :new
@@ -27,28 +25,20 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to @group
+      redirect_to @group, notice: "已更新"
     else
       render :edit
     end
   end
 
   def join
-
-    if @group.private == true
-    flash[:notice] = 'private'
-
-    else
-      current_user.groups << [@group]
-      redirect_to group_path
-    end
-
+      current_user.groups << @group
+      redirect_to group_path, notice: "已加入"
   end
 
   def quit
     current_user.groups.destroy(params[:id])
-    redirect_to groups_path , notice: '已退出'
-
+    redirect_to groups_path, notice: '已退出'
   end
 
   def content; end

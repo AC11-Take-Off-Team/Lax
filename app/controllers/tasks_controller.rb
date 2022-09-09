@@ -2,14 +2,13 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :find_user_project
   before_action :find_column, only: %i[create]
-  before_action :find_task, only: %i[update destroy]
 
   def index
     render json: { tasks: @project.tasks }
   end
 
   def create
-    @task = @project.tasks.new(params_task)
+    @task = @column.tasks.new(params_task.merge(project_id: @project.id))
 
     if @task.save
       render json: { state: 'success', task: @task }
@@ -34,11 +33,17 @@ class TasksController < ApplicationController
   end
 
   private
+
   def find_user_project
     @project = current_user.projects.find(params[:project_id])
   end
 
   def params_task
     params.require(:task).permit(:title, :start_time, :end_time)
+  end
+
+  def find_column
+    @column = @project.columns.find_by(status: "待辦事項")
+    @column ||= @project.columns.create(status: "待辦事項")
   end
 end

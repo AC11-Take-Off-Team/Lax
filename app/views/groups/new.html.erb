@@ -4,7 +4,7 @@
       <span class="my-6 text-2xl text-gray-900 font-semibold p-4">創建頻道</span>
       <span class="my-6 text-gray-400 text-2xl mr-6 bg-white hover:bg-gray-100 py-1 px-2 rounded-lg "><%= link_to "X", groups_path %></span>
     </div>
-    <p class="text-gray-500 p-4 ">频道是你的團隊進行通信的地方。圍繞主题進行組織時其效果最佳，例如#市場營銷#。</p>
+    <p class="text-gray-500 p-4 ">频道是你的團隊進行通信的地方。圍繞主题進行組織時其效果最佳，例如市場營銷</p>
     <%= form_for @group do |form| %>
       <div class="text-gray-700 font-bold py-2 pl-4">名稱:</div>
       <div class="pl-4">
@@ -14,10 +14,6 @@
       <div class="pl-4">
         <%= form.text_field :description, :class=>"text-gray-700 shadow border rounded border-gray-300 mb-3 py-1 px-3 focus:outline-none focus:shadow-outline p-4", placeholder:"描述" %>
       </div>
-        <%= form.radio_button :private, true, :checked => true %>
-        <%= label :radio_one, '私人' %>
-        <%= form.radio_button :private, false %>
-        <%= label :radio_two, '公開' %>
       <button class="pl-4">
         <%= form.submit "創建" ,:class=>"bg-kohbai hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white p-4" %>
       </button>
