@@ -13,8 +13,8 @@ class Project < ApplicationRecord
   private
 
   def create_column
-    self.columns.create(status: "待辦事項")
-    self.columns.create(status: "進行中")
-    self.columns.create(status: "完成")
+    ["待辦事項", "進行中", "完成"].each do |status|
+      self.columns.create(status: status)
+    end
   end
 end

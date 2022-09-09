@@ -3,12 +3,12 @@ class Api::V1::ProjectsController < ApplicationController
   
   def join_team
     user = User.find_by(email: params[:email])
-    project = Project.find_by(id: params[:id])
+    project = Project.find(params[:id])
 
     if project.users.ids.include?(user.id)
       redirect_to project, notice: '已有此成員！'
     elsif user.present?
-      project.users << [user]
+      project.users << user
       redirect_to project, notice: '成員加入project！'
     end
   end

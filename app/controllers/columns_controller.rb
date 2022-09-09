@@ -3,23 +3,28 @@ class ColumnsController < ApplicationController
   before_action :find_project, only: %i[create]
   before_action :find_column, only: %i[update destroy create_task]
   before_action :find_task, only: %i[update_task destroy_task]
+
   def create
-    @project.columns.new(column_params)
-    @project.save
-    redirect_to board_project_path(@project)
+    if done_uniq(@project)
+      redirect_to board_project_path(@project), notice: "名字：「完成」的區段已存在"
+    else
+      message = @column.create(column_params) ? "區段創立成功" : "區段創立失敗"
+      redirect_to board_project_path(@project), notice: message
+    end
   end
 
   def update
-    if @column.update(column_params)
-      redirect_to board_project_path(@column.project),notice: "重新命名成功"
+    if done_uniq(@column.project)
+      redirect_to board_project_path(@column.project), notice: "名字：「完成」的區段已存在"
     else
-      redirect_to board_project_path(@column.project),notice: "重新命名失敗"
+      message = @column.update(column_params) ? "重新命名成功" : "重新命名失敗"
+      redirect_to board_project_path(@column.project), notice: message
     end
   end
 
   def destroy
     @column.destroy
-    redirect_to board_project_path(@column.project)
+    redirect_to board_project_path(@column.project), notice: '區段刪除成功'
   end
 
   def create_task
@@ -27,25 +32,28 @@ class ColumnsController < ApplicationController
     assign_user(params[:task]["user_id"])
 
     if @task.save
-      redirect_to board_project_path(@column.project)
+      redirect_to board_project_path(@column.project), notice: '任務建立成功'
     else
       redirect_to board_project_path(@column.project), notice: '任務建立失敗'
     end
   end
 
   def update_task
-    @column = @task.column
-    assign_user(params[:task]["user_id"].to_i)
-    @task.update(task_params)
-    redirect_to board_project_path(@column.project)
+    assign_user(params[:task]["user_id"])
+    message = @task.update(task_params) ? "任務修改成功" : "任務修改失敗"
+    redirect_to board_project_path(@task.project), notice: message
   end
 
   def destroy_task
     @task.destroy
-    redirect_to board_project_path(@task.column.project)
+    redirect_to board_project_path(@task.project), notice: '任務刪除成功'
   end
 
   private
+
+    def done_uniq(project)
+      project.columns.find_by(status: "完成") && params[:column]["status"] = "完成"
+    end
   
     def column_params
       params.require(:column).permit(:status, :position, :deleted_at)
@@ -61,7 +69,7 @@ class ColumnsController < ApplicationController
     end
   
     def find_project
-      @project = Project.find(params[:project_id])
+      @project = current_user.projects.find(params[:project_id])
     end
 
     def find_column

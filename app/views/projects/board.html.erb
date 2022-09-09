@@ -6,7 +6,7 @@
       <div class="w-72 flex-shrink-0 flex flex-col flex-wrap" data-controller="task" data-column-id="<%= column.id %>">
         <header class="h-9 flex items-center mb-2 justify-between">
           <h2 class="column_status text-xl text-center pb-9 relative"><%= column.status %></h2>
-          <%= form_with model: @column ,url: column_path(column),method: "patch" do |form| %> <%= form.text_field :status,:class=>"display column_update bg-gray-100 text-xl text-center pb-9" %> <% end
+          <%= form_with model: @new_column ,url: column_path(column),method: "patch" do |form| %> <%= form.text_field :status,:class=>"display column_update bg-gray-100 text-xl text-center pb-9" %> <% end
           %>
           <nav class="flex items-center gap-x-1 pb-9">
             <button class="w-7 h-7 rounded text-icon hover:bg-hover flex items-center justify-center"   data-action="click->task#display_change">
@@ -42,10 +42,10 @@
           </button>
         </div>
         <div class="display m-3 w-1/3 resize-none pb-2 fixed z-10 bottom-0 bg-white rounded-md" data-task-target="task_display">
-          <%= render "TaskForm", model: [@project,@task],user: @user, url: create_task_column_path(column)%>
+          <%= render "TaskForm", model: [@project,@new_task],user: @user, url: create_task_column_path(column)%>
         </div>
       </div>
-      <% end %> <%= form_with model:[@project,@column] ,url:project_columns_path(@project) do |form| %>
+      <% end %> <%= form_with model:[@project,@new_column] ,url:project_columns_path(@project) do |form| %>
       <label>+ 新增階段</label>
       <%= form.text_field :status %> <% end %>
     </section>
