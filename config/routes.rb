@@ -17,8 +17,15 @@ Rails.application.routes.draw do
       delete :leave_project
       delete :kick_out
       get :board
+      get :calendar
     end
-    resources :columns, shallow: true, only: [:create, :update, :destroy]
+    resources :columns, shallow: true, only: [:create, :update, :destroy] do
+      member do
+        post :create_task
+        patch :update_task
+        delete :destroy_task
+      end
+    end
   end
 
   namespace :api do
@@ -26,9 +33,8 @@ Rails.application.routes.draw do
       resources :projects,only: [] do
         member do
           post :join_team
-          post :sort_position
-          post :column_position
-          get :column
+          patch :sort_task_position
+          patch :sort_column_position
         end
       end
     end
@@ -45,14 +51,6 @@ Rails.application.routes.draw do
       post :join
       delete :quit
       get :content
-    end
-  end
-
-  resources :groups do
-    member do
-      post :join
-      post :quit
-      post :content
     end
   end
 

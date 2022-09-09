@@ -15,8 +15,8 @@ class GroupsController < ApplicationController
   def show; end
 
   def create
-    current_user.groups.new(group_params)
-    if current_user.save
+    @group = current_user.groups.create(group_params)
+    if @group.save
       redirect_to groups_path
     else
       render :new
@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to @group
+      redirect_to @group , notice:"已更新"
     else
       render :edit
     end
@@ -35,13 +35,13 @@ class GroupsController < ApplicationController
 
   def join
 
-    if @group.private == true
-    flash[:notice] = 'private'
+    # if @group.private == true
+    # flash[:notice] = 'private'
 
-    else
+    # else
       current_user.groups << [@group]
-      redirect_to group_path
-    end
+      redirect_to group_path , notice:"已加入"
+    # end
 
   end
 

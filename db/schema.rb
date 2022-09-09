@@ -81,8 +81,10 @@ ActiveRecord::Schema.define(version: 2022_09_08_200549) do
     t.string "priority"
     t.bigint "column_id"
     t.datetime "deleted_at"
+    t.bigint "project_id"
     t.index ["column_id"], name: "index_tasks_on_column_id"
     t.index ["deleted_at"], name: "index_tasks_on_deleted_at"
+    t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
   create_table "user_projects", force: :cascade do |t|
