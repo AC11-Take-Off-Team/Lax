@@ -21,9 +21,9 @@ export default class extends Controller {
     this.fetchTask();
   }
 
-  addTask({ id, title, status, start_time: start, end_time: end }) {
+  addTask({ id, title, start_time: start, end_time: end }) {
     const calendarId = `cal-${this.projectId}`;
-    return { id, title, status, start, end, calendarId };
+    return { id, title, start, end, calendarId };
   }
 
   fetchTask() {
@@ -85,20 +85,20 @@ export default class extends Controller {
 
   eventHandler() {
     this.calendar.on("beforeCreateEvent", (eventObj) => {
-      const { title, start, end, status } = eventObj;
+      const { title, start, end } = eventObj;
 
       const data = new FormData();
-      data.append("task[title]", title);
-      data.append("task[start_time]", dayjs(start).toISOString());
-      data.append("task[end_time]", dayjs(end).toISOString());
-      data.append("task[status]", status);
+      data.append('task[title]', title);
+      data.append('task[start_time]', dayjs(start).toISOString());
+      data.append('task[end_time]', dayjs(end).toISOString());
 
       Rails.ajax({
         url: `/projects/${this.projectId}/tasks`,
         type: "POST",
         data,
         success: ({ task }) => {
-          return this.calendar.createEvents([this.addTask(task)]);
+          this.calendar.createEvents([this.addTask(task)]);
+
         },
         errors: () => {
           Swal.fire({
@@ -114,13 +114,12 @@ export default class extends Controller {
     this.calendar.on("beforeUpdateEvent", ({ event, changes }) => {
       const { id, calendarId } = event;
 
-      const { title, start, end, status } = changes;
+      const { title, start, end } = changes;
 
       const data = new FormData();
       title && data.append("task[title]", title);
       start && data.append("task[start_time]", start);
       end && data.append("task[end_time]", end);
-      status && data.append("task[status]", status);
 
       Object.keys(changes).length !== 0 &&
         Rails.ajax({
