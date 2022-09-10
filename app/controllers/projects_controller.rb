@@ -66,6 +66,9 @@ class ProjectsController < ApplicationController
   def calendar
   end
 
+  def burndown
+  end
+
   private
 
   def project_params
