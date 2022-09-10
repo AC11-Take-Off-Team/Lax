@@ -1,3 +1,16 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.card-list{
+  background-color: #e8ecee80;
+}
+.card{
+  background-color: #e8ecee80;
+}
+.column_display{
+  visibility: hidden;
+}
+.display{
+  display: none;
+  border: 2px solid rgb(73, 73, 173);
+}
