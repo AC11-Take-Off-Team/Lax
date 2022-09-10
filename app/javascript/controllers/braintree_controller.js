@@ -10,11 +10,28 @@ export default class extends Controller{
       container: this.paymentTarget,
     })
     .then((instance) => {
-      console.log(instance);
+      this.element.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        instance.requestPaymentMethod().then(({ nonce }) => {
+          console.log(nonce);
+          this.createNonceField(nonce)
+          this.element.submit()
+        })
+      })
     })
     .catch((err) => {
       console.log(err);
     })
-    // console.log(this.paymentTarget);
+  }
+
+  //  做一個隱藏欄位
+  createNonceField(nonce){
+    const field = document.createElement("input")
+      field.setAttribute("type", "hidden")
+      field.setAttribute("name", "nonce")
+      field.setAttribute("value", nonce)
+
+      this.element.appendChild(field)
   }
 }

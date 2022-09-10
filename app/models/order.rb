@@ -11,15 +11,15 @@ class Order < ApplicationRecord
     state :paid, :refunded, :cancelled, :failed
 
     event :pay do 
-      transitions from: [:panding, :failed], to: :paid
+      transitions from: [:pending, :failed], to: :paid
     end
 
     event :fail do
-      transitions from: :panding, to: :failed
+      transitions from: :pending, to: :failed
     end
 
     event :cancel do 
-      transitions from: [:panding, :failed], to: :cancelled
+      transitions from: [:pending, :failed], to: :cancelled
     end
 
     event :refund do 

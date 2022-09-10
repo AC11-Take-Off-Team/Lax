@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-
+  before_action :find_order, only: [:pay, :submit_payment]
   def new
     @order = Order.new
   end
@@ -18,15 +18,30 @@ class OrdersController < ApplicationController
   
   # 串金流
   def pay
-    @order = Order.find_by!(serial: params[:id])
     @token = gateway.client_token.generate
   end
 
-  def sumbit_payment
-    
+  def submit_payment
+    result = gateway.transaction.sale(
+      amount: @order.price,
+      payment_method_nonce: params[:nonce]
+    )
+    if result.success?
+      @order.pay!
+      # 轉去首頁
+      redirect_to "/", notice: "交易成功"
+    else
+      @order.fail!
+      redirect_to "/", notice: "交易失敗"
+    end
   end
 
   private
+
+  def find_order
+    @order = Order.find_by!(serial: params[:id])
+  end
+
   def order_parmas
     params.require(:oreders)
   end

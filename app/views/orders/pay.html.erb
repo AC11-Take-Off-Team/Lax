@@ -8,12 +8,13 @@
                   data: {
                     controller: "braintree",
                     token: @token,
-                    action: "sumbit->braintree#pay"
                     }  do |f| %>
-    <div class = "flex justify-center" >
-        <div data-braintree-target="payment"></div>
-    </div>
-        
+        <div class = "flex justify-center" >
+            <div data-braintree-target="payment"></div>
+        </div>
+        <div class = "flex justify-center" >
+            <%= f.submit 'Pay!'%>
+        </div>
     <% end %>
 </section>
   
