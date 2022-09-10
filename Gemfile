@@ -75,4 +75,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 gem "net-smtp", "~> 0.3.1",require: false
+gem 'net-pop', require: false
 
