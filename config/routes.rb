@@ -19,12 +19,14 @@ Rails.application.routes.draw do
       get :board
       get :calendar
     end
+    
     resources :columns, shallow: true, only: [:create, :update, :destroy] do
       member do
         post :create_task
         patch :update_task
         delete :destroy_task
       end
+
     end
   end
 
