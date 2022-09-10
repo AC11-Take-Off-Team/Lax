@@ -15,9 +15,7 @@ class User < ApplicationRecord
     groups.find_by(id: group).present?
   end
 
-  def display_name
-    username || email
-  end
+  # validates :nickname, presence: true, uniqueness: true
 
   # 第三方登入
   def self.from_omniauth(access_token)
