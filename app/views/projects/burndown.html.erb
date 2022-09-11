@@ -506,8 +506,8 @@
             </nav>
         </div>  
         <section>
-            <div data-controller="burndown" data-action="">
-              <canvas id="myChart" data-burndown-target="chart" width="400" height="400"></canvas>
+            <div data-controller="burndown" data-project-id="<%= @project.id %>" data-task-count="<%= @task.count %>" data-task-start="<%= @startTim %>" data-task-end="<%= @endTime %>" >
+              <canvas id="myChart" data-burndown-target="chart"  width="400" height="400"></canvas>
             </div>
         </section>
 </main>
