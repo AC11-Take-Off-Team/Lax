@@ -1,19 +1,17 @@
 class GroupsController < ApplicationController
   before_action :find_group, only: %i[show edit update destroy join quit content]
 
-  def search
-    @group_query = Group.ransack(params[:q])
-  end
-
-
   def new
     @group = current_user.groups.new
   end
 
   def index
+
+    @group_query = Group.ransack(params[:q])
     @group = Group.recent
-    @group = @group_query.recent
-   end
+    @group = @group_query if params[:q]
+
+  end
 
   def show; end
 
@@ -30,7 +28,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to @group, notice: "已更新"
+      redirect_to @group
     else
       render :edit
     end
@@ -38,12 +36,12 @@ class GroupsController < ApplicationController
 
   def join
       current_user.groups << @group
-      redirect_to group_path, notice: "已加入"
+      redirect_to group_path
   end
 
   def quit
     current_user.groups.destroy(params[:id])
-    redirect_to groups_path, notice: '已退出'
+    redirect_to groups_path
   end
 
   def content; end
@@ -59,5 +57,3 @@ class GroupsController < ApplicationController
   end
 
 end
-
-
