@@ -1,4 +1,11 @@
 <%= form_with model:@project do |f| %>
   <div class="">標題：<%= f.text_field :title %></div> 
-  <%= f.submit %>
+  <div class="flex pl-3" data-controller="project">
+    <label class="w-28 h-9 items-center text-icon text-xl">
+      專案期限：
+    </label>
+    <%= f.text_field :start_time, data: { "project-target": "datepicker", action: "input->project#selectStartDate" }, placeholder: "修改開始日期",:class=>"w-56" %>
+    <%= f.text_field :end_time, data: { "project-target": "datepicker", action: "input->project#selectEndDate" }, placeholder: "修改截止日期",:class=>"w-56" %>
+    <%= f.submit %>
+  </div>
 <% end %>

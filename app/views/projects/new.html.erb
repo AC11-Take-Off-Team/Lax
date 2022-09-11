@@ -1,4 +1,4 @@
-<%= form_with model:@project, remote: true do |f| %>
+<%= form_with model:@project do |f| %>
   <div class="">標題：<%= f.text_field :title %></div>
   <div class="">Project描述：<%= f.text_area :content %></div> 
   <div class="flex pl-3" data-controller="project">
@@ -8,7 +8,6 @@
       <%= f.text_field :start_time, data: { "project-target": "datepicker", action: "input->project#selectStartDate" }, placeholder: "輸入開始日期",:class=>"w-56" %>
       <%= f.text_field :end_time, data: { "project-target": "datepicker", action: "input->project#selectEndDate" }, placeholder: "輸入截止日期",:class=>"w-56" %>
       <%= f.submit %> 
-    </div>
   </div>
   
 <% end %>

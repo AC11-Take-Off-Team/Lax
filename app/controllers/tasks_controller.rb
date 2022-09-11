@@ -34,11 +34,16 @@ class TasksController < ApplicationController
   end
 
   private
+
   def find_user_project
     @project = current_user.projects.find(params[:project_id])
   end
 
   def params_task
     params.require(:task).permit(:title, :start_time, :end_time)
+  end
+
+  def find_column
+    @column = Column.find(params[:id])
   end
 end

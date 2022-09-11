@@ -4,7 +4,7 @@ class Project < ApplicationRecord
 
   has_many :user_projects
   has_many :users, through: :user_projects
-  has_many :columns,-> { order(position: :asc) }, dependent: :destroy
+  has_many :columns, -> { order(position: :asc) }, dependent: :destroy
 
   has_many :tasks
 
@@ -15,8 +15,8 @@ class Project < ApplicationRecord
   private
 
   def create_column
-    self.columns.create(status: "待辦事項")
-    self.columns.create(status: "進行中")
-    self.columns.create(status: "完成")
+    columns.create(status: "待辦事項")
+    columns.create(status: "進行中")
+    columns.create(status: "完成")
   end
 end

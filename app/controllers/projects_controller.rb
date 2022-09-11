@@ -11,11 +11,6 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    p '---------'
-    p params
-    p '---------'
-    
-    
     @project = current_user.projects.new(project_params.merge(owner_id: current_user.id))
 
     if @project.save
@@ -72,7 +67,10 @@ class ProjectsController < ApplicationController
   end
 
   def burndown
-    @task = @project.tasks
+    @task = @project.tasks.count
+    @start_time = @project[:start_time]
+    @end_time = @project[:end_time]
+    @task_done = @project.columns.where(status: "完成").length - 1
   end
 
   private
@@ -88,5 +86,4 @@ class ProjectsController < ApplicationController
   def remove_project(project_id, user_id)
     Project.find(project_id).users.destroy([user_id])
   end
-
 end
