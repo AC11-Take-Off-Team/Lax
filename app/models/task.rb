@@ -10,6 +10,6 @@ class Task < ApplicationRecord
   validates :title, presence: true
 
   def user_name
-    self.user.email.split('@').first if self.user
+    user.email.split('@').first if user
   end
 end

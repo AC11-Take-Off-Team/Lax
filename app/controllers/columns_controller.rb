@@ -28,7 +28,7 @@ class ColumnsController < ApplicationController
   end
 
   def create_task
-    @task  = @column.tasks.new(task_params.merge(project_id: @column.project.id))
+    @task = @column.tasks.new(task_params.merge(project_id: @column.project.id))
     assign_user(params[:task]["user_id"])
 
     if @task.save
@@ -51,38 +51,38 @@ class ColumnsController < ApplicationController
 
   private
 
-    def done_uniq(project)
-      project.columns.find_by(status: "完成") && params[:column]["status"] = "完成"
-    end
-  
-    def column_params
-      params.require(:column).permit(:status, :position, :deleted_at)
-    end
+  def done_uniq(project)
+    project.columns.find_by(status: "完成") && params[:column]["status"] = "完成"
+  end
 
-    def task_params
-      date = params[:task][":start_time, :end_time"].split(" to ")
-      if date.any?
-        start_time = Time.parse(date.first)
-        end_time = Time.parse(date.last)
-      end
-      params.require(:task).permit(:title, :content, :start_time, :end_time, :deleted_at, :priority).merge({ start_time:, end_time: })
-    end
-  
-    def find_project
-      @project = current_user.projects.find(params[:project_id])
-    end
+  def column_params
+    params.require(:column).permit(:status, :position, :deleted_at)
+  end
 
-    def find_column
-      @column = Column.find(params[:id])
+  def task_params
+    date = params[:task][":start_time, :end_time"].split(" to ")
+    if date.any?
+      start_time = Time.parse(date.first)
+      end_time = Time.parse(date.last)
     end
+    params.require(:task).permit(:title, :content, :start_time, :end_time, :deleted_at, :priority).merge({ start_time:, end_time: })
+  end
 
-    def find_task
-      @task = Task.find(params[:task_id])
-    end
+  def find_project
+    @project = current_user.projects.find(params[:project_id])
+  end
 
-    def assign_user(user_id)
-      # 用find_by 是為了有些任務還沒有人接取
-      user = User.find_by(id: user_id)
-      @task.user = user 
-    end
+  def find_column
+    @column = Column.find(params[:id])
+  end
+
+  def find_task
+    @task = Task.find(params[:task_id])
+  end
+
+  def assign_user(user_id)
+    # 用find_by 是為了有些任務還沒有人接取
+    user = User.find_by(id: user_id)
+    @task.user = user
+  end
 end

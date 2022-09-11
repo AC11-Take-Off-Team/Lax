@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     authenticated :user do
       root 'home#index', as: :authenticated_root
     end
-  
+
     unauthenticated do
       root 'devise/sessions#new', as: :unauthenticated_root
     end
@@ -28,7 +28,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   namespace :api do
     namespace :v1 do
       resources :projects,only: [] do
@@ -38,19 +37,20 @@ Rails.application.routes.draw do
           patch :sort_column_position
         end
       end
+    end
+  end
+
       resources :tasks,only: [] do
         member do
           post :status_done
         end
       end
-    end
-  end
 
   resources :groups do
     member do
       post :join
-      post :quit
-      post :content
+      delete :quit
+      get :content
     end
   end
 
