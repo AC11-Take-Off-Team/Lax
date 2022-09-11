@@ -1,28 +1,64 @@
-<section class="mx-auto w-5/6 md:w-4/6">
-  <div class="flex justify-between  border-b-2" >
-    <div>
-      <h3 class="text-2xl my-2">所有頻道</h3>
+<section class="w-full h-full fixed left-0 top-0 mx-auto flex justify-center items-center bg-black bg-opacity-30">
+  <div class="w-1/3 h-3/5 p-2.5 bg-white rounded-3xl bg-white">
+    <div class="align-center justify-between flex">
+        <span class="absolute top-0 left-0 w-8 h-8 flex items-center justify-center text-gray-500">
+          <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 32 32" class="fill-current">
+            <path
+              d="M29.707,28.293l-8.256-8.256C23.042,18.13,24,15.677,24,13c0-6.075-4.925-11-11-11S2,6.925,2,13s4.925,11,11,11c2.677,0,5.13-0.958,7.037-2.549l8.256,8.256L29.707,28.293z M4,13c0-4.963,4.037-9,9-9c4.963,0,9,4.037,9,9s-4.037,9-9,9C8.037,22,4,17.963,4,13z">
+            </path>
+          </svg>
+        </span>
+        <%= render 'layouts/shared/search_form' %>
+      <span class="my-6 text-2xl text-gray-900 font-semibold p-4">創建頻道</span>
+      <span class="my-6 text-gray-400 text-2xl mr-6 bg-white hover:bg-gray-100 py-1 px-2 rounded-lg "><%= link_to "X", groups_path %></span>
     </div>
-    <div>
-      <%= link_to "創建頻道" ,new_group_path %>
+    <p class="text-gray-500 p-4 ">频道是你的團隊進行通信的地方。圍繞主题進行組織時其效果最佳，例如市場營銷</p>
+    <%= form_for @group do |form| %>
+      <div class="text-gray-700 font-bold py-2 pl-4">名稱:</div>
+      <div class="pl-4">
+        <%= form.text_field :title ,:class=>"text-gray-700 shadow border rounded border-gray-300 focus:outline-none focus:shadow-outline py-1 px-3 mb-3 p-4 ", placeholder:"名稱"  %>
+      </div>
+      <div class="text-gray-700 font-bold py-2 p-4">描述:</div>
+      <div class="pl-4">
+        <%= form.text_field :description, :class=>"text-gray-700 shadow border rounded border-gray-300 mb-3 py-1 px-3 focus:outline-none focus:shadow-outline p-4", placeholder:"描述" %>
+      </div>
+      <button class="pl-4">
+        <%= form.submit "創建" ,:class=>"bg-kohbai hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white p-4" %>
+      </button>
+    <% end %>
+  </div>
+</section>
+<section class=" max-w-full mx-auto ">
+  <div class="max-w-7xl mx-auto ">
+    <div class=" flex justify-between items-center border-b-2" >
+      <div>
+        <h2 class="text-2xl p-3 my-2">所有頻道</h2>
+      </div>
+      <div>
+        <h3 class="max-w-full bg-kohbai hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white"><%= link_to "創建頻道" ,new_group_path %></h3>
+      </div>
+    </div>
+    <div class="mx-auto w-5/6 ">
+      <div>
+        <h4 class="my-2 border-b-2 p-2 text-gray-700">共<%= Group.count %>個頻道<h4></h4>
+      </div>
+      <% @groups.each do |group| %>
+        <div class="my-2 border-b-2 p-2">
+          <div class="flex justify-between align-center">
+            <div>
+              <h4 class="text-1xl text-blue-500"><%= link_to group.title, group %></h4>
+              <div class="text-sm mb-2">
+                <div><%= group.users.count %>個成員</div>
+              </div>
+            </div>
+            <% if current_user.join?(group) %>
+              <button class="bg-gray-400 hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white"><%= link_to "退出" , quit_group_path(group),method: "delete" %></button>
+            <% else %>
+              <button class="bg-kohbai hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white"><%= link_to "加入" , join_group_path(group),method: "post" %></button>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-  <h4><%= Group.count %>個頻道<h4>
-    <% @groups.each do |group| %>
-      <div class="mb-4 py-2 border-b-2 p-2">
-        <h4 class="text-xl"><%= link_to group.title, group %></h4>
-          <div class="text-sm">
-            <span><%= group.users.count %>個會員</span>
-            <span><%= group.description %></span>
-          </div>
-        <% if current_user.join?(group) %>
-          <%="已加入"%>
-          <%= link_to "退出" , quit_group_path(group),method: "post" %>
-        <% else %>
-          <%= link_to "加入" , join_group_path(group),method: "post" %>
-        <% end %>
-      </div>
-    <% end %>
 </section>
-
-

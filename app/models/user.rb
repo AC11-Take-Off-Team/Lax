@@ -8,29 +8,23 @@ class User < ApplicationRecord
   has_many :projects, through: :user_projects
   has_many :user_tasks
   has_many :tasks, through: :user_tasks
-  validates :nickname, presence: true, uniqueness: true
-
 
   has_many :channels
   has_many :groups, through: :channels
-
 
   def join?(group)
     groups.find_by(id: group).present?
   end
 
-  # google oauth2
+  # google 登入
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(email: data['email']).first
-
     # Uncomment the section below if you want users to be created if they don't exist
-    unless user
-        user = User.create(
-          email: data['email'],
-          password: Devise.friendly_token[0,20]
-        )
-    end
+    user ||= User.create(
+      email: data['email'],
+      password: Devise.friendly_token[0, 20]
+    )
     user
   end
 
@@ -58,5 +52,4 @@ class User < ApplicationRecord
   #     end
   #   end
   # end
-
 end

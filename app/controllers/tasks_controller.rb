@@ -1,55 +1,49 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_project, only: %i[create]
-  before_action :find_task, only: %i[update destroy]
+  before_action :find_user_project
+  before_action :find_column, only: %i[create]
+
+  def index
+    render json: { tasks: @project.tasks }
+  end
 
   def create
-    @task = @project.tasks.new(task_params.merge(status: 'todo'))
-    # create_task_params在private
-    assign_user(params[:task]["user_id"].to_i)
-    # assign_user在private 判斷user_id如果在project，就存入
+    @task = @column.tasks.new(params_task.merge(project_id: @project.id))
+
     if @task.save
-      redirect_to board_project_path(@project)
+      render json: { state: 'success', task: @task }
     else
-      redirect_to board_project_path(@project), notice: '任務建立失敗'
+      render json: { state: 'errors', errors: @task.errors.full_messages }
     end
   end
 
   def update
-    @project = @task.project
-    assign_user(params[:task]["user_id"].to_i)
-    @task.update(task_params)
-    redirect_to board_project_path(@task.project.id)
+    @task = @project.tasks.find(params[:id])
+
+    if @task.update(params_task)
+      render json: { state: 'updated success' }
+    else
+      render json: { state: 'errors', errors: @task.errors.full_messages }
+    end
   end
 
   def destroy
+    @task = @project.tasks.find(params[:id])
     @task.destroy
-    redirect_to board_project_path(@task.project.id)
   end
 
   private
 
-  def task_params
-    date = params[:task][":start_time, :end_time"].split(" to ")
-    if date.any?
-      start_time = Time.parse(date.first)
-      end_time = Time.parse(date.last)
-    end
-    params.require(:task).permit(:title, :content, :start_time, :end_time, :status, :deleted_at, :priority).merge({ start_time:, end_time: })
+  def find_user_project
+    @project = current_user.projects.find(params[:project_id])
   end
 
-  def find_task
-    @task = Task.find(params[:id])
+  def params_task
+    params.require(:task).permit(:title, :start_time, :end_time)
   end
 
-  def find_project
-    @project = Project.find(params[:project_id])
-  end
-
-  def assign_user(user_id)
-    return unless @project.users.ids.include?(user_id)
-
-    user = User.find_by(id: user_id)
-    @task.user = user
+  def find_column
+    @column = @project.columns.find_by(status: "待辦事項")
+    @column ||= @project.columns.create(status: "待辦事項")
   end
 end

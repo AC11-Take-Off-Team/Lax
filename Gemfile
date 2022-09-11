@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -27,22 +29,27 @@ gem 'redis', '~> 4.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
-gem "paranoia", "~> 2.2"
 gem 'devise'
+
+
 gem 'aasm'
-gem "devise-i18n"
 gem 'rails-i18n', '~> 7.0', '>= 7.0.5'
 # omniauth
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
+gem "acts_as_list", "~> 1.0"
+
+gem 'acts_as_paranoid'
+gem 'ransack'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 5.0.0'
   gem 'dotenv-rails'
+
 end
 
 group :development do
@@ -53,12 +60,14 @@ group :development do
   # gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
   gem 'rubocop', '~> 1.35', require: false
 
   gem "rubocop-rails", "~> 2.15"
+
   gem "foreman", "~> 0.87.2"
 
+
+  gem 'spring'
 
 end
 
@@ -71,12 +80,12 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 gem "net-smtp", "~> 0.3.1",require: false
 
-gem "ransack"
-gem "acts_as_list", "~> 1.0"
 
+gem 'paranoia', '~> 2.2'
 

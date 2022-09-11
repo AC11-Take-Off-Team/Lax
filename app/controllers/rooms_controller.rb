@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: %i[  show edit update destroy ]
+  before_action :set_room, only: %i[show edit update destroy]
 
   # GET /rooms or /rooms.json
   def index
@@ -62,13 +62,14 @@ class RoomsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_room
-      @room = Room.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def room_params
-      params.require(:room).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_room
+    @room = Room.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def room_params
+    params.require(:room).permit(:name)
+  end
 end

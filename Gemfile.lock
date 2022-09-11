@@ -64,6 +64,9 @@ GEM
       zeitwerk (~> 2.3)
     acts_as_list (1.0.4)
       activerecord (>= 4.2)
+    acts_as_paranoid (0.8.1)
+      activerecord (>= 5.2, < 7.1)
+      activesupport (>= 5.2, < 7.1)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
@@ -91,8 +94,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.10.2)
-      devise (>= 4.8.0)
     diff-lcs (1.5.0)
     digest (3.1.0)
     dotenv (2.8.1)
@@ -138,8 +139,6 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.8-arm64-darwin)
-      racc (~> 1.4)
     nokogiri (1.13.8-x86_64-darwin)
       racc (~> 1.4)
     oauth2 (2.0.8)
@@ -255,10 +254,10 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.21.0)
       parser (>= 3.1.1.0)
-    rubocop-rails (2.15.2)
+    rubocop-rails (2.16.0)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
-      rubocop (>= 1.7.0, < 2.0)
+      rubocop (>= 1.33.0, < 2.0)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -330,11 +329,11 @@ PLATFORMS
 DEPENDENCIES
   aasm
   acts_as_list (~> 1.0)
+  acts_as_paranoid
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
   devise
-  devise-i18n
   dotenv-rails
   foreman (~> 0.87.2)
   jbuilder (~> 2.7)

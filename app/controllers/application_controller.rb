@@ -7,9 +7,8 @@ class ApplicationController < ActionController::Base
     if params[:locale] && I18n.available_locales.include?( params[:locale].to_sym )
       session[:locale] = params[:locale]
     end
-
-    I18n.locale = session[:locale] || I18n.default_locale
   end
+
   private
 
   def record_not_found
@@ -17,8 +16,6 @@ class ApplicationController < ActionController::Base
            layout: false,
            status: 404
   end
-
-  # device用來為增加欄位(清洗)的方法
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])

@@ -1,9 +1,9 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_user_project, only: %i[show edit update destroy board]
+  before_action :find_user_project, only: %i[show edit update destroy board calendar]
 
   def index
-    @projects = current_user.projects.all
+    @projects = current_user.projects
   end
 
   def new
@@ -11,12 +11,12 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    current_user.projects.build(project_params.merge(owner_id: current_user.id))
-    # owner_id: 用來記錄誰建立/擁有這個project。
+    current_user.projects.new(project_params.merge(owner_id: current_user.id))
+
     if current_user.save
-      redirect_to projects_path
+      redirect_to projects_path, notice: '專案建立成功'
     else
-      render :new
+      render :new, notice: '專案建立失敗'
     end
   end
 
@@ -28,40 +28,40 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to projects_path
+      redirect_to projects_path, notice: '專案修改成功'
     else
-      render :edit
+      render :edit, notice: '專案修改失敗'
     end
   end
 
   def destroy
     @project.destroy
-    redirect_to projects_path
+    redirect_to projects_path, notice: '專案刪除成功'
   end
 
   def leave_project
-    # 自己退出project，remove_project方法寫在private
     remove_project(params[:id], current_user)
-    redirect_to projects_path
+    redirect_to projects_path, notice: '已退出專案'
   end
 
   def kick_out
-    # 把人踢出project
     user = User.find(params[:id])
     remove_project(params[:project_id], user)
     if user == current_user
-      redirect_to projects_path
+      redirect_to projects_path, notice: '已退出專案'
     else
-      redirect_to project_path(params[:project_id])
+      redirect_to project_path(params[:project_id]), notice: '已將成員退出專案'
     end
   end
 
   def board
-    @task = Task.new
-    @task_todo = @project.tasks.where(status: 'todo')
-    @task_doing = @project.tasks.where(status: 'doing')
-    @task_done = @project.tasks.where(status: 'done')
-    @user = @project.users.all
+    @new_task = Task.new
+    @new_column = Column.new
+    @columns = @project.columns.order(position: :asc)
+    @user = @project.users
+  end
+
+  def calendar
   end
 
   private
@@ -74,7 +74,8 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.find(params[:id])
   end
 
-  def remove_project(project_id, user_id)
-    Project.find(project_id).users.destroy([user_id])
+  def remove_project(project_id, user)
+    project = user.projects.find(project_id)
+    project.users.destroy(user)
   end
 end
