@@ -59,6 +59,9 @@ class GroupsController < ApplicationController
   end
 
 end
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> c8a7b954 (衝突解決)
