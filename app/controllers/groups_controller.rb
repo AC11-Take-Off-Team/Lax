@@ -6,11 +6,9 @@ class GroupsController < ApplicationController
   end
 
   def index
-
     @group_query = Group.ransack(params[:q])
     @group = Group.recent
     @group = @group_query if params[:q]
-
   end
 
   def show; end
@@ -35,8 +33,8 @@ class GroupsController < ApplicationController
   end
 
   def join
-      current_user.groups << @group
-      redirect_to group_path
+    current_user.groups << @group
+    redirect_to group_path
   end
 
   def quit
@@ -55,5 +53,4 @@ class GroupsController < ApplicationController
   def find_group
     @group = Group.find(params[:id])
   end
-
 end

@@ -4,9 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   # I18n
   def set_locale
-    if params[:locale] && I18n.available_locales.include?( params[:locale].to_sym )
-      session[:locale] = params[:locale]
-    end
+    session[:locale] = params[:locale] if params[:locale] && I18n.available_locales.include?(params[:locale].to_sym)
   end
 
   private
@@ -20,5 +18,4 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
   end
-
 end

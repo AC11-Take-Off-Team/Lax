@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :tasks, shallow: true, only: [:index, :create, :update, :destroy]
     member do
+      get :gantt
       delete :leave_project
       delete :kick_out
       get :board
