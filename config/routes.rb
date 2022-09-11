@@ -57,4 +57,10 @@ Rails.application.routes.draw do
   resources :messages
   resources :rooms
 
+    resources :invites do
+    collection do
+      post :send_mail
+    end
+  end
+
 end

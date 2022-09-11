@@ -1,6 +1,6 @@
 import consumer from "./consumer";
 
-document.addEventListener("turbolinks:visit", () => {
+document.addEventListener("turbolinks:load", () => {
   const room_element = document.getElementById("room-id");
   const room_id = room_element.getAttribute("data-room-id");
 
