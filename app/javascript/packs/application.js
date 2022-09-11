@@ -6,11 +6,8 @@ import "../application.css";
 
 // import "stylesheet";
 
-<<<<<<< HEAD
-
 import "stylesheets";
-=======
->>>>>>> c8a7b954 (衝突解決)
+
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();

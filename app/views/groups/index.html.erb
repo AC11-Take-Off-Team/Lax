@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 <section class="max-w-full mx-auto ">
   <div class="mx-auto max-w-7xl ">
@@ -14,22 +13,6 @@
       <div>
         <h4 class="p-2 my-2 text-gray-700">共<%= Group.count %>個頻道</h4>
         <span class="absolute top-0 left-0 flex items-center justify-center w-8 h-8 text-gray-500">
-=======
-<section class=" max-w-full mx-auto ">
-  <div class="max-w-7xl mx-auto ">
-    <div class=" flex justify-between items-center border-b-2" >
-      <div>
-        <h2 class="text-2xl p-3 my-2">所有頻道</h2>
-      </div>
-      <div>
-        <h3 class="max-w-full bg-blue-500 hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white"><%= link_to "創建頻道" ,new_group_path %></h3>
-      </div>
-    </div>
-    <div class="mx-auto w-5/6 ">
-      <div>
-        <h4 class="my-2 border-b-2 p-2 text-gray-700">共<%= Group.count %>個頻道</h4>
-        <span class="absolute top-0 left-0 w-8 h-8 flex items-center justify-center text-gray-500">
->>>>>>> c8a7b954 (衝突解決)
           <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 32 32" class="fill-current">
             <path
               d="M29.707,28.293l-8.256-8.256C23.042,18.13,24,15.677,24,13c0-6.075-4.925-11-11-11S2,6.925,2,13s4.925,11,11,11c2.677,0,5.13-0.958,7.037-2.549l8.256,8.256L29.707,28.293z M4,13c0-4.963,4.037-9,9-9c4.963,0,9,4.037,9,9s-4.037,9-9,9C8.037,22,4,17.963,4,13z">
@@ -39,11 +22,7 @@
         <%= render 'layouts/shared/search_form' , :class=>"h-8 w-36 group-focus-within:w-[31.938rem] outline-none transition-all rounded-3xl bg-transparent pl-8 pr-4 text-sm border border-gray-300"%>
       </div>
       <% @group.each do |group| %>
-<<<<<<< HEAD
         <div class="p-2 my-2 border-b-2">
-=======
-        <div class="my-2 border-b-2 p-2">
->>>>>>> c8a7b954 (衝突解決)
           <div class="flex justify-between align-center">
             <div>
               <h4 class="text-blue-500 text-1xl"><%= link_to group.title, group %></h4>
@@ -54,11 +33,7 @@
             <% if current_user.join?(group) %>
               <button class="px-6 py-3 text-white transition duration-300 bg-gray-400 border-b-4 rounded-lg hover:bg-green-700"><%= link_to "退出" , quit_group_path(group),method: "delete" %></button>
             <% else %>
-<<<<<<< HEAD
               <button class="px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-kohbai hover:bg-green-700"><%= link_to "加入" , join_group_path(group),method: "post" %></button>
-=======
-              <button class="bg-blue-500 hover:bg-green-700 rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white"><%= link_to "加入" , join_group_path(group),method: "post" %></button>
->>>>>>> c8a7b954 (衝突解決)
             <% end %>
           </div>
         </div>
@@ -71,10 +46,7 @@
 
 
 
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> c8a7b954 (衝突解決)
