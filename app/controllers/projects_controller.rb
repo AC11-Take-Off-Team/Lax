@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_user_project, only: %i[show edit update destroy board calendar]
+  before_action :find_user_project, only: %i[show edit update destroy board calendar burndown]
 
   def index
     @projects = current_user.projects.all
@@ -11,9 +11,14 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    current_user.projects.new(project_params.merge(owner_id: current_user.id))
+    p '---------'
+    p params
+    p '---------'
+    
+    
+    @project = current_user.projects.new(project_params.merge(owner_id: current_user.id))
 
-    if current_user.save
+    if @project.save
       redirect_to projects_path
     else
       render :new
@@ -67,12 +72,13 @@ class ProjectsController < ApplicationController
   end
 
   def burndown
+    @task = @project.tasks
   end
 
   private
 
   def project_params
-    params.require(:project).permit(:title, :content, :status, :deleted_at, :owner_id)
+    params.require(:project).permit(:title, :content, :status, :deleted_at, :owner_id, :start_time, :end_time)
   end
 
   def find_user_project

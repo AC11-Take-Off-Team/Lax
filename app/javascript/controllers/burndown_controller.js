@@ -11,6 +11,7 @@ export default class extends Controller {
     this.projectId = 0;
     this.chartArea = this.chartTarget.getContext("2d");
     this.taskCount = 0;
+    this.taskList = [];
     this.taskStart = null;
     this.taskEnd = null;
   }
@@ -24,6 +25,17 @@ export default class extends Controller {
 
     this.createChart();
     this.fetchProject();
+    this.expandTask();
+  }
+
+  expandTask() {
+    if (this.taskCount > 0) {
+      for (let i = 0; i < this.taskCount; i += 1) {
+        this.taskList.push(this.taskCount - 1);
+      }
+    } else {
+      this.taskList = [0];
+    }
   }
 
   fetchProject() {
@@ -52,14 +64,14 @@ export default class extends Controller {
             type: "line",
             label: "實際進度",
             data: [0.9, 0.8],
-            fill: false,
-            borderColor: "rgb(54, 162, 235)"
+            fill: true,
+            borderColor: "rgb(241, 101, 138)"
           },
           {
             type: "line",
             label: "預期進度",
-            data: [1, 0.75, 0.5, 0.25, 0],
-            fill: false,
+            data: [this.taskList],
+            fill: true,
             borderColor: "rgb(54, 162, 235)"
           }
         ]

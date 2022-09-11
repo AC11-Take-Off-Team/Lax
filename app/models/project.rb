@@ -9,6 +9,8 @@ class Project < ApplicationRecord
   has_many :tasks
 
   validates :title, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
 
   private
 
