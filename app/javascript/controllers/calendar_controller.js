@@ -21,9 +21,9 @@ export default class extends Controller {
     this.fetchTask();
   }
 
-  addTask({ id, title, start_time: start, end_time: end }) {
+  addTask({ id, title, start_time: start, end_time: end, isAllDay, category }) {
     const calendarId = `cal-${this.projectId}`;
-    return { id, title, start, end, calendarId };
+    return { id, title, start, end, isAllDay, calendarId, category };
   }
 
   fetchTask() {
@@ -57,7 +57,10 @@ export default class extends Controller {
         time(event) {
           const { start, end, title } = event;
 
-          return `<span style="color: white;">${dayjs(start, "HH:mm")}~${dayjs(end, "HH:mm")} ${title}</span>`;
+          return `<span style="color: white;">${dayjs(start, "HH:mm")}~${dayjs(
+            end,
+            "HH:mm"
+          )} ${title}</span>`;
         },
         allday(event) {
           return `<span style="color: gray;">${event.title}</span>`;
@@ -85,27 +88,37 @@ export default class extends Controller {
 
   eventHandler() {
     this.calendar.on("beforeCreateEvent", (eventObj) => {
-      const { title, start, end } = eventObj;
+      const { title, start, end, isAllday } = eventObj;
+
+      let category = "task";
+
+      if (isAllday === true) {
+        category = "allday";
+      } else if (title.includes("[MS]")) {
+        category = "milestone";
+      } else if (title.includes("[T]")) {
+        category = "task";
+      }
 
       const data = new FormData();
-      data.append('task[title]', title);
-      data.append('task[start_time]', dayjs(start).toISOString());
-      data.append('task[end_time]', dayjs(end).toISOString());
+      data.append("task[title]", title);
+      data.append("task[start_time]", dayjs(start).toISOString());
+      data.append("task[end_time]", dayjs(end).toISOString());
 
       Rails.ajax({
         url: `/projects/${this.projectId}/tasks`,
         type: "POST",
         data,
         success: ({ task }) => {
-          this.calendar.createEvents([this.addTask(task)]);
-
+          this.calendar.createEvents([this.addTask({ ...task, category })]);
         },
         errors: () => {
           Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
-            footer:'<a href="/projects/${this.projectId}/calendar">Try again</a>'
+            footer:
+              '<a href="/projects/${this.projectId}/calendar">Try again</a>'
           });
         }
       });
@@ -134,7 +147,8 @@ export default class extends Controller {
               icon: "error",
               title: "Oops...",
               text: "Something went wrong!",
-              footer: '<a href="/projects/${this.projectId}/calendar">Try again</a>'
+              footer:
+                '<a href="/projects/${this.projectId}/calendar">Try again</a>'
             });
           }
         });
@@ -154,7 +168,8 @@ export default class extends Controller {
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
-            footer: '<a href="/projects/${this.projectId}/calendar">Try again</a>'
+            footer:
+              '<a href="/projects/${this.projectId}/calendar">Try again</a>'
           });
         }
       });
