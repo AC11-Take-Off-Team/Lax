@@ -1,7 +1,0 @@
-<%= search_form_for @group_query do |q| %>
-
- <%= q.label ""%>
-  <%= q.search_field :title_or_description_cont, placeholder:"按頻道名稱或描述搜尋",:class=>"h-8 w-36 group-focus-within:w-[31.938rem] outline-none rounded-3xl transition-all  bg-transparent pl-8 pr-4 text-sm border border-gray-300" %>
-  <%= q.submit "Search!" %>
-
-<% end %>
