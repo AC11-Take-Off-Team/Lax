@@ -2,14 +2,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   devise_scope :user do
-    authenticated :user do
-      root 'home#index', as: :authenticated_root
-    end
-
-    unauthenticated do
-      root 'devise/sessions#new', as: :unauthenticated_root
-    end
+    get '/users/sign_out',to: 'devise/sessions#destroy'
+    get '/users', to: 'devise/registrations#new'
   end
+
+  root to: 'home#index'
 
   resources :projects do
     resources :tasks, shallow: true, only: [:index, :create, :update, :destroy]
