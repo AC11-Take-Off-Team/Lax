@@ -25,6 +25,12 @@ class GroupsController < ApplicationController
     @group = current_user.groups.new(group_params)
     if @group.save
       @group.room = Room.create(name: @group.title)
+
+
+  def create
+
+    @group = current_user.groups.new(group_params)
+    if @group.save
       redirect_to groups_path
     else
       render :new
@@ -42,8 +48,13 @@ class GroupsController < ApplicationController
   end
 
   def join
-      current_user.groups << @group
+
+    if @group.private == true
+    flash[:notice] = 'private'
+    else
+      current_user.groups << [@group]
       redirect_to group_path
+    end
   end
 
   def quit
@@ -63,4 +74,8 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
   end
 end
+
+
+
+
 
