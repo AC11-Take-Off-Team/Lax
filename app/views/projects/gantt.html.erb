@@ -1,3 +1,12 @@
-<div data-controller="gantt" data-project-id=<%= @project.id %>>
+
+<div class="chart-controls" data-controller="gantt" data-project-id=<%= @project.id %>>
    <svg id="gantt" data-gantt-target="task"></svg>
+      <p class="chart-label">
+      Timescale: <span id="current-timescale">Day</span>
+       </p>
+   <div class="button-cont">
+      <button id="day-btn">Day</button>
+      <button id="week-btn">Week</button>
+      <button id="month-btn">Month</button>
+   </div>
 </div>
