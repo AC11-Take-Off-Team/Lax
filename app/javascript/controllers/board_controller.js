@@ -77,4 +77,8 @@ export default class extends Controller {
       column_update.style.display = 'block';
     }
   }
+  card_nav(event){
+    const display = event.currentTarget.parentElement.querySelector('nav')
+    display.style.display == 'block' ? (display.style.display = 'none') : (display.style.display = 'block');
+  }
 }
