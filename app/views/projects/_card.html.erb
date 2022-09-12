@@ -1,6 +1,5 @@
 <% column.tasks.each do |task|%>
 
-
 <section class="relative p-4 bg-white rounded-md card shadow-small group" data-task-id="<%=task.id%>">
   <div data-controller="statusDone"  class="flex items-center mb-3 text-icon">
     <button data-action="mr-1.5 click->statusDone#status_done" data-statusDone-target="doneBtn" class="text-3xl text-black ">☐</button>
@@ -8,21 +7,6 @@
   </div>
   <div class="flex flex-wrap gap-2 mb-3 h-7">
     <span class="flex items-center h-5 rounded-lg text-ml ">優先度：<%= task.priority %></span>
-
-<div data-controller="statusDone" data-task-id="<%=task.id%>" class="relative p-4 bg-white rounded-md card shadow-small group">
-  <div class="flex items-center justify-between mb-3 text-icon">
-    <div classs=""><button data-action="click->done#status_done" data-done-target="doneBtn" class="text-sm text-black line-clamp-1">☐</button> 任務名稱：<%= task.title %></div>
-    <div><%= link_to "྾",destroy_task_column_path(column,task_id: task.id),method: "delete", data: { confirm: "是否刪除此任務" } %></div>
-  </div>
-  <div class="pb-0.5 pl-5">任務描述:<%= task.content%></div>
-  <div class="pb-0.5 pl-5">開始日期：</div>
-  <div class="pb-0.5 pl-5">截止日期：<%= task.start_time&.strftime('%m月%d日')%>-<%=task.end_time&.strftime('%m月%d日')%></div>
-  <div class="pb-0.5 pl-5">執行人員：<%= task.user&.username %></div>
-  <div class="pb-0.5 pl-5">優先順序：<%= task.priority %></div>
-  <div class="pb-0.5 pl-5">
-    <button class="updateBtn">修改</button>
-    <div class="fixed bottom-0 right-0 z-10 w-1/3 pb-2 m-3 bg-white rounded-md display task_update"><%= render "TaskForm", model: task,user: user, url: update_task_column_path(column,task_id: task.id)%></div>
-
   </div>
   <div class="flex items-center mb-3 gap-x-2">
     <button class="flex items-center justify-center w-6 h-6 border border-gray-500 border-dashed rounded-full text-icon hover:text-gray-800 hover:border-gray-800">
@@ -57,10 +41,10 @@
       <button class="flex items-center justify-center px-2 py-1 text-sm font-medium text-gray-800 transition-all border-b updateBtn h-9 w-44 text-ml hover:bg-menu-hover">
         修改任務
       </button>
-      <div class="flex items-center justify-center py-1 border-b h-9">
+      <div class="flex items-center justify-center py-1 h-9">
         <%= link_to "刪除任務",destroy_task_column_path(column,task_id: task.id),method: "delete", data: { confirm: "是否刪除此任務" },:class=>"px-2 text-ml font-medium transition-all text-gray-800 hover:bg-menu-hover text-sm" %>
       </div>
-      <div class="fixed bottom-0 right-0 z-10 pb-2 bg-white rounded-md display task_update w-96">
+      <div class="fixed absolute bottom-0 right-0 z-10 pb-2 bg-white rounded-md display task_update w-96">
         <%= render "TaskForm", model: task,user: user, url: update_task_column_path(column,task_id: task.id)%>
       </div>
     </nav>

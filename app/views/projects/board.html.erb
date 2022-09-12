@@ -1,15 +1,15 @@
 <h1 class="m-3 text-2xl">Board</h1>
 <div class="flex w-full h-full bg-light" style="--color: #5a7896">
-  <main class="flex-1 overflow-auto bg-white">
+  <main class="flex overflow-auto board-list">
     <section data-controller="board" data-project-id="<%= @project.id%>" class="relative flex px-6 py-4 overflow-x-auto gap-x-4 board-container">
       <% @columns.each do |column| %>
-      <div class="flex flex-col flex-wrap flex-shrink-0 w-72" data-controller="task" data-column-id="<%= column.id %>">
-        <header class="flex items-center justify-between mb-2 h-9">
-          <h2 class="relative text-xl text-center column_status pb-9"><%= column.status %></h2>
-          <%= form_with model: @new_column ,url: column_path(column),method: "patch" do |form| %> <%= form.text_field :status,:class=>"display column_update bg-gray-100 text-xl text-center pb-9" %> <% end
-          %>
+      <div class="flex flex-col flex-wrap flex-shrink-0 w-96" data-controller="task" data-column-id="<%= column.id %>">
+        <header class="flex items-center justify-between px-2 pt-5 mb-2 h-9">
+          <h2 class="relative text-2xl text-center column_status pb-9"><%= column.status %></h2>
+          <%= form_with model: @new_column ,url: column_path(column),method: "patch" do |form| %> <%= form.text_field :status,:class=>"display column_update bg-gray-100 text-xl text-center pb-9" %> <%
+          end %>
           <nav class="flex items-center gap-x-1 pb-9">
-            <button class="flex items-center justify-center rounded w-7 h-7 text-icon hover:bg-hover"   data-action="click->task#display_change">
+            <button class="flex items-center justify-center rounded w-7 h-7 text-icon hover:bg-hover" data-action="click->task#display_change">
               <svg class="fill-current" height="16" focusable="false" viewBox="0 0 32 32">
                 <path
                   d="M26,14h-8V6c0-1.1-0.9-2-2-2l0,0c-1.1,0-2,0.9-2,2v8H6c-1.1,0-2,0.9-2,2l0,0c0,1.1,0.9,2,2,2h8v8c0,1.1,0.9,2,2,2l0,0c1.1,0,2-0.9,2-2v-8h8c1.1,0,2-0.9,2-2l0,0C28,14.9,27.1,14,26,14z"
@@ -34,20 +34,27 @@
         </header>
         <div class="flex flex-col flex-1 max-h-full p-3 overflow-auto rounded-lg card-list gap-y-2" data-board-target="status_list" data-column-id="<%= column.id%>">
           <%= render "card", column: column, user: @user%>
-          <button data-action="click->task#display_change" class="flex items-center justify-center flex-shrink-0 w-full text-sm font-medium transition-all rounded h-9 text-icon hover:bg-hover">
+          <button
+            data-action="click->task#display_change"
+            class="flex items-center justify-center flex-shrink-0 w-full text-sm text-xl font-medium transition-all rounded h-9 text-icon hover:bg-hover"
+          >
             <svg class="mr-2 fill-current" height="12" focusable="false" viewBox="0 0 24 24">
               <path d="M10,10V4c0-1.1,0.9-2,2-2s2,0.9,2,2v6h6c1.1,0,2,0.9,2,2s-0.9,2-2,2h-6v6c0,1.1-0.9,2-2,2s-2-0.9-2-2v-6H4c-1.1,0-2-0.9-2-2s0.9-2,2-2H10z"></path>
             </svg>
             新增任務
           </button>
         </div>
-        <div class="fixed bottom-0 z-10 w-1/3 pb-2 m-3 bg-white rounded-md resize-none display" data-task-target="task_display">
+        <div class="fixed bottom-0 z-10 pb-2 bg-white rounded-md resize-none display w-96" data-task-target="task_display">
           <%= render "TaskForm", model: [@project,@new_task],user: @user, url: create_task_column_path(column)%>
         </div>
       </div>
-      <% end %> <%= form_with model:[@project,@new_column] ,url:project_columns_path(@project) do |form| %>
-      <label>+ 新增階段</label>
-      <%= form.text_field :status %> <% end %>
+      <% end %>
+      <div class="flex">
+        <%= form_with model:[@project,@new_column] ,url:project_columns_path(@project) do |form| %>
+          <label class="text-2xl create_column">+ 新增階段</label>
+          <%= form.text_field :status,:class=>"h7 bg-white border border-black" %>
+        <% end %>
+      </div>
     </section>
   </main>
 </div>
