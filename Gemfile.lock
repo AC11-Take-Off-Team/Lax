@@ -139,7 +139,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.8-arm64-darwin)
+    nokogiri (1.13.8-x86_64-darwin)
       racc (~> 1.4)
     oauth2 (2.0.8)
       faraday (>= 0.17.3, < 3.0)
@@ -227,7 +227,7 @@ GEM
     rexml (3.2.5)
     rspec-core (3.11.0)
       rspec-support (~> 3.11.0)
-    rspec-expectations (3.11.0)
+    rspec-expectations (3.11.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.11.0)
     rspec-mocks (3.11.1)
@@ -324,8 +324,6 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
-  x86_64-darwin-21
-  arm64-darwin-20
 
 DEPENDENCIES
   aasm

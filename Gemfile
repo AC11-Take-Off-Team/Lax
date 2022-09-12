@@ -39,9 +39,8 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
-gem "acts_as_list", "~> 1.0"
+
 gem 'acts_as_paranoid'
-gem 'ransack'
 
 
 group :development, :test do
@@ -64,9 +63,11 @@ group :development do
 
   gem "rubocop-rails", "~> 2.15"
 
+
   gem 'spring'
 
   gem "foreman", "~> 0.87.2"
+
 
 end
 
@@ -82,7 +83,12 @@ end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
 gem "net-smtp", "~> 0.3.1",require: false
 
 gem 'paranoia', '~> 2.2'
+
+gem "acts_as_list", "~> 1.0"
+
+gem "ransack"
+
+
