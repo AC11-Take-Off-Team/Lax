@@ -57,5 +57,5 @@ Rails.application.routes.draw do
 
   resources :messages
   resources :rooms
-123
+
 end
