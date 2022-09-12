@@ -31,9 +31,9 @@
               </div>
             </div>
             <% if current_user.join?(group) %>
-              <button class="px-6 py-3 text-white transition duration-300 bg-gray-400 border-b-4 rounded-lg hover:bg-green-700"><%= link_to "退出" , quit_group_path(group),method: "delete" %></button>
+              <%= link_to "退出" , quit_group_path(group),method: "delete" ,class:=>"px-6 py-3 text-white transition duration-300 bg-gray-400 border-b-4 rounded-lg hover:bg-green-700" %>
             <% else %>
-              <button class="px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-kohbai hover:bg-green-700"><%= link_to "加入" , join_group_path(group),method: "post" %></button>
+              <%= link_to "加入" , join_group_path(group),method: "post", class: "px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-kohbai hover:bg-green-700"%>
             <% end %>
           </div>
         </div>

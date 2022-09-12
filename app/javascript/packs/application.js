@@ -6,7 +6,7 @@ import "../application.css";
 
 // import "stylesheet";
 
-import "stylesheets";
+// import "stylesheets";
 
 Rails.start();
 Turbolinks.start();
