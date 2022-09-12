@@ -87,9 +87,9 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.mailgun.org',
     port:                 587,
-    domain:               'ENV',
-    user_name:            'ENV',
-    password:             'ENV',
+    domain:               'sandbox791a5ccde0da4a47b768c1b1a501c844.mailgun.org',
+    user_name:            'postmaster@sandbox791a5ccde0da4a47b768c1b1a501c844.mailgun.org',
+    password:             'f72a0d9b9bcdae820337aca0de2c2a1c-1b3a03f6-c8c659dc',
     authentication:       'plain',
     enable_starttls_auto: true
   }
