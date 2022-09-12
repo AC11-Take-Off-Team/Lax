@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   def index
     @group_query = Group.ransack(params[:q])
     @group = Group.recent
-    @group = @group_query if params[:q]
+    @group = @group_query.result if params[:q]
   end
 
   def show; end
