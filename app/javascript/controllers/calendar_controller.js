@@ -22,7 +22,7 @@ export default class extends Controller {
   }
 
   addTask({ id, title, start_time: start, end_time: end, isAllDay, category }) {
-    const calendarId = `cal-${this.projectId}`;
+    let calendarId = "cal1";
     return { id, title, start, end, isAllDay, calendarId, category };
   }
 
@@ -69,18 +69,8 @@ export default class extends Controller {
       calendars: [
         {
           id: "cal1",
-          name: "Todo",
-          backgroundColor: "#FCE542"
-        },
-        {
-          id: "cal2",
-          name: "Doing",
+          name: "任務",
           backgroundColor: "#00a9ff"
-        },
-        {
-          id: "cal3",
-          name: "Done",
-          backgroundColor: "#03bd9e"
         }
       ]
     });
@@ -88,9 +78,9 @@ export default class extends Controller {
 
   eventHandler() {
     this.calendar.on("beforeCreateEvent", (eventObj) => {
-      const { title, start, end, isAllday } = eventObj;
+      const { title, start, end, isAllday, calendarId } = eventObj;
 
-      let category = "task";
+      let category = "time";
 
       if (isAllday === true) {
         category = "allday";
@@ -110,7 +100,9 @@ export default class extends Controller {
         type: "POST",
         data,
         success: ({ task }) => {
-          this.calendar.createEvents([this.addTask({ ...task, category })]);
+          this.calendar.createEvents([
+            this.addTask({ ...task, category, calendarId })
+          ]);
         },
         errors: () => {
           Swal.fire({
@@ -176,15 +168,15 @@ export default class extends Controller {
     });
   }
 
-  changeToMonth() {
+  switchToMonth() {
     this.calendar.changeView("month");
   }
 
-  changeToWeek() {
+  switchToWeek() {
     this.calendar.changeView("week");
   }
 
-  changeToDay() {
+  switchToDay() {
     this.calendar.changeView("day");
   }
 }

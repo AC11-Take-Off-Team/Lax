@@ -1,4 +1,4 @@
-<main data-controller="main" class="flex-1 bg-white overflow-auto">
+<main class="flex-1 bg-white overflow-auto">
   <header class="h-[6.188rem] flex px-6 items-center justify-between border-b border-gray-200">
     <div class="flex flex-col w-full h-full">
       <div class="flex justify-between items-center mt-auto">
@@ -72,16 +72,16 @@
     </div>
   </header>
     <div class="h-10 bg-white flex items-center text-xs justify-between shadow px-6">
-      <div class="flex">
-        <button data-action="click->main#changeToMonth" class="h-7 w-20 text-icon flex hover:bg-hover hover:text-gray-700 group-focus-within:bg-hover group-focus-within:text-gray-700 px-2 rounded transition-all items-center">
+      <div data-controller="calendar-switch" class="flex">
+        <button data-action="click->calendar-switch#switchToMonth" class="h-7 w-20 text-icon flex hover:bg-hover hover:text-gray-700 group-focus-within:bg-hover group-focus-within:text-gray-700 px-2 rounded transition-all items-center">
           month
           <div id="container" class="w-2/5"></div>
         </button>
-        <button data-action="click->main#changeToWeek" class="h-7 w-20 text-icon flex hover:bg-hover hover:text-gray-700 group-focus-within:bg-hover group-focus-within:text-gray-700 px-2 rounded transition-all items-center">
+        <button data-action="click->calendar-switch#switchToWeek" class="h-7 w-20 text-icon flex hover:bg-hover hover:text-gray-700 group-focus-within:bg-hover group-focus-within:text-gray-700 px-2 rounded transition-all items-center">
           week
           <div id="container" class="w-2/5"></div>
         </button>
-        <button data-action="click->main#changeToDay" class="h-7 w-20 text-icon flex hover:bg-hover hover:text-gray-700 group-focus-within:bg-hover group-focus-within:text-gray-700 px-2 rounded transition-all items-center">
+        <button data-action="click->calendar-switch#switchToDay" class="h-7 w-20 text-icon flex hover:bg-hover hover:text-gray-700 group-focus-within:bg-hover group-focus-within:text-gray-700 px-2 rounded transition-all items-center">
           Day
           <div id="container" class="w-2/5"></div>
         </button>
@@ -104,7 +104,7 @@
       </nav>
     </div>  
     <section>
-      <div data-controller="calendar" data-project-id="<%= @project.id %>" data-action="changeToMonth@window->calendar#changeToMonth changeToWeek@window->calendar#changeToWeek changeToDay@window->calendar#changeToDay taskList@window->calendar#taskList">
+      <div data-controller="calendar" data-project-id="<%= @project.id %>" data-action="switchToMonth@window->calendar#switchToMonth switchToWeek@window->calendar#switchToWeek switchToDay@window->calendar#switchToDay">
         <div id="calendar" style="height: 800px"></div>
       </div>
     </section>
