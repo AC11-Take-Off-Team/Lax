@@ -1,7 +1,7 @@
 <h1><%= @project.title %></h1>
 
 <% @project.users.each do |user_name| %>
-  <%= user_name.nickname %>
+  <%= user_name.username %>
   <%= link_to "踢出專案", kick_out_project_path(user_name, project_id: @project.id ), method: "delete" ,data: { confirm: "是否將此人退出專案?"} %>
 <% end  %>
 
