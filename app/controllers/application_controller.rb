@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
     session[:locale] = params[:locale] if params[:locale] && I18n.available_locales.include?(params[:locale].to_sym)
   end
 
-
   private
 
   def record_not_found
