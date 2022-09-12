@@ -8,7 +8,7 @@ class ColumnsController < ApplicationController
     if done_uniq(@project)
       redirect_to board_project_path(@project), notice: "名字：「完成」的區段已存在"
     else
-      message = @column.create(column_params) ? "區段創立成功" : "區段創立失敗"
+      message = @project.columns.create(column_params) ? "區段創立成功" : "區段創立失敗"
       redirect_to board_project_path(@project), notice: message
     end
   end
@@ -52,7 +52,7 @@ class ColumnsController < ApplicationController
   private
 
   def done_uniq(project)
-    project.columns.find_by(status: "完成") && params[:column]["status"] = "完成"
+    project.columns.find_by(status: "完成") && params[:column]["status"] == "完成"
   end
 
   def column_params
