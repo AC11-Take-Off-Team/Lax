@@ -8,8 +8,10 @@ class User < ApplicationRecord
   has_many :projects, through: :user_projects
   has_many :user_tasks
   has_many :tasks, through: :user_tasks
+
   has_many :channels
   has_many :groups, through: :channels
+
 
   def join?(group)
     groups.find_by(id: group).present?
@@ -24,6 +26,7 @@ class User < ApplicationRecord
     # Uncomment the section below if you want users to be created if they don't exist
     user ||= User.create(
       email: data['email'],
+      username: data['username'] || data['email'].split('@').first,
       password: Devise.friendly_token[0, 20]
     )
     user

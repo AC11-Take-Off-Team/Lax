@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :find_user_project
-  before_action :find_column, only: %i[create]
+  before_action :if_column_persist, only: %i[create]
 
   def index
     render json: { tasks: @project.tasks }
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
     params.require(:task).permit(:title, :start_time, :end_time)
   end
 
-  def find_column
+  def if_column_persist
     @column = @project.columns.find_by(status: "待辦事項")
     @column = @project.columns.create(status: "待辦事項") unless @column
   end
