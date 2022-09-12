@@ -32,8 +32,8 @@ class GroupsController < ApplicationController
   end
 
   def join
-      current_user.groups << @group
-      redirect_to group_path, notice: "已加入"
+    current_user.groups << @group
+    redirect_to group_path, notice: "已加入"
   end
 
   def quit
