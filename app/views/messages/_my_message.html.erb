@@ -4,9 +4,8 @@
                 <div class="flex-1 overflow-hidden">
                     <div>
                         <span class="font-bold"><%= message.user.email %></span>
-                        <span class="text-grey text-xs"><%= message.created_at %></span>
+                        <span class="text-xs text-grey"><%= message.created_at %></span>
                     </div>
-                    <p class="text-black leading-normal"><%= message.content %></p>
-                    <%= link_to "delete", message_path(message.id), method: "delete", data: {confirm: "Sure to delete?"}%>
+                    <p class="leading-normal text-black"><%= message.content %></p>
                 </div>
             </div>
