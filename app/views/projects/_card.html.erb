@@ -44,7 +44,7 @@
       <div class="flex items-center justify-center py-1 h-9">
         <%= link_to "刪除任務",destroy_task_column_path(column,task_id: task.id),method: "delete", data: { confirm: "是否刪除此任務" },:class=>"px-2 text-ml font-medium transition-all text-gray-800 hover:bg-menu-hover text-sm" %>
       </div>
-      <div class="fixed absolute bottom-0 right-0 z-10 pb-2 bg-white rounded-md display task_update w-96">
+      <div class="fixed absolute bottom-0 right-0 z-10 w-10/12 pb-2 bg-white rounded-md display task_update md:w-96">
         <%= render "TaskForm", model: task,user: user, url: update_task_column_path(column,task_id: task.id)%>
       </div>
     </nav>
