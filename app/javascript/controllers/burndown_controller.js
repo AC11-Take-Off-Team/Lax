@@ -15,6 +15,7 @@ export default class extends Controller {
     this.taskDoneCount = 0;
     this.taskUnfinishedList = [];
     this.dayList = [];
+    this.duration = null;
     this.projectStart = null;
     this.projectEnd = null;
   }
@@ -26,17 +27,18 @@ export default class extends Controller {
     this.projectStart = this.element.dataset.projectStart;
     this.projectEnd = this.element.dataset.projectEnd;
 
-    this.createChart();
-    // this.fetchProject();
     this.taskNum();
     this.dayNum();
     this.taskUnfinishedNum();
+    this.createChart();
   }
 
   taskNum() {
     if (this.taskCount > 0) {
+      let taskNum = this.taskCount;
       for (let i = 0; i < this.taskCount; i += 1) {
-        this.taskList.push(this.taskCount - 1);
+        this.taskList.push(taskNum);
+        taskNum = taskNum - 1;
       }
     } else {
       this.taskList = [0];
@@ -46,12 +48,13 @@ export default class extends Controller {
   dayNum() {
     const start = Date.parse(this.projectStart);
     const end = Date.parse(this.projectEnd);
-    console.log(this.projectStart, this.projectEnd);
+    const today = Date.parse(new Date().toISOString());
 
-    const days = Math.ceil((end - start) / 86400000);
+    const schedule = Math.ceil((end - start) / 86400000);
+    this.duration = Math.ceil((today - start) / 86400000);
 
-    if (days > 0) {
-      for (let i = 1; days >= i; i += 1) {
+    if (schedule > 0) {
+      for (let i = 1; schedule >= i; i += 1) {
         this.dayList.push(`Day${i}`);
       }
     } else {
@@ -60,30 +63,14 @@ export default class extends Controller {
   }
 
   taskUnfinishedNum() {
-    if (this.taskDoneCount > 0) {
-      for (let i = 0; this.taskDoneCount >= i; i += 1) {
+    if (this.duration > 0) {
+      for (let i = 0; this.duration > i; i += 1) {
         this.taskUnfinishedList.push(this.taskCount - this.taskDoneCount);
       }
     } else {
       this.taskUnfinishedList = this.taskList;
     }
   }
-
-  // fetchProject() {
-  //   Rails.ajax({
-  //     url: `/projects/${this.projectId}/tasks`,
-  //     type: "GET",
-  //     success: () => {},
-  //     error: () => {
-  //       Swal.fire({
-  //         icon: "error",
-  //         title: "Oops...",
-  //         text: "Something went wrong!",
-  //         footer: '<a href="/">Back to Home</a>'
-  //       });
-  //     }
-  //   });
-  // }
 
   createChart() {
     new Chart(this.chartArea, {
@@ -94,14 +81,14 @@ export default class extends Controller {
           {
             type: "line",
             label: "預期進度",
-            data: [this.taskList],
+            data: this.taskList,
             fill: true,
             borderColor: "rgb(54, 162, 235)"
           },
           {
             type: "line",
             label: "實際進度",
-            data: [this.taskUnfinishedList],
+            data: this.taskUnfinishedList,
             fill: true,
             borderColor: "rgb(241, 101, 138)"
           }
