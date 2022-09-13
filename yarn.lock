@@ -970,7 +970,6 @@
   version "1.4.0"
   resolved "https://registry.npmjs.org/@csstools/convert-colors/-/convert-colors-1.4.0.tgz"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
-<<<<<<< HEAD
 
 "@floating-ui/core@^1.0.1":
   version "1.0.1"
@@ -983,7 +982,11 @@
   integrity sha512-wBDiLUKWU8QNPNOTAFHiIAkBv1KlHauG2AhqjSeh2H+wR8PX+AArXfz8NkRexH5PgMJMmSOS70YS89AbWYh5dA==
   dependencies:
     "@floating-ui/core" "^1.0.1"
+<<<<<<< HEAD
 =======
+>>>>>>> dev
+=======
+
 >>>>>>> dev
 
 "@gar/promisify@^1.0.1":
@@ -1086,6 +1089,10 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
 
 "@picmo/popup-picker@^5.6.1":
   version "5.6.1"
@@ -1093,6 +1100,9 @@
   integrity sha512-b2tXvQ9yh2f+PC8wepGpiE3pQV+22JpNE+qIIOM2Y7yzhjk1ZtENtx8hCmglNagMQeOlXKeG3FCBVPx1Jb0Bgg==
   dependencies:
     "@floating-ui/dom" "^1.0.0"
+<<<<<<< HEAD
+=======
+>>>>>>> dev
 =======
 >>>>>>> dev
 
@@ -2862,12 +2872,19 @@ emoji-regex@^7.0.1:
   integrity sha512-CwBLREIQ7LvYFB0WyRvwhq5N5qPhc6PMjD6bYggFlI5YyDgl+0vxq5VHbMOFqLg7hfWzmu8T5Z1QofhmTIhItA==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> dev
 emojibase@^6.1.0:
   version "6.1.0"
   resolved "https://registry.npmjs.org/emojibase/-/emojibase-6.1.0.tgz"
   integrity sha512-1GkKJPXP6tVkYJHOBSJHoGOr/6uaDxZ9xJ6H7m6PfdGXTmQgbALHLWaVRY4Gi/qf5x/gT/NUXLPuSHYLqtLtrQ==
 
+<<<<<<< HEAD
 =======
+>>>>>>> dev
+=======
+
 >>>>>>> dev
 emojis-list@^3.0.0:
   version "3.0.0"
@@ -3261,11 +3278,19 @@ findup-sync@^3.0.0:
     resolve-dir "^1.0.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> dev
 flatpickr@^4.6.13:
   version "4.6.13"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.13.tgz#8a029548187fd6e0d670908471e43abe9ad18d94"
   integrity sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==
+
+<<<<<<< HEAD
+>>>>>>> dev
+=======
 
 >>>>>>> dev
 flatted@^3.2.2:
@@ -5149,6 +5174,10 @@ pbkdf2@^3.0.3:
     sha.js "^2.4.8"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
 picmo@^5.6.1:
   version "5.6.1"
   resolved "https://registry.npmjs.org/picmo/-/picmo-5.6.1.tgz"
@@ -5156,6 +5185,9 @@ picmo@^5.6.1:
   dependencies:
     emojibase "^6.1.0"
 
+<<<<<<< HEAD
+=======
+>>>>>>> dev
 =======
 >>>>>>> dev
 picocolors@^0.2.1:
@@ -6433,21 +6465,10 @@ schema-utils@^1.0.0:
   resolved "https://registry.npmjs.org/schema-utils/-/schema-utils-1.0.0.tgz"
   integrity sha512-i27Mic4KovM/lnGsy8whRCHhc7VicJajAjTrYg11K9zfZXnYIt4k5F+kZkwjnrhKzLic/HLU4j11mjsz2G/75g==
 <<<<<<< HEAD
-  dependencies:
-    ajv "^6.1.0"
-    ajv-errors "^1.0.0"
-    ajv-keywords "^3.1.0"
-
-schema-utils@^2.6.5, schema-utils@^2.7.0:
-  version "2.7.1"
-  resolved "https://registry.npmjs.org/schema-utils/-/schema-utils-2.7.1.tgz"
-  integrity sha512-SHiNtMOUGWBQJwzISiVYKu82GiV4QYGePp3odlY1tuKO7gPtphAT5R/py0fA6xtbgLL/RvtJZnU9b8s0F1q0Xg==
-  dependencies:
-    "@types/json-schema" "^7.0.5"
-    ajv "^6.12.4"
-    ajv-keywords "^3.5.2"
-
+<<<<<<< HEAD
 =======
+
+>>>>>>> dev
   dependencies:
     ajv "^6.1.0"
     ajv-errors "^1.0.0"
@@ -6461,6 +6482,29 @@ schema-utils@^2.6.5, schema-utils@^2.7.0:
     "@types/json-schema" "^7.0.5"
     ajv "^6.12.4"
     ajv-keywords "^3.5.2"
+
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> dev
+  dependencies:
+    ajv "^6.1.0"
+    ajv-errors "^1.0.0"
+    ajv-keywords "^3.1.0"
+
+schema-utils@^2.6.5, schema-utils@^2.7.0:
+  version "2.7.1"
+  resolved "https://registry.npmjs.org/schema-utils/-/schema-utils-2.7.1.tgz"
+  integrity sha512-SHiNtMOUGWBQJwzISiVYKu82GiV4QYGePp3odlY1tuKO7gPtphAT5R/py0fA6xtbgLL/RvtJZnU9b8s0F1q0Xg==
+  dependencies:
+    "@types/json-schema" "^7.0.5"
+    ajv "^6.12.4"
+    ajv-keywords "^3.5.2"
+
+<<<<<<< HEAD
+>>>>>>> dev
+=======
 
 >>>>>>> dev
 schema-utils@^3.0.0:

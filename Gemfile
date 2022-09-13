@@ -62,8 +62,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
-gem "tailwindcss-rails", "~> 2.0"
-
 gem "net-smtp", "~> 0.3.1",require: false
 
 gem "acts_as_list", "~> 1.0"
