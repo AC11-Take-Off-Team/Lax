@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2022_09_09_072158) do
-
+ActiveRecord::Schema.define(version: 2022_09_13_040647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,30 +40,6 @@ ActiveRecord::Schema.define(version: 2022_09_09_072158) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-
-
-    t.string "nickname"
-    t.boolean "private"
-
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.text "content"
-    t.bigint "room_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["room_id"], name: "index_messages_on_room_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "likes", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "message_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["message_id"], name: "index_likes_on_message_id"
-    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -93,6 +67,8 @@ ActiveRecord::Schema.define(version: 2022_09_09_072158) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_rooms_on_group_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -138,17 +114,6 @@ ActiveRecord::Schema.define(version: 2022_09_09_072158) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-
-    t.string "nickname"
-    t.string "invitation_token"
-    t.datetime "invitation_created_at"
-    t.datetime "invitation_sent_at"
-    t.datetime "invitation_accepted_at"
-    t.integer "invitation_limit"
-    t.string "invited_by_type"
-    t.bigint "invited_by_id"
-    t.integer "invitations_count", default: 0
-
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -162,17 +127,9 @@ ActiveRecord::Schema.define(version: 2022_09_09_072158) do
 
   add_foreign_key "channels", "groups"
   add_foreign_key "channels", "users"
-<<<<<<< HEAD
-  add_foreign_key "likes", "messages"
-  add_foreign_key "likes", "users"
-  add_foreign_key "messages", "rooms"
-  add_foreign_key "messages", "users"
-  add_foreign_key "tasks", "projects"
-=======
   add_foreign_key "columns", "projects"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
->>>>>>> dev
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
   add_foreign_key "user_tasks", "tasks"

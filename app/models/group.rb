@@ -8,5 +8,6 @@ end
 
 private 
 def create_room
-  room.create(name: self.title)
+  room = Room.create(name: self.title)
+  self.room = room
 end
