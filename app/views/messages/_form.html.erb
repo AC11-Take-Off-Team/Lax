@@ -14,8 +14,8 @@
      emoji_picker_target: "pickerContainer"
    }) %>
   <div class="field emoji-field">
-    <div class="pb-6 px-4 flex-none">
-            <div class="flex rounded-lg border-2 border-grey overflow-hidden">
+    <div class="flex-none px-4 pb-6">
+            <div class="flex overflow-hidden border-2 rounded-lg border-grey">
                   <%= form.text_area :content, rows: 5 ,style: 'width: 100%', placeholder: "Enter message here!", data: {emoji_picker_target: "trixEditor"} %>
             </div>
         </div>
@@ -24,7 +24,7 @@
   <%= form.hidden_field :room_id, value: room.id %>
 
   <div class="actions">
-    <%= form.submit data: { disable_with: false } %>
+    <%= form.submit data: { disable_with: false ,action: "click->emoji-picker#submit"} %>
   </div>
 <% end %>
 
