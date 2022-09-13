@@ -24,8 +24,20 @@
   <%= form.hidden_field :room_id, value: room.id %>
 
   <div class="actions">
-    <%= form.submit data: { disable_with: false } %><p class="emoji-field"></p>
+    <%= form.submit data: { disable_with: false } %><p class="emoji-field">
+    <section data-controller="emoji_picker">
+    <button data-action = "click->emoji-picker#toggle" >🫠</button>
+</section></p>
   </div>
 <% end %>
+
+ 
+
+
+ <%# <%= form_for method: post, url: post_path(post), data: { controller: "emoji-picker" } do |f| %>
+   
+    <%# <%= post.emoji.presence || content_tag(:i, nil, class: "fad fa-smile text-gray-400")%> 
+    <%# <%= f.hidden_field :emoji, data: { target: "emoji-picker.input" }%> 
+ 
 
  
