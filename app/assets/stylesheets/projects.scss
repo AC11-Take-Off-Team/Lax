@@ -1,29 +1,48 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.gantt .bar-label {
+  fill: red !important;
+
+  text-anchor: middle;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.gantt .bar-label.big {
+  fill: red!important;
+  text-anchor: start;
+  font-size: 12px;
+}
+
 .chart-controls.popup-wrapper {
   width: 200px;
   padding: 0 5px;
+
 }
 
 .chart-label {
   font-size: 1.5rem;
   text-align: center;
   font-weight: 500;
+
 }
 
 .chart-controls {
   text-align: center;
+
 }
 
 .chart-controls>p {
   font-size: 1.2rem;
   font-weight: 500;
+
 }
 
 .gantt-container {
   width: 90vw;
   margin: 0 auto;
+
 }
 
 
