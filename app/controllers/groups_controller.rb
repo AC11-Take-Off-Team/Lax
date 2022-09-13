@@ -12,7 +12,9 @@ class GroupsController < ApplicationController
     # @groups_user = current_user.groups.all
   end
 
-  def show; end
+  def show
+    @room = @group.room
+  end
 
   def create
     current_user.groups.build(group_params)
