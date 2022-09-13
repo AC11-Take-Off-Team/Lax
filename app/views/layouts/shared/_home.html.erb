@@ -1,0 +1,39 @@
+Home
+<header class="h-[6.188rem] w-full flex px-6 items-center justify-between border-b border-gray-200">
+  <div class="flex flex-col w-full h-full">
+    <div class="flex items-center justify-between mt-auto">
+      <div class="flex items-center">
+        <div class="w-12 h-12 rounded-lg mr-4 bg-[color:var(--color)] flex items-center text-white justify-center text-white">
+        </div>
+        <div class="flex items-center gap-x-1">
+          <h1><%= link_to "LAX" , root_path ,:class=>"text-xl" %></h1>
+        </div>
+      </div>
+    <div class="flex items-center gap-x-3">
+      <label class="relative z-30 group">
+        <button class="w-7 h-7 rounded-full bg-gradient-to-tr from-[#ff5263] to-[#fcbd01] text-xs flex items-center justify-center text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" class="fill-current">
+            <path d="M0 0h24v24H0V0z" fill="none"/>
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+          </svg>
+        </button>
+        <nav class="absolute right-0 z-10 invisible overflow-hidden transition-all translate-y-2 bg-white rounded-md opacity-0 top-full group-focus-within:opacity-100 group-focus-within:visible shadow-box">
+          <%= link_to "group" , groups_path , :class=>"flex items-center pl-4 pr-8 h-10 text-sm hover:bg-gradient-to-r group-scope hover:text-white from-[#ff5263] to-[#fcbd01]"%>
+          <%= link_to "project" , projects_path , :class=>"flex items-center pl-4 pr-8 h-10 text-sm hover:bg-gradient-to-r group-scope hover:text-white from-[#ff5263] to-[#fcbd01]"%>
+          <%= link_to "room" , rooms_path , :class=>"flex items-center pl-4 pr-8 h-10 text-sm hover:bg-gradient-to-r group-scope hover:text-white from-[#ff5263] to-[#fcbd01]"%>
+          <%= link_to "invite" , invites_path , :class=>"flex items-center pl-4 pr-8 h-10 text-sm hover:bg-gradient-to-r group-scope hover:text-white from-[#ff5263] to-[#fcbd01]"%>
+        </nav>
+      </label>
+      <div class="relative z-30 group">
+        <button class="text-xs text-white rounded-full w-7 h-7 bg-primary">
+          TE
+        </button>
+        <nav class="absolute top-full z-10 transition-all translate-y-2 text-sm right-0 bg-white rounded shadow-box w-[21.25rem] opacity-0 invisible group-focus-within:opacity-100 group-focus-within:visible">
+          <div class="h-px bg-gray-200"></div>
+          <%= link_to "Log out" , destroy_user_session_path,method:"delete" , :class=>"w-full h-9 my-1 flex items-center justify-center text-gray-600 hover:bg-gray-100" %>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+

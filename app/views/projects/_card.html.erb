@@ -1,26 +1,53 @@
-<% tasks.each do |task| %>
-  <div data-controller="done"
-       data-task-id="<%=task.id%>"
-       data-status="<%=task.status%>"
-       class="card bg-white m-2 p-2 w-50 rounded-lg shadow-lg relative " >
-    <div class="flex justify-between border-b-stone-300 border-y">
-      <div classs=""><button data-action="click->done#status_done"
-              data-done-target="doneBtn"
-              class="pl-0.5">☐</button>
-      任務名稱：<%= task.title %></div>
-      <div><%= link_to "྾",task_path(task),method: "delete", data: { confirm: "是否刪除此任務" } %></div>
-    </div>
-    <div class="pb-0.5 pl-5">任務描述：<%= task.content %></div>
-    <div class="pb-0.5 pl-5">開始日期：</div>
-    <div class="pb-0.5 pl-5">截止日期：<%= taipei_time(task.start_time)%>-<%=taipei_time(task.end_time)%></div>
-    <div class="pb-0.5 pl-5">執行人員：<%= task.user&.nickname %></div>
-    <div class="pb-0.5 pl-5">優先順序：<%= task.priority %> </div>
-  
-    <div class="pb-0.5 pl-5"><%#= link_to "修改",edit_task_path(task) %></div>
+<% column.tasks.each do |task|%>
 
-    <div class="pb-0.5 pl-5">
-      <button class="updateBtn">修改</button>
-      <div class="dispaly task_update m-3 w-1/3  bg-white rounded-md pb-2 fixed z-10 right-0 bottom-0"><%= render "TaskForm", model: task,user: user, url: task_path(task.id)%></div>
+<section class="relative p-4 bg-white rounded-md card shadow-small group" data-task-id="<%=task.id%>">
+  <div data-controller="statusDone"  class="flex items-center mb-3 text-icon">
+    <button data-action="mr-1.5 click->statusDone#status_done" data-statusDone-target="doneBtn" class="text-3xl text-black ">☐</button>
+    <div class="text-2xl text-black "><%= task.title %></div>
+  </div>
+  <div class="flex flex-wrap gap-2 mb-3 h-7">
+    <span class="flex items-center h-5 rounded-lg text-ml ">優先度：<%= task.priority %></span>
+  </div>
+  <div class="flex items-center mb-3 gap-x-2">
+    <button class="flex items-center justify-center w-6 h-6 border border-gray-500 border-dashed rounded-full text-icon hover:text-gray-800 hover:border-gray-800">
+      <svg class="fill-current" height="14" focusable="false" viewBox="0 0 32 32">
+        <path
+          d="M16,18c-4.4,0-8-3.6-8-8s3.6-8,8-8s8,3.6,8,8S20.4,18,16,18z M16,4c-3.3,0-6,2.7-6,6s2.7,6,6,6s6-2.7,6-6S19.3,4,16,4z M29,32c-0.6,0-1-0.4-1-1v-4.2c0-2.6-2.2-4.8-4.8-4.8H8.8C6.2,22,4,24.2,4,26.8V31c0,0.6-0.4,1-1,1s-1-0.4-1-1v-4.2C2,23,5,20,8.8,20h14.4c3.7,0,6.8,3,6.8,6.8V31C30,31.6,29.6,32,29,32z"
+        ></path>
+      </svg>
+    </button>
+    <span><%= task.user_name %></span>
+    <button class="flex items-center justify-center w-6 h-6 border border-gray-500 border-dashed rounded-full text-icon hover:text-gray-800 hover:border-gray-800">
+      <svg class="fill-current" height="14" focusable="false" viewBox="0 0 32 32">
+        <path
+          d="M24,2V1c0-0.6-0.4-1-1-1s-1,0.4-1,1v1H10V1c0-0.6-0.4-1-1-1S8,0.4,8,1v1C4.7,2,2,4.7,2,8v16c0,3.3,2.7,6,6,6h16c3.3,0,6-2.7,6-6V8C30,4.7,27.3,2,24,2z M8,4v1c0,0.6,0.4,1,1,1s1-0.4,1-1V4h12v1c0,0.6,0.4,1,1,1s1-0.4,1-1V4c2.2,0,4,1.8,4,4v2H4V8C4,5.8,5.8,4,8,4z M24,28H8c-2.2,0-4-1.8-4-4V12h24v12C28,26.2,26.2,28,24,28z"
+        ></path>
+      </svg>
+    </button>
+    <span><%= task.start_time&.strftime('%m月%d日')%>-<%=task.end_time&.strftime('%m月%d日')%></span>
+  </div>
+  <div class="flex mb-3">任務描述：<%= task.content%></div>
+  <div class="absolute group-scope top-2 right-2">
+    <button data-action="click->board#card_nav"class="flex items-center justify-center transition-all bg-white border rounded-md shadow opacity-0 w-9 h-9 text-icon group-hover:opacity-100 border-light z-1">
+      <svg class="mr-1 fill-current" height="16" focusable="false" viewBox="0 0 32 32">
+        <path
+          d="M16,13c1.7,0,3,1.3,3,3s-1.3,3-3,3s-3-1.3-3-3S14.3,13,16,13z M3,13c1.7,0,3,1.3,3,3s-1.3,3-3,3s-3-1.3-3-3S1.3,13,3,13z M29,13c1.7,0,3,1.3,3,3s-1.3,3-3,3s-3-1.3-3-3S27.3,13,29,13z"
+        ></path>
+      </svg>
+    </button>
+    <nav
+      class="absolute right-0 z-10 py-1 transition-all translate-y-1 rounded display top-full shadow-box bg-gray-50 w-44 group-scope-focus-within:opacity-100"
+    >
+      <button class="flex items-center justify-center px-2 py-1 text-sm font-medium text-gray-800 transition-all border-b updateBtn h-9 w-44 text-ml hover:bg-menu-hover">
+        修改任務
+      </button>
+      <div class="flex items-center justify-center py-1 h-9">
+        <%= link_to "刪除任務",destroy_task_column_path(column,task_id: task.id),method: "delete", data: { confirm: "是否刪除此任務" },:class=>"px-2 text-ml font-medium transition-all text-gray-800 hover:bg-menu-hover text-sm" %>
       </div>
-    </div>
-<% end  %>
+      <div class="fixed absolute bottom-0 right-0 z-10 pb-2 bg-white rounded-md display task_update w-96">
+        <%= render "TaskForm", model: task,user: user, url: update_task_column_path(column,task_id: task.id)%>
+      </div>
+    </nav>
+  </div>
+</section>
+<% end %>
