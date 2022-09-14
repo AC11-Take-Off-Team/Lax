@@ -33,15 +33,13 @@
         </header>
         <div class="flex flex-col flex-1 max-h-full p-3 overflow-auto rounded-lg card-list gap-y-2" data-board-target="status_list" data-column-id="<%= column.id%>">
           <%= render "card", column: column, user: @user%>
+                 <button data-action="click->task#display_change" class="flex items-center justify-center flex-shrink-0 w-full font-medium transition-all rounded new_task text-ml h-9 text-icon hover:bg-hover">
+          <svg class="mr-2 fill-current" height="12" focusable="false" viewBox="0 0 24 24">
+            <path d="M10,10V4c0-1.1,0.9-2,2-2s2,0.9,2,2v6h6c1.1,0,2,0.9,2,2s-0.9,2-2,2h-6v6c0,1.1-0.9,2-2,2s-2-0.9-2-2v-6H4c-1.1,0-2-0.9-2-2s0.9-2,2-2H10z"></path>
+          </svg>
+          新增任務
+        </button>
         </div>
-                  <button
-            data-action="click->task#display_change"
-            class="flex items-center justify-center flex-shrink-0 w-full font-medium transition-all rounded new_task text-ml h-9 text-icon hover:bg-hover">
-            <svg class="mr-2 fill-current" height="12" focusable="false" viewBox="0 0 24 24">
-              <path d="M10,10V4c0-1.1,0.9-2,2-2s2,0.9,2,2v6h6c1.1,0,2,0.9,2,2s-0.9,2-2,2h-6v6c0,1.1-0.9,2-2,2s-2-0.9-2-2v-6H4c-1.1,0-2-0.9-2-2s0.9-2,2-2H10z"></path>
-            </svg>
-            新增任務
-          </button>
         <div class="fixed bottom-0 z-10 w-10/12 pb-2 bg-white rounded-md resize-none display md:w-80" data-task-target="task_display">
           <%= render "TaskForm", model: [@project,@new_task],user: @user, url: create_task_column_path(column)%>
         </div>
