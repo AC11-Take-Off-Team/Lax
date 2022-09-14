@@ -7,6 +7,7 @@ class Project < ApplicationRecord
   has_many :columns, -> { order(position: :asc) }, dependent: :destroy
 
   has_many :tasks
+  has_one :dailytasks
 
   validates :title, presence: true
   validates :start_time, presence: true
