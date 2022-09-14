@@ -1,20 +1,30 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_group, only: %i[show edit update destroy join quit content]
 
   def new
-    @group = Group.new
+    @group = current_user.groups.new
   end
 
   def index
-    @groups = @group_query.result.recent
-    # @groups_user = current_user.groups.all
+    @group_query = Group.ransack(params[:q])
+    @group = Group.recent
+    @group = @group_query.result if params[:q]
   end
 
-  def show; end
+  def show
+    if  @group.users.include?(current_user)
+      @room = @group.room
+      render "/rooms/index"
+    else
+      redirect_to groups_path,notice: "非本頻道成員"
+    end
+  end
 
   def create
-    current_user.groups.build(group_params)
-    if current_user.save
+    @group = current_user.groups.new(group_params)
+    if @group.save
+      @group.room = Room.create(name: @group.title)
       redirect_to groups_path
     else
       render :new
@@ -32,15 +42,13 @@ class GroupsController < ApplicationController
   end
 
   def join
-    current_user.groups << [@group]
-    redirect_to group_path
-    flash[:notice] = '已加入'
+      current_user.groups << @group
+      redirect_to group_path
   end
 
   def quit
     current_user.groups.destroy(params[:id])
     redirect_to groups_path
-    flash[:notice] = '已退出'
   end
 
   def content; end
@@ -55,3 +63,4 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
   end
 end
+

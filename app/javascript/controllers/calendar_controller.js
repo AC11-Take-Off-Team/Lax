@@ -21,9 +21,9 @@ export default class extends Controller {
     this.fetchTask();
   }
 
-  addTask({ id, title, status, start_time: start, end_time: end }) {
-    const calendarId = `cal-${this.projectId}`;
-    return { id, title, status, start, end, calendarId };
+  addTask({ id, title, start_time: start, end_time: end, isAllDay, category }) {
+    let calendarId = "cal1";
+    return { id, title, start, end, isAllDay, calendarId, category };
   }
 
   fetchTask() {
@@ -57,7 +57,10 @@ export default class extends Controller {
         time(event) {
           const { start, end, title } = event;
 
-          return `<span style="color: white;">${dayjs(start, "HH:mm")}~${dayjs(end, "HH:mm")} ${title}</span>`;
+          return `<span style="color: white;">${dayjs(start, "HH:mm")}~${dayjs(
+            end,
+            "HH:mm"
+          )} ${title}</span>`;
         },
         allday(event) {
           return `<span style="color: gray;">${event.title}</span>`;
@@ -66,18 +69,8 @@ export default class extends Controller {
       calendars: [
         {
           id: "cal1",
-          name: "Todo",
-          backgroundColor: "#FCE542"
-        },
-        {
-          id: "cal2",
-          name: "Doing",
+          name: "任務",
           backgroundColor: "#00a9ff"
-        },
-        {
-          id: "cal3",
-          name: "Done",
-          backgroundColor: "#03bd9e"
         }
       ]
     });
@@ -85,27 +78,39 @@ export default class extends Controller {
 
   eventHandler() {
     this.calendar.on("beforeCreateEvent", (eventObj) => {
-      const { title, start, end, status } = eventObj;
+      const { title, start, end, isAllday, calendarId } = eventObj;
+
+      let category = "time";
+
+      if (isAllday === true) {
+        category = "allday";
+      } else if (title.includes("[MS]")) {
+        category = "milestone";
+      } else if (title.includes("[T]")) {
+        category = "task";
+      }
 
       const data = new FormData();
       data.append("task[title]", title);
       data.append("task[start_time]", dayjs(start).toISOString());
       data.append("task[end_time]", dayjs(end).toISOString());
-      data.append("task[status]", status);
 
       Rails.ajax({
         url: `/projects/${this.projectId}/tasks`,
         type: "POST",
         data,
         success: ({ task }) => {
-          return this.calendar.createEvents([this.addTask(task)]);
+          this.calendar.createEvents([
+            this.addTask({ ...task, category, calendarId })
+          ]);
         },
         errors: () => {
           Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
-            footer:'<a href="/projects/${this.projectId}/calendar">Try again</a>'
+            footer:
+              '<a href="/projects/${this.projectId}/calendar">Try again</a>'
           });
         }
       });
@@ -114,13 +119,12 @@ export default class extends Controller {
     this.calendar.on("beforeUpdateEvent", ({ event, changes }) => {
       const { id, calendarId } = event;
 
-      const { title, start, end, status } = changes;
+      const { title, start, end } = changes;
 
       const data = new FormData();
       title && data.append("task[title]", title);
       start && data.append("task[start_time]", start);
       end && data.append("task[end_time]", end);
-      status && data.append("task[status]", status);
 
       Object.keys(changes).length !== 0 &&
         Rails.ajax({
@@ -135,7 +139,8 @@ export default class extends Controller {
               icon: "error",
               title: "Oops...",
               text: "Something went wrong!",
-              footer: '<a href="/projects/${this.projectId}/calendar">Try again</a>'
+              footer:
+                '<a href="/projects/${this.projectId}/calendar">Try again</a>'
             });
           }
         });
@@ -155,22 +160,23 @@ export default class extends Controller {
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
-            footer: '<a href="/projects/${this.projectId}/calendar">Try again</a>'
+            footer:
+              '<a href="/projects/${this.projectId}/calendar">Try again</a>'
           });
         }
       });
     });
   }
 
-  changeToMonth() {
+  switchToMonth() {
     this.calendar.changeView("month");
   }
 
-  changeToWeek() {
+  switchToWeek() {
     this.calendar.changeView("week");
   }
 
-  changeToDay() {
+  switchToDay() {
     this.calendar.changeView("day");
   }
 }

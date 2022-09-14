@@ -1,4 +1,4 @@
-<%= form_with(model: message , local:true, data: {controller: "emoji-picker"}) do |form| %>
+<div data-controller="message_switch"><%= form_with(model: message , local:true) do |form| %>
   <% if message.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
@@ -14,9 +14,9 @@
      emoji_picker_target: "pickerContainer"
    }) %>
   <div class="field emoji-field">
-    <div class="pb-6 px-4 flex-none">
-            <div class="flex rounded-lg border-2 border-grey overflow-hidden">
-                  <%= form.text_area :content, rows: 5 ,style: 'width: 100%', placeholder: "Enter message here!", data: {emoji_picker_target: "trixEditor"} %>
+    <div class="flex-none px-4 pb-6">
+            <div class="flex overflow-hidden border-2 rounded-lg border-grey">
+                  <%= form.text_area :content, rows: 5 ,style: 'width: 100%', placeholder: "Enter message here!", data: {message_switch_target: "trixEditor"} ,:class=>"message_value"%>
             </div>
         </div>
     
@@ -24,8 +24,7 @@
   <%= form.hidden_field :room_id, value: room.id %>
 
   <div class="actions">
-    <%= form.submit data: { disable_with: false } %>
+    <%= form.submit data: { disable_with: false,action: "input=>message_switch#submit"} %>
   </div>
-<% end %>
-
+<% end %></div>
  
