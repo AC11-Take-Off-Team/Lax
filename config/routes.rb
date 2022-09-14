@@ -37,14 +37,14 @@ Rails.application.routes.draw do
           patch :sort_column_position
         end
       end
-    end
-  end
-
       resources :tasks,only: [] do
         member do
           post :status_done
         end
       end
+    end
+  end
+      
 
   resources :groups do
     member do
