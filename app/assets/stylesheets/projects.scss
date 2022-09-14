@@ -76,14 +76,7 @@ ul {
 .page-footer span {
   color: #e31b23;
 }
-
-
-
-
-
-
-
-
+// board
 .card-list{
   background-color: #f5f3f3;
 }
@@ -95,5 +88,7 @@ ul {
 }
 .display{
   display: none;
-  border: 2px solid rgb(73, 73, 173);
+}
+input[type='text']{
+  text-align:center;
 }
