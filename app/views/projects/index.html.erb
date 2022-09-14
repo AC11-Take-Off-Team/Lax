@@ -1,5 +1,41 @@
-<%= link_to "new project",new_project_path %>
 <% @projects.each do |project| %>
   <div class="">title:<%= link_to project.title, project %></div>
   <div class=""><%= link_to "update",edit_project_path(project) %></div>
 <% end %>
+<section class="">
+  <div>
+    <div>
+      <h1 class="ml-4 pt-4 text-xl">我的任務</h1>
+      <ul class="flex ">
+        <li><%= link_to "專案清單", projects_path,:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-sm font-semibold pb-2 ml-4" %></li>
+        <li><%= link_to "頻道", groups_path,:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-sm font-semibold pb-2 ml-4" %></li>
+      </ul>
+    </div>
+  </div>
+  <button class="flex w-auto m-4 bg-gray-100 items-center p-2 transition-all rounded-md text-sm font-semibold text-gray-600 hover:bg-light">
+      <svg class="fill-current mr-2" height="16" focusable="false" viewBox="0 0 32 32">
+      <path d="M26,14h-8V6c0-1.1-0.9-2-2-2l0,0c-1.1,0-2,0.9-2,2v8H6c-1.1,0-2,0.9-2,2l0,0c0,1.1,0.9,2,2,2h8v8c0,1.1,0.9,2,2,2l0,0c1.1,0,2-0.9,2-2v-8h8c1.1,0,2-0.9,2-2l0,0C28,14.9,27.1,14,26,14z"></path>
+      </svg>
+    <%= link_to "建立專案" , new_project_path %>
+  </button>
+  <div class="w-4/5 mx-auto grid gap-y-24 mt-10 border-solid border-black">
+      <table class="table-auto">
+        <thead>
+          <tr>
+            <th>專案名稱</th>
+            <th>截止日期</th>
+            <th>專案</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @projects.each do |project| %>
+            <tr>
+              <th><%= link_to project.title,project %></th>
+              <th></th>
+              <th></th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</section>
