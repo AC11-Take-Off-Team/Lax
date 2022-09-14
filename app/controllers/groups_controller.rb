@@ -1,5 +1,5 @@
-
 class GroupsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_group, only: %i[show edit update destroy join quit content]
 
   def new
@@ -13,14 +13,18 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @room = @group.room
+    if  @group.users.include?(current_user)
+      @room = @group.room
+      render "/rooms/index"
+    else
+      redirect_to groups_path,notice: "非本頻道成員"
+    end
   end
 
   def create
-    group = current_user.groups.new(group_params)
-    if group.save
-      group.users << current_user
-      group.create_room(name: group.title)
+    @group = current_user.groups.new(group_params)
+    if @group.save
+      @group.room = Room.create(name: @group.title)
       redirect_to groups_path
     else
       render :new
@@ -38,10 +42,8 @@ class GroupsController < ApplicationController
   end
 
   def join
-
       current_user.groups << @group
       redirect_to group_path
-
   end
 
   def quit

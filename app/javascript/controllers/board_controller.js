@@ -57,7 +57,7 @@ export default class extends Controller {
     const updateBtn = document.querySelectorAll('.updateBtn');
     updateBtn.forEach((update) => {
       update.addEventListener('click', (e) => {
-        const display = e.target.parentElement.querySelector('.task_update');
+        const display = e.target.parentElement.parentElement.querySelector('.task_update');
         display.style.display == 'block' ? (display.style.display = 'none') : (display.style.display = 'block');
       });
     });
