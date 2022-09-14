@@ -12,11 +12,15 @@ class GroupsController < ApplicationController
     @group = @group_query.result if params[:q]
   end
 
-  def show; end
+  def show
+    @room = @group.room
+  end
 
   def create
-    @group = current_user.groups.new(group_params)
-    if @group.save
+    group = current_user.groups.new(group_params)
+    if group.save
+      group.users << current_user
+      group.create_room(name: group.title)
       redirect_to groups_path
     else
       render :new
