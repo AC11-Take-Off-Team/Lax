@@ -4,10 +4,17 @@ class Group < ApplicationRecord
   has_one :room
 
   scope :recent, -> { order(created_at: :desc) }
-end
 
-private 
-def create_room
-  room = Room.create(name: self.title)
-  self.room = room
+  def is_member_of?(user_id)
+    self.users.find_by(id: user_id).present?
+    # 判斷會員是否存在此ＧＲＯＵＰ
+  end
+
+  private
+
+  def create_room
+    room = Room.create(name: title)
+    self.room = room
+  end
+
 end

@@ -323,11 +323,8 @@ GEM
     zeitwerk (2.6.0)
 
 PLATFORMS
-<<<<<<< HEAD
-  x86_64-darwin-21
-=======
   x86_64-darwin-20
->>>>>>> 97799bc0 (add group css)
+  x86_64-darwin-21
 
 DEPENDENCIES
   aasm

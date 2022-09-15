@@ -2,17 +2,15 @@
   <div class="mx-auto max-w-7xl ">
     <div class="flex items-center justify-between " >
       <div>
-        <h2 class="p-3 my-2 text-xl">所有頻道</h2>
+        <h2 class="p-3 my-2 text-xl font-semibold ">所有頻道</h2>
       </div>
       <div>
         <h3><%= link_to "創建頻道",new_group_path ,:class=>"max-w-full px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-momo hover:bg-kohbai text-base" %></h3>
       </div>
     </div>
     <div class="mx-auto ">
-      <div>
-        <h4 class="p-2 my-2 text-gray-700">共<%= Group.count %>個頻道</h4>
-        <%= render 'layouts/shared/search_form'%>
-      </div>
+      <div><%= render 'layouts/shared/search_form'%></div>
+        <div class="p-2 my-2 text-gray-700">共<%= Group.count %>個頻道</div>
       <% @group.each do |group| %>
         <div class="p-2 my-2 mt-3 transition bg-white hover:bg-gray-100">
           <div class="flex justify-between align-center ">
@@ -23,9 +21,9 @@
               </div>
             </div>
             <% if current_user.join?(group) %>
-              <button><%= link_to "退出" , quit_group_path(group),method: "delete" ,:class=>"px-6 py-3 text-white transition duration-300 bg-gray-300 border-b-4 rounded-lg hover:bg-gray-400 text-base"%></button>
+              <button><%= link_to "退出" , quit_group_path(group),method: "delete" ,:class=>" px-6 py-3 text-white transition duration-300 bg-gray-300 border-b-4 rounded-lg hover:bg-gray-400 text-base"%></button>
             <% else %>
-              <button><%= link_to "加入" , join_group_path(group),method: "post",:class=>"px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-momo hover:bg-kohbai text-base" %></button>
+              <button><%= link_to "進入" , group_path(group),:class=>" px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-momo hover:bg-kohbai text-base" %></button>
             <% end %>
           </div>
         </div>

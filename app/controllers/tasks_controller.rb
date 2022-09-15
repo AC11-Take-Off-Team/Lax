@@ -44,6 +44,6 @@ class TasksController < ApplicationController
 
   def if_column_persist
     @column = @project.columns.find_by(status: "待辦事項")
-    @column = @project.columns.create(status: "待辦事項") unless @column
+    @column ||= @project.columns.create(status: "待辦事項")
   end
 end

@@ -57,7 +57,6 @@ class ProjectsController < ApplicationController
   def gantt
   end
 
-
   def board
     @new_task = Task.new
     @new_column = Column.new

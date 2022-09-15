@@ -37,10 +37,8 @@ export default class extends Controller {
       },
       error: () => {
         Swal.fire({
-          icon: "error",
           title: "Oops...",
           text: "Something went wrong!",
-          footer: '<a href="/">Back to Home</a>',
         });
       },
     });
