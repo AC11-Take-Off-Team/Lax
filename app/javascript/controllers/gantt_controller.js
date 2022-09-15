@@ -25,13 +25,14 @@ export default class extends Controller {
           });
         });
         this.ganttChart = new Gantt("#gantt", all_tasks, {
-          on_view_change: function (mode) {
-            document.getElementById("current-timescale").innerText = mode;
-          },
+          header_height: 80,
+          column_width: 60,
+          step: 50,
+          bar_height: 35,
+          bar_corner_radius: 9,
+          arrow_curve: 9,
+          padding: 26,
         });
-        // document.querySelector(".day-btn").addEventListener("click", () => {
-        //   ganttChart.change_view_mode("Day");
-        // });
 
         console.log(all_tasks);
       },
