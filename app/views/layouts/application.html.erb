@@ -11,8 +11,10 @@
   <body class="w-full min-h-screen">
     <div class="w-full min-h-screen flex">
       <% if current_user %>
-        <%= render 'layouts/shared/sidebar' %>
-        <div class="w-full">
+        <div class="w-2/12">
+          <%= render 'layouts/shared/sidebar' %>
+        </div>
+        <div class="w-10/12">
           <%= render 'layouts/shared/home' %>
           <%= yield %>
         </div>
