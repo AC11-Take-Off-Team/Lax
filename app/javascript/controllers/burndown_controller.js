@@ -54,12 +54,17 @@ export default class extends Controller {
   taskNum() {
     if (this.taskCount > 0) {
       let taskNum = this.taskCount;
-      for (let i = 0; i < 15; i += 1) {
+      let totalDay = this.dayList.length
+      let avg = taskNum / (totalDay - 1)
+      
+      for (let i = 0; i < this.taskCount; i += 1) {
         this.taskList.push(taskNum);
-        taskNum = taskNum - 1;
-
-        console.log(this.taskNum);
+        taskNum = taskNum - avg;
+        if (taskNum < 0 ){
+          taskNum = [0]
+        }
       }
+      
     } else {
       this.taskList = [0];
     }
@@ -70,16 +75,14 @@ export default class extends Controller {
       for (let i = 0; this.duration > i; i += 1) {
         this.taskUnfinishedList.push(this.taskCount - this.taskDoneCount);
       }
-      console.log("456");
     } else {
       this.taskUnfinishedList = this.taskList;
-      console.log("789");
     }
   }
 
   createChart() {
     new Chart(this.chartArea, {
-      type: "scatter",
+      type: "line",
       data: {
         labels: this.dayList,
         datasets: [
