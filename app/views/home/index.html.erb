@@ -1,4 +1,127 @@
+<section class="w-full">
+  <h1 class="text-xl font-extrabold ml-4 mt-8">首頁</h1>
 
+  <span class="text-lg block text-center mb-4"><%= Time.now.strftime("%Y年%m月%d日") %></span>
+
+  
+  <h2 class="text-center text-4xl font-extrabold mb-8">Hi, Ning</h2>
+  
+  <div class="w-3/5 mr-auto ml-auto mb-8 flex justify-center border	border-gray-500 border-solid rounded-full p-4 text-gray-700">
+    <div class="">
+      <button class="flex">
+        <img src="https://cdn-icons-png.flaticon.com/512/2773/2773319.png" class="w-6 mr-2">
+        我的行事曆
+      </button>
+    </div>
+    <span class="mr-4 ml-4">|</span>
+    <div class="flex">
+      <img src="https://cdn-icons-png.flaticon.com/512/7993/7993784.png" class="w-6 mr-2">
+      <%= @projects %> 個進行中的專案
+    </div>
+    <span class="mr-4 ml-4">|</span>
+    <div class="flex">
+      <img src="https://cdn-icons-png.flaticon.com/512/3128/3128528.png" class="w-6 mr-2">
+      <p>1 個頻道</p>
+    </div>
+  </div>
+  
+  <div class="flex justify-evenly mb-8 gap-8">
+    <div class="border border-gray-500 border-solid rounded-md p-4 text-gray-700 w-6/12 h-96 ml-8">
+      <div class="flex mb-4 border-b border-gray-400">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="h-20">
+        <div class="ml-4 mt-4">
+          <p class="text-xl mb-2">我的優先任務</p>
+          <div class="mb-4">
+            <%= link_to "待辦事項", projects_path,:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold pb-2" %>
+            <%= link_to "進行中", groups_path,:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold ml-4 pb-2" %>
+            <%= link_to "已完成", groups_path,:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold ml-4 pb-2" %>
+          </div>
+        </div>
+      </div>
+      <div class="flex pb-4 pl-2 mb-4 border-b border-gray-400">
+        <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto opacity-30	">
+        <input class="border-transparent" placeholder="按一下此處可新增任務"></input>
+      </div>
+      <div class="flex pb-4 pl-2 mb-4 border-b border-gray-400">
+        <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto">
+        <p>規劃檔期活動</p>
+      </div>
+      <div class="flex pb-4 pl-2 border-b border-gray-400">
+        <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto">
+        <p>完成海報設計</p>
+      </div>
+    </div>
+    
+    <div class="border border-gray-500 border-solid rounded-md p-4 text-gray-700 w-6/12 h-96 mr-8">
+      <p class="text-xl mt-4 mb-6 pl-4">專案</p>
+      <div class="pl-8 mb-4 flex items-center">
+        <svg width="10%" height="10%" focusable="false" viewBox="0 0 120 120">
+          <path d="M99,119H21c-11,0-20-9-20-20V21C1,10,10,1,21,1h78c11,0,20,9,20,20v78C119,110,110,119,99,119z" stroke="#9ca6af" stroke-width="3" stroke-dasharray="10.0605,5.0302" fill="transparent"/>
+          <path d="M71,59H61V49c0-0.5-0.4-1-1-1s-1,0.4-1,1V59H49c-0.5,0-1,0.4-1,1s0.4,1,1,1H59V71c0,0.5,0.4,1,1,1s1-0.4,1-1V61H71c0.5,0,1-0.4,1-1S71.6,59,71,59z" fill="#333"/>
+        </svg>
+        <p class="ml-4">建立專案</p>
+      </div>
+      <div class="pl-8 flex items-center">
+        <div class="w-12 h-12 relative mr-3 rounded">
+          <div class="absolute top-0 left-0 w-full rounded-lg bg-blue-500 h-full flex items-center justify-center">
+              <svg height="24" viewBox="0 0 24 24"><path fill="#fff" d="M22,21.2l0.4,2.5c0,0.3-0.2,0.4-0.5,0.3l-2.5-1.3c-0.6,0.2-1.2,0.3-1.9,0.3c-3.6,0-6.4-2.8-6.5-6.4  c0,0,0-0.1,0-0.1c0-3.4,2.6-6.2,5.9-6.5c0.2,0,0.4,0,0.6,0c3.6,0,6.5,2.9,6.5,6.5C24,18.3,23.2,20,22,21.2z"></path><path d="M17,8.5c0,0.5,0,1-0.1,1.5c-3.3,0.3-5.9,3.1-5.9,6.5c0,0,0,0.1,0,0.1C10.2,16.9,9.4,17,8.5,17  c-0.9,0-1.8-0.2-2.7-0.4l-3.4,1.7c-0.3,0.2-0.7-0.1-0.6-0.5l0.6-3.4C0.9,12.8,0,10.8,0,8.5C0,3.8,3.8,0,8.5,0S17,3.8,17,8.5z"></path></svg>
+          </div>
+      </div>
+        <p>我們的第一個專案</p>
+      </div>
+
+    </div>
+  </div>
+  
+  
+  <div class="m-auto border border-gray-500 border-solid rounded-md p-4 text-gray-700 w-12/12 gap-8 ml-8 mr-8">
+    <p class="text-xl mb-8">頻道</p>
+    <div class="flex justify-around">
+      <div class="border border-gray-500 border-solid rounded-md p-6 text-gray-700 w-50">
+        <div class="text-sm text-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922561.png" class="w-24 m-auto mb-4 mt-4">
+          <span class="block">檢視您團隊的狀態更新。</span>
+          <span class="block mb-8">讓工作保持正常進度。</span>
+        </div>
+        <button class="border border-gray-500 border-solid rounded-md p-1 text-gray-700 text-sm">邀請隊友</button>
+      </div>
+      <div class="border border-gray-500 border-dashed rounded-md p-6 text-gray-400 w-50">
+        <div class="text-sm text-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922579.png" class="w-24 m-auto mb-4 mt-4 opacity-10">
+          <span class="block">檢視您團隊的狀態更新。</span>
+          <span class="block mb-8">讓工作保持正常進度。</span>
+        </div>
+        <button class="border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
+      </div>
+      <div class="border border-gray-500 border-dashed rounded-md p-6 text-gray-400 w-50">
+        <div class="text-sm text-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922579.png" class="w-24 m-auto mb-4 mt-4 opacity-10">
+          <span class="block">檢視您團隊的狀態更新。</span>
+          <span class="block mb-8">讓工作保持正常進度。</span>
+        </div>
+        <button class="border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
+      </div>
+      <div class="border border-gray-500 border-dashed rounded-md p-6 text-gray-400 w-50">
+        <div class="text-sm text-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922579.png" class="w-24 m-auto mb-4 mt-4 opacity-10">
+          <span class="block">檢視您團隊的狀態更新。</span>
+          <span class="block mb-8">讓工作保持正常進度。</span>
+        </div>
+        <button class="border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
+      </div>
+      <div class="border border-gray-500 border-dashed rounded-md p-6 text-gray-400 w-50">
+        <div class="p-2">
+          <div class="text-sm text-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/2922/2922579.png" class="w-24 m-auto mb-4 mt-4 opacity-10">
+            <span class="block">檢視您團隊的狀態更新。</span>
+            <span class="block mb-8">讓工作保持正常進度。</span>
+          </div>
+          <button class="border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
+        </div>
+        </div>
+    </div>
+  </div>
+</section>
 
 
 
