@@ -1,15 +1,104 @@
-<p id="notice"><%= notice %></p>
 
-<div id="room-id" data-room-id="<%= @room.try(:id) %>"></div>
-<div id="user-id" data-user-id="<%= current_user.id %>"></div>
+<div class="w-full h-32" style="background-color: #fedfe1"></div>
+  <div class="container mx-auto" style="margin-top: -128px;">
+    <div class="h-screen py-6">
+      <div class="flex h-full border rounded shadow-lg border-grey">
+        <div class="flex flex-col w-1/3 border">
+          <div class="flex flex-row items-center justify-between px-3 py-2 bg-grey-lighter">
+            <div>
+              <img class="w-10 h-10 rounded-full" src="http://andressantibanez.com/res/avatar.png"/>
+            </div>
+              <div class="flex">
+                <div class="ml-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="#263238" fill-opacity=".6" d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z">
+                    </path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="px-2 py-2 bg-grey-lightest">
+              <input type="text" class="w-full px-2 py-2 text-sm" placeholder="Search or start new chat"/>
+            </div>
+                <!-- Contacts -->
+            <div class="flex-1 overflow-auto bg-grey-lighter">
+              <div class="flex items-center px-3 cursor-pointer bg-grey-light">
+                <div>
+                  <img class="w-12 h-12 rounded-full"
+                    src="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg"/>
+                </div>
+                  <div class="flex-1 py-4 ml-4 border-b border-grey-lighter">
+                    <div class="flex justify-between items-bottom">
+                      <p class="text-grey-darkest">
+                        New Movie! Expendables 4
+                      </p>
+                    </div>
+                      <p class="mt-1 text-sm text-grey-dark">
+                        Get Andrés on this movie ASAP!
+                      </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col w-2/3 border">
+              <div class="flex flex-row items-center justify-between px-3 py-2 bg-grey-lighter">
+                <div class="flex items-center">
+                  <div>
+                    <img class="w-10 h-10 rounded-full" src="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg"/>
+                  </div>
+                    <div class="ml-4">
+                      <p class="text-grey-darkest">
+                        New Movie! Expendables 4
+                      </p>
+                    </div>
+                  </div>
+                <div class="flex">
+                  <div class="ml-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                      <path fill="#263238" fill-opacity=".6" d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z">
+                      </path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+                <!-- Messages -->
+              <div class="flex-1 overflow-auto" style="background-color: #DAD3CC">
+                <div class="px-3 py-2">
+                  <div class="flex justify-center mb-2">
+                    <div class="px-4 py-2 rounded" style="background-color: #DDECF2">
+                      <%= Time.now.strftime("%m月%d日") %>
+                    </div>
+                  </div>
+                <div class="flex mb-2">
+              <div class="px-3 py-2 rounded" style="background-color: #F2F2F2">
+                <p class="text-sm text-purple">
+                  Tom Cruise
 
-<h3 class="mb-1 font-extrabold text-grey-darkest"><p><%= "Current_room is #{@room.name}"%></p></h3>
-    
-       <div class="flex-1 px-6 py-4 overflow-y-scroll">
-       <div id = "messages">
-    <% @room.messages.each do |message| %>
-        <%= render 'messages/message', message: message %>          
-    <%end %>
+
+                <p id="notice"><%= notice %></p>
+                  <div id="room-id" data-room-id="<%= @room.try(:id) %>"></div>
+                  <div id="user-id" data-user-id="<%= current_user.id %>"></div>
+                    <h3 class="mb-1 font-extrabold text-grey-darkest">
+                      <p><%= "Current_room is #{@room.name}"%></p>
+                    </h3>
+
+                    <div class="flex-1 px-6 py-4 overflow-y-scroll">
+                      <div id = "messages">
+                        <% @room.messages.each do |message| %>
+                          <%= render 'messages/message', message: message %>
+                        <%end %>
+                      </div>
+                    </div>
+                  <%= render 'messages/form', message: Message.new, room: @room %>
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+                <!-- Input -->
+
+      </div>
     </div>
-    </div>
-    <%= render 'messages/form', message: Message.new, room: @room %>
+  </div>
+</div>
