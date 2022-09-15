@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :groups, through: :channels
   after_create :name
 
- def join?(group)
+  def join?(group)
     groups.find_by(id: group).present?
   end
 

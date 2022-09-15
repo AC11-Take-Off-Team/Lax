@@ -1,15 +1,13 @@
 <div class="chart-controls" data-controller="gantt" data-project-id=<%= @project.id %>>
-<p>Change Chart Timescale</p>
-   <svg id="gantt" data-gantt-target="task"></svg>
-      <p class="chart-label">
-      Timescale: <span id="current-timescale">Day</span>
-      </p>
-<div class="button-cont">
-      <button class="px-3 py-1 mb-3 text-white bg-gray-400 rounded-lg" data-action="click->gantt#day" >Day</button>
-      <button class="px-3 py-1 text-white bg-gray-400 rounded-lg" data-action="click->gantt#week">Week</button>
-      <button class="px-3 py-1 text-white bg-gray-400 rounded-lg" data-action="click->gantt#month">Month</button>
-   </div>
+  <h2 class="my-2 text-2xl font-semibold">甘特圖</h2>
+    <svg id="gantt" data-gantt-target="task"></svg>
+      <div class="mb-2 button-cont">
+        <button class="px-6 py-2 mr-4 text-white rounded-xl bg-momo hover:bg-kohbai" data-action="click->gantt#day" >日</button>
+        <button class="px-6 py-2 text-white rounded-xl bg-momo hover:bg-kohbai" data-action="click->gantt#week">週</button>
+        <button class="px-6 py-2 ml-4 text-white rounded-xl bg-momo hover:bg-kohbai" data-action="click->gantt#month">月</button>
+      </div>
 </div>
 <div class="flex flex-col items-center justify-center ">
-  <button class="px-3 py-1 text-xl text-white bg-gray-400 rounded-lg"><%= link_to "返回" , project_path(@project) %></button>
+  <button class="mt-4"><%= link_to "返回" , project_path(@project),:class=>"px-6 py-3 text-white rounded-xl bg-momo hover:bg-kohbai" %>
+	</button>
 </div>

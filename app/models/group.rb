@@ -6,7 +6,7 @@ class Group < ApplicationRecord
   scope :recent, -> { order(created_at: :desc) }
 
   def is_member_of?(user_id)
-    self.users.find_by(id: user_id).present?
+    users.find_by(id: user_id).present?
     # 判斷會員是否存在此ＧＲＯＵＰ
   end
 
@@ -16,5 +16,4 @@ class Group < ApplicationRecord
     room = Room.create(name: title)
     self.room = room
   end
-
 end
