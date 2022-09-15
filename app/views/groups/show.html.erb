@@ -1,0 +1,22 @@
+<div  class="pl-10 w">
+    <div class="">
+      <h2 class="text-gray-500 text-lg mb-1 font-extrabold p-6"><p><%= "Current group: #{@room.name}"%></p></h2>
+
+  </div>
+  <% if current_user.join?(@group) %>
+       <div class="px-6 py-4 flex-1 overflow-y-scroll" style="height: 350px">
+       <div id = "messages">
+    <% @room.messages.each do |message| %>
+        <%= render 'messages/message', message: message %>          
+    <%end %>
+       </div>
+       </div>
+  <div class="mt-10">
+    <%= render 'messages/form', message: Message.new, room: @room %>
+  </div>
+    
+    </div>
+    </div>
+  <% end %>
+</div>
+
