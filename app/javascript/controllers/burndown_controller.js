@@ -8,6 +8,7 @@ export default class extends Controller {
   static targets = ["chart"];
 
   initialize() {
+    // API
     this.projectId = 0;
     this.chartArea = this.chartTarget.getContext("2d");
     this.taskCount = 0;
@@ -27,22 +28,10 @@ export default class extends Controller {
     this.projectStart = this.element.dataset.projectStart;
     this.projectEnd = this.element.dataset.projectEnd;
 
-    this.taskNum();
     this.dayNum();
+    this.taskNum();
     this.taskUnfinishedNum();
     this.createChart();
-  }
-
-  taskNum() {
-    if (this.taskCount > 0) {
-      let taskNum = this.taskCount;
-      for (let i = 0; i < this.taskCount; i += 1) {
-        this.taskList.push(taskNum);
-        taskNum = taskNum - 1;
-      }
-    } else {
-      this.taskList = [0];
-    }
   }
 
   dayNum() {
@@ -62,13 +51,29 @@ export default class extends Controller {
     }
   }
 
+  taskNum() {
+    if (this.taskCount > 0) {
+      let taskNum = this.taskCount;
+      for (let i = 0; i < 15; i += 1) {
+        this.taskList.push(taskNum);
+        taskNum = taskNum - 1;
+
+        console.log(this.taskNum);
+      }
+    } else {
+      this.taskList = [0];
+    }
+  }
+
   taskUnfinishedNum() {
     if (this.duration > 0) {
       for (let i = 0; this.duration > i; i += 1) {
         this.taskUnfinishedList.push(this.taskCount - this.taskDoneCount);
       }
+      console.log("456");
     } else {
       this.taskUnfinishedList = this.taskList;
+      console.log("789");
     }
   }
 

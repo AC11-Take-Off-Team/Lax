@@ -34,10 +34,9 @@ gem 'devise'
 
 gem 'aasm'
 gem 'rails-i18n', '~> 7.0', '>= 7.0.5'
-# omniauth
-gem 'omniauth'
-gem 'omniauth-google-oauth2'
-gem 'omniauth-rails_csrf_protection'
+gem 'omniauth', '~> 2.1'
+gem 'omniauth-google-oauth2', '~> 1.1', '>= 1.1.1'
+gem 'omniauth-rails_csrf_protection', '~> 1.0', '>= 1.0.1'
 
 
 gem 'acts_as_paranoid'
@@ -91,4 +90,4 @@ gem "acts_as_list", "~> 1.0"
 
 gem "ransack"
 
-
+gem "sidekiq", "~> 6.5"

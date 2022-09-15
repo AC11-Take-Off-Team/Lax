@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :find_user_project, only: %i[show edit update destroy board calendar burndown]
 
   def index
-    @projects = current_user.projects
+    @projects = current_user.projects.all
   end
 
   def new
@@ -69,7 +69,6 @@ class ProjectsController < ApplicationController
     @start_time = @project[:start_time]
     @end_time = @project[:end_time]
     @task_done = @project.columns.where(status: "完成").length - 1
-    rander html:@task
   end
 
   private
