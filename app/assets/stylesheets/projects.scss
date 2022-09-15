@@ -78,17 +78,35 @@ ul {
 }
 // board
 .card-list{
-  background-color: #f5f3f3;
+  background-color: #EDE8E4;
 }
 .board-list{
-  background-color: #f9f8f8;;
+  background-color: #fffcfa;
 }
 .column_display{
   visibility: hidden;
+  position: absolute;
+  margin-bottom: -78px;
+  z-index: 50;
 }
 .display{
   display: none;
 }
 input[type='text']{
-  text-align:center;
+  text-align: center;
+}
+.task_update{
+  position: fixed;
+  max-height: 400px;
+  max-width: 300px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  @media screen and (min-width: 768px) {
+    left: auto;
+  }
+}
+.column_update{
+  background-color: #EDE8E4;
 }

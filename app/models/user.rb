@@ -11,13 +11,14 @@ class User < ApplicationRecord
 
   has_many :channels
   has_many :groups, through: :channels
+  after_create :name
 
 
   def join?(group)
     groups.find_by(id: group).present?
   end
 
-  # validates :nickname, presence: true
+  validates :username, presence: true
 
   # google 登入
   def self.from_omniauth(access_token)
@@ -26,9 +27,13 @@ class User < ApplicationRecord
     # Uncomment the section below if you want users to be created if they don't exist
     user ||= User.create(
       email: data['email'],
-      username: data['username'] || data['email'].split('@').first,
+      username: data['name'] || data['email'].split('@').first,
       password: Devise.friendly_token[0, 20]
     )
     user
+  end
+
+  def name
+    self.username = self.email.split('@').first
   end
 end

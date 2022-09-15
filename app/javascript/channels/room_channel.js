@@ -30,6 +30,8 @@ document.addEventListener('turbolinks:load', () => {
 
           const messageContainer = document.getElementById('messages');
           messageContainer.innerHTML = messageContainer.innerHTML + html;
+          const message_value = document.querySelector('#message_content')
+          message_value.value = ''
         },
       }
     );

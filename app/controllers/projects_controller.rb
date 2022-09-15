@@ -11,9 +11,10 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    current_user.projects.new(project_params.merge(owner_id: current_user.id))
+    project = current_user.projects.new(project_params.merge(owner_id: current_user.id))
 
     if current_user.save
+      project.users << current_user
       redirect_to projects_path, notice: '專案建立成功'
     else
       render :new, notice: '專案建立失敗'
