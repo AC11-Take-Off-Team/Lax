@@ -1,0 +1,17 @@
+.abcd{
+
+color:white;
+position: relative;
+}
+
+.abcd:hover::before {
+  position: absolute;
+  top: -45px;
+  left: -50px;
+  color: #fff;
+  font-size: 14px;
+  background:#F596AA;
+  padding: 8px;
+  border-radius: 12px;
+  content: '邀請';
+}

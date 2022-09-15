@@ -1,4 +1,4 @@
-<section class="w-5/6 max-w-full mx-auto">
+<section class="w-5/6 max-w-full mx-auto ">
   <div class="mx-auto max-w-7xl ">
     <div class="flex items-center justify-between " >
       <div>
@@ -8,7 +8,7 @@
         <h3><%= link_to "創建頻道",new_group_path ,:class=>"max-w-full px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-momo hover:bg-kohbai text-base" %></h3>
       </div>
     </div>
-    <div class="mx-auto ">
+    <div class="mx-auto">
       <div><%= render 'layouts/shared/search_form'%></div>
         <div class="p-2 my-2 text-gray-700">共<%= Group.count %>個頻道</div>
       <% @group.each do |group| %>
