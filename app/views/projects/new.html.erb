@@ -16,18 +16,6 @@
   <div class="w-4/5 grid gap-y-24 mt-10 border-solid border-black">
     <div class="flex justify-start">
       <div class="mb-3 w-96">
-        <%= form_with model:@project do |f| %>
-        <label class="form-label inline-block mb-2 text-gray-700">專案名稱</label>
-        <%= f.text_field :title, :class=>"block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none mb-4" %>
-        <label class="form-label inline-block mb-2 text-gray-700">專案內容</label>
-        <%= f.text_field :content, :class=>"block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none mb-4" %>
-        <label class="form-label inline-block mb-2 text-gray-700">開始時間</label>
-        <%= f.text_field :content, :class=>"block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %>
-        <label class="form-label inline-block mb-2 text-gray-700">結束時間</label>
-        <%= f.text_field :content, :class=>"block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %>
-        
-        <%= f.submit %>
-        <% end %>
       </div>
     </div>
   </div>
