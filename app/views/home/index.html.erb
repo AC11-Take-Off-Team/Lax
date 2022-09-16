@@ -27,33 +27,61 @@
   </div>
   
   <div class="flex justify-evenly mb-8 gap-8">
-    <div data-controller="index-project" class="border border-gray-500 border-solid rounded-md p-4 text-gray-700 w-6/12 h-96 ml-8">
+    <div class="border border-gray-500 border-solid rounded-md p-4 text-gray-700 w-6/12 h-96 ml-8">
       <div class="flex mb-4 border-b border-gray-400">
         <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="h-20">
         <div class="ml-4 mt-4">
           <p class="text-xl mb-2">我的優先任務</p>
-          <div class="mb-4">
-            <button data-action="click->index-project#showTodoList" class="text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold pb-2">待辦事項</button>
-            <%= link_to "進行中", groups_path,:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold ml-4 pb-2" %>
-            <%= link_to "已完成", groups_path,:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold ml-4 pb-2" %>
+          <div class="mb-4" data-controller="index-task">
+            <button data-action="click->index-task#showTodoList" class="text-icon border-b-2 border-transparent hover:text-gray-700 text-base font-semibold pb-2" data-index-task-target="todoBtn">待辦事項</button>
+            <button data-action="click->index-task#showDoingList" class="text-icon border-b-2 border-transparent hover:text-gray-700 text-base font-semibold pb-2 ml-4" data-index-task-target="doingBtn">進行中</button>
+            <button data-action="click->index-task#showDoneList" class="text-icon border-b-2 border-transparent hover:text-gray-700 text-base font-semibold pb-2 ml-4" data-index-task-target="doneBtn">已完成</button>
           </div>
         </div>
       </div>
       <div>
         <div class="flex pb-4 pl-2 mb-4 border-b border-gray-400">
           <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto opacity-30	">
-          <input class="border-transparent" placeholder="按一下此處可新增任務"></input>
+          <input type="text" class="focus: outline-none" data-controller="index-task-create" data-project-id="<%= @first_project[:id] %>" data-action="keypress->index-task-create#createTask" data-index-task-create-target="createTask" placeholder="為第一個專案建立任務"></input>
         </div>
-        <div class="flex pb-4 pl-2 mb-4 border-b border-gray-400">
-          <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto">
-          <p>規劃檔期活動</p>
-        </div>
-        <div class="flex pb-4 pl-2 border-b border-gray-400">
-          <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto">
-          <p>完成海報設計</p>
+        <div data-controller="index-task-list">
+          <div data-index-task-list-target="undo" data-action="showTodo@window->index-task-list#showTodo" class="hidden overflow-auto">
+            <% @undo_list.each do |task| %>
+              <div class="flex pb-4 pl-2 mb-4 border-b border-gray-400">
+                <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto">
+                <p><%= link_to task.title, task_path(task.id) %></p>
+              </div>
+            <% end %>
+          </div>
+          <div data-index-task-list-target="doing" data-action="showDoing@window->index-task-list#showDoing" class="hidden h-56 overflow-auto">
+            <% @doing_list.each do |task| %>
+              <div class="flex pb-4 pl-2 mb-4 border-b border-gray-400">
+                <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto">
+                <p><%= link_to task.title, task_path(task.id) %></p>
+              </div>
+            <% end %>
+          </div>
+          <div data-index-task-list-target="done" data-action="showDone@window->index-task-list#showDone" class="hidden h-56 overflow-auto">
+            <% @done_list.each do |task| %>
+              <div class="flex pb-4 pl-2 mb-4 border-b border-gray-400">
+                <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto">
+                <p><%= link_to task.title, task_path(task.id) %></p>
+              </div>
+            <% end %>
+          </div>
+          <div data-index-task-list-target="example">
+            <div class="flex pb-4 pl-2 mb-4 border-b border-gray-400">
+              <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto">
+              <p>規劃檔期活動</p>
+            </div>
+            <div class="flex pb-4 pl-2 border-b border-gray-400">
+              <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto">
+              <p>完成海報設計</p>
+          </div>
         </div>
       </div>
     </div>
+  </div>
     
     <div data-controller="button-project" class="border border-gray-500 border-solid rounded-md p-4 text-gray-700 w-6/12 h-96 mr-8">
       <p class="text-xl mt-4 mb-6 pl-4">專案</p>
@@ -66,20 +94,23 @@
           <p class="ml-4">建立專案</p>
         </button>
       </div>
-      <div class="pl-8 flex items-center mb-4">
-        <div class="w-10 h-10 relative mr-3 rounded">
-          <div class="absolute top-0 left-0 w-full rounded-lg bg-blue-500 h-full flex items-center justify-center">
-            <svg height="20" viewBox="0 0 24 24">
-              <path fill="#fff" d="M22,21.2l0.4,2.5c0,0.3-0.2,0.4-0.5,0.3l-2.5-1.3c-0.6,0.2-1.2,0.3-1.9,0.3c-3.6,0-6.4-2.8-6.5-6.4  c0,0,0-0.1,0-0.1c0-3.4,2.6-6.2,5.9-6.5c0.2,0,0.4,0,0.6,0c3.6,0,6.5,2.9,6.5,6.5C24,18.3,23.2,20,22,21.2z"/>
-              <path d="M17,8.5c0,0.5,0,1-0.1,1.5c-3.3,0.3-5.9,3.1-5.9,6.5c0,0,0,0.1,0,0.1C10.2,16.9,9.4,17,8.5,17  c-0.9,0-1.8-0.2-2.7-0.4l-3.4,1.7c-0.3,0.2-0.7-0.1-0.6-0.5l0.6-3.4C0.9,12.8,0,10.8,0,8.5C0,3.8,3.8,0,8.5,0S17,3.8,17,8.5z">
-            </svg>
-          </div>
-        </div>
-        <p>我們的第一個專案</p>
-      </div>
-      <div class="flex-col flex-wrap	">
-        <% @projects.first(3).each do |project| %>
-          <div class="pl-8 flex items-center mb-4">
+      <% if @projects %>
+        <div class="flex-col flex-wrap h-56 overflow-auto">
+          <% @projects.each do |project| %>
+            <div class="pl-8 flex items-center mb-4">
+              <div class="w-10 h-10 relative mr-3 rounded">
+                <div class="absolute top-0 left-0 w-full rounded-lg bg-blue-500 h-full flex items-center justify-center">
+                  <svg height="20" viewBox="0 0 24 24">
+                    <path fill="#fff" d="M22,21.2l0.4,2.5c0,0.3-0.2,0.4-0.5,0.3l-2.5-1.3c-0.6,0.2-1.2,0.3-1.9,0.3c-3.6,0-6.4-2.8-6.5-6.4  c0,0,0-0.1,0-0.1c0-3.4,2.6-6.2,5.9-6.5c0.2,0,0.4,0,0.6,0c3.6,0,6.5,2.9,6.5,6.5C24,18.3,23.2,20,22,21.2z"/>
+                    <path d="M17,8.5c0,0.5,0,1-0.1,1.5c-3.3,0.3-5.9,3.1-5.9,6.5c0,0,0,0.1,0,0.1C10.2,16.9,9.4,17,8.5,17  c-0.9,0-1.8-0.2-2.7-0.4l-3.4,1.7c-0.3,0.2-0.7-0.1-0.6-0.5l0.6-3.4C0.9,12.8,0,10.8,0,8.5C0,3.8,3.8,0,8.5,0S17,3.8,17,8.5z">
+                  </svg>
+                </div>
+              </div>
+              <p><%= link_to project.title, project_path(project.id) %></p>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="pl-8 flex items-center mb-4" data-action="click->button-project#openProjectPopup">
             <div class="w-10 h-10 relative mr-3 rounded">
               <div class="absolute top-0 left-0 w-full rounded-lg bg-blue-500 h-full flex items-center justify-center">
                 <svg height="20" viewBox="0 0 24 24">
@@ -88,7 +119,7 @@
                 </svg>
               </div>
             </div>
-            <p><%= project.title %></p>
+            <p>我們的第一個專案</p>
           </div>
         <% end %>
       </div>
@@ -99,13 +130,24 @@
   <div class="m-auto border border-gray-500 border-solid rounded-md p-4 text-gray-700 w-12/12 gap-8 ml-8 mr-8">
     <p class="text-xl mb-8">頻道</p>
     <div class="flex justify-around">
-      <div class="border border-gray-500 border-solid rounded-md p-6 text-gray-700 w-50">
+      <% @groups.first(3).each do |group| %>
+        <div class="border border-gray-500 border-solid rounded-md p-6 text-gray-700 w-50">
+          <div class="text-sm text-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/2922/2922561.png" class="w-24 m-auto mb-4 mt-4">
+            <p class="text-lg bold"><%= group.title %></p>
+            <span class="block text-xs">檢視您團隊的狀態更新。</span>
+            <span class="block mb-8 text-xs">讓工作保持正常進度。</span>
+          </div>
+          <button class="block m-auto border border-gray-500 border-solid rounded-md p-1 text-gray-700 text-sm">邀請隊友</button>
+        </div>
+      <% end %>
+      <div class="border border-gray-500 border-dashed rounded-md p-6 text-gray-400 w-50">
         <div class="text-sm text-center">
-          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922561.png" class="w-24 m-auto mb-4 mt-4">
+          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922579.png" class="w-24 m-auto mb-4 mt-4 opacity-10">
           <span class="block">檢視您團隊的狀態更新。</span>
           <span class="block mb-8">讓工作保持正常進度。</span>
         </div>
-        <button class="border border-gray-500 border-solid rounded-md p-1 text-gray-700 text-sm">邀請隊友</button>
+        <button class="block m-auto border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
       </div>
       <div class="border border-gray-500 border-dashed rounded-md p-6 text-gray-400 w-50">
         <div class="text-sm text-center">
@@ -113,7 +155,7 @@
           <span class="block">檢視您團隊的狀態更新。</span>
           <span class="block mb-8">讓工作保持正常進度。</span>
         </div>
-        <button class="border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
+        <button class="block m-auto border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
       </div>
       <div class="border border-gray-500 border-dashed rounded-md p-6 text-gray-400 w-50">
         <div class="text-sm text-center">
@@ -121,15 +163,7 @@
           <span class="block">檢視您團隊的狀態更新。</span>
           <span class="block mb-8">讓工作保持正常進度。</span>
         </div>
-        <button class="border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
-      </div>
-      <div class="border border-gray-500 border-dashed rounded-md p-6 text-gray-400 w-50">
-        <div class="text-sm text-center">
-          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922579.png" class="w-24 m-auto mb-4 mt-4 opacity-10">
-          <span class="block">檢視您團隊的狀態更新。</span>
-          <span class="block mb-8">讓工作保持正常進度。</span>
-        </div>
-        <button class="border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
+        <button class="block m-auto border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
       </div>
       <div class="border border-gray-500 border-dashed rounded-md p-6 text-gray-400 w-50">
         <div class="p-2">
@@ -138,7 +172,7 @@
             <span class="block">檢視您團隊的狀態更新。</span>
             <span class="block mb-8">讓工作保持正常進度。</span>
           </div>
-          <button class="border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
+          <button class="block m-auto border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
         </div>
         </div>
     </div>
