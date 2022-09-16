@@ -1,4 +1,3 @@
-
 <div class="grid w-4/5 mx-auto mt-10 gap-y-24">
   <%= Time.now.strftime("%Y-%m月%d日") %>
   <div>
@@ -55,7 +54,7 @@
           </div>
           <%= link_to "建立專案" , new_project_path %>
         </button>
-        <%  @tasks = current_user.tasks %>
+        <%=  @task %>
           <div class="flex items-center w-full p-2 text-sm font-semibold text-gray-600 transition-all rounded-md hover:bg-light">
           <div class="flex items-center justify-center w-8 h-8 mr-3 border border-dashed rounded-full border-icon text-icon">
           </div>

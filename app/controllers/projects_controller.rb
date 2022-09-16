@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_user_project, only: %i[show edit update destroy board calendar]
+  before_action :find_user_project, only: %i[show edit update destroy board calendar gantt]
 
   def index
     @projects = current_user.projects
@@ -53,6 +53,9 @@ class ProjectsController < ApplicationController
     else
       redirect_to project_path(params[:project_id]), notice: '已將成員退出專案'
     end
+  end
+
+  def gantt
   end
 
   def board

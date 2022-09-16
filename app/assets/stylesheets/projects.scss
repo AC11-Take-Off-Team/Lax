@@ -2,6 +2,55 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+ .gantt .bar{
+   fill: #E16B8C !important;
+
+ }
+.gantt .bar-label {
+  fill: white !important;
+   font-size: 15px !important;
+   font-weight: bold !important;
+   line-height: 10px !important;
+ }
+
+ .gantt .bar-label.big {
+   fill: black !important;
+   text-anchor: start !important;
+   font-size: 12px !important;
+ }
+
+.chart-controls.popup-wrapper {
+  width: 200px;
+  padding: 0 5px;
+
+}
+
+.chart-label {
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+
+}
+
+.chart-controls {
+  text-align: center;
+
+}
+
+.chart-controls>p {
+  font-size: 1.2rem;
+  font-weight: 500;
+
+}
+
+.gantt-container {
+  width: 90vw;
+  margin: 0 auto;
+
+}
+
+
+
 ul {
   list-style: none;
 }

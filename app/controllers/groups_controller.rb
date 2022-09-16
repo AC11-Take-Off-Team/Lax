@@ -13,11 +13,11 @@ class GroupsController < ApplicationController
   end
 
   def show
-    if  @group.users.include?(current_user)
+    if @group.users.include?(current_user)
       @room = @group.room
       render "/rooms/index"
     else
-      redirect_to groups_path,notice: "非本頻道成員"
+      redirect_to groups_path, notice: "非本頻道成員"
     end
   end
 
@@ -25,9 +25,8 @@ class GroupsController < ApplicationController
     @group = current_user.groups.new(group_params)
     if @group.save
       @group.room = Room.create(name: @group.title)
+      current_user.groups << @group
       redirect_to groups_path
-    else
-      render :new
     end
   end
 
@@ -42,8 +41,17 @@ class GroupsController < ApplicationController
   end
 
   def join
-      current_user.groups << @group
-      redirect_to group_path
+    user = User.find_by(email: params[:email])
+    if user.present?
+      if @group.is_member_of?(user.id)
+        flash[:notice] = "已經加入了"
+        render :join
+      else
+        @group.users << user
+        redirect_to group_path
+        flash[:notice] = "已加入"
+      end
+    end
   end
 
   def quit
@@ -63,4 +71,3 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
   end
 end
-

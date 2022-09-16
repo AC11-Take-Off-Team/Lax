@@ -1,38 +1,29 @@
-<section class="max-w-full mx-auto ">
+<section class="w-5/6 max-w-full mx-auto">
   <div class="mx-auto max-w-7xl ">
     <div class="flex items-center justify-between " >
       <div>
-        <h2 class="p-3 my-2 text-2xl">所有頻道</h2>
+        <h2 class="p-3 my-2 text-xl font-semibold">所有頻道</h2>
       </div>
       <div>
-        <h3 class="max-w-full px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-kohbai hover:bg-green-700"><%= link_to "創建頻道" ,new_group_path %></h3>
+        <h3><%= link_to "創建頻道",new_group_path ,:class=>"max-w-full px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-momo hover:bg-kohbai text-base" %></h3>
       </div>
     </div>
-    <div class="w-5/6 mx-auto ">
-      <div>
-        <h4 class="p-2 my-2 text-gray-700">共<%= Group.count %>個頻道</h4>
-        <span class="absolute top-0 left-0 flex items-center justify-center w-8 h-8 text-gray-500">
-          <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 32 32" class="fill-current">
-            <path
-              d="M29.707,28.293l-8.256-8.256C23.042,18.13,24,15.677,24,13c0-6.075-4.925-11-11-11S2,6.925,2,13s4.925,11,11,11c2.677,0,5.13-0.958,7.037-2.549l8.256,8.256L29.707,28.293z M4,13c0-4.963,4.037-9,9-9c4.963,0,9,4.037,9,9s-4.037,9-9,9C8.037,22,4,17.963,4,13z">
-            </path>
-          </svg>
-        </span>
-        <%= render 'layouts/shared/search_form' , :class=>"h-8 w-36 group-focus-within:w-[31.938rem] outline-none transition-all rounded-3xl bg-transparent pl-8 pr-4 text-sm border border-gray-300"%>
-      </div>
+    <div class="mx-auto ">
+      <div><%= render 'layouts/shared/search_form'%></div>
+        <div class="p-2 my-2 text-gray-700">共<%= Group.count %>個頻道</div>
       <% @group.each do |group| %>
-        <div class="p-2 my-2 border-b-2">
-          <div class="flex justify-between align-center">
+        <div class="p-2 my-2 mt-3 transition bg-white hover:bg-gray-100">
+          <div class="flex justify-between align-center ">
             <div>
-              <h4 class="text-blue-500 text-1xl"><%= link_to group.title, group %></h4>
+              <h3 class="text-lg text-black"><%= link_to group.title, group %></h3>
               <div class="mb-2 text-sm">
-                <div><%= group.users.count %>個成員</div>
+                <div class="text-gray-600"><%= group.users.count %>個成員</div>
               </div>
             </div>
             <% if current_user.join?(group) %>
-              <button class="px-6 py-3 text-white transition duration-300 bg-gray-400 border-b-4 rounded-lg hover:bg-green-700"><%= link_to "退出" , quit_group_path(group),method: "delete" %></button>
+              <button><%= link_to "退出" , quit_group_path(group),method: "delete" ,:class=>" px-6 py-3 text-white transition duration-300 bg-gray-300 border-b-4 rounded-lg hover:bg-gray-400 text-base"%></button>
             <% else %>
-              <button class="px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-kohbai hover:bg-green-700"><%= link_to "加入" , join_group_path(group),method: "post" %></button>
+              <button><%= link_to "進入" , group_path(group),:class=>" px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-momo hover:bg-kohbai text-base" %></button>
             <% end %>
           </div>
         </div>

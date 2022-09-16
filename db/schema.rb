@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2022_09_13_040647) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "private"
   end
 
   create_table "messages", force: :cascade do |t|
