@@ -16,7 +16,7 @@ export default class extends Controller {
     } else {
       this.navBarTarget.style.display = "none";
       this.navBtnTarget.style.position = "fixed";
-      this.navBtnTarget.style.left = "0";
+      this.navBtnTarget.style.left = "10%";
       this.navBtnTarget.style.top = "5rem";
       localStorage.setItem("NavClicked?", true);
     }

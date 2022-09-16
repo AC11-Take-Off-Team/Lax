@@ -1,4 +1,4 @@
-<aside data-controller="sidebar" class="fixed" >
+<aside data-controller="sidebar" class="fixed lg:w-2/12">
   <div data-sidebar-target="navBar" class="bg-gray-700 w-68 h-full">
     <header class="flex items-center h-16 px-6 text-white text-2xl"></header>
     <button data-sidebar-target="navBtn" data-action="click->sidebar#setNav" class="w-10 h-10 bg-gray-700 text-white text-opacity-70 hover:text-opacity-100 absolute right-1 top-3" for="navMenu-active">
@@ -75,7 +75,7 @@
         <a href="#" class="text-sm text-white flex items-center text-lighter h-8 px-6 hover:bg-white hover:bg-opacity-10">
           所有專案
         </a>
-        <a href="#" class="text-sm text-white flex items-center text-lighter h-8 px-6 hover:bg-white hover:bg-opacity-10">
+        <a href="#" class="text-sm text-white flex items-center text-lighter h-10 px-6 mb-4 hover:bg-white hover:bg-opacity-10">
           刪除專案
         </a>
       </div>
@@ -92,7 +92,7 @@
           <%= link_to "邀請人員" , new_project_path %>
         </button>
       </div>
-      <div class="mb-32 ml-4 flex items-center">
+      <div class="mb-28 ml-4 flex items-center">
         <img src="https://cdn-icons-png.flaticon.com/512/5111/5111337.png" class="w-2">
         <p class="text-white pl-2">我們的第一個專案</p>
       </div>

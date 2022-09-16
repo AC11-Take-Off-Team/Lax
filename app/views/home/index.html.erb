@@ -1,4 +1,4 @@
-<section class="w-full relative">
+<section class="relative m-auto lg:w-10/12 ">
   <h1 class="text-xl font-extrabold ml-4 mt-8">首頁</h1>
   <span class="text-lg block text-center mb-4"><%= Time.now.strftime("%Y年%m月%d日") %></span>
   <% if current_user.username %>
@@ -7,7 +7,7 @@
     <h2 class="text-center text-4xl font-extrabold mb-8">Hi, <%= current_user.email %></h2>
   <% end %>
   
-  <div class="w-3/5 mr-auto ml-auto mb-8 flex justify-center border	border-gray-500 border-solid rounded-full p-4 text-gray-700">
+  <div class="lg:w-4/5 mr-auto ml-auto mb-8 flex justify-center border	border-gray-500 border-solid rounded-full p-4 text-gray-700">
     <div class="">
       <button class="flex">
         <img src="https://cdn-icons-png.flaticon.com/512/2773/2773319.png" class="w-6 mr-2">
@@ -26,13 +26,13 @@
     </div>
   </div>
   
-  <div class="flex justify-evenly mb-8 gap-8">
+  <div class="lg:flex lg:justify-evenly mb-8 gap-12">
     <div class="border border-gray-500 border-solid rounded-md p-4 text-gray-700 w-6/12 h-96 ml-8">
       <div class="flex mb-4 border-b border-gray-400">
-        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="h-20">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="h-20 ">
         <div class="ml-4 mt-4">
           <p class="text-xl mb-2">我的優先任務</p>
-          <div class="mb-4" data-controller="index-task">
+          <div class="mb-4 md:flex md:flex-col lg:flex-row" data-controller="index-task">
             <button data-action="click->index-task#showTodoList" class="text-icon border-b-2 border-transparent hover:text-gray-700 text-base font-semibold pb-2" data-index-task-target="todoBtn">待辦事項</button>
             <button data-action="click->index-task#showDoingList" class="text-icon border-b-2 border-transparent hover:text-gray-700 text-base font-semibold pb-2 ml-4" data-index-task-target="doingBtn">進行中</button>
             <button data-action="click->index-task#showDoneList" class="text-icon border-b-2 border-transparent hover:text-gray-700 text-base font-semibold pb-2 ml-4" data-index-task-target="doneBtn">已完成</button>
@@ -45,7 +45,7 @@
           <input type="text" class="focus: outline-none" data-controller="index-task-create" data-project-id="<%= @first_project[:id] %>" data-action="keypress->index-task-create#createTask" data-index-task-create-target="createTask" placeholder="為第一個專案建立任務"></input>
         </div>
         <div data-controller="index-task-list">
-          <div data-index-task-list-target="undo" data-action="showTodo@window->index-task-list#showTodo" class="hidden overflow-auto">
+          <div data-index-task-list-target="undo" data-action="showTodo@window->index-task-list#showTodo" class="h-36 hidden overflow-auto">
             <% @undo_list.each do |task| %>
               <div class="flex pb-4 pl-2 mb-4 border-b border-gray-400">
                 <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto">
@@ -53,7 +53,7 @@
               </div>
             <% end %>
           </div>
-          <div data-index-task-list-target="doing" data-action="showDoing@window->index-task-list#showDoing" class="hidden h-56 overflow-auto">
+          <div data-index-task-list-target="doing" data-action="showDoing@window->index-task-list#showDoing" class="hidden h-36 overflow-auto">
             <% @doing_list.each do |task| %>
               <div class="flex pb-4 pl-2 mb-4 border-b border-gray-400">
                 <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto">
@@ -61,7 +61,7 @@
               </div>
             <% end %>
           </div>
-          <div data-index-task-list-target="done" data-action="showDone@window->index-task-list#showDone" class="hidden h-56 overflow-auto">
+          <div data-index-task-list-target="done" data-action="showDone@window->index-task-list#showDone" class="hidden h-36 overflow-auto">
             <% @done_list.each do |task| %>
               <div class="flex pb-4 pl-2 mb-4 border-b border-gray-400">
                 <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto">
@@ -129,52 +129,40 @@
   
   <div class="m-auto border border-gray-500 border-solid rounded-md p-4 text-gray-700 w-12/12 gap-8 ml-8 mr-8">
     <p class="text-xl mb-8">頻道</p>
-    <div class="flex justify-around">
-      <% @groups.first(3).each do |group| %>
-        <div class="border border-gray-500 border-solid rounded-md p-6 text-gray-700 w-50">
-          <div class="text-sm text-center">
-            <img src="https://cdn-icons-png.flaticon.com/512/2922/2922561.png" class="w-24 m-auto mb-4 mt-4">
-            <p class="text-lg bold"><%= group.title %></p>
-            <span class="block text-xs">檢視您團隊的狀態更新。</span>
-            <span class="block mb-8 text-xs">讓工作保持正常進度。</span>
+    <div class="flex justify-around overflow-auto">
+      <% @groups.each do |group| %>
+        <div class="bg-gray-100 border border-gray-500 border-solid rounded-md p-8 text-gray-700 w-50">
+          <div class="text-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/2922/2922561.png" class="w-24 m-auto mb-2 mt-4">
+            <p class="text-xl bold mb-4"><%= group.title %></p>
           </div>
           <button class="block m-auto border border-gray-500 border-solid rounded-md p-1 text-gray-700 text-sm">邀請隊友</button>
         </div>
       <% end %>
-      <div class="border border-gray-500 border-dashed rounded-md p-6 text-gray-400 w-50">
-        <div class="text-sm text-center">
-          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922579.png" class="w-24 m-auto mb-4 mt-4 opacity-10">
-          <span class="block">檢視您團隊的狀態更新。</span>
-          <span class="block mb-8">讓工作保持正常進度。</span>
+      <div class="border border-gray-500 border-dashed rounded-md p-4 text-gray-400 w-50">
+        <div class="text-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922579.png" class="w-20 m-auto mb-2 mt-4 opacity-10">
+          <span class="block text-xs ">檢視您團隊的狀態。</span>
+          <span class="block mb-4 text-xs ">讓工作保持正常進度。</span>
         </div>
-        <button class="block m-auto border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
+        <button class="block m-auto border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-xs">邀請隊友</button>
       </div>
-      <div class="border border-gray-500 border-dashed rounded-md p-6 text-gray-400 w-50">
-        <div class="text-sm text-center">
-          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922579.png" class="w-24 m-auto mb-4 mt-4 opacity-10">
-          <span class="block">檢視您團隊的狀態更新。</span>
-          <span class="block mb-8">讓工作保持正常進度。</span>
+      <div class="border border-gray-500 border-dashed rounded-md p-4 text-gray-400 w-50">
+        <div class="text-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922579.png" class="w-20 m-auto mb-2 mt-4 opacity-10">
+          <span class="block text-xs ">檢視您團隊的狀態。</span>
+          <span class="block mb-4 text-xs ">讓工作保持正常進度。</span>
         </div>
-        <button class="block m-auto border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
+        <button class="block m-auto border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-xs">邀請隊友</button>
       </div>
-      <div class="border border-gray-500 border-dashed rounded-md p-6 text-gray-400 w-50">
-        <div class="text-sm text-center">
-          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922579.png" class="w-24 m-auto mb-4 mt-4 opacity-10">
-          <span class="block">檢視您團隊的狀態更新。</span>
-          <span class="block mb-8">讓工作保持正常進度。</span>
+      <div class="border border-gray-500 border-dashed rounded-md p-4 text-gray-400 w-50">
+        <div class="text-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/2922/2922579.png" class="w-20 m-auto mb-2 mt-4 opacity-10">
+          <span class="block text-xs ">檢視您團隊的狀態。</span>
+          <span class="block mb-4 text-xs ">讓工作保持正常進度。</span>
         </div>
-        <button class="block m-auto border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
+        <button class="block m-auto border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-xs">邀請隊友</button>
       </div>
-      <div class="border border-gray-500 border-dashed rounded-md p-6 text-gray-400 w-50">
-        <div class="p-2">
-          <div class="text-sm text-center">
-            <img src="https://cdn-icons-png.flaticon.com/512/2922/2922579.png" class="w-24 m-auto mb-4 mt-4 opacity-10">
-            <span class="block">檢視您團隊的狀態更新。</span>
-            <span class="block mb-8">讓工作保持正常進度。</span>
-          </div>
-          <button class="block m-auto border border-gray-300 border-solid rounded-md p-1 text-gray-300 text-sm">邀請隊友</button>
-        </div>
-        </div>
     </div>
   </div>
 
