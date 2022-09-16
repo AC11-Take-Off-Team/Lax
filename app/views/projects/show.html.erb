@@ -1,19 +1,63 @@
-<h1><%= @project.title %></h1>
+<header class="flex items-center justify-between h-24 px-6 border-b border-gray-200">
+  <div class="flex items-center w-full"><%= render "shared/header" %></div>
+</header>
 
-<% @project.users.each do |user_name| %>
-  <%= user_name.username %>
-  <%= link_to "踢出專案", kick_out_project_path(user_name, project_id: @project.id ), method: "delete" ,data: { confirm: "是否將此人退出專案?"} %>
-<% end  %>
+<main class="flex justify-center h-full project_show" data-controller="overview">
+  <section class="grid w-2/3 mx-auto mt-5 gap-y-24">
+    <div class="m-4 border-2 border-black">
+      <h2 class="p-2 text-xl font-semibold border-b-2 border-black">我們如何協作</h2>
+      <p class="block p-2 text-sm border-black"><%= @project.content %></p>
+    </div>
+    <div class="">
+      <h3>專案成員</h3>
+      <div class="flex">
+        <button class="flex items-center p-2 text-base font-semibold text-gray-600 transition-all rounded-md hover:bg-hover" data-action="click->overview#join_display">
+          <div class="flex items-center justify-center w-8 h-8 mr-3 border border-dashed rounded-full border-icon text-icon">
+            <svg class="fill-current" height="16" focusable="false" viewBox="0 0 32 32">
+              <path
+                d="M26,14h-8V6c0-1.1-0.9-2-2-2l0,0c-1.1,0-2,0.9-2,2v8H6c-1.1,0-2,0.9-2,2l0,0c0,1.1,0.9,2,2,2h8v8c0,1.1,0.9,2,2,2l0,0c1.1,0,2-0.9,2-2v-8h8c1.1,0,2-0.9,2-2l0,0C28,14.9,27.1,14,26,14z"
+              ></path>
+            </svg>
+          </div>
+          加入成員
+        </button>
+        <div class="">
+          <% @project.users.each do |user| %>
+          <button class="relative flex items-center p-2 text-sm font-semibold text-gray-600 transition-all rounded-md hover:pr-6">
+            <div class="flex items-center justify-center flex-shrink-0 w-8 h-8 mr-3 text-sm font-semibold text-white bg-blue-500 rounded-full"><% user.username.first(2) %></div>
+            <div class="text-left">
+              <div class="line-clamp-1"><% user.username %></div>
+              <div class="text-xs text-gray-400">Project Owner</div>
+            </div>
+            <span class="absolute top-0 flex items-center h-full transition-all opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 right-2">
+              <svg class="fill-current" height="12" focusable="false" viewBox="0 0 24 24">
+                <path
+                  d="M3.5,8.9c0-0.4,0.1-0.7,0.4-1C4.5,7.3,5.4,7.2,6,7.8l5.8,5.2l6.1-5.2C18.5,7.3,19.5,7.3,20,8c0.6,0.6,0.5,1.5-0.1,2.1 l-7.1,6.1c-0.6,0.5-1.4,0.5-2,0L4,10.1C3.6,9.8,3.5,9.4,3.5,8.9z"
+                ></path>
+              </svg>
+            </span>
+          </button>
+          <nav
+            class="absolute left-0 invisible min-w-full py-1 transition-all translate-y-1 bg-white rounded opacity-0 top-full whitespace-nowrap group-focus-within:opacity-100 group-focus-within:visible shadow-box"
+          >
+            <a href="#" class="flex items-center px-4 text-sm h-9 hover:bg-light"> Add role </a>
+            <a href="#" class="flex items-center px-4 text-sm text-red-600 h-9 hover:bg-light"> Remove as Project Owner </a>
+            <a href="#" class="flex items-center px-4 text-sm text-red-600 h-9 hover:bg-light"> Remove from Project </a>
+          </nav>
+          <% end %>
 
-<%= link_to "退出project", leave_project_project_path, method: "delete", data: { confirm: "是否退出此專案?"} %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div data-controller="join" data-id="<%= @project.id %>" data-overview-target="joinMail" class="fixed top-0 bottom-0 left-0 right-0 z-10 m-auto bg-white border rounded shadow join display">
+    <h4 class="p-2 text-lg">透過電子信箱邀請</h4>
+    <div class="flex p-2"><input class="border-2 rounded shadow"data-join-target="email" type="text" placeholder="請輸入邀請者電子信箱"/>
+      <button data-action="click->join#join_member" class="p-2 text-base text-white border-2 rounded shadow bg-momo hover:bg-kohbai">加入成員</button></div>
+    
+  </div>
+</main>
 
-<div data-controller="join" data-id="<%= @project.id %>">
-  <input data-join-target="email" type="text" placeholder="請輸入電子信箱">
-  <button data-action="click->join#join_member">加入成員</button>
-</div>
+<% @project.users.each do |user_name| %> <%= user_name.username %> <%= link_to "踢出專案", kick_out_project_path(user_name, project_id: @project.id ), method: "delete" ,data: { confirm:
+"是否將此人退出專案?"} %> <% end %> <%= link_to "退出project", leave_project_project_path, method: "delete", data: { confirm: "是否退出此專案?"} %>
 
-<%= link_to "看板", board_project_path(@project) %>
-
-<%= link_to "行事曆", calendar_project_path(@project) %>
-
-<%= link_to "甘特圖",gantt_project_path(@project) %>
