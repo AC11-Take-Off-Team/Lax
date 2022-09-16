@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
 
   def index
     @group_query = Group.ransack(params[:q])
-    @group = Group.recent
+    @group = current_user.groups.recent
     @group = @group_query.result if params[:q]
   end
 

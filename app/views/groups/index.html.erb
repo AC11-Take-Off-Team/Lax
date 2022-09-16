@@ -11,7 +11,9 @@
     <div class="mx-auto">
       <div><%= render 'layouts/shared/search_form'%></div>
         <div class="p-2 my-2 text-gray-700">共<%= Group.count %>個頻道</div>
+<div class="overflow-y-auto h-96">
       <% @group.each do |group| %>
+
         <div class="p-2 my-2 mt-3 transition bg-white hover:bg-gray-100">
           <div class="flex justify-between align-center ">
             <div>
@@ -27,7 +29,9 @@
             <% end %>
           </div>
         </div>
+
       <% end %>
+      </div>
     </div>
   </div>
 </section>
