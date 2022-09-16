@@ -68,7 +68,7 @@ class ProjectsController < ApplicationController
     @task = @project.tasks.count
     @start_time = @project[:start_time]
     @end_time = @project[:end_time]
-    @task_done = @project.columns.where(status: "完成").length - 1 
+    @task_done = @project.tasks.where(column_id: 3).length 
   end
 
   private
