@@ -1,4 +1,4 @@
-<%= form_with(model: message , local:true, data: {controller: "emoji-picker"}) do |form| %>
+<div data-controller="message_switch"><%= form_with(model: message , local:true) do |form| %>
   <% if message.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
@@ -14,7 +14,6 @@
      emoji_picker_target: "pickerContainer"
    }) %>
 
-
   <div class="flex items-center px-4 py-4 field emoji-field bg-grey-lighter">
             <div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -24,7 +23,6 @@
           </div>
             <div class="flex-1 mx-4">
                   <%= form.text_field :content, rows: 5 ,style: 'width: 100%', placeholder: "Enter message here!", data: {message_switch_target: "trixEditor"} ,:class=>"w-full px-2 py-2 border rounded"%>
-
             </div>
             <div>
             <svg class="w-4 h-4 -mt-px transform rotate-45" fill="none" stroke="currentColor"viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -34,26 +32,10 @@
           </div>
         </div>
 
-
-  </div>
-
   <%= form.hidden_field :room_id, value: room.id %>
 
   <div class="actions">
-    <%= form.submit data: { disable_with: false } %>
+    <%= form.submit data: { disable_with: false,action: "input=>message_switch#submit"} %>
   </div>
-
 <% end %></div>
 
-
-
-
-
-
-
-
-
-
-=======
-<% end %>
->>>>>>> mes
