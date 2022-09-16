@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       get :board
       get :calendar
     end
-    
+
     resources :columns, shallow: true, only: [:create, :update, :destroy] do
       member do
         post :create_task
@@ -44,13 +44,14 @@ Rails.application.routes.draw do
       end
     end
   end
-      
+
 
   resources :groups do
     member do
       post :join
       delete :quit
       get :content
+      get :search
     end
   end
 

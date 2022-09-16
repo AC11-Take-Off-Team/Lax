@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_group, only: %i[show edit update destroy join quit content]
 
+
   def new
     @group = current_user.groups.new
   end
@@ -60,6 +61,7 @@ class GroupsController < ApplicationController
   end
 
   def content; end
+
 
   private
 

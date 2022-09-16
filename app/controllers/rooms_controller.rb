@@ -7,6 +7,8 @@ class RoomsController < ApplicationController
     @rooms = Room.all
     @messages = Message.all
 
+
+
   end
 
   # GET /rooms/1 or /rooms/1.json

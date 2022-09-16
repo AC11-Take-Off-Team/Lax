@@ -20,11 +20,8 @@
                     <div class="text-gray-600"><%= group.users.count %>個成員</div>
                   </div>
                 </div>
-                <% if current_user.join?(group) %>
-                  <button><%= link_to "退出" , quit_group_path(group),method: "delete" ,:class=>" px-6 py-3 text-white transition duration-300 bg-gray-300 border-b-4 rounded-lg hover:bg-gray-400 text-base"%></button>
-                <% else %>
-                  <button><%= link_to "進入" , group_path(group),:class=>" px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-momo hover:bg-kohbai text-base" %></button>
-                <% end %>
+                  <button><%= link_to "退出" , quit_group_path(group),method: "delete" ,:class=>"px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-momo hover:bg-kohbai text-base"%>
+                  </button>
               </div>
             </div>
           <% end %>

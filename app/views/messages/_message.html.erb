@@ -1,11 +1,11 @@
 
 <!-- A message -->
 <div class="flex items-start text-sm mb-14">
-  <%= image_tag "logo.png", height:50, width:50  ,:class=>"mr-6"%>
+     <div class="flex items-center justify-center flex-shrink-0 w-6 h-6 mr-3 text-sm font-semibold text-white bg-blue-500 rounded-full"><%= message.user.username.first(2) %></div>
     <div class="flex-1 overflow-hidden">
       <div>
-        <span class="text-base"><%= message.user.email %></span>
-        <span class="ml-2 text-xs text-grey"><%= message.created_at.localtime %></span>
+        <span class="text-base"><%= message.user.username %></span>
+        <span class="ml-2 text-xs text-grey"><%= message.created_at.localtime.strftime("%Y-%m-%d %H:%M") %></span>
       </div>
         <p class="text-base leading-normal text-black"><%= message.content %></p>
     </div>
