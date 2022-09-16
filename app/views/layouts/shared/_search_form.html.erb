@@ -2,9 +2,12 @@
 
   <%= f.label "" %>
   <div class="flex w-64">
+
     <div><%= f.search_field :title_or_description_cont, placeholder:"請輸入名稱或描述", :class=>"h-12 w-46 group-focus-within:w-[31.938rem] outline-none transition-all rounded-3xl bg-transparent pl-8 pr-4 text-sm  border-gray-300" %>
 
-    <%= f.submit "⎋" , :class=>"bg-momo text-white rounded-full p-3 hover:bg-kohbai ml-2" %>
+    </div>
+    <div ><%= f.submit "⎋" , :class=>"bg-momo text-white rounded-full p-3 hover:bg-kohbai ml-2" %>
+
     </div>
   </div>
 <% end %>
