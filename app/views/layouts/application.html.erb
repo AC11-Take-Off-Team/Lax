@@ -11,10 +11,10 @@
   <body class="w-full min-h-screen">
     <div class="w-full min-h-screen flex">
       <% if current_user %>
-        <div class="lg:w-2/12">
+        <div class="w-2/12">
           <%= render 'layouts/shared/sidebar', :class=>"md:hidden sm:hidden" %>
         </div>
-        <div class="lg:w-10/12">
+        <div class="w-10/12">
           <%= render 'layouts/shared/home' %>
           <%= yield %>
         </div>

@@ -3,10 +3,7 @@ class HomeController < ApplicationController
 
     @projects = current_user.projects
     @first_project = @projects.first
-    p '----'
-    p @first_project[:id]
-    p '----'
-    @groups = current_user.groups
+    @groups = Group.all
     
     @undo_list = []
     @doing_list = []
