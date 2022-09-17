@@ -18,7 +18,7 @@ export default class extends Controller {
       },
       error: (err) => {
         Swal.fire(
-          "推派人員失敗"
+          "加入人員失敗"
         )
       },
     })

@@ -17,7 +17,6 @@ class User < ApplicationRecord
     groups.find_by(id: group).present?
   end
 
-  validates :username, presence: true
 
   # google 登入
   def self.from_omniauth(access_token)
@@ -33,6 +32,6 @@ class User < ApplicationRecord
   end
 
   def name
-    self.username = self.email.split('@').first
+    self.update(username: self.email.split('@').first) 
   end
 end
