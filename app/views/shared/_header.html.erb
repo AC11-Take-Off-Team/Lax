@@ -1,14 +1,14 @@
 <nav class="flex justify-end mt-auto gap-x-10">
-   <h2 class="text-2xl font-extrabold"><%= @project.title %></h2>
-   <%= link_to "概觀",project_path(@project),:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold pb-1.5" %>
+   <h2 class="text-2xl font-extrabold"><%= project.title %></h2>
+   <%= link_to "概觀",project_path(project),:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold pb-1.5" %>
 
-  <%= link_to "看板",board_project_path(@project),:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold pb-1.5" %>
+  <%= link_to "看板",board_project_path(project),:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold pb-1.5" %>
 
-  <%= link_to "甘特圖",gantt_project_path(@project),:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold pb-1.5" %>
+  <%= link_to "甘特圖",gantt_project_path(project),:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold pb-1.5" %>
   <a href="#" class="text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold pb-1.5">
     燃盡圖
   </a>
-  <%= link_to "行事曆",calendar_project_path(@project),:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold pb-1.5" %>
+  <%= link_to "行事曆",calendar_project_path(project),:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold pb-1.5" %>
 
   <a href="/" class="text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-base font-semibold pb-1.5">
     主頁

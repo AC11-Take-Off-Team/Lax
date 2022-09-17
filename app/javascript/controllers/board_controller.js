@@ -33,8 +33,11 @@ export default class extends Controller {
           url: `/api/v1/projects/${projectID}/sort_task_position`,
           type: 'patch',
           data: data,
+          success(){
+          },
           error: (err) => {
-            Swal.fire('任務移動失敗');
+            // Swal.fire('任務移動失敗');
+            console.log(err);
           },
         });
       },
