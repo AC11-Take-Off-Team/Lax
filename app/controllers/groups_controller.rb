@@ -11,6 +11,10 @@ class GroupsController < ApplicationController
     @group_query = Group.ransack(params[:q])
     @group = current_user.groups.recent
     @group = @group_query.result if params[:q]
+
+
+    # @q = Group.ransack(params[:q])
+    # @groups = @q.result
   end
 
   def show
