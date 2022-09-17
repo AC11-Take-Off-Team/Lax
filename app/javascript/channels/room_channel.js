@@ -1,5 +1,3 @@
-import consumer from './consumer';
-
 document.addEventListener('turbolinks:load', () => {
   const room_element = document.getElementById('room-id');
   if (room_element != null) {
@@ -36,4 +34,4 @@ document.addEventListener('turbolinks:load', () => {
       }
     );
   }
-});
+})

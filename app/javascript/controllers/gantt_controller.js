@@ -54,3 +54,4 @@ export default class extends Controller {
     this.ganttChart.change_view_mode("Month");
   }
 }
+
