@@ -1,3 +1,4 @@
+
 <header class="flex items-center justify-between h-24 px-6 border-b border-gray-200">
   <div class="flex items-center w-full"><%= render "shared/header" %></div>
 </header>
@@ -51,6 +52,7 @@
             <% end %>
             <%= link_to "從專案中移除",kick_out_project_path(user,project_id: @project.id),method: "delete",data: {confirm: "是否將此人退出專案"},:class=>"flex items-center px-4 text-sm text-red-600 h-9 hover:bg-light" %>
           </nav>
+          <% end %>
         </div>
 
         <% end %>
