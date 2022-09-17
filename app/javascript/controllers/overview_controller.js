@@ -11,7 +11,7 @@ export default class extends Controller {
   join_close(){
     this.joinMailTarget.style.display = "none"
   }
-  change_content(){
+  disconnect(){
     const content = (this.contentTarget.textContent);
     const data = new FormData();
     data.append('content', content)
@@ -24,7 +24,7 @@ export default class extends Controller {
       },
       error: (err) => {
         console.log(err);
-        // Swal.fire('更改內容失敗');
+        Swal.fire('更改內容失敗');
       },
     });
   }
