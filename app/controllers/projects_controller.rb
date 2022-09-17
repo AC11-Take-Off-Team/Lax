@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_user_project, only: %i[show edit update destroy board calendar gantt]
+  before_action :find_user_project, only: %i[show edit update destroy board calendar gantt remove_owner change_owner]
 
   def index
     @projects = current_user.projects
@@ -66,6 +66,16 @@ class ProjectsController < ApplicationController
   end
 
   def calendar
+  end
+
+  def remove_owner
+    @project.update(owner_id: nil)
+    redirect_to @project, notice: "已移除專案所有者身份"
+  end
+
+  def change_owner
+    @project.update(owner_id: params[:user_id])
+    redirect_to @project, notice: "已更改專案所有者"
   end
 
   private

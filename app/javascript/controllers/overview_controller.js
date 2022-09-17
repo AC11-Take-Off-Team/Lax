@@ -4,25 +4,27 @@ import Swal from 'sweetalert2';
 
 
 export default class extends Controller {
-  static targets = ['joinMail','project_target'];
-  join_display(){
-    console.log(this.joinMailTarget);
+  static targets = ['joinMail','content'];
+  join_open(){
     this.joinMailTarget.style.display = "block"
   }
-  input_project_target(){
-    const targetValue = (this.project_targetTarget.textContent);
+  join_close(){
+    this.joinMailTarget.style.display = "none"
+  }
+  change_content(){
+    const content = (this.contentTarget.textContent);
     const data = new FormData();
-    data.append('target', targetValue)
+    data.append('content', content)
     const projectID = this.element.dataset.projectId;
     Rails.ajax({
-      url: `/api/v1/projects/${projectID}/set_target`,
+      url: `/api/v1/projects/${projectID}/change_target`,
       data :data,
       type: 'patch',
       success: () => {
       },
       error: (err) => {
         console.log(err);
-        // Swal.fire('更改目標失敗');
+        // Swal.fire('更改內容失敗');
       },
     });
   }

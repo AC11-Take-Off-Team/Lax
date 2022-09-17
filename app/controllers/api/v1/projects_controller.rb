@@ -25,12 +25,9 @@ class Api::V1::ProjectsController < ApplicationController
     @column.insert_at(params[:position].to_i + 1)
   end
   
-  def set_target
-    
+  def change_target   
     project = Project.find(params[:id])
-
-    project.update(target: params[:target])
-    
+    project.update(content: params[:content])
   end
 
   private
@@ -38,6 +35,4 @@ class Api::V1::ProjectsController < ApplicationController
   def find_column
     @column = Column.find(params[:column_id])
   end
-  
-
 end
