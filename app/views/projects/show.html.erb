@@ -1,18 +1,20 @@
+
 <header class="flex items-center justify-between h-24 px-6 border-b border-gray-200">
   <div class="flex items-center w-full"><%= render "shared/header" %></div>
 </header>
 
-<main class="flex justify-center h-full project_show" data-controller="overview">
-  <section class="grid w-2/3 mx-auto mt-5 gap-y-24">
-    <div class="m-4 border-2 border-black">
-      <h2 class="p-2 text-xl font-semibold border-b-2 border-black">我們如何協作</h2>
-      <p class="block p-2 text-sm border-black"><%= @project.content %></p>
-    </div>
-    <div class="">
-      <h3>專案成員</h3>
-      <div class="flex">
-        <button class="flex items-center p-2 text-base font-semibold text-gray-600 transition-all rounded-md hover:bg-hover" data-action="click->overview#join_display">
-          <div class="flex items-center justify-center w-8 h-8 mr-3 border border-dashed rounded-full border-icon text-icon">
+<main class="flex justify-around project_show" data-controller="overview" data-project-id="<%= @project.id%>">
+  <section class="mx-auto mt-7">
+    <div class="w-full m-4 rounded">
+      <h2 class="p-2 text-3xl font-semibold">專案內容</h2>
+      <p class="p-2 border rounded-md project_content " contenteditable data-overview-target="content" data-action="input->overview#change_content">
+        <%= @project.content %> 
+      </p>
+      <div class="mt-16 project_user">
+      <h3 class="p-2 text-3xl font-semibold">專案成員</h3>
+      <div class="flex flex-wrap w-full">
+        <button class="flex items-center w-56 h-20 p-2 mx-4 text-lg font-semibold text-gray-600 transition-all rounded-md hover:bg-hover" data-action="click->overview#join_open">
+          <div class="flex items-center justify-center w-12 h-12 mr-3 border border-dashed rounded-full border-icon text-icon">
             <svg class="fill-current" height="16" focusable="false" viewBox="0 0 32 32">
               <path
                 d="M26,14h-8V6c0-1.1-0.9-2-2-2l0,0c-1.1,0-2,0.9-2,2v8H6c-1.1,0-2,0.9-2,2l0,0c0,1.1,0.9,2,2,2h8v8c0,1.1,0.9,2,2,2l0,0c1.1,0,2-0.9,2-2v-8h8c1.1,0,2-0.9,2-2l0,0C28,14.9,27.1,14,26,14z"
@@ -21,13 +23,16 @@
           </div>
           加入成員
         </button>
-        <div class="">
-          <% @project.users.each do |user| %>
-          <button class="relative flex items-center p-2 text-sm font-semibold text-gray-600 transition-all rounded-md hover:pr-6">
-            <div class="flex items-center justify-center flex-shrink-0 w-8 h-8 mr-3 text-sm font-semibold text-white bg-blue-500 rounded-full"><% user.username.first(2) %></div>
+        <% @project.users.each do |user| %>
+        <div class="relative mx-4 group">
+          <button class="relative flex items-center w-56 h-20 p-2 text-sm font-semibold text-gray-600 transition-all rounded-md relativeflex hover:pr-6 hover:bg-gray-200">
+            <div class="flex items-center justify-center flex-shrink-0 w-12 h-12 mr-3 text-lg font-semibold text-white bg-blue-500 rounded-full"><%= user.username.first(2) %></div>
             <div class="text-left">
-              <div class="line-clamp-1"><% user.username %></div>
-              <div class="text-xs text-gray-400">Project Owner</div>
+              <div class="text-lg line-clamp-1"><%= user.username %></div>
+              <% if user.id == @project.owner_id %>
+              <span class="text-base text-gray-400 ">專案所有人</span>
+              <% end %>
+              
             </div>
             <span class="absolute top-0 flex items-center h-full transition-all opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 right-2">
               <svg class="fill-current" height="12" focusable="false" viewBox="0 0 24 24">
@@ -38,26 +43,33 @@
             </span>
           </button>
           <nav
-            class="absolute left-0 invisible min-w-full py-1 transition-all translate-y-1 bg-white rounded opacity-0 top-full whitespace-nowrap group-focus-within:opacity-100 group-focus-within:visible shadow-box"
+            class="absolute left-0 z-10 invisible min-w-full py-1 transition-all translate-y-1 bg-white rounded opacity-0 top-full whitespace-nowrap group-focus-within:opacity-100 group-focus-within:visible shadow-box"
           >
-            <a href="#" class="flex items-center px-4 text-sm h-9 hover:bg-light"> Add role </a>
-            <a href="#" class="flex items-center px-4 text-sm text-red-600 h-9 hover:bg-light"> Remove as Project Owner </a>
-            <a href="#" class="flex items-center px-4 text-sm text-red-600 h-9 hover:bg-light"> Remove from Project </a>
+            <% if user.id == @project.owner_id %>
+              <%= link_to "移除專案所有者身份",remove_owner_project_path,method: "delete",:class=>"flex items-center px-4 text-sm text-red-600 h-9 hover:bg-light"  %>
+            <% else %>
+              <%= link_to "設定為專案所有者",change_owner_project_path(@project,user_id: user.id),method: "post",:class=>"flex items-center px-4 text-sm text-black h-9 hover:bg-light"  %>
+            <% end %>
+            <%= link_to "從專案中移除",kick_out_project_path(user,project_id: @project.id),method: "delete",data: {confirm: "是否將此人退出專案"},:class=>"flex items-center px-4 text-sm text-red-600 h-9 hover:bg-light" %>
           </nav>
           <% end %>
-
         </div>
+
+        <% end %>
       </div>
     </div>
-  </section>
-  <div data-controller="join" data-id="<%= @project.id %>" data-overview-target="joinMail" class="fixed top-0 bottom-0 left-0 right-0 z-10 m-auto bg-white border rounded shadow join display">
-    <h4 class="p-2 text-lg">透過電子信箱邀請</h4>
-    <div class="flex p-2"><input class="border-2 rounded shadow"data-join-target="email" type="text" placeholder="請輸入邀請者電子信箱"/>
-      <button data-action="click->join#join_member" class="p-2 text-base text-white border-2 rounded shadow bg-momo hover:bg-kohbai">加入成員</button></div>
+    </div>
     
+  </section>
+  <div data-controller="join" data-id="<%= @project.id %>" data-overview-target="joinMail" class="absolute z-10 p-4 m-auto bg-white border-2 rounded-lg shadow top-52 join">
+    <div class="flex justify-between my-4">
+      <button class="absolute top-1 right-1" data-action="click->overview#join_close"><img class="inline p-2 w-9" alt="Lax" src="/assets/cross.png" /></button>
+      <h3 class="p-2 text-2xl font-semibold">分享專案計劃</h3>
+    </div>
+    <div class="p-2 mt-4 text-xl">邀請專案成員</div>
+    <div class="flex p-2 mt-4 justify-bewteen">
+      <input class="p-2 mr-4 border-2 rounded shadow w-80" data-join-target="email" type="text" placeholder="請輸入邀請專案成員電子信箱"/>
+      <button data-action="click->join#join_member" class="p-2 text-base text-white border-2 rounded shadow bg-momo hover:bg-kohbai">加入成員</button>
+    </div>
   </div>
 </main>
-
-<% @project.users.each do |user_name| %> <%= user_name.username %> <%= link_to "踢出專案", kick_out_project_path(user_name, project_id: @project.id ), method: "delete" ,data: { confirm:
-"是否將此人退出專案?"} %> <% end %> <%= link_to "退出project", leave_project_project_path, method: "delete", data: { confirm: "是否退出此專案?"} %>
-

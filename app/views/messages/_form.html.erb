@@ -31,4 +31,10 @@
             <% end %>
         </div>
 </div>
+  </div>
+  <%= form.hidden_field :room_id, value: room.id %>
 
+  <div class="actions">
+    <%= form.submit data: { disable_with: false } %>
+  </div>
+<% end %>

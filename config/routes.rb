@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       delete :kick_out
       get :board
       get :calendar
+      delete :remove_owner
+      post :change_owner
     end
 
     resources :columns, shallow: true, only: [:create, :update, :destroy] do
@@ -24,7 +26,6 @@ Rails.application.routes.draw do
         patch :update_task
         delete :destroy_task
       end
-
     end
   end
 
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
           post :join_team
           patch :sort_task_position
           patch :sort_column_position
+          patch :change_target
         end
       end
       resources :tasks,only: [] do
@@ -58,10 +60,9 @@ Rails.application.routes.draw do
   resources :messages
   resources :rooms
 
-    resources :invites do
+  resources :invites do
     collection do
       post :send_mail
     end
   end
-
 end

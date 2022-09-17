@@ -24,6 +24,11 @@ class Api::V1::ProjectsController < ApplicationController
   def sort_column_position
     @column.insert_at(params[:position].to_i + 1)
   end
+  
+  def change_target   
+    project = Project.find(params[:id])
+    project.update(content: params[:content])
+  end
 
   private
 

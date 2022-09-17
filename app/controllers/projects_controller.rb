@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_user_project, only: %i[show edit update destroy board calendar gantt]
+  before_action :find_user_project, only: %i[show edit update destroy board calendar gantt remove_owner change_owner]
 
   def index
     @projects = current_user.projects
@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
 
     if project.save
       project.users << current_user
-      redirect_to projects_path, notice: '專案建立成功'
+      redirect_to project_path(project), notice: '專案建立成功'
     else
       render :new, notice: '專案建立失敗'
     end
@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to projects_path, notice: '專案修改成功'
+      redirect_to project_path(@project), notice: '專案修改成功'
     else
       render :edit, notice: '專案修改失敗'
     end
@@ -37,19 +37,19 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
-    redirect_to projects_path, notice: '專案刪除成功'
+    redirect_to homes_path, notice: '專案刪除成功'
   end
 
   def leave_project
     remove_project(params[:id], current_user)
-    redirect_to projects_path, notice: '已退出專案'
+    redirect_to homes_path, notice: '已退出專案'
   end
 
   def kick_out
     user = User.find(params[:id])
     remove_project(params[:project_id], user)
     if user == current_user
-      redirect_to projects_path, notice: '已退出專案'
+      redirect_to homes_path, notice: '已退出專案'
     else
       redirect_to project_path(params[:project_id]), notice: '已將成員退出專案'
     end
@@ -68,10 +68,20 @@ class ProjectsController < ApplicationController
   def calendar
   end
 
+  def remove_owner
+    @project.update(owner_id: nil)
+    redirect_to @project, notice: "已移除專案所有者身份"
+  end
+
+  def change_owner
+    @project.update(owner_id: params[:user_id])
+    redirect_to @project, notice: "已更改專案所有者"
+  end
+
   private
 
   def project_params
-    params.require(:project).permit(:title, :content, :status, :deleted_at, :owner_id)
+    params.require(:project).permit(:title, :content, :status, :deleted_at, :owner_id, :start_time, :end_time)
   end
 
   def find_user_project
