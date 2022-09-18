@@ -6,9 +6,7 @@ class RoomsController < ApplicationController
   def index
     @rooms = Room.all
     @messages = Message.all
-
-
-
+    @group = current_user.groups.find(params[:id])
   end
 
   # GET /rooms/1 or /rooms/1.json

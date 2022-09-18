@@ -45,17 +45,8 @@ class GroupsController < ApplicationController
   end
 
   def join
-    user = User.find_by(email: params[:email])
-    if user.present?
-      if @group.is_member_of?(user.id)
-        flash[:notice] = "已經加入了"
-        render :join
-      else
-        @group.users << user
-        redirect_to group_path
-        flash[:notice] = "已加入"
-      end
-    end
+    current_user.groups << [@group]
+    redirect_to groups_path
   end
 
   def quit
