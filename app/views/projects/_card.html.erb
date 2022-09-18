@@ -33,7 +33,7 @@
         ></path>
       </svg>
     </button>
-    <span class="text-sm text-gray-700"><%= task.start_time&.strftime('%m月%d日')%>-<%=task.end_time&.strftime('%m月%d日')%></span>
+    <span class="text-sm text-gray-700"><%= task.start_time&.localtime&.strftime('%m月%d日')%>-<%=task.end_time&.localtime&.strftime('%m月%d日')%></span>
   </div>
   <div class="flex text-sm"><%= "任務描述："if task.content.present?%><%= task.content if task.content.present?%></div>
   <div class="absolute group-scope top-2 right-2">

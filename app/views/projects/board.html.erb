@@ -48,7 +48,7 @@
         新增任務
       </button>
     </div>
-    <div class="absolute z-10 max-w-xs pb-2 bg-white border-2 rounded shadow resize-none bottom-2 display task_form" data-task-target="task_display">
+    <div class="absolute z-10 max-w-xs pb-2 bg-white border-2 rounded shadow resize-none display task_form top-32" data-task-target="task_display">
       <%= render "TaskForm", model: [@project,@new_task],user: @user, url: create_task_column_path(column)%>
     </div>
   </div>
