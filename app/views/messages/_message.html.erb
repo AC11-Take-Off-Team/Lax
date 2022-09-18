@@ -1,4 +1,4 @@
-<div class="flex items-start mb-4 text-sm">
+<div class="flex items-start mb-4 mt-4 text-sm">
   <% if message.user.email.include?('gmail') %>
   <div class="w-14 h-14 relative mr-4">
     <img src="https://cdn-icons-png.flaticon.com/512/5111/5111178.png" class="">
@@ -26,7 +26,7 @@
       <span class="font-bold text-lg mr-2"><%= message.user.email %></span>
       <span class="text-xs text-grey"><%= message.created_at.localtime.strftime("%H:%M") %></span>
     </div>
-    <p class="leading-normal text-black"><%= message.content %></p>
+    <p class="text-black"><%= message.content %></p>
   </div>
 </div>
 

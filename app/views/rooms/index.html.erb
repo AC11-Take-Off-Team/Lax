@@ -1,6 +1,6 @@
 <div class="h-screen w-full relative">
   <div class="flex justify-between items-center">
-    <h1 class="text-lg ml-4 mt-4 mb-4"># <%= link_to @group.title, edit_group_path(@group) %></h1>
+    <h1 class="text-lg ml-4 mt-4 mb-4 border-0 hover:bg-gray-300 hover:rounded-md	"># <%= link_to @group.title, edit_group_path(@group) %> ▼ </h1>
     <div class="border border-4 border-solid border-gray-500 h-12 flex justify-around mr-4 items-center rounded-md">
       <p class="mr-2 px-2">頻道成員</p>
       <% @group.users.each do |user| %>
@@ -37,25 +37,31 @@
         <% end %>
       <% end %>
       <div class="ml-6 pr-2" >
-        <%= link_to "✚ 邀請" , join_group_path(@group),method:"post",:class=>"px-3 py-2 transition duration-300 border-b-2 rounded-lg bg-momo hover:bg-kohbai text-base text-white -ml-4" %>
+        <%= link_to "✚ 邀請" , invite_group_path(@group),method:"post",:class=>"px-3 py-2 transition duration-300 border-b-2 rounded-lg bg-momo hover:bg-kohbai text-base text-white -ml-4" %>
       </div>
     </div>
   </div>
   <hr>
   <!-- Messages -->
-  <div class="flex-1 bg-gray-100 h-5/6">
+  <div class="bg-gray-100 h-5/6">
     <div class="px-4 py-2 text-gray-800 border-b border-solid border-gray-500">
       <%= Time.now.strftime("%m月%d日") %>
     </div>
     <div class="flex-1 px-6 py-4 h-full overflow-y-auto">
-      <% if @room.messages %>
+      <% if @room.messages.count > 0 %>
         <% @room.messages.each do |message| %>
           <%= render 'messages/message', message: message %>
         <% end %>
+      <% else %>
+        <div class="mt-60">
+          <p>你正在 <span class="text-blue-800"># <%= @group.title %></span> 頻道中</p>
+          <p><%= @group.description %></p>
+          <p>頻道中目前還沒有任何訊息！快來跟你的夥伴們開啟討論吧！</p>
+        </div>
       <% end %>
     </div> 
   </div>
-  <div class="fixed bottom-4 h-18 border-gray-500">
+  <div class="fixed bottom-0 h-18 w-5/6 bg-gray-500 p-5">
     <%= render 'messages/form', message: Message.new, room: @room %>
   </div>
 </div>
