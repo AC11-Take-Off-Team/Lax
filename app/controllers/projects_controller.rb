@@ -76,7 +76,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :content, :status, :deleted_at, :owner_id)
+    params.require(:project).permit(:title, :content, :status, :deleted_at, :owner_id, :start_time, :end_time)
   end
 
   def find_user_project
