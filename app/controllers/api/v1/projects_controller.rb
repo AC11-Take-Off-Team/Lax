@@ -25,7 +25,7 @@ class Api::V1::ProjectsController < ApplicationController
     @column.insert_at(params[:position].to_i + 1)
   end
   
-  def change_target   
+  def change_content
     project = Project.find(params[:id])
     project.update(content: params[:content])
   end

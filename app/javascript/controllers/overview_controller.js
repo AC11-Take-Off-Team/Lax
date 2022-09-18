@@ -17,7 +17,7 @@ export default class extends Controller {
     data.append('content', content)
     const projectID = this.element.dataset.projectId;
     Rails.ajax({
-      url: `/api/v1/projects/${projectID}/change_target`,
+      url: `/api/v1/projects/${projectID}/change_content`,
       data :data,
       type: 'patch',
       success: () => {

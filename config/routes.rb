@@ -36,7 +36,7 @@ Rails.application.routes.draw do
           post :join_team
           patch :sort_task_position
           patch :sort_column_position
-          patch :change_target
+          patch :change_content
         end
       end
       resources :tasks,only: [] do
