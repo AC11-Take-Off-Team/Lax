@@ -4,9 +4,11 @@
       <span class="p-4 my-6 text-2xl font-semibold text-gray-900">邀請人員加入</span>
       <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100 "><%= link_to "X", group_path(@group) %></span>
     </div>
-    <%= form_with url: join_group_path do |form|  %>
-      <%= form.email_field :email ,:class=>"text-gray-700 shadow border rounded border-gray-300 focus:outline-none focus:shadow-outline py-1 px-3 mb-3 p-4 ", placeholder:"請輸入信箱"%>
-      <%= form.submit "發送",:class=>"bg-momo hover:bg-kohbai rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white p-4" %>
+    <%= form_with url: join_group_path do |form| %>
+      <div class="flex flex-col items-center">
+        <%= form.email_field :email ,:class=>"text-gray-700 shadow border rounded border-gray-300 focus:outline-none focus:shadow-outline p-4 mb-4 w-10/12", placeholder:"請輸入信箱"%>
+        <%= form.submit "發送",:class=>"bg-momo hover:bg-kohbai rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white block w-10/12" %>
+      </div>
     <% end %>
   </div>
 </section>
