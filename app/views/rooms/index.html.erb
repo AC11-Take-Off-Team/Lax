@@ -1,6 +1,6 @@
 <div class="h-screen w-full relative">
   <div class="flex justify-between items-center">
-    <h1 class="text-lg ml-4 mt-4 mb-4"># <%= @group.title %></h1>
+    <h1 class="text-lg ml-4 mt-4 mb-4"># <%= link_to @group.title, edit_group_path(@group) %></h1>
     <div class="border border-4 border-solid border-gray-500 h-12 flex justify-around mr-4 items-center rounded-md">
       <p class="mr-2 px-2">頻道成員</p>
       <% @group.users.each do |user| %>

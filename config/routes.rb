@@ -52,8 +52,8 @@ Rails.application.routes.draw do
     member do
       post :join
       delete :quit
-      get :content
       get :search
+      post :invite
     end
   end
 

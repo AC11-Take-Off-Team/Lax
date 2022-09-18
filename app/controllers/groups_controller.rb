@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_group, only: %i[show edit update destroy join quit content]
+  before_action :find_group, only: %i[show edit update destroy join quit invite]
 
 
   def new
@@ -38,7 +38,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to @group
+      redirect_to group_path(@group)
     else
       render :edit
     end
@@ -46,16 +46,25 @@ class GroupsController < ApplicationController
 
   def join
     current_user.groups << [@group]
-    redirect_to groups_path
+    redirect_to group_path(@group)
+  end
+
+  def invite
+    user = User.find_by(email: params[:email])
+    if user.present?
+      if @group.is_member_of?(user.id)
+        redirect_to group_path(@group), notice: "此會員已在頻道中"
+      else
+        @group.users << user
+        redirect_to group_path(@group), notice: "已將此會員加入頻道"
+      end
+    end
   end
 
   def quit
     current_user.groups.destroy(params[:id])
     redirect_to groups_path
   end
-
-  def content; end
-
 
   private
 
