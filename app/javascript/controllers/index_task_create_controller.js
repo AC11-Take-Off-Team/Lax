@@ -25,7 +25,7 @@ export default class extends Controller {
         type: "POST",
         data,
         success: () => {
-          console.log("in1");
+          this.createTaskTarget.value = "";
         },
         error: () => {}
       });

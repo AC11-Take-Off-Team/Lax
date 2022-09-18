@@ -10,8 +10,13 @@
   <div class="w-3/5 mr-auto ml-auto mb-8 flex justify-center border	border-gray-500 border-solid rounded-full p-4 text-gray-700">
     <div class="">
       <button class="flex">
-        <img src="https://cdn-icons-png.flaticon.com/512/2773/2773319.png" class="w-6 mr-2">
-        <%= link_to '我的行事曆', calendar_project_path(@first_project.id) %>
+        <% if @first_project %>
+          <img src="https://cdn-icons-png.flaticon.com/512/2773/2773319.png" class="w-6 mr-2">
+          <%= link_to '我的行事曆', calendar_project_path(@first_project.id) %>
+        <% else %>
+          <img src="https://cdn-icons-png.flaticon.com/512/4946/4946348.png" class="w-6 mr-2">
+          <%= link_to '建立你的第 1 個專案', projects_path %>
+        <% end %>
       </button>
     </div>
     <span class="mr-4 ml-4">|</span>
@@ -22,7 +27,7 @@
     <span class="mr-4 ml-4">|</span>
     <div class="flex">
       <img src="https://cdn-icons-png.flaticon.com/512/3128/3128528.png" class="w-6 mr-2">
-      <p><%= @groups.count %> 個頻道</p>
+      <p><%= @group.count %> 個頻道</p>
     </div>
   </div>
   
@@ -42,7 +47,7 @@
       <div>
         <div class="flex pb-4 pl-2 mb-4 border-b border-gray-400">
           <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto opacity-30	">
-          <input type="text" class="focus: outline-none" data-controller="index-task-create" data-project-id="<%= @first_project[:id] %>" data-action="keypress->index-task-create#createTask" data-index-task-create-target="createTask" placeholder="為第一個專案建立任務"></input>
+          <input type="text" class="focus: outline-none" data-controller="index-task-create" data-project-id="<%= @first_project[:id] if @first_project %>" data-action="keypress->index-task-create#createTask" data-index-task-create-target="createTask" placeholder="為第一個專案建立任務"></input>
         </div>
         <div data-controller="index-task-list">
           <div data-index-task-list-target="undo" data-action="showTodo@window->index-task-list#showTodo" class="h-36 hidden overflow-auto">
@@ -197,43 +202,46 @@
   </div>
 
   <!-- 彈跳視窗 -->
-  <div data-controller="index-project" class="absolute w-1/2 right-0 top-20 hidden" data-index-project-target="popup">
-    <button data-action="click->index-project#close open@window->index-project#open" class="absolute w-8 h-8 bg-gray-500 text-white text-xl border border-gray-300 border-solid rounded right-full hover:bg-gray-700">x</button>
-    <div class="flex items-center justify-center p-12 bg-gray-50 ">
-      <div class="mx-auto w-full max-w-[550px]">
-        <form action="/projects" method="POST">
-          <div class="mb-6">
-            <label for="title" class="mb-3 block text-base font-medium text-[#07074D]" >
-              專案名稱
-            </label>
-            <input type="text" name="project[title]" id="title" placeholder="請輸入專案名稱" data-index-project-target="title" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-          </div>
-          <div class="mb-6">
-            <label for="content" class="mb-3 block text-base font-medium text-[#07074D]">
-              專案內容
-            </label>
-            <textarea rows="4" name="project[content]" id="content" placeholder="請輸入專案內容" data-index-project-target="content" class="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"></textarea>
-          </div>
-          <div class="mb-6">
-            <label for="start_time" class="mb-3 block text-base font-medium text-[#07074D]" >
-              開始時間
-            </label>
-            <input type="text" name="project[start_time]" id="start_time" data-index-project-target="datepicker start" placeholder="選擇開始時間" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-          </div>
-          <div class="mb-6">
-            <label for="message" class="mb-3 block text-base font-medium text-[#07074D]">
-              結束時間
-            </label>
-            <input type="text" name="project[end_time]" id="end_time" data-index-project-target="datepicker end" data-action="input->index-project#hey" placeholder="選擇開始時間" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
-          </div>
-          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-          <button class="block m-auto border border-[#e0e0e0] bg-gray-100	rounded-md py-3 px-8 text-base hover:bg-gray-200" data-action="click->index-project#createProject">
-            建立專案
-          </button>
-          </div>
-        </form>
+  <section data-controller="index-project" data-index-project-target="popup" class="w-full h-full fixed left-0 top-0 mx-auto flex justify-center items-center bg-black bg-opacity-30 hidden">
+    <div class="absolute w-1/2 right-0 top-20" >
+      <button data-action="click->index-project#close open@window->index-project#open" class="absolute w-8 h-8 bg-gray-500 text-white text-xl border border-gray-300 border-solid rounded right-full hover:bg-gray-700">x</button>
+      <div class="flex items-center justify-center p-12 bg-gray-50 ">
+        <div class="mx-auto w-full max-w-[550px]">
+          <form action="/projects" method="POST">
+            <div class="mb-6">
+              <label for="title" class="mb-3 block text-base font-medium text-[#07074D]" >
+                專案名稱
+              </label>
+              <input type="text" name="project[title]" id="title" placeholder="請輸入專案名稱" data-index-project-target="title" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+            </div>
+            <div class="mb-6">
+              <label for="content" class="mb-3 block text-base font-medium text-[#07074D]">
+                專案內容
+              </label>
+              <textarea rows="4" name="project[content]" id="content" placeholder="請輸入專案內容" data-index-project-target="content" class="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"></textarea>
+            </div>
+            <div class="mb-6">
+              <label for="start_time" class="mb-3 block text-base font-medium text-[#07074D]" >
+                開始時間
+              </label>
+              <input type="text" name="project[start_time]" id="start_time" data-index-project-target="datepicker start" placeholder="選擇開始時間" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+            </div>
+            <div class="mb-6">
+              <label for="message" class="mb-3 block text-base font-medium text-[#07074D]">
+                結束時間
+              </label>
+              <input type="text" name="project[end_time]" id="end_time" data-index-project-target="datepicker end" data-action="input->index-project#hey" placeholder="選擇開始時間" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+            </div>
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+            <button class="block m-auto border border-[#e0e0e0] bg-gray-100	rounded-md py-3 px-8 text-base hover:bg-gray-200" data-action="click->index-project#createProject">
+              建立專案
+            </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+  </section>
+  
 </section>
 
 
