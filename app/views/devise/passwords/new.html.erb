@@ -6,12 +6,13 @@
         </div>
         <br/>
         <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-            <%= render "devise/shared/error_messages", resource: resource %>
-
+            
             <div class="flex flex-col mt-6 text-sm text-gray-500">
                 <%= f.label :email %>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"mt-2 h-9 border border-gray-300 rounded outline-none px-3 text-black focus:border-gray-400" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"mt-2 h-9 w-full border border-gray-300 rounded outline-none px-3 text-black focus:border-gray-400" %>
             </div>
+
+            <%= render "devise/shared/error_messages", resource: resource %>
 
             <button class="flex items-center w-full px-4 mt-8 transition-all border border-gray-300 rounded-md h-9 bg-momo hover:bg-kohbai">
                 <%= f.submit "發送密碼重置電子郵件", class:"text-sm text-white mx-auto bg-transparent" %>
