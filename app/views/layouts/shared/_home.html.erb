@@ -14,7 +14,7 @@
             </svg>
           </button>
           <nav class="absolute z-10 top-full overflow-hidden right-0 invisible transition-all opacity-0 group-focus-within:opacity-100 group-focus-within:visible bg-white translate-y-2 shadow-box rounded-md">
-            <%= link_to "group" , groups_path , :class=>"flex items-center pl-4 pr-8 h-10 text-sm hover:bg-gradient-to-r group-scope hover:text-white from-[#ff5263] to-[#fcbd01]"%>
+            <%= link_to "頻道" , groups_path , :class=>"flex items-center pl-4 pr-8 h-10 text-sm hover:bg-gradient-to-r group-scope hover:text-white from-[#ff5263] to-[#fcbd01]"%>
             <%= link_to "project" , projects_path , :class=>"flex items-center pl-4 pr-8 h-10 text-sm hover:bg-gradient-to-r group-scope hover:text-white from-[#ff5263] to-[#fcbd01]"%>
             <%= link_to "message" , messages_path , :class=>"flex items-center pl-4 pr-8 h-10 text-sm hover:bg-gradient-to-r group-scope hover:text-white from-[#ff5263] to-[#fcbd01]"%>
             <%= link_to "invite" , messages_path , :class=>"flex items-center pl-4 pr-8 h-10 text-sm hover:bg-gradient-to-r group-scope hover:text-white from-[#ff5263] to-[#fcbd01]"%>
@@ -22,7 +22,7 @@
         </label>
         <div class="relative group z-30">
           <button class="w-7 h-7 rounded-full bg-primary text-xs text-white">
-            TE
+            <%= current_user.username %>
           </button>
           <nav class="absolute top-full z-10 transition-all translate-y-2 text-sm right-0 bg-white rounded shadow-box w-[21.25rem] opacity-0 invisible group-focus-within:opacity-100 group-focus-within:visible">
             <div class="h-px bg-gray-200"></div>
