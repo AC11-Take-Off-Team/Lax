@@ -19,17 +19,17 @@
 
             <div class="flex flex-col mt-6 text-sm text-gray-500">
                 <%= f.label :email %>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"name@company.com",class:"mt-2 h-9 border border-gray-300 rounded outline-none px-3 text-black focus:border-gray-400" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"name@company.com",class:"mt-2 h-9 w-full border border-gray-300 rounded outline-none px-3 text-black focus:border-gray-400" %>
             </div>
 
             <div class="flex flex-col mt-6 text-sm text-gray-500">
                 <%= f.label :password %>
-                <%= f.password_field :password, autocomplete: "new-password",placeholder:"長度至少6個字元",class:"mt-2 h-9 border border-gray-300 rounded outline-none px-3 text-black focus:border-gray-400"%>
+                <%= f.password_field :password, autocomplete: "new-password",placeholder:"長度至少6個字元",class:"mt-2 h-9 w-full border border-gray-300 rounded outline-none px-3 text-black focus:border-gray-400"%>
             </div>
 
             <div class="flex flex-col mt-6 text-sm text-gray-500">
                 <%= f.label :password_confirmation %>
-                <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"mt-2 h-9 border border-gray-300 rounded outline-none px-3 text-black focus:border-gray-400" %>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"mt-2 h-9 w-full border border-gray-300 rounded outline-none px-3 text-black focus:border-gray-400" %>
             </div>
             <%= render "devise/shared/error_messages", resource: resource %>
 
