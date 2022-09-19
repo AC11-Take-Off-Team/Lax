@@ -1,5 +1,54 @@
-<%= link_to "new project",new_project_path %>
-<% @projects.each do |project| %>
-  <div class="">title:<%= link_to project.title, project %></div>
-  <div class=""><%= link_to "update",edit_project_path(project) %></div>
+<section class="">
+  <h1 class="ml-4 pt-4 text-xl">專案集</h1>
+  <div class="text-lg m-auto pt-20 pb-4 w-11/12 border-b-2">近期的專案集 ▼</div>
+  <div class="flex mt-12 ml-12 w-11/12">
+    <div class="mr-4">
+      <a href="/projects/new" class="block w-40 px-4 py-4 mb-4 hover:bg-gray-100 hover:rounded-lg">
+        <img src="https://cdn-icons-png.flaticon.com/512/2040/2040525.png" class="w-28 h-28 m-auto mb-4">
+        <p class="text-center">建立專案</p>
+      </a>
+    </div>
+    <% if @projects.count > 0 %>
+      <div>
+        <% @projects.each do |project| %>
+          <button class="w-48 px-4 py-4 mb-4 hover:bg-gray-100 hover:rounded-lg">
+            <img src="https://cdn-icons-png.flaticon.com/512/2889/2889338.png" class="w-28 h-28 m-auto">
+            <p class="text-center text-base"><%= link_to project.title, project %></p>
+            <p class="text-center text-xs"><%= project.tasks.count %> 個任務</p>
+          </button>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="mr-4">
+        <button class="w-48 px-4 py-4 mb-4 hover:bg-gray-100 hover:rounded-lg">
+          <img src="https://cdn-icons-png.flaticon.com/512/2889/2889338.png" class="w-28 h-28 m-auto mb-4">
+          <p class="text-center">建立你的第 1 個專案</p>
+        </button>
+      <div>
+    <% end %>
+  </div>
+</section>
+
+<% if notice&.include?("成功") %>
+  <section  type="button" onclick="javascript:window.close()" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
+    <div class="w-1/3 h-2/5 p-2.5 bg-white rounded-3xl bg-white">
+      <div class="flex justify-end">
+        <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100"><%= link_to "X", projects_path %></span>
+      </div>
+      <div class="flex flex-col	justify-center align-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/2804/2804579.png" class="w-20 h-20 m-auto">
+        <span class="p-4 my-6 text-2xl font-semibold text-gray-900 m-auto"><%= notice %></span>
+      </div>
+  </section>
+<% elsif notice&.exclude?("成功") %>
+  <section  type="button" onclick="javascript:window.close()" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
+    <div class="w-1/3 h-2/5 p-2.5 bg-white rounded-3xl bg-white">
+      <div class="flex justify-end">
+        <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100"><%= link_to "X", projects_path %></span>
+      </div>
+      <div class="flex flex-col	justify-center align-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" class="w-20 h-20 m-auto">
+        <span class="p-4 my-6 text-2xl font-semibold text-gray-900 m-auto"><%= notice %></span>
+      </div>
+  </section>
 <% end %>

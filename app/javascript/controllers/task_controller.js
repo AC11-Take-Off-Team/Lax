@@ -36,18 +36,19 @@ export default class extends Controller {
     Rails.ajax({
       url: `/projects/${projectID}/tasks?status=${aaa}`,
       type: 'post',
-      success: (resp) => {
-        console.log(resp);
+      success: () => {
       },
       error: (err) => {
-        Swal.fire(
-          "日期指定失敗"
-        )
+        Swal.fire('日期指定失敗');
       },
     });
     this.task_displayTarget.style.display = 'none';
   }
-  closePost() {
+  closePost(event) {
+    event.preventDefault();
+    const cross = event.currentTarget.closest(".task_form")
+
+    cross.style.display = 'none';
     this.task_displayTarget.style.display = 'none';
   }
 }

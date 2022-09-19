@@ -1,16 +1,1 @@
-<section class="flex flex-wrap">
 
-    <h3 class="bg-indigo-darkest text-purple-lighter flex-none w-24 p-6 hidden md:block"><%= @group.title %><h3>
-
-  <% if current_user.join?(@group) %>
-    <h4><%= @group.description %><%= link_to "編輯說明" , edit_group_path(@group) %><h4>
-    這裡是群組聊天對話的位置
-  <% else %>
-
-    <%= link_to "詳情" , content_group_path(@group.id),method:"post" %>
-    <%= link_to "加入頻道" , join_group_path(@group),method: "post" %>
-    <%= link_to "返回所有頻道" , groups_path %>
-
-  <% end %>
-
-</section>

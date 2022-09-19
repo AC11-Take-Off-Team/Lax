@@ -1,33 +1,4 @@
 zh-TW:
-  activerecord:
-    attributes:
-      user:
-        username: 使用者名稱
-        confirmation_sent_at: 確認信已寄於
-        confirmation_token: 確認令牌
-        confirmed_at: 已確認於
-        created_at: 建立於
-        current_password: 原始密碼
-        current_sign_in_at: 現在登入狀態開始於
-        current_sign_in_ip: 現在登入中的IP位址
-        email: 電子信箱
-        encrypted_password: 加密過的密碼
-        failed_attempts: 錯誤嘗試次數
-        last_sign_in_at: 上次登入於
-        last_sign_in_ip: 上次登入的IP位址
-        locked_at: 鎖定於
-        password: 密碼
-        password_confirmation: 確認密碼
-        remember_created_at: 記住信息寄於
-        remember_me: 記住我的資訊
-        reset_password_sent_at: 密碼重設信寄於
-        reset_password_token: 密碼重置金鑰
-        sign_in_count: 登入次數
-        unconfirmed_email: 電子信箱未確認
-        unlock_token: 解鎖令牌
-        updated_at: 更新於
-    models:
-      user: 使用者
   devise:
     confirmations:
       confirmed: "您的帳號已通過驗證，現在您已成功登入。"
@@ -89,3 +60,32 @@ zh-TW:
       not_locked: "並未被鎖定。"
       not_saved:
         other: "有 %{count} 個錯誤導致 %{resource} 不能被儲存："
+  activerecord:
+    attributes:
+      user:
+        username: 使用者名稱
+        confirmation_sent_at: 確認信已寄於
+        confirmation_token: 確認令牌
+        confirmed_at: 已確認於
+        created_at: 建立於
+        current_password: 原始密碼
+        current_sign_in_at: 現在登入狀態開始於
+        current_sign_in_ip: 現在登入中的IP位址
+        email: 電子信箱
+        encrypted_password: 加密過的密碼
+        failed_attempts: 錯誤嘗試次數
+        last_sign_in_at: 上次登入於
+        last_sign_in_ip: 上次登入的IP位址
+        locked_at: 鎖定於
+        password: 密碼
+        password_confirmation: 確認密碼
+        remember_created_at: 記住信息寄於
+        remember_me: 記住我的資訊
+        reset_password_sent_at: 密碼重設信寄於
+        reset_password_token: 密碼重置金鑰
+        sign_in_count: 登入次數
+        unconfirmed_email: 電子信箱未確認
+        unlock_token: 解鎖令牌
+        updated_at: 更新於
+    models:
+      user: 使用者

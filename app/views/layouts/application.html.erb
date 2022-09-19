@@ -8,11 +8,22 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <body class="w-full min-h-screen">
+    <div class="flex w-full min-h-screen">
+      <% if current_user %>
+        <div class="w-2/12">
+          <%= render 'layouts/shared/sidebar', :class=>"md:hidden sm:hidden" %>
+        </div>
+        <div class="w-10/12">
+          <%= render 'layouts/shared/home' %>
+          <%= yield %>
+        </div>
+      <% else %>
+        <div class="w-full">
+          <%= yield %>
+        </div>
+      <% end %>
+    </div>
 
-  <body class="bg-light" style="--color: #5a7896">
-    <%= render "shared/navbar" %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
   </body>
 </html>

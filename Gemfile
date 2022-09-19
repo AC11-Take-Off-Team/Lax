@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -28,6 +30,8 @@ gem 'redis', '~> 4.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
+
+
 gem 'aasm'
 gem 'rails-i18n', '~> 7.0', '>= 7.0.5'
 # omniauth
@@ -36,8 +40,8 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
 gem "acts_as_list", "~> 1.0"
+
 gem 'acts_as_paranoid'
-gem 'ransack'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -58,6 +62,9 @@ group :development do
   gem 'rubocop', '~> 1.35', require: false
 
   gem "rubocop-rails", "~> 2.15"
+
+  gem 'spring'
+
   gem "foreman", "~> 0.87.2"
 
 end
@@ -71,10 +78,17 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "net-smtp", "~> 0.3.1",require: false
 gem 'net-pop', require: false
 gem 'net-imap', require: false
+
+
+gem 'paranoia', '~> 2.2'
+
+
+gem "ransack"
+
 

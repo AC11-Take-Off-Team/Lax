@@ -1,13 +1,29 @@
-<h1>創建頻道</h1>
+<section class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
+  <div class="w-3/5 h-3/5 p-2.5 bg-white rounded-3xl bg-white relative">
+    <span class="absolute px-4 my-2 text-2xl right-5 text-gray-400 bg-white rounded-lg hover:bg-gray-100">
+      <%= link_to "X", group_path(@group) %>
+    </span>
+    <div class="flex justify-center items-center mt-10">
+      <img src="https://cdn-icons-png.flaticon.com/512/2228/2228655.png" class="w-10 h-10">
+      <span class="p-4 my-4 text-3xl font-semibold text-gray-900 bold">編輯</span>
+    </div>
 
-<%= form_for @group do |form| %>
-  <div>
-    名稱：<%= form.text_field :title %>
+    <%= form_for @group do |form| %>
+    <div class="flex items-center justify-center mb-4">
+      <div class="py-2 pl-4 font-bold text-gray-700 text-base">名稱：</div>
+      <div class="pl-4">
+        <%= form.text_field :title ,:class=>"text-gray-700 shadow border rounded border-gray-300 focus:outline-none focus:shadow-outline py-1 px-3 mb-3 p-4", placeholder:"新產品研發小組" %>
+      </div>
+    </div>
+    <div class="flex items-center justify-center mb-10">
+      <div class="py-2 pl-4 font-bold text-gray-700 text-base">描述：</div>
+      <div class="pl-4">
+        <%= form.text_area :description, :class=>"text-gray-700 shadow border rounded border-gray-300 mb-3 py-1 px-3 h-36 resize-none	focus:outline-none focus:shadow-outline p-4", placeholder:"" %>
+      </div>
+    </div>
+    <div class="flex justify-center">
+      <%= form.submit "更新", :class=>"bg-momo hover:bg-kohbai cursor-pointer rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white p-4" %>
+    </div>
+    <% end %>
   </div>
-
-  <div>
-    描述：<%= form.text_field :description %>
-  </div>
-
-  <%= form.submit %>
-<% end %>
+</section>

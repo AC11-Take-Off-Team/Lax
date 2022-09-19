@@ -1,16 +1,28 @@
-<h2>Forgot your password?</h2>
+<section class="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md px-10 py-12 mx-auto space-y-8 -space-y-px rounded-md shadow-2xl">
+        <div cless="title">
+            <img class="w-auto h-12 mx-auto" alt="Lax" src="/assets/logo.png"/>
+            <h2 class="mt-6 text-3xl font-bold tracking-tight text-center text-gray-900">忘記密碼？</h2>
+        </div>
+        <br/>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+            
+            <div class="flex flex-col mt-6 text-sm text-gray-500">
+                <%= f.label :email %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"mt-2 h-9 w-full border border-gray-300 rounded outline-none px-3 text-black focus:border-gray-400" %>
+            </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+            <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+            <button class="flex items-center w-full px-4 mt-8 transition-all border border-gray-300 rounded-md h-9 bg-momo hover:bg-kohbai">
+                <%= f.submit "發送密碼重置電子郵件", class:"text-sm text-white mx-auto bg-transparent" %>
+            </button>
+            
+            <div class="flex justify-center mt-6">
+                <%= link_to "登入", new_user_session_path, class:"link-hover text-sm text-gray-500 text-sm text-momo hover:text-kohbai"%>
+                <span class="mx-2 text-sm text-gray-500 ">或</span>
+                <%= link_to "註冊", new_user_registration_path, class:"link-hover text-sm text-gray-500 text-sm text-momo hover:text-kohbai"%>
+            </div>
+        <% end %>
+    </div>
+</section>
