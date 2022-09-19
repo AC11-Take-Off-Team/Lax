@@ -9,6 +9,7 @@ export default class extends Controller {
     this.boardTarget.style.display = "none";
     this.timelineTarget.style.display = "none";
     this.calendarTarget.style.display = "none";
+    console.log(this.listTarget);
   }
 
   showBoardSample() {

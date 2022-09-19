@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
 
     if project.save
       project.users << current_user
-      redirect_to project_path(project), notice: '專案建立成功'
+      redirect_to projects_path, notice: '專案建立成功'
     else
       render :new, notice: '專案建立失敗'
     end
@@ -75,7 +75,7 @@ class ProjectsController < ApplicationController
 
   def change_owner
     @project.update(owner_id: params[:user_id])
-    redirect_to @project, notice: "已更改專案所有者"
+    redirect_to @project, notice: "成功更改專案所有者"
   end
 
   private
