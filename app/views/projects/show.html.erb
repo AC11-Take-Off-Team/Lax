@@ -15,8 +15,8 @@
       <p class="p-2 border rounded-md project_content" ><%= @project.content %></p>      
       <div class="mt-16 field">
         <%= form_for(@project) do |form| %>
-          <%= form.label :avatar, '檔案上傳：'%>
-          <%= form.file_field :avatar%> 
+          <%= form.label :avatars, '檔案上傳：' %>
+          <%= form.file_field :avatars, multiple: true %> 
           <%= form.submit %>
         <% end %>
       </div>
