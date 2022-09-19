@@ -6,6 +6,7 @@ class Project < ApplicationRecord
   has_many :users, through: :user_projects
   has_many :columns, -> { order(position: :asc) }, dependent: :destroy
   has_many :tasks
+  has_one_attached :avatar
   validates :title, presence: true
   validates :start_time, presence: true
   validates :end_time, presence: true
