@@ -11,12 +11,19 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    project = current_user.projects.new(project_params.merge(owner_id: current_user.id))
+   
+    @project = current_user.projects.new(project_params.merge(owner_id: current_user.id))
 
-    if project.save
-      project.users << current_user
+    if @project.save
+      @project.users << current_user
       redirect_to projects_path, notice: '專案建立成功'
     else
+      @error="true"
+      @title = @project.title
+      @content = @project.content
+      @start = @project.start_time
+      @end = @project.end_time
+
       render :new, notice: '專案建立失敗'
     end
   end
@@ -25,12 +32,20 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @title = @project.title
+    @content = @project.content
+    @start = @project.start_time
+    @end = @project.end_time
   end
 
   def update
     if @project.update(project_params)
       redirect_to project_path(@project), notice: '專案修改成功'
     else
+      @title = @project.title
+      @content = @project.content
+      @start = @project.start_time
+      @end = @project.end_time
       render :edit, notice: '專案修改失敗'
     end
   end

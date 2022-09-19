@@ -12,6 +12,11 @@ export default class extends Controller {
 
   connect() {
     this.selectDate();
+    this.projectId = this.element.dataset.projectId;
+    this.titleTarget.value = this.element.dataset.editTitle;
+    this.contentTarget.value = this.element.dataset.editContent;
+    this.startTarget.value = this.element.dataset.editStart;
+    this.endTarget.value = this.element.dataset.editEnd;
   }
 
   selectDate() {
@@ -21,15 +26,8 @@ export default class extends Controller {
     });
   }
 
-  close() {
-    this.popupTarget.style.display = "none";
-  }
-
-  open() {
-    this.popupTarget.style.display = "block";
-  }
-
-  createProject() {
+  updateProject(event) {
+    event.preventDefault();
     const data = new FormData();
     data.append("project[title]", this.titleTarget.value);
     data.append("project[content]", this.contentTarget.value);
@@ -37,12 +35,10 @@ export default class extends Controller {
     data.append("project[end_time]", new Date(this.endTarget.value));
 
     Rails.ajax({
-      url: `/projects`,
-      type: "PATCH",
+      url: `/projects/${this.projectId}`,
+      type: "PUT",
       data,
-      success: () => {
-        console.log("in");
-      },
+      success: () => {},
       errors: () => {}
     });
   }

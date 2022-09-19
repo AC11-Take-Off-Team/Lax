@@ -8,10 +8,22 @@ export default class extends Controller {
 
   initialize() {
     this.datePicker = null;
+    this.projectTitle = "";
+    this.projectContent = "";
+    this.projectStart = "";
+    this.projectEnd = "";
   }
 
   connect() {
     this.selectDate();
+    if (this.element.dataset.error) {
+      console.log(this.element.dataset.errorTitle);
+
+      this.titleTarget.value = this.element.dataset.errorTitle;
+      this.contentTarget.value = this.element.dataset.errorContent;
+      this.startTarget.value = this.element.dataset.errorStart;
+      this.endTarget.value = this.element.dataset.errorEnd;
+    }
   }
 
   selectDate() {
@@ -40,13 +52,10 @@ export default class extends Controller {
       url: `/projects`,
       type: "POST",
       data,
-      success: () => {},
-      errors: () => {
-        this.titleTarget.value = this.titleTarget.value;
-        this.contentTarget.value = this.contentTarget.value;
-        this.startTarget.value = this.startTarget.value;
-        this.endTarget.value = this.endTarget.value;
-      }
+      success: () => {
+        console.log(this.projectTitle);
+      },
+      errors: () => {}
     });
   }
 }

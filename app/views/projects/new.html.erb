@@ -1,7 +1,7 @@
 <section class="ml-16 relative">
   <h2 class="text-3xl mt-8 mb-8">新專案</h2>
   <div class="ml-4">
-    <form  action="/projects" method="POST" data-controller="project">
+    <form  action="/projects" method="POST" data-controller="project" data-error="<%= @error %>" data-error-title="<%= @title %>" data-error-content="<%= @content %>" data-error-start="<%= @start %>" data-error-end="<%= @end %>">
       <div class="mb-6">
         <label for="title" class="mb-3 block text-base font-medium text-[#07074D]">
           專案名稱
