@@ -9,7 +9,7 @@ class HomeController < ApplicationController
     @undo_list = []
     @doing_list = []
     @done_list = []
-    @first_project.tasks.each do |task|
+    @first_project&.tasks&.each do |task|
       task_status = Column.find(task.column_id)
       if task_status.status == "待辦事項"
         @undo_list << task
