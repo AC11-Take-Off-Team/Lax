@@ -11,7 +11,7 @@
       <div class="flex relative">
         <%= f.search_field :title_or_description_cont, placeholder:"請輸入名稱或描述", :class=>"h-12 w-screen outline-none transition-all rounded-sm bg-transparent pl-8 pr-4 mr-4 text-sm border border-gray-300 " %>
         <button class="absolute bottom-3 left-1">
-          <%= f.submit "  ", :class=>"bg-transparent text-white rounded-sm p-3 ml-2" %>
+          <%= f.submit "search", :class=>"bg-transparent text-white rounded-sm p-3 ml-2" %>
           <img src="https://cdn-icons-png.flaticon.com/512/875/875623.png" class="w-6">
         </button>
       </div>
@@ -80,3 +80,15 @@
     </div>
   </div>
 </section>
+
+<% if notice %>
+  <section  type="button" onclick="javascript:window.close()" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
+    <div class="w-1/3 h-1/5 p-2.5 bg-white rounded-3xl bg-white">
+      <div class="flex justify-end">
+        <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100"><%= link_to "X", groups_path %></span>
+      </div>
+      <div class="flex flex-col	justify-center align-center">
+        <span class="p-4 my-6 text-2xl font-semibold text-gray-900 m-auto"><%= notice %></span>
+      </div>
+  </section>
+<% end %>

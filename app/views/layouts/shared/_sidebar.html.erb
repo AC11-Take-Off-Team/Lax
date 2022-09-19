@@ -72,11 +72,11 @@
         </div>
       </div>
       <div data-sidebar-target="favList" >
-        <a href="#" class="text-sm text-white flex items-center text-lighter h-8 px-6 hover:bg-white hover:bg-opacity-10">
+        <a href="/projects" class="text-sm text-white flex items-center text-lighter h-8 px-6 hover:bg-white hover:bg-opacity-10">
           所有專案
         </a>
-        <a href="#" class="text-sm text-white flex items-center text-lighter h-10 px-6 mb-4 hover:bg-white hover:bg-opacity-10">
-          刪除專案
+        <a href="/groups" class="text-sm text-white flex items-center text-lighter h-10 px-6 mb-4 hover:bg-white hover:bg-opacity-10">
+          所有頻道
         </a>
       </div>
       <div class="flex items-center	pl-4 mb-4">
@@ -85,24 +85,24 @@
           <img src="https://cdn-icons-png.flaticon.com/512/594/594840.png" class="h-8 mr-2">
           <img src="https://cdn-icons-png.flaticon.com/512/594/594840.png" class="h-8 mr-2">
         </div>
-        <button class="flex w-auto m-4 bg-transparent items-center transition-all text-sm font-semibold text-white hover:bg-light">
+        <button class="flex w-auto m-4 bg-transparent items-center transition-all text-sm font-semibold text-white hover:bg-gray-800">
           <svg class="fill-current" height="12" focusable="false" viewBox="0 0 32 32">
           <path d="M26,14h-8V6c0-1.1-0.9-2-2-2l0,0c-1.1,0-2,0.9-2,2v8H6c-1.1,0-2,0.9-2,2l0,0c0,1.1,0.9,2,2,2h8v8c0,1.1,0.9,2,2,2l0,0c1.1,0,2-0.9,2-2v-8h8c1.1,0,2-0.9,2-2l0,0C28,14.9,27.1,14,26,14z"></path>
           </svg>
-          <%= link_to "邀請人員" , new_project_path %>
+          <%= link_to "邀請人員", groups_path %>
         </button>
       </div>
       <div class="mb-28 ml-4 flex items-center">
         <img src="https://cdn-icons-png.flaticon.com/512/5111/5111337.png" class="w-2">
         <p class="text-white pl-2">我們的第一個專案</p>
       </div>
-      <div class="mb-8 ml-4 flex items-center">
+      <button class="mb-8 ml-4 flex items-center">
         <img src="https://cdn-icons-png.flaticon.com/512/609/609195.png" class="w-8">
-        <p class="text-white pl-4">邀請隊友</p>
-      </div>
-      <div  class="mb-8 ml-4 flex items-center">
+        <%= link_to "邀請隊友", groups_path, :class=>"text-white pl-4" %>
+      </button>
+      <button class="mb-8 ml-4 flex items-center">
         <img src="https://cdn-icons-png.flaticon.com/512/1828/1828833.png" class="w-8">
         <p class="text-white pl-4">說明與開始使用</p>
-      </div>
+      </button>
     </nav>
 </aside>
