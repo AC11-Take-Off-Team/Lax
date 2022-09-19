@@ -9,6 +9,7 @@ class Project < ApplicationRecord
   validates :title, presence: true
   validates :start_time, presence: true
   validates :end_time, presence: true
+  has_many_attached :files
 
   private
 

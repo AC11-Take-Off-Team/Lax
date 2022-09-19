@@ -10,6 +10,7 @@
         <img src="/assets/writer" class="inline w-12" />
         專案內容
       </h2>
+
       <p class="p-2 border rounded-md project_content" contenteditable data-overview-target="content"><%= @project.content %></p>
       <div class="mt-16 project_user">
         <h3 class="p-2 text-3xl font-semibold"><img src="/assets/member" class="inline w-12 mb-3 mr-2" />專案成員</h3>
@@ -54,6 +55,12 @@
 
           <% end %>
         </div>
+      </div>
+      <div class="mt-16 project_files">
+      <%= form_for(@project) do |form| %> 
+        <%= form.label :avatar, '檔案上傳',%> 
+        <%= form.file_field :avatar %>
+      <% end %>
       </div>
     </div>
   </section>
