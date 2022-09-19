@@ -2,7 +2,7 @@ class Project < ApplicationRecord
   acts_as_paranoid
   after_create :create_column
 
-  has_one :dailytasks
+  has_many :dailytask
   has_many :user_projects
   has_many :users, through: :user_projects
   has_many :columns, -> { order(position: :asc) }, dependent: :destroy

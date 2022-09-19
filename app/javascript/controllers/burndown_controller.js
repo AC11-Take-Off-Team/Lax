@@ -3,12 +3,12 @@ import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 import { getRelativePosition } from "chart.js/helpers";
 import Rails from "@rails/ujs";
+import Decimal from 'decimal.js';
 
 export default class extends Controller {
   static targets = ["chart"];
 
   initialize() {
-    // API
     this.projectId = 0;
     this.chartArea = this.chartTarget.getContext("2d");
     this.taskCount = 0;
@@ -27,6 +27,8 @@ export default class extends Controller {
     this.taskDoneCount = this.element.dataset.taskDoneCount;
     this.projectStart = this.element.dataset.projectStart;
     this.projectEnd = this.element.dataset.projectEnd;
+    // this.task
+    console.log(this.projectStart);
 
     this.dayNum();
     this.taskNum();
@@ -55,9 +57,10 @@ export default class extends Controller {
     if (this.taskCount > 0) {
       let taskNum = this.taskCount;
       let totalDay = this.dayList.length
-      let avg = taskNum / (totalDay - 1)
+      let avg = taskNum / (totalDay - 1) 
+      console.log(totalDay);
       
-      for (let i = 0; i < this.taskCount; i += 1) {
+      for (let i = 0; i < totalDay; i += 1) {
         if (taskNum < 0 ){
           taskNum = [0]
         }
@@ -71,19 +74,15 @@ export default class extends Controller {
   }
 
   taskUnfinishedNum() {
-    if (this.duration > 0) {
-      for (let i = 0; this.duration > i; i += 1) {
-        this.taskUnfinishedList = [this.taskCount]
-        this.taskUnfinishedList.push(this.taskCount - this.taskDoneCount); 
+    this.taskUnfinishedList = [this.taskCount]
+    if ((this.duration - 1)> 0) {
+      for (let i = 1; this.duration > i; i += 1) {
+        this.taskUnfinishedList.push(this.taskCount - this.taskDoneCount);
       }
-      // this.taskUnfinishedList = [19,18,17,13,12,9,8,7,5,4,4,3,3,1,0]
-      console.log(this.duration);
+      console.log(this.taskUnfinishedList);
     } else {
       this.taskUnfinishedList = this.taskList;
     }
-    console.log(this.taskCount);
-    console.log(this.taskDoneCount);
-    console.log(this.taskUnfinishedList);
   }
 
   createChart() {

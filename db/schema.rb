@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 2022_09_14_071703) do
 
   create_table "dailytasks", force: :cascade do |t|
     t.integer "task_sum"
-    t.bigint "projects_id", null: false
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["projects_id"], name: "index_dailytasks_on_projects_id"
+    t.index ["project_id"], name: "index_dailytasks_on_project_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 2022_09_14_071703) do
   add_foreign_key "channels", "groups"
   add_foreign_key "channels", "users"
   add_foreign_key "columns", "projects"
-  add_foreign_key "dailytasks", "projects", column: "projects_id"
+  add_foreign_key "dailytasks", "projects"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "user_projects", "projects"

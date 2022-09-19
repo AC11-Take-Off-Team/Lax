@@ -12,6 +12,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chart.js": "^3.9.1",
     "dayjs": "^1.11.5",
+    "decimal.js": "^10.4.0",
     "flatpickr": "^4.6.13",
     "picmo": "^5.6.1",
     "prop-types": "^15.8.1",

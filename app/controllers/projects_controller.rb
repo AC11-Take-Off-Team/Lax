@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.new(project_params.merge(owner_id: current_user.id))
 
     if current_user.save
+      @project.create_dailytask
       redirect_to projects_path, notice: '專案建立成功'
     else
       render :new, notice: '專案建立失敗'
@@ -68,7 +69,12 @@ class ProjectsController < ApplicationController
     @task = @project.tasks.count
     @start_time = @project[:start_time]
     @end_time = @project[:end_time]
-    @task_done = @project.tasks.where(column_id: 3).length 
+    @task_done = @project.columns.find_by(status: "完成").tasks.count
+    
+    @undone_tasks = @task - @task_done
+    @daily_task = Dailytask.new(task_sum: @undone_tasks)
+    # @daily_task.save!
+    # render html:@daily_task
   end
 
   private
@@ -85,4 +91,18 @@ class ProjectsController < ApplicationController
     project = user.projects.find(project_id)
     project.users.destroy(user)
   end
+
+  # def find_dailytask
+  #   @daily_tasks = Dailytask.find(params[:task_sum])
+  # end
+
+  # def undone_tasks
+  #   projects = Project.all
+  #   projects.each do |project|
+  #     number = @task - @taskdone
+  #     project.notdone << number
+  #   end
+  # end
+  
+
 end
