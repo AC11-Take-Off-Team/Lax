@@ -35,14 +35,6 @@ ActiveRecord::Schema.define(version: 2022_09_19_074019) do
     t.index ["project_id"], name: "index_columns_on_project_id"
   end
 
-  create_table "dailytasks", force: :cascade do |t|
-    t.integer "task_sum"
-    t.bigint "project_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_dailytasks_on_project_id"
-  end
-
   create_table "groups", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -87,13 +79,13 @@ ActiveRecord::Schema.define(version: 2022_09_19_074019) do
     t.text "content"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "position"
     t.string "priority"
     t.bigint "column_id"
     t.datetime "deleted_at"
+    t.bigint "project_id"
     t.index ["column_id"], name: "index_tasks_on_column_id"
     t.index ["deleted_at"], name: "index_tasks_on_deleted_at"
     t.index ["project_id"], name: "index_tasks_on_project_id"
@@ -139,10 +131,8 @@ ActiveRecord::Schema.define(version: 2022_09_19_074019) do
   add_foreign_key "channels", "groups"
   add_foreign_key "channels", "users"
   add_foreign_key "columns", "projects"
-  add_foreign_key "dailytasks", "projects"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "tasks", "projects"
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
   add_foreign_key "user_tasks", "tasks"
