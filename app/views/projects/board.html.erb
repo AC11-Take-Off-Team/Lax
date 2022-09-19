@@ -1,5 +1,8 @@
-<header class="flex items-center justify-between h-24 px-6 border-b border-gray-200">
-  <div class="flex items-center w-full"><%= render "shared/header",project: @project %></div>
+<header class="h-[6.188rem] flex px-6 items-center justify-between border-b border-gray-200">
+  <h1 class="text-2xl bold">看板</h1>
+  <div class="flex items-center">
+    <%= render "shared/header",project: @project %>
+  </div>
 </header>
 <section data-controller="board" data-project-id="<%= @project.id%>" class="relative flex flex-col px-4 h-3/4 md:flex-row md:flex-wrap lg:flex-nowrap lg:overflow-x-auto gap-x-4 board-list">
   <% @columns.each do |column| %>
