@@ -1,12 +1,18 @@
-<header class="flex items-center justify-between h-24 px-6 border-b border-gray-200">
-  <div class="flex items-center w-full"><%= render "shared/header",project: @project %></div>
+<header class="h-[6.188rem] flex px-6 items-center justify-between border-b border-gray-200">
+  <h1 class="text-2xl bold"><%= @project.title %></h1>
+  <div class="flex items-center">
+    <%= render "shared/header",project: @project %>
+  </div>
 </header>
-<div class="chart-controls" data-controller="gantt" data-project-id=<%= @project.id %>>
-  <h2 class="my-2 text-2xl font-semibold">甘特圖</h2>
+<div class="chart-controls" data-controller="gantt" data-project-id="<%= @project.id %>">
     <svg id="gantt" data-gantt-target="task"></svg>
-    <div class="mb-2 button-cont">
-      <button class="px-6 py-2 mr-4 text-white rounded-xl bg-momo hover:bg-kohbai" data-action="click->gantt#day">Day</button>
-      <button class="px-6 py-2 text-white rounded-xl bg-momo hover:bg-kohbai" data-action="click->gantt#week">Week</button>
-      <button class="px-6 py-2 ml-4 text-white rounded-xl bg-momo hover:bg-kohbai" data-action="click->gantt#month">Month</button>
-    </div>
+      <div class="mb-4 mt-4 button-cont">
+        <button class="px-6 py-2 mr-4 text-white rounded-xl bg-momo hover:bg-kohbai" data-action="click->gantt#day">Day</button>
+        <button class="px-6 py-2 text-white rounded-xl bg-momo hover:bg-kohbai" data-action="click->gantt#week">Week</button>
+        <button class="px-6 py-2 ml-4 text-white rounded-xl bg-momo hover:bg-kohbai" data-action="click->gantt#month">Month</button>
+      </div>
+</div>
+<div class="flex flex-col items-center justify-center ">
+  <button class="mt-4"><%= link_to "返回" , project_path(@project),:class=>"px-6 py-3 text-white rounded-xl bg-momo hover:bg-kohbai" %>
+	</button>
 </div>

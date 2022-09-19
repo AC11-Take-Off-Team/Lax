@@ -7,8 +7,8 @@
         <% if user.username %>
           <div class="w-10 p-1 relative mr-2">
             <img src="https://cdn-icons-png.flaticon.com/512/5111/5111178.png" class="">
-            <p class="absolute left-5	top-5	text-white">
-              <%= user.username %>
+            <p class="absolute left-3	top-2	text-white">
+              <%= user.username.first(2) %>
             </p>
           </div>
         <% else %>

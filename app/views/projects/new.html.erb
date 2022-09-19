@@ -1,7 +1,7 @@
 <section class="ml-16 relative">
   <h2 class="text-3xl mt-8 mb-8">新專案</h2>
   <div class="ml-4">
-    <form  action="/projects" method="POST" data-controller="project">
+    <form  action="/projects" method="POST" data-controller="project" data-error="<%= @error %>" data-error-title="<%= @title %>" data-error-content="<%= @content %>" data-error-start="<%= @start %>" data-error-end="<%= @end %>">
       <div class="mb-6">
         <label for="title" class="mb-3 block text-base font-medium text-[#07074D]">
           專案名稱
@@ -83,3 +83,30 @@
 </div>
 </section>
 
+<% if @project.errors.any? %>
+  <section  type="button" onclick="javascript:window.close()" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
+    <div class="w-1/3 h-3/5 p-2.5 bg-white rounded-3xl bg-white">
+      <div class="flex justify-end">
+        <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100"><%= link_to "X", new_project_path %></span>
+      </div>
+      <div class="flex flex-col	justify-center align-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" class="w-20 h-20 m-auto">
+        <% @project.errors.full_messages.each do |message| %>
+          <span class="p-4 text-2xl font-semibold text-gray-900 m-auto"><%= message %></span>
+        <% end %>
+      </div>
+  </section>
+<% end %>
+
+<% if notice %>
+  <section  type="button" onclick="javascript:window.close()" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
+    <div class="w-1/3 h-2/5 p-2.5 bg-white rounded-3xl bg-white">
+      <div class="flex justify-end">
+        <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100"><%= link_to "X", projects_path %></span>
+      </div>
+      <div class="flex flex-col	justify-center align-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/2804/2804579.png" class="w-20 h-20 m-auto">
+        <span class="p-4 my-6 text-2xl font-semibold text-gray-900 m-auto"><%= notice %></span>
+      </div>
+  </section>
+<% end %>
