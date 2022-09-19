@@ -16,15 +16,16 @@ Rails.application.routes.draw do
       delete :kick_out
       get :board
       get :calendar
+      delete :remove_owner
+      post :change_owner
     end
-    
+
     resources :columns, shallow: true, only: [:create, :update, :destroy] do
       member do
         post :create_task
         patch :update_task
         delete :destroy_task
       end
-
     end
   end
 
@@ -35,32 +36,33 @@ Rails.application.routes.draw do
           post :join_team
           patch :sort_task_position
           patch :sort_column_position
+          patch :change_content
         end
       end
-    end
-  end
-
       resources :tasks,only: [] do
         member do
           post :status_done
         end
       end
+    end
+  end
+
 
   resources :groups do
     member do
       post :join
       delete :quit
-      get :content
+      get :search
+      post :invite
     end
   end
 
   resources :messages
   resources :rooms
 
-    resources :invites do
+  resources :invites do
     collection do
       post :send_mail
     end
   end
-
 end

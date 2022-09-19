@@ -39,9 +39,9 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
+gem "acts_as_list", "~> 1.0"
 
 gem 'acts_as_paranoid'
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -63,11 +63,9 @@ group :development do
 
   gem "rubocop-rails", "~> 2.15"
 
-
   gem 'spring'
 
   gem "foreman", "~> 0.87.2"
-
 
 end
 
@@ -85,9 +83,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "net-smtp", "~> 0.3.1",require: false
 
+
 gem 'paranoia', '~> 2.2'
 
-gem "acts_as_list", "~> 1.0"
 
 gem "ransack"
 

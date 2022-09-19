@@ -1,49 +1,79 @@
-
-<p id="notice"><%= notice %></p>
-
-<div id="room-id" data-room-id="<%= @room.try(:id) %>"></div>
-<div id="user-id" data-user-id="<%= current_user.id %>"></div>
-
-<%# <%= "Hello, #{current_user}" %> 
-<%= render "form", room: Room.new%>
-
-
-<h1>Rooms</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @rooms.each do |room| %>
-      <%= link_to room do %>
-        <div><%= room.name %></div>
-        <%= link_to "delete", room_path(room.id), method: "delete", data: {confirm: "Sure to delete?"}%>
-      <% end%>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%# <%= link_to 'New Room', new_room_path %> 
-<%if @room.present? %>
-<h3 class="text-grey-darkest mb-1 font-extrabold"><p><%= "Current_room is #{@room.name}"%></p></h3>
-    
-       <div class="px-6 py-4 flex-1 overflow-y-scroll">
-       <div id = "messages">
-    <% @room.messages.each do |message| %>
-        <%= render 'messages/message', message: message %>          
-    <%end %>
+<div class="h-screen w-full relative">
+  <div class="flex justify-between items-center">
+    <h1 class="text-lg ml-4 mt-4 mb-4 border-0 hover:bg-gray-300 hover:rounded-md	"># <%= link_to @group.title, edit_group_path(@group) %> ▼ </h1>
+    <div class="border border-4 border-solid border-gray-500 h-12 flex justify-around mr-4 items-center rounded-md">
+      <p class="mr-2 px-2">頻道成員</p>
+      <% @group.users.each do |user| %>
+        <% if user.username %>
+          <div class="w-10 p-1 relative mr-2">
+            <img src="https://cdn-icons-png.flaticon.com/512/5111/5111178.png" class="">
+            <p class="absolute left-5	top-5	text-white">
+              <%= user.username %>
+            </p>
+          </div>
+        <% else %>
+            <% if user.email.include?('gmail') %>
+            <div class="w-10 p-1 relative mr-2">
+              <img src="https://cdn-icons-png.flaticon.com/512/5111/5111178.png" class="">
+              <p class="absolute left-3	top-2	text-white">
+                <%= user.email.first(2) %>
+              </p>
+            </div>
+          <% elsif message.user.email.include?('yahoo') %>
+            <div class="w-10 p-1 relative mr-2">
+              <img src="https://cdn-icons-png.flaticon.com/512/594/594846.png" class="">
+              <p class="absolute left-3	top-2	text-white">
+                <%= user.email.first(2) %>
+              </p>
+            </div>
+          <% else %>
+            <div class="w-10 p-1 relative mr-2">
+              <img src="https://cdn-icons-png.flaticon.com/512/5853/5853933.png" class="">
+              <p class="absolute left-3	top-2	text-white">
+                <%= user.email.first(2) %>
+              </p>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      <div class="ml-6 pr-2" >
+        <%= link_to "✚ 邀請" , invite_group_path(@group),method:"post",:class=>"px-3 py-2 transition duration-300 border-b-2 rounded-lg bg-momo hover:bg-kohbai text-base text-white -ml-4" %>
+      </div>
     </div>
+  </div>
+  <hr>
+  <!-- Messages -->
+  <div class="bg-gray-100 h-5/6">
+    <div class="px-4 py-2 text-gray-800 border-b border-solid border-gray-500">
+      <%= Time.now.strftime("%m月%d日") %>
     </div>
+    <div class="flex-1 px-6 py-4 h-full overflow-y-auto">
+      <% if @room.messages.count > 0 %>
+        <% @room.messages.each do |message| %>
+          <%= render 'messages/message', message: message %>
+        <% end %>
+      <% else %>
+        <div class="mt-60">
+          <p>你正在 <span class="text-blue-800"># <%= @group.title %></span> 頻道中</p>
+          <p><%= @group.description %></p>
+          <p>頻道中目前還沒有任何訊息！快來跟你的夥伴們開啟討論吧！</p>
+        </div>
+      <% end %>
+    </div> 
+  </div>
+  <div class="fixed bottom-0 h-18 w-5/6 bg-gray-500 p-5">
     <%= render 'messages/form', message: Message.new, room: @room %>
+  </div>
+</div>
 
-    
-<%end%> 
-
-
+<% if notice %>
+  <section  type="button" onclick="javascript:window.close()" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
+    <div class="w-1/3 h-1/5 p-2.5 bg-white rounded-3xl bg-white">
+      <div class="flex justify-end">
+        <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100"><%= link_to "X", groups_path %></span>
+      </div>
+      <div class="flex flex-col	justify-center align-center">
+        <span class="p-4 my-6 text-2xl font-semibold text-gray-900 m-auto"><%= notice %></span>
+      </div>
+  </section>
+<% end %>

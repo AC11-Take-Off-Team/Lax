@@ -1,51 +1,94 @@
-<section class="max-w-full mx-auto ">
-  <div class="mx-auto max-w-7xl ">
-    <div class="flex items-center justify-between " >
-      <div>
-        <h2 class="p-3 my-2 text-2xl">所有頻道</h2>
-      </div>
-      <div>
-        <h3 class="max-w-full px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-kohbai hover:bg-green-700"><%= link_to "創建頻道" ,new_group_path %></h3>
-      </div>
+<section class="w-full">
+  <div class="flex justify-between mt-8">
+    <h2 class="mx-4 my-4 text-xl font-semibold pl-4">所有頻道</h2>
+    <div class="mx-4 my-4 pl-4">
+      <%= link_to "創建頻道",new_group_path ,:class=>"w-full px-3 py-2 text-white transition duration-300 border-b-4 rounded-lg bg-deepBlue hover:bg-gray-400 text-sm" %>
     </div>
-    <div class="w-5/6 mx-auto ">
-      <div>
-        <h4 class="p-2 my-2 text-gray-700">共<%= Group.count %>個頻道</h4>
-        <span class="absolute top-0 left-0 flex items-center justify-center w-8 h-8 text-gray-500">
-          <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 32 32" class="fill-current">
-            <path
-              d="M29.707,28.293l-8.256-8.256C23.042,18.13,24,15.677,24,13c0-6.075-4.925-11-11-11S2,6.925,2,13s4.925,11,11,11c2.677,0,5.13-0.958,7.037-2.549l8.256,8.256L29.707,28.293z M4,13c0-4.963,4.037-9,9-9c4.963,0,9,4.037,9,9s-4.037,9-9,9C8.037,22,4,17.963,4,13z">
-            </path>
-          </svg>
-        </span>
-        <%= render 'layouts/shared/search_form' , :class=>"h-8 w-36 group-focus-within:w-[31.938rem] outline-none transition-all rounded-3xl bg-transparent pl-8 pr-4 text-sm border border-gray-300"%>
+  </div>
+  <hr class="mb-8">
+  <div class="mb-12 pl-4">
+    <%= search_form_for @group_query do |f| %>
+      <div class="flex relative">
+        <%= f.search_field :title_or_description_cont, placeholder:"請輸入名稱或描述", :class=>"h-12 w-screen outline-none transition-all rounded-sm bg-transparent pl-8 pr-4 mr-4 text-sm border border-gray-300 " %>
+        <button class="absolute bottom-3 left-1">
+          <%= f.submit "search", :class=>"bg-transparent text-white rounded-sm p-3 ml-2" %>
+          <img src="https://cdn-icons-png.flaticon.com/512/875/875623.png" class="w-6">
+        </button>
       </div>
-      <% @group.each do |group| %>
-        <div class="p-2 my-2 border-b-2">
-          <div class="flex justify-between align-center">
-            <div>
-              <h4 class="text-blue-500 text-1xl"><%= link_to group.title, group %></h4>
-              <div class="mb-2 text-sm">
-                <div><%= group.users.count %>個成員</div>
+    <% end %>
+  </div>
+  <span class="block p-2 text-gray-700 mb-2 pl-4">共 <%= Group.count %> 個頻道</span>
+  <hr class="">
+      <% @groups.each do |group| %>
+        <% if current_user.join?(group) %>
+          <div class="py-4 px-6 transition bg-white hover:bg-gray-100 pl-8">
+            <div class="flex justify-between align-center">
+              <div class="flex items-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/2228/2228655.png" class="w-10 h-10 mr-8">
+                <div>
+                  <div class="flex pb-2">
+                    <span class="bold text-xl pr-2 text-gray-500 ">#</span>
+                    <p class="text-xl text-black"><%= link_to group.title, group %></p>
+                  </div>
+                  <div>
+                    <span class="pr-2 text-sm text-green-700">✓ 已加入</span>
+                    <span class="pr-2 text-sm"> | </span>
+                    <span class="text-sm text-gray-600 pr-2"><%= group.users.count %> 個成員</span>
+                    <span class="pr-2 text-sm"> | </span>
+                    <% if group.description != "" %>
+                      <span class="text-sm pr-2 text-gray-600"><%= group.description %></span>
+                    <% else %>
+                      <span class="text-sm pr-2 text-gray-600">這個頻道將會一直廣納多元的聲音。這裡很適合發布公告和進行團隊對話</span>
+                    <% end %>
+                  </div>
+                </div>
               </div>
+              <button>
+                <%= link_to "退出" , quit_group_path(group),method: "delete" ,:class=>"px-6 py-3 text-white transition duration-300 bg-gray-300 border-b-4 rounded-lg hover:bg-gray-500 text-base"%>
+              </button>
             </div>
-            <% if current_user.join?(group) %>
-              <button class="px-6 py-3 text-white transition duration-300 bg-gray-400 border-b-4 rounded-lg hover:bg-green-700"><%= link_to "退出" , quit_group_path(group),method: "delete" %></button>
-            <% else %>
-              <button class="px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-kohbai hover:bg-green-700"><%= link_to "加入" , join_group_path(group),method: "post" %></button>
-            <% end %>
           </div>
-        </div>
+          <% else %>
+          <div class="py-4 px-6 transition bg-white hover:bg-gray-100 pl-8">
+            <div class="flex justify-between align-center">
+              <div class="flex items-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/2228/2228655.png" class="w-10 h-10 mr-8">
+                <div>
+                  <div class="flex pb-2">
+                    <span class="bold text-xl pr-2 text-gray-500 ">#</span>
+                    <p class="text-xl text-black"><%= link_to group.title, group %></p>
+                  </div>
+                  <div>
+                    <span class="pr-2 text-sm text-red-700">▲ 未加入</span>
+                    <span class="pr-2 text-sm"> | </span>
+                    <span class="text-sm text-gray-600 pr-2"><%= group.users.count %> 個成員</span>
+                    <span class="pr-2 text-sm"> | </span>
+                    <% if group.description != "" %>
+                      <span class="text-sm pr-2 text-gray-600"><%= group.description %></span>
+                    <% else %>
+                      <span class="text-sm pr-2 text-gray-600">快來加入我們。這裡很適合進行團隊對話</span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <button><%= link_to "加入" , join_group_path(group), method: "post", :class=>" px-6 py-3 text-white transition duration-300 border-b-4 rounded-lg bg-deepBlue hover:bg-gray-400 text-base" %></button>
+            </div>
+          </div>
+          <% end %>
+          <hr>
       <% end %>
     </div>
   </div>
 </section>
 
-
-
-
-
-
-
-
-
+<% if notice %>
+  <section  type="button" onclick="javascript:window.close()" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
+    <div class="w-1/3 h-1/5 p-2.5 bg-white rounded-3xl bg-white">
+      <div class="flex justify-end">
+        <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100"><%= link_to "X", groups_path %></span>
+      </div>
+      <div class="flex flex-col	justify-center align-center">
+        <span class="p-4 my-6 text-2xl font-semibold text-gray-900 m-auto"><%= notice %></span>
+      </div>
+  </section>
+<% end %>

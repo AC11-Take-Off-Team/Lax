@@ -16,13 +16,18 @@ class Api::V1::ProjectsController < ApplicationController
   def sort_task_position
     task = Task.find(params[:task_id])
     # position要+1的原因是position的起始值是1，但是newIndex的起始值是0
-    task.insert_at(params[:position].to_i + 1)
     task.update(column: @column)
+    task.insert_at(params[:position].to_i + 1)
     render json: { state: 'OK' }
   end
 
   def sort_column_position
     @column.insert_at(params[:position].to_i + 1)
+  end
+  
+  def change_content
+    project = Project.find(params[:id])
+    project.update(content: params[:content])
   end
 
   private

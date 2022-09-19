@@ -4,8 +4,18 @@ import Rails from '@rails/ujs';
 import Swal from 'sweetalert2';
 
 export default class extends Controller {
-  static targets = ['status_list'];
+  static targets = ['status_list', 'task_priority'];
   connect() {
+    this.task_priorityTargets.forEach((priority) => {
+      if (priority.textContent == '高') {
+        priority.style.backgroundColor = '#b36bd4';
+        priority.style.color = 'white';
+      } else if (priority.textContent == '中') {
+        priority.style.backgroundColor = '#ec8d71';
+      } else if (priority.textContent == '低') {
+        priority.style.backgroundColor = '#9ee7e3';
+      }
+    });
     const projectID = this.element.dataset.projectId;
     const sortEvent = {
       animation: 150,
@@ -23,10 +33,11 @@ export default class extends Controller {
           url: `/api/v1/projects/${projectID}/sort_task_position`,
           type: 'patch',
           data: data,
+          success(){
+          },
           error: (err) => {
-            Swal.fire(
-              "任務移動失敗"
-            )
+            // Swal.fire('任務移動失敗');
+            console.log(err);
           },
         });
       },
@@ -35,6 +46,7 @@ export default class extends Controller {
       new Sortable(list, sortEvent);
     });
     new Sortable(this.element, {
+      draggable: '.cloumn_item',
       onEnd: (event) => {
         const columnID = event.item.dataset.columnId;
         const data = new FormData();
@@ -45,29 +57,27 @@ export default class extends Controller {
           type: 'patch',
           data: data,
           error: (err) => {
-            Swal.fire(
-              "區塊移動失敗"
-            )
+            Swal.fire('區塊移動失敗');
           },
         });
       },
     });
-
-    // task update
-    const updateBtn = document.querySelectorAll('.updateBtn');
-    updateBtn.forEach((update) => {
-      update.addEventListener('click', (e) => {
-        const display = e.target.parentElement.querySelector('.task_update');
-        display.style.display == 'block' ? (display.style.display = 'none') : (display.style.display = 'block');
-      });
-    });
+  }
+  updateBtn(event) {
+    const display = event.target.parentElement.parentElement.parentElement.querySelector('.task_form');
+    const displayAttr = display.style.display;
+    if (displayAttr === 'block'){
+      display.style.display = 'none'
+    } else {
+      display.style.display = 'block'
+    }
   }
   column_display(event) {
-    const display = event.target.parentElement.parentElement.querySelector('.column_display');
+    const display = event.target.parentElement.parentElement.parentElement.querySelector('.column_display');
     display.style.visibility == 'visible' ? (display.style.visibility = 'hidden') : (display.style.visibility = 'visible');
   }
   updateColumn(event) {
-    const status = event.target.parentElement.parentElement.parentElement.parentElement.querySelector('h2');
+    const status = event.target.parentElement.parentElement.parentElement.parentElement.querySelector('h3');
     const column_update = event.target.parentElement.parentElement.parentElement.parentElement.querySelector('.column_update');
     if (column_update.style.display == 'block') {
       column_update.style.display = 'none';
@@ -77,8 +87,8 @@ export default class extends Controller {
       column_update.style.display = 'block';
     }
   }
-  card_nav(event){
-    const display = event.currentTarget.parentElement.querySelector('nav')
+  card_nav(event) {
+    const display = event.currentTarget.parentElement.parentElement.querySelector('nav');
     display.style.display == 'block' ? (display.style.display = 'none') : (display.style.display = 'block');
   }
 }

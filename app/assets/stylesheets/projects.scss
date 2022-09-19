@@ -2,6 +2,52 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+ .gantt .bar{
+   fill: #E16B8C !important;
+ }
+.gantt .bar-label {
+  fill: white !important;
+   font-size: 15px !important;
+   font-weight: bold !important;
+   line-height: 10px !important;
+ }
+
+ .gantt .bar-label.big {
+   fill: black !important;
+   text-anchor: start !important;
+   font-size: 12px !important;
+ }
+
+.chart-controls.popup-wrapper {
+  width: 200px;
+  padding: 0 5px;
+
+}
+
+.chart-label {
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+
+}
+
+.chart-controls {
+  text-align: center;
+
+}
+
+.chart-controls>p {
+  font-size: 1.2rem;
+  font-weight: 500;
+
+}
+
+.gantt-container {
+  width: 90vw;
+  margin: 0 auto;
+
+}
+
 ul {
   list-style: none;
 }
@@ -76,24 +122,51 @@ ul {
 .page-footer span {
   color: #e31b23;
 }
-
-
-
-
-
-
-
-
-.card-list{
-  background-color: #f5f3f3;
+// board
+.status_list{
+  background-color: #EDE8E4;
 }
 .board-list{
-  background-color: #f9f8f8;;
+  background-color: #fffcfa;
 }
 .column_display{
   visibility: hidden;
+  position: absolute;
+  margin-bottom: -78px;
+  z-index: 50;
 }
 .display{
   display: none;
-  border: 2px solid rgb(73, 73, 173);
+}
+input[type='text']{
+  text-align: center;
+}
+.task_update{
+  position: fixed;
+  max-height: 400px;
+  max-width: 300px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  @media screen and (min-width: 768px) {
+    left: auto;
+  }
+}
+.column_update{
+  background-color: #EDE8E4;
+}
+
+// show
+.join{
+  width: 512px;
+  height: 250px;
+  display: none;
+}
+.project_content{
+  width: 800px;
+  height: 250px;
+}
+.project_user{
+  width: 768px;
 }
