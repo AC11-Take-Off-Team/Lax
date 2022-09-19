@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       delete :remove_owner
       post :change_owner
     end
-    
+
     resources :columns, shallow: true, only: [:create, :update, :destroy] do
       member do
         post :create_task
@@ -46,13 +46,14 @@ Rails.application.routes.draw do
       end
     end
   end
-      
+
 
   resources :groups do
     member do
       post :join
       delete :quit
-      get :content
+      get :search
+      post :invite
     end
   end
 

@@ -38,15 +38,12 @@ export default class extends Controller {
 
     Rails.ajax({
       url: `/projects`,
-      type: "POST",
+      type: "PATCH",
       data,
-      success: () => {},
-      errors: () => {
-        this.titleTarget.value = this.titleTarget.value;
-        this.contentTarget.value = this.contentTarget.value;
-        this.startTarget.value = this.startTarget.value;
-        this.endTarget.value = this.endTarget.value;
-      }
+      success: () => {
+        console.log("in");
+      },
+      errors: () => {}
     });
   }
 }

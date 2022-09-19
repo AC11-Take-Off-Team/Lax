@@ -1,100 +1,86 @@
-<section class="relative ml-16">
-  <h2 class="mt-8 mb-8 text-3xl">修改專案</h2>
-  <div class="ml-4" data-controller="editProject">
-    <%= form_with model:@project do |form| %>
-    <div class="mb-6">
-      <label for="title" class="mb-3 block text-base font-medium text-[#07074D]"> 專案名稱 </label>
-      <%= form.text_field :title,:class=>"w-80 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
-    </div>
-    <div class="mb-6">
-      <label for="content" class="mb-3 block text-base font-medium text-[#07074D]"> 專案內容 </label>
-      <%= form.text_area :content,:class=>"w-80 resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1]
-      focus:shadow-md"%>
-    </div>
-    <div class="mb-6">
-      <label for="start_time" class="mb-3 block text-base font-medium text-[#07074D]"> 開始時間 </label>
-      <input
-        type="text"
-        name="project[start_time]"
-        id="start_time"
-        data-editProject-target="datepicker start"
-        placeholder="選擇開始時間"
-        class="w-80 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-      />
-    </div>
-    <div class="mb-6">
-      <label for="message" class="mb-3 block text-base font-medium text-[#07074D]"> 結束時間 </label>
-      <input
-        type="text"
-        name="project[end_time]"
-        id="end_time"
-        data-editProject-target="datepicker end"
-        placeholder="選擇結束時間"
-        class="w-80 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-      />
-    </div>
-    <div class="w-1/4">
-      <p class="mb-4">預設檢視</p>
-      <div class="flex flex-col flex-wrap content-start h-36" data-controller="project-button">
-        <div
-          class="flex items-center w-1/2 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md mb-2 cursor-pointer"
-          data-action="click->project-button#showListSample"
-        >
-          <img src="https://cdn-icons-png.flaticon.com/512/2099/2099125.png" class="w-8 mr-4" />
-          清單
-        </div>
-        <div
-          class="flex items-center w-1/2 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md mr-2 cursor-pointer"
-          data-action="click->project-button#showBoardSample"
-        >
-          <img src="https://cdn-icons-png.flaticon.com/512/3300/3300549.png" class="w-8 mr-4" />
-          看板
-        </div>
-        <div
-          class="flex items-center w-1/2 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md mb-2 cursor-pointer"
-          data-action="click->project-button#showTimelineSample"
-        >
-          <img src="https://cdn-icons-png.flaticon.com/512/315/315471.png" class="w-8 mr-4" />
-          時間軸
-        </div>
-        <div
-          class="flex items-center w-1/2 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md cursor-pointer"
-          data-action="click->project-button#showCalendarSample"
-          class="w-8 mr-4"
-        >
-          <img src="https://cdn-icons-png.flaticon.com/512/591/591576.png" class="w-8 mr-4" />
-          行事曆
-        </div>
+<section class="ml-16 relative">
+  <h2 class="text-3xl mt-8 mb-8">新專案</h2>
+  <div class="ml-4">
+    <%= form_for @project do |p| %>
+      <div class="mb-6">
+        <label for="title" class="mb-3 block text-base font-medium text-[#07074D]">
+          專案名稱
+        </label>
+        <%= p.text_field :title, :class=>"w-80 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
       </div>
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-      <%= form.submit "修改專案",:class=>"block m-auto border border-[#e0e0e0] bg-gray-100 rounded-md py-3 px-8 text-base hover:bg-gray-200",data:{action: "input->editProject#project_update"} %> <% end %>
-    </div>
+      <div class="mb-6">
+        <label for="content" class="mb-3 block text-base font-medium text-[#07074D]">
+          專案內容
+        </label>
+        <%= p.text_area :content, :class=>"w-80 resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
+      </div>
+      <div class="mb-6">
+        <label for="start_time" class="mb-3 block text-base font-medium text-[#07074D]">
+          開始時間
+        </label>
+        <input type="text" name="project[start_time]" id="start_time" data-project-target="datepicker start" placeholder="選擇開始時間" class="w-80 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+        <%= p.text_field :start_time, :class=>"w-80 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
+      </div>
+      <div class="mb-6">
+        <label for="message" class="mb-3 block text-base font-medium text-[#07074D]">
+          結束時間
+        </label>
+        <input type="text" name="project[end_time]" id="end_time" data-project-target="datepicker end" placeholder="選擇開始時間" class="w-80 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+        <%= p.text_field :end_time, :class=>"w-80 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
+      </div>
+      <% end %>
+      <div class="w-1/4">
+        <p class="mb-4">預設檢視</p>
+        <div class="flex flex-col	flex-wrap	content-start	h-36" data-controller="project-button">
+          <div class="flex items-center w-1/2 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md mb-2 cursor-pointer" data-action="click->project-button#showListSample">
+            <img src="https://cdn-icons-png.flaticon.com/512/2099/2099125.png" class="w-8 mr-4">
+            清單
+          </div>
+          <div class="flex items-center w-1/2 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md mr-2 cursor-pointer" data-action="click->project-button#showBoardSample">
+            <img src="https://cdn-icons-png.flaticon.com/512/3300/3300549.png" class="w-8 mr-4">
+            看板
+          </div>
+          <div class="flex items-center w-1/2 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md mb-2 cursor-pointer" data-action="click->project-button#showTimelineSample">
+            <img src="https://cdn-icons-png.flaticon.com/512/315/315471.png" class="w-8 mr-4">
+            時間軸
+          </div>
+          <div class="flex items-center w-1/2 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md cursor-pointer" data-action="click->project-button#showCalendarSample" class="w-8 mr-4">
+            <img src="https://cdn-icons-png.flaticon.com/512/591/591576.png" class="w-8 mr-4">
+            行事曆
+          </div>
+        </div>
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+      <button class="block m-auto border border-[#e0e0e0] bg-gray-100	rounded-md py-3 px-8 text-base hover:bg-gray-200" data-action="click->index-project#createProject">
+        建立專案
+      </button>
+    <input type="text">
   </div>
+</div>
 
-  <div class="fixed right-0 block w-1/2 bg-black border border-gray-500 border-solid rounded-md top-20" data-controller="project-board">
-    <div class="flex items-end mb-4">
-      <img src="https://cdn-icons-png.flaticon.com/512/6038/6038682.png" class="w-16 mt-4 ml-4" />
-      <ul class="flex">
-        <li><%= link_to "清單", projects_path,:class=>"text-white text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-300 text-lg font-semibold pb-2 ml-4" %></li>
-        <li><%= link_to "看板", groups_path,:class=>"text-white text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-300 text-lg font-semibold pb-2 ml-4" %></li>
-        <li><%= link_to "時間軸", groups_path,:class=>"text-white text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-300 text-lg font-semibold pb-2 ml-4" %></li>
-        <li><%= link_to "行事曆", groups_path,:class=>"text-white text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-300 text-lg font-semibold pb-2 ml-4" %></li>
-      </ul>
-    </div>
-    <div>
-      <div class="hidden" data-action="showListSample@window->project-board#showListSample" data-project-board-target="list">
-        <img src="https://d3ki9tyy5l5ruj.cloudfront.net/obj/8804fe4dd817bcb65f9f76eb0f824940e016d9bc/Dark%20List,%20no%20avatars.png" />
+<div class="fixed right-0 top-20 block border border-gray-500 border-solid w-1/2  bg-black rounded-md" data-controller="project-board">
+  <div class="flex items-end mb-4">
+    <img src="https://cdn-icons-png.flaticon.com/512/6038/6038682.png" class="w-16 mt-4 ml-4">
+    <ul class="flex">
+      <li><%= link_to "清單", projects_path,:class=>"text-white	text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-300 text-lg font-semibold pb-2 ml-4" %></li>
+      <li><%= link_to "看板", groups_path,:class=>"text-white	text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-300 text-lg font-semibold pb-2 ml-4" %></li>
+      <li><%= link_to "時間軸", groups_path,:class=>"text-white	text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-300 text-lg font-semibold pb-2 ml-4" %></li>
+      <li><%= link_to "行事曆", groups_path,:class=>"text-white	text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-300 text-lg font-semibold pb-2 ml-4" %></li>
+    </ul>
+  </div>
+  <div>
+      <div class="hidden" data-action="showListSample@window->project-board#showListSample"  data-project-board-target="list">
+        <img src="https://d3ki9tyy5l5ruj.cloudfront.net/obj/8804fe4dd817bcb65f9f76eb0f824940e016d9bc/Dark%20List,%20no%20avatars.png">
       </div>
 
-      <div class="hidden mt-4" data-action="showBoardSample@window->project-board#showBoardSample" data-project-board-target="board">
-        <img src="https://d3ki9tyy5l5ruj.cloudfront.net/obj/f3abc45b98e17d62bcf855fc1c052bf8f71cdab2/Dark%20Board,%20no%20avatars.png" />
-      </div>
-      <div class="hidden mt-4" data-action="showTimelineSample@window->project-board#showTimelineSample" data-project-board-target="timeline">
-        <img src="https://d3ki9tyy5l5ruj.cloudfront.net/obj/6b0d8ad1cc5e6306281cd3449f6c8ca0162c9472/Dark%20Timeline,%20no%20avatars.png" />
-      </div>
-      <div class="hidden mt-4" data-action="showCalendarSample@window->project-board#showCalendarSample" data-project-board-target="calendar">
-        <img src="https://d3ki9tyy5l5ruj.cloudfront.net/obj/2c7e35f48e0e36d49930a82d28ea95d4cdf2799d/Dark%20Calendar,%20no%20avatars.png" />
-      </div>
+    <div class="mt-4 hidden" data-action="showBoardSample@window->project-board#showBoardSample"  data-project-board-target="board">
+      <img src="https://d3ki9tyy5l5ruj.cloudfront.net/obj/f3abc45b98e17d62bcf855fc1c052bf8f71cdab2/Dark%20Board,%20no%20avatars.png">
+    </div>
+    <div class="mt-4 hidden" data-action="showTimelineSample@window->project-board#showTimelineSample"  data-project-board-target="timeline">
+      <img src="https://d3ki9tyy5l5ruj.cloudfront.net/obj/6b0d8ad1cc5e6306281cd3449f6c8ca0162c9472/Dark%20Timeline,%20no%20avatars.png">
+    </div>
+    <div class="mt-4 hidden" data-action="showCalendarSample@window->project-board#showCalendarSample"  data-project-board-target="calendar">
+      <img src="https://d3ki9tyy5l5ruj.cloudfront.net/obj/2c7e35f48e0e36d49930a82d28ea95d4cdf2799d/Dark%20Calendar,%20no%20avatars.png">
     </div>
   </div>
+</div>
 </section>
