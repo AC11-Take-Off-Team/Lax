@@ -1,3 +1,5 @@
+import consumer from './consumer';
+
 document.addEventListener('turbolinks:load', () => {
   const room_element = document.getElementById('room-id');
   if (room_element != null) {
@@ -6,7 +8,6 @@ document.addEventListener('turbolinks:load', () => {
       { channel: 'RoomChannel', room_id: room_id },
       {
         connected() {
-          console.log('connected to room' + room_id);
           // Called when the subscription is ready for use on the server
         },
 
@@ -28,10 +29,10 @@ document.addEventListener('turbolinks:load', () => {
 
           const messageContainer = document.getElementById('messages');
           messageContainer.innerHTML = messageContainer.innerHTML + html;
-          const message_value = document.querySelector('#message_content')
-          message_value.value = ''
+          const message_value = document.querySelector('#message_content');
+          message_value.value = '';
         },
       }
     );
   }
-})
+});

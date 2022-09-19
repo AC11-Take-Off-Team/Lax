@@ -1,7 +1,6 @@
 <header class="flex items-center justify-between h-24 px-6 border-b border-gray-200">
-  <div class="flex items-center w-full"><%= render "shared/header" %></div>
+  <div class="flex items-center w-full"><%= render "shared/header",project: @project %></div>
 </header>
-
 <section data-controller="board" data-project-id="<%= @project.id%>" class="relative flex flex-col px-4 h-3/4 md:flex-row md:flex-wrap lg:flex-nowrap lg:overflow-x-auto gap-x-4 board-list">
   <% @columns.each do |column| %>
   <div class="flex flex-col flex-wrap w-10/12 m-4 md:overflow-auto md:w-2/5 lg:w-80 cloumn_item" data-controller="task" data-column-id="<%= column.id %>">
@@ -36,8 +35,9 @@
         </div>
       </div>
     </header>
-    <div class="flex flex-col flex-1 p-3 overflow-auto rounded-lg card-list gap-y-2" data-board-target="status_list" data-column-id="<%= column.id%>">
-      <%= render "card", column: column, user: @user%>
+    <div class="flex flex-col flex-1 p-3 overflow-auto rounded-lg gap-y-2 status_list" data-column-id="<%= column.id%>">
+      <div class="card-list" data-board-target="status_list" data-column-id="<%= column.id%>"><%= render "card", column: column, user: @user%></div>
+      
       <button
         data-action="click->task#display_change"
         class="flex items-center justify-center flex-shrink-0 w-full font-medium transition-all rounded new_task text-ml h-7 text-icon hover:bg-hover hover:text-black"
@@ -48,7 +48,7 @@
         新增任務
       </button>
     </div>
-    <div class="absolute z-10 max-w-xs pb-2 bg-white border-2 rounded shadow resize-none bottom-2 display task_form" data-task-target="task_display">
+    <div class="absolute z-10 max-w-xs pb-2 bg-white border-2 rounded shadow resize-none display task_form top-32" data-task-target="task_display">
       <%= render "TaskForm", model: [@project,@new_task],user: @user, url: create_task_column_path(column)%>
     </div>
   </div>
