@@ -1,27 +1,29 @@
 <section class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
-  <div class="w-1/3 h-3/5 p-2.5 bg-white rounded-3xl bg-white">
-    <div class="flex justify-between align-center">
-      <span class="p-4 my-6 text-2xl font-semibold text-gray-900">創建頻道</span>
-      <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100 "><%= link_to "X", groups_path %></span>
+  <div class="w-3/5 h-3/5 p-2.5 bg-white rounded-3xl bg-white relative">
+    <span class="absolute px-4 my-2 text-2xl right-5 text-gray-400 bg-white rounded-lg hover:bg-gray-100">
+      <%= link_to "X", groups_path %>
+    </span>
+    <div class="flex justify-center items-center mt-10">
+      <img src="https://cdn-icons-png.flaticon.com/512/2228/2228655.png" class="w-10 h-10">
+      <span class="p-4 my-4 text-3xl font-semibold text-gray-900 bold">建立頻道</span>
     </div>
-    <p class="p-4 text-gray-500 ">频道是你的團隊進行通信的地方。圍繞主题進行組織時其效果最佳，例如市場營銷</p>
+    <p class="p-4 text-gray-500 text-center text-lg mb-8">為你的團隊建立一個頻道吧！還可以針對主題去區分唷！</p>
     <%= form_for @group do |form| %>
-      <div class="py-2 pl-4 font-bold text-gray-700">名稱:</div>
-      <div class="pl-4">
-        <%= form.text_field :title ,:class=>"text-gray-700 shadow border rounded border-gray-300 focus:outline-none focus:shadow-outline py-1 px-3 mb-3 p-4 ", placeholder:"名稱"  %>
+      <div class="flex items-center justify-center mb-4">
+        <div class="py-2 pl-4 font-bold text-gray-700 text-base">名稱：</div>
+        <div class="pl-4">
+          <%= form.text_field :title ,:class=>"text-gray-700 shadow border rounded border-gray-300 focus:outline-none focus:shadow-outline py-1 px-3 mb-3 p-4", placeholder:"新產品研發小組" %>
+        </div>
       </div>
-      <div class="p-4 py-2 font-bold text-gray-700">描述:</div>
-      <div class="pl-4">
-        <%= form.text_field :description, :class=>"text-gray-700 shadow border rounded border-gray-300 mb-3 py-1 px-3 focus:outline-none focus:shadow-outline p-4", placeholder:"描述" %>
+      <div class="flex items-center justify-center mb-10">
+        <div class="py-2 pl-4 font-bold text-gray-700 text-base">描述：</div>
+        <div class="pl-4">
+          <%= form.text_field :description, :class=>"text-gray-700 shadow border rounded border-gray-300 mb-3 py-1 px-3 focus:outline-none focus:shadow-outline p-4", placeholder:"" %>
+        </div>
       </div>
-      <button class="pl-4">
-        <%= form.submit "創建" ,:class=>"bg-momo hover:bg-kohbai rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white p-4" %>
-      </button>
+      <div class="flex justify-center">
+        <%= form.submit "創建", :class=>"bg-momo hover:bg-kohbai cursor-pointer rounded-lg py-3 px-6 border-b-4 transition duration-300 text-white p-4" %>
+      </div>
     <% end %>
   </div>
 </section>
-
-
-
-
-

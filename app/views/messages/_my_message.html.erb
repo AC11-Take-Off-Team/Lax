@@ -1,10 +1,10 @@
-<div class="flex items-start mb-4 text-sm">
-  <%= image_tag "logo.png", height:50, width:50 %>
-  <div class="flex-1 overflow-hidden">
-    <div>
-      <span class="font-bold"><%= message.user.email %></span>
-      <span class="text-xs text-grey"><%= message.created_at %></span>
+<div class="flex items-start text-sm mb-14">
+     <div class="flex items-center justify-center flex-shrink-0 w-6 h-6 mr-3 text-sm font-semibold text-white bg-blue-500 rounded-full" ><%= message.user.username.first(2) %></div>
+    <div class="flex-1 overflow-hidden">
+      <div>
+        <span class="text-base"><%= message.user.username %></span>
+        <span class="ml-2 text-xs text-grey"><%= message.created_at.localtime.strftime("%Y-%m-%d %H:%M") %></span>
+      </div>
+        <p class="text-base leading-normal text-black"><%= message.content %></p>
     </div>
-    <p class="leading-normal text-black"><%= message.content %></p>
-  </div>
 </div>
