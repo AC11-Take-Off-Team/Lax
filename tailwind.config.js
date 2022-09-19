@@ -11,7 +11,9 @@ module.exports = {
         momo: "#F596AA",
         kohbai: "#E16B8C",
         sakura: "#FEDFE1",
-        ivory: "#EDE8E4"
+        ivory: "#EDE8E4",
+        deepBlue: "#363F4F",
+        blue: "#576A87"
       }
     }
   },

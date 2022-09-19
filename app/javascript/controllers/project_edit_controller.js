@@ -8,22 +8,15 @@ export default class extends Controller {
 
   initialize() {
     this.datePicker = null;
-    this.projectTitle = "";
-    this.projectContent = "";
-    this.projectStart = "";
-    this.projectEnd = "";
   }
 
   connect() {
     this.selectDate();
-    if (this.element.dataset.error) {
-      console.log(this.element.dataset.errorTitle);
-
-      this.titleTarget.value = this.element.dataset.errorTitle;
-      this.contentTarget.value = this.element.dataset.errorContent;
-      this.startTarget.value = this.element.dataset.errorStart;
-      this.endTarget.value = this.element.dataset.errorEnd;
-    }
+    this.projectId = this.element.dataset.projectId;
+    this.titleTarget.value = this.element.dataset.editTitle;
+    this.contentTarget.value = this.element.dataset.editContent;
+    this.startTarget.value = this.element.dataset.editStart;
+    this.endTarget.value = this.element.dataset.editEnd;
   }
 
   selectDate() {
@@ -33,15 +26,8 @@ export default class extends Controller {
     });
   }
 
-  close() {
-    this.popupTarget.style.display = "none";
-  }
-
-  open() {
-    this.popupTarget.style.display = "block";
-  }
-
-  createProject() {
+  updateProject(event) {
+    event.preventDefault();
     const data = new FormData();
     data.append("project[title]", this.titleTarget.value);
     data.append("project[content]", this.contentTarget.value);
@@ -49,12 +35,10 @@ export default class extends Controller {
     data.append("project[end_time]", new Date(this.endTarget.value));
 
     Rails.ajax({
-      url: `/projects`,
-      type: "POST",
+      url: `/projects/${this.projectId}`,
+      type: "PUT",
       data,
-      success: () => {
-        console.log(this.projectTitle);
-      },
+      success: () => {},
       errors: () => {}
     });
   }

@@ -1,6 +1,8 @@
-
-<header class="flex items-center justify-between h-24 px-6 border-b border-gray-200">
-  <div class="flex items-center w-full"><%= render "shared/header",project: @project %></div>
+<header class="h-[6.188rem] flex px-6 items-center justify-between border-b border-gray-200">
+  <h1 class="text-2xl bold"><%= @project.title %></h1>
+  <div class="flex items-center">
+    <%= render "shared/header",project: @project %>
+  </div>
 </header>
 
 <main class="relative flex justify-around project_show" data-controller="overview" data-project-id="<%= @project.id%>">
@@ -10,7 +12,7 @@
         <img src="/assets/writer" class="inline w-12" />
         專案內容
       </h2>
-      <p class="p-2 border rounded-md project_content" contenteditable data-overview-target="content"><%= @project.content %></p>
+      <p class="p-2 border rounded-md project_content" ><%= @project.content %></p>
       <div class="mt-16 project_user">
         <h3 class="p-2 text-3xl font-semibold"><img src="/assets/member" class="inline w-12 mb-3 mr-2" />專案成員</h3>
         <div class="flex flex-wrap w-full">
