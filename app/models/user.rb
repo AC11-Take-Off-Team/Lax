@@ -8,10 +8,11 @@ class User < ApplicationRecord
   has_many :projects, through: :user_projects
   has_many :user_tasks
   has_many :tasks, through: :user_tasks
-
   has_many :channels
   has_many :groups, through: :channels
+
   after_create :name
+
 
   def join?(group)
     groups.find_by(id: group).present?
@@ -32,6 +33,6 @@ class User < ApplicationRecord
   end
 
   def name
-    self.update(username: self.email.split('@').first) 
+    self.update(username: self.email.split('@').first)
   end
 end

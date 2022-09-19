@@ -23,7 +23,7 @@
       <label class="items-center block text-lg text-gray-700 w-28 h-9 text-icon"> 任務描述：</label>
       <%= form.text_area :content, :class=>"h-20 border border-transparent border-gray-300 focus:border-gray-400 rounded-md p-3 text-lg outline-none justify-center w-full", :cols=>"30", :rows=>"10"%>
     </div>
-    <div class="p-2 text-center"><%= form.submit "送出任務", data: { action: "input->task#taskPost" }, :class=>" text-white no-underline bg-momo rounded hover:bg-kohbai text-lg " %></div>
+    <div class="p-2 text-center"><%= form.submit "送出任務", data: { action: "input->task#taskPost" }, :class=>" text-white no-underline bg-momo rounded hover:bg-kohbai text-lg p-2 cursor-pointer" %></div>
   </div>
   <% end %>
 </div>

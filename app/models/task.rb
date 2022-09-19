@@ -8,6 +8,8 @@ class Task < ApplicationRecord
   has_one :user, through: :user_task
 
   validates :title, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
 
   def user_name
     user.email.split('@').first if user

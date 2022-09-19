@@ -1,29 +1,24 @@
-<%= form_with(model: message , local:true, data: {controller: "emoji-picker"}) do |form| %>
-  <% if message.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
-
-      <ul>
-        <% message.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= content_tag(:div, "", class:"pickerContainer", data: {
-     emoji_picker_target: "pickerContainer"
-   }) %>
-  <div class="field emoji-field">
-    <div class="flex-none px-4 pb-6">
-            <div class="flex overflow-hidden border-2 rounded-lg border-grey">
-                  <%= form.text_area :content, rows: 5 ,style: 'width: 100%', placeholder: "Enter message here!", data: {emoji_picker_target: "trixEditor"} %>
-            </div>
-        </div>
-
+<div data-controller="message" class="relative">
+  <%= form_with(model: message , local:true) do |form| %>
+    <% if message.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+        <ul>
+          <% message.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= content_tag(:div, "", class:"pickerContainer", data: { emoji_picker_target: "pickerContainer"}) %>
+    <div class="flex items-center">
+      <div class="flex-1 mr-4">
+        <%= form.text_field :content, rows: 5 ,style: 'width: 100%', placeholder: "Enter message here!", data: {message_switch_target: "trixEditor"} ,:class=>"w-full h-12 px-2 py-2 border rounded"%>
+      </div>
+      <%= form.hidden_field :room_id, value: room.id %>
+      <div class="">
+        <%= form.submit "▶️",:class=>"text-2xl bg-transparent	text-white",data: { disable_with: false,action:"input=>message#submit" } %>
+      </div>
+    <% end %>
   </div>
-  <%= form.hidden_field :room_id, value: room.id %>
-
-  <div class="actions">
-    <%= form.submit data: { disable_with: false } %>
-  </div>
-<% end %>
+</div>
