@@ -1,3 +1,5 @@
+<div id="room-id" data-room-id="<%= @room.try(:id) %>"></div>
+<div id="user-id" data-user-id="<%= current_user.id %>"></div>
 <div class="h-screen w-full relative">
   <div class="flex justify-between items-center">
     <h1 class="text-lg ml-4 mt-4 mb-4 border-0 hover:bg-gray-300 hover:rounded-md	"># <%= link_to @group.title, edit_group_path(@group) %> ▼ </h1>
@@ -48,17 +50,19 @@
       <%= Time.now.strftime("%m月%d日") %>
     </div>
     <div class="flex-1 px-6 py-4 h-full overflow-y-auto">
-      <% if @room.messages.count > 0 %>
-        <% @room.messages.each do |message| %>
-          <%= render 'messages/message', message: message %>
+      <div id = "messages">
+        <% if @room.messages.count > 0 %>
+          <% @room.messages.each do |message| %>
+            <%= render 'messages/message', message: message %>
+          <% end %>
+        <% else %>
+          <div class="mt-60">
+            <p>你正在 <span class="text-blue-800"># <%= @group.title %></span> 頻道中</p>
+            <p><%= @group.description %></p>
+            <p>頻道中目前還沒有任何訊息！快來跟你的夥伴們開啟討論吧！</p>
+          </div>
         <% end %>
-      <% else %>
-        <div class="mt-60">
-          <p>你正在 <span class="text-blue-800"># <%= @group.title %></span> 頻道中</p>
-          <p><%= @group.description %></p>
-          <p>頻道中目前還沒有任何訊息！快來跟你的夥伴們開啟討論吧！</p>
-        </div>
-      <% end %>
+      </div>
     </div> 
   </div>
   <div class="fixed bottom-0 h-18 w-5/6 bg-gray-500 p-5">
