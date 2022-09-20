@@ -4,7 +4,7 @@
     <%= render "shared/header",project: @project %>
   </div>
 </header>
-<section data-controller="board" data-project-id="<%= @project.id%>" class="relative flex flex-col px-4 h-3/4 md:flex-row md:flex-wrap lg:flex-nowrap lg:overflow-x-auto gap-x-4 board-list">
+<section data-controller="board" data-project-id="<%= @project.id%>" class="relative flex px-4 h-3/4 md:flex-row md:flex-wrap lg:flex-nowrap lg:overflow-x-auto gap-x-4 board-list">
   <% @columns.each do |column| %>
   <div class="flex flex-col flex-wrap w-10/12 m-4 md:overflow-auto md:w-2/5 lg:w-80 cloumn_item" data-controller="task" data-column-id="<%= column.id %>">
     <header class="relative flex items-center justify-between p-2 mb-2">
