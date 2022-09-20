@@ -42,6 +42,7 @@ gem 'omniauth-rails_csrf_protection'
 gem "acts_as_list", "~> 1.0"
 
 gem 'acts_as_paranoid'
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

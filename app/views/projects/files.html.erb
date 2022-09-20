@@ -7,7 +7,7 @@
 <section class="m-7">
   <% if @project.avatars.attached? %>
     <% @project.avatars.each do |file| %>
-      <%=image_tag file, width: '25%' %>
+        <%=image_tag file, width: '25%', class:"inline"%>
     <% end %>
   <% else %>
     <h2 class="text-3xl">目前沒有任何檔案</h2>
