@@ -30,7 +30,7 @@
 </section>
 
 <% if notice&.include?("成功") %>
-  <section  type="button" onclick="javascript:window.close()" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
+  <section  type="button" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
     <div class="w-1/3 h-2/5 p-2.5 bg-white rounded-3xl bg-white">
       <div class="flex justify-end">
         <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100"><%= link_to "X", projects_path %></span>
@@ -41,7 +41,7 @@
       </div>
   </section>
 <% elsif notice&.exclude?("成功") %>
-  <section  type="button" onclick="javascript:window.close()" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
+  <section  type="button" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
     <div class="w-1/3 h-2/5 p-2.5 bg-white rounded-3xl bg-white">
       <div class="flex justify-end">
         <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100"><%= link_to "X", projects_path %></span>
