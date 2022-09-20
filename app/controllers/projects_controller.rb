@@ -24,7 +24,7 @@ class ProjectsController < ApplicationController
       @start = @project.start_time
       @end = @project.end_time
 
-      render :new, notice: '專案建立失敗'
+      render :new
     end
   end
 
@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
       @content = @project.content
       @start = @project.start_time
       @end = @project.end_time
-      render :edit, notice: '專案修改失敗'
+      render :edit
     end
   end
 

@@ -13,7 +13,7 @@
     <%= content_tag(:div, "", class:"pickerContainer", data: { emoji_picker_target: "pickerContainer"}) %>
     <div class="flex items-center">
       <div class="flex-1 mr-4">
-        <%= form.text_field :content, rows: 5 ,style: 'width: 100%', placeholder: "Enter message here!", data: {message_switch_target: "trixEditor"} ,:class=>"w-full h-12 px-2 py-2 border rounded"%>
+        <%= form.text_field :content, rows: 5 ,style: 'width: 100%', placeholder: "Enter message here!", data: {message_switch_target: "trixEditor"} ,:class=>"w-full h-10 px-2 py-2 border rounded text-left", :align=>"left" %>
       </div>
       <%= form.hidden_field :room_id, value: room.id %>
       <div class="">

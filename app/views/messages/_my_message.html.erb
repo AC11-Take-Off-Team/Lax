@@ -1,10 +1,26 @@
-<div class="flex items-start text-sm mb-14">
-     <div class="flex items-center justify-center flex-shrink-0 w-6 h-6 mr-3 text-sm font-semibold text-white bg-blue-500 rounded-full" ><%= message.user.username.first(2) %></div>
-    <div class="flex-1 overflow-hidden">
-      <div>
-        <span class="text-base"><%= message.user.username %></span>
-        <span class="ml-2 text-xs text-grey"><%= message.created_at.localtime.strftime("%Y-%m-%d %H:%M") %></span>
-      </div>
-        <p class="text-base leading-normal text-black"><%= message.content %></p>
+<div class="flex items-start text-sm mb-4">
+  <% if message.user.email.include?('gmail') %>
+    <div class="w-14 h-14 relative mr-4" >
+      <img src="https://cdn-icons-png.flaticon.com/512/5111/5111178.png" class="">
+      <p class="absolute left-5	top-5	text-white"><%= message.user.username.first(2) %></p>
+    </div>
+  <% elsif message.user.email.include?('yahoo') %>
+    <div class="w-14 h-14 relative mr-4" >
+      <img src="https://cdn-icons-png.flaticon.com/512/594/594846.png" class="">
+      <p class="absolute left-5	top-5	text-white"><%= message.user.username.first(2) %></p>
+    </div>
+  <% else %>
+    <div class="w-14 h-14 relative mr-4" >
+      <img src="https://cdn-icons-png.flaticon.com/512/5853/5853933.png" class="">
+      <p class="absolute left-5	top-5	text-white"><%= message.user.username.first(2) %></p>
+    </div>
+  <% end %>
+  
+  <div class="">
+    <div>
+      <span class="font-bold text-lg mr-2"><%= message.user.username %></span>
+      <span class="text-xs text-grey"><%= message.created_at.localtime.strftime("%m月%d日") %></span>
+    </div>
+    <p class="text-black"><%= message.content %></p>
     </div>
 </div>
