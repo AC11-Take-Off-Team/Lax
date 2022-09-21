@@ -15,8 +15,8 @@ export default class extends Controller {
     this.projectId = this.element.dataset.projectId;
     this.titleTarget.value = this.element.dataset.editTitle;
     this.contentTarget.value = this.element.dataset.editContent;
-    this.startTarget.value = this.element.dataset.editStart;
-    this.endTarget.value = this.element.dataset.editEnd;
+    this.startTarget.value = this.element.dataset.editStart.slice(0, 10);
+    this.endTarget.value = this.element.dataset.editEnd.slice(0, 10);
   }
 
   selectDate() {

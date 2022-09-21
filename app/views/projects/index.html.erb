@@ -11,11 +11,13 @@
     <% if @projects.count > 0 %>
       <div>
         <% @projects.each do |project| %>
-          <button class="w-48 px-4 py-4 mb-4 hover:bg-gray-100 hover:rounded-lg">
-            <img src="https://cdn-icons-png.flaticon.com/512/2889/2889338.png" class="w-28 h-28 m-auto">
-            <p class="text-center text-base"><%= link_to project.title, project %></p>
-            <p class="text-center text-xs"><%= project.tasks.count %> 個任務</p>
-          </button>
+          <a href="/projects/<%= project.id %>">
+            <button class="w-48 px-4 py-4 mb-4 hover:bg-gray-100 hover:rounded-lg">
+              <img src="https://cdn-icons-png.flaticon.com/512/2889/2889338.png" class="w-28 h-28 m-auto">
+              <p class="text-center text-base"><%= project.title %></p>
+              <p class="text-center text-xs"><%= project.tasks.count %> 個任務</p>
+            </button>
+          </a>
         <% end %>
       </div>
     <% else %>

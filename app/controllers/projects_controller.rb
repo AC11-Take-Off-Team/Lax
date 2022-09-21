@@ -11,7 +11,6 @@ class ProjectsController < ApplicationController
   end
 
   def create
-   
     @project = current_user.projects.new(project_params.merge(owner_id: current_user.id))
 
     if @project.save
