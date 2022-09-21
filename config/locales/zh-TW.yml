@@ -62,6 +62,10 @@ zh-TW:
         other: "有 %{count} 個錯誤導致 %{resource} 不能被儲存："
   activerecord:
     attributes:
+      project:
+        title: 專案名稱
+        start_time: 開始時間
+        end_time: 結束時間
       user:
         username: 使用者名稱
         confirmation_sent_at: 確認信已寄於
@@ -89,3 +93,4 @@ zh-TW:
         updated_at: 更新於
     models:
       user: 使用者
+    
