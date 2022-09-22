@@ -28,6 +28,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @owner = @project.users.find_by(id: @project.owner_id)
   end
 
   def edit

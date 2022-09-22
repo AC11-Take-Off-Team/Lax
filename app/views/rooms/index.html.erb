@@ -49,7 +49,7 @@
     <div class="px-4 py-2 text-gray-800 border-b border-solid border-gray-500">
       <%= Time.now.strftime("%m月%d日") %>
     </div>
-    <div class="px-6 -py-2 h-4/5 overflow-y-auto" data-controller="message-scroll" data-message-scroll-target="box">
+    <div class="px-6 -py-2 h-4/5 overflow-y-auto" data-controller="message-scroll" data-message-scroll-target="box" data-action="scrollToBottom@window->message-scroll#scrollToBottom">
       <div id="messages">
         <% if @room.messages.count > 0 %>
           <% @room.messages.each do |message| %>
