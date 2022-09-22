@@ -26,8 +26,8 @@ zh-TW:
       password_change:
         subject: "密碼已被修改"
     omniauth_callbacks:
-      failure: "無法從 %{kind} 驗證，因為「%{reason}」。"
-      success: "成功從 %{kind} 驗證。"
+      failure: "無法從 %{kind} 驗證，因為「%{reason}」"
+      success: "成功登入"
     passwords:
       no_token: "這是密碼重設頁面，僅能透過密碼重設信件進入。如果您是透過重設信件進入的，請確認您的網址是完整的。"
       send_instructions: "您將在幾分鐘後收到一封電子郵件，內有重新設定密碼的步驟說明。"
@@ -44,9 +44,9 @@ zh-TW:
       updated: "您已經成功的更新帳號資訊。"
       updated_but_not_signed_in: "您已經成功的更新帳號資訊。但因為您變更了密碼，請重新登入。"
     sessions:
-      signed_in: "成功登入了。"
-      signed_out: "成功登出了。"
-      already_signed_out: "成功登出了。"
+      signed_in: "成功登入"
+      signed_out: "成功登出"
+      already_signed_out: "成功登出"
     unlocks:
       send_instructions: "您將在幾分鐘後收到一封電子郵件，內有將帳號解除鎖定的步驟說明。"
       send_paranoid_instructions: "如果您的帳號已存在，您的電子信箱將會收到如何解鎖帳號的指示。"
@@ -62,6 +62,10 @@ zh-TW:
         other: "有 %{count} 個錯誤導致 %{resource} 不能被儲存："
   activerecord:
     attributes:
+      project:
+        title: 專案名稱
+        start_time: 開始時間
+        end_time: 結束時間
       user:
         username: 使用者名稱
         confirmation_sent_at: 確認信已寄於
