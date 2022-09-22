@@ -5,10 +5,10 @@
   </div>
 </header>
 <div class="h-screen">
-  <section data-controller="board" data-project-id="<%= @project.id %>" class="relative flex px-4 py-4 h-full gap-x-4 board-list overflow-x-auto">
+  <section data-controller="board" data-project-id="<%= @project.id %>" class="relative flex px-4 py-4 h-full gap-x-4 board-list overflow-x-auto bg-gray-50 ">
     <% @columns.each do |column| %>
       <div class="flex flex-col flex-wrap m-4 cloumn_item" data-controller="task" data-column-id="<%= column.id %>">
-        <div class="relative flex items-center justify-between p-2 mb-2 w-80">
+        <div class="relative flex items-center justify-between p-2 mb-2 w-96">
           <p class="text-xl font-semibold text-center column_status">
             <%= column.status %>
           </p>
