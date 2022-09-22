@@ -5,11 +5,23 @@
   </div>
 </header>
 <section class="m-7">
-  <% if @project.avatars.attached? %>
-    <% @project.avatars.each do |file| %>
-        <%=image_tag file, width: '25%', class:"inline"%>
+  <div class="mt-16 field">
+    <%= form_for(@project) do |form| %>
+      <%= form.label :files, '檔案上傳：' %>
+      <%= form.file_field :files, multiple: true %> 
+      <%= form.submit '上傳檔案' %>
     <% end %>
-  <% else %>
-    <h2 class="text-3xl">目前沒有任何檔案</h2>
-  <% end %>
+  </div>
+  <div class="mt-10">
+    <% if @project.files.attached? %>
+      <% @project.files.each do |file| %>
+          <div>
+            <%= file.filename%>
+            <%= link_to "｜下載", file, class:"inline ml-3"%>
+          </div>
+      <% end %>
+    <% else %>
+      <h2 class="text-3xl">目前沒有任何檔案</h2>
+    <% end %>
+  </div>
 </section>
