@@ -13,7 +13,8 @@ module.exports = {
         sakura: "#FEDFE1",
         ivory: "#EDE8E4",
         deepBlue: "#363F4F",
-        blue: "#576A87"
+        blue: "#576A87",
+        ironWhite: "#ecd6c7"
       }
     }
   },
