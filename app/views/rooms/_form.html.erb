@@ -13,14 +13,14 @@
      emoji_picker_target: "pickerContainer"
    }) %>
   <div class="field ">
-    <div class="flex-none pb-6">
+    <div class="flex-none">
       <div class="flex border-2 rounded-lg border-grey">
         <%= form.text_area :content, rows: 5 ,style: 'width: 100%', placeholder: "Enter message here!", data: {emoji_picker_target: "trixEditor"} %>
       </div>
     </div>
   </div>
   <%= form.hidden_field :room_id, value: room.id %>
-  <div class="actions">
+  <div class="actions" data-controller="message-input" data-action="submit->message-input#sendMessage">
     <%= form.submit data: { disable_with: false } %>
   </div>
 <% end %>

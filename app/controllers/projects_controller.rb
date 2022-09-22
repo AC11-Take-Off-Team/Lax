@@ -11,7 +11,6 @@ class ProjectsController < ApplicationController
   end
 
   def create
-   
     @project = current_user.projects.new(project_params.merge(owner_id: current_user.id))
 
     if @project.save
@@ -24,11 +23,12 @@ class ProjectsController < ApplicationController
       @start = @project.start_time
       @end = @project.end_time
 
-      render :new, notice: '專案建立失敗'
+      render :new
     end
   end
 
   def show
+    @owner = @project.users.find_by(id: @project.owner_id)
   end
 
   def edit
@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
       @content = @project.content
       @start = @project.start_time
       @end = @project.end_time
-      render :edit, notice: '專案修改失敗'
+      render :edit
     end
   end
 

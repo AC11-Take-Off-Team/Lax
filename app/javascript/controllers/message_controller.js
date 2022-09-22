@@ -3,8 +3,13 @@ export default class extends Controller {
   static targets = ["content"];
 
   connect() {}
-  submit() {
-    preventDefault;
-    this.contentTarget.value = "";
+  // submit() {
+  //   console.log("in0");
+  //   this.contentTarget.value = "";
+  // }
+
+  sendMessage() {
+    const event = new CustomEvent("scrollToBottom");
+    window.dispatchEvent(event);
   }
 }

@@ -8,7 +8,7 @@ class ColumnsController < ApplicationController
     if done_uniq(@project)
       redirect_to board_project_path(@project), notice: "名字：「完成」的區段已存在"
     else
-      message = @project.columns.create(column_params) ? "區段創立成功" : "區段創立失敗"
+      message = @project.columns.create(column_params) ? "任務區塊創立成功" : "任務區塊創立失敗"
       redirect_to board_project_path(@project), notice: message
     end
   end
@@ -24,7 +24,7 @@ class ColumnsController < ApplicationController
 
   def destroy
     @column.destroy
-    redirect_to board_project_path(@column.project), notice: '區段刪除成功'
+    redirect_to board_project_path(@column.project)
   end
 
   def create_task
@@ -32,7 +32,7 @@ class ColumnsController < ApplicationController
     assign_user(params[:task]["user_id"])
 
     if @task.save
-      redirect_to board_project_path(@column.project), notice: '任務建立成功'
+      redirect_to board_project_path(@column.project)
     else
       redirect_to board_project_path(@column.project), notice: '任務建立失敗'
     end
@@ -46,7 +46,7 @@ class ColumnsController < ApplicationController
 
   def destroy_task
     @task.destroy
-    redirect_to board_project_path(@task.project), notice: '任務刪除成功'
+    redirect_to board_project_path(@task.project)
   end
 
   private

@@ -17,12 +17,10 @@ export default class extends Controller {
   connect() {
     this.selectDate();
     if (this.element.dataset.error) {
-      console.log(this.element.dataset.errorTitle);
-
       this.titleTarget.value = this.element.dataset.errorTitle;
       this.contentTarget.value = this.element.dataset.errorContent;
-      this.startTarget.value = this.element.dataset.errorStart;
-      this.endTarget.value = this.element.dataset.errorEnd;
+      this.startTarget.value = this.element.dataset.errorStart.slice(0, 10);
+      this.endTarget.value = this.element.dataset.errorEnd.slice(0, 10);
     }
   }
 

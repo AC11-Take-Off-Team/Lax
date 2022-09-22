@@ -40,6 +40,7 @@ export default class extends Controller {
   }
 
   createProject() {
+    event.preventDefault();
     const data = new FormData();
     data.append("project[title]", this.titleTarget.value);
     data.append("project[content]", this.contentTarget.value);

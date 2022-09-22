@@ -1,11 +1,27 @@
-<div class="flex items-start mb-4 text-sm">
-  <%= image_tag(("logo.png"), class: "height:50, width:50")%>
-  <div class="flex-1 overflow-hidden">
-    <div>
-      <span class="font-bold"><%= message.user.email %></span>
-      <span class="text-xs text-grey"><%= message.created_at %></span>
+
+<div class="flex items-start text-sm mb-4">
+  <% if message.user.email.include?('gmail') %>
+    <div class="w-14 h-14 relative mr-4" >
+      <img src="https://cdn-icons-png.flaticon.com/512/5111/5111178.png" class="">
+      <p class="absolute left-5	top-5	text-white"><%= message.user.username.first(2) %></p>
     </div>
-    <p class="leading-normal text-black"><%= message.content %></p>
-    <%= link_to "delete", message_path(message.id), method: "delete", data: {confirm: "Sure to delete?"}%>
-  </div>
+  <% elsif message.user.email.include?('yahoo') %>
+    <div class="w-14 h-14 relative mr-4" >
+      <img src="https://cdn-icons-png.flaticon.com/512/594/594846.png" class="">
+      <p class="absolute left-5	top-5	text-white"><%= message.user.username.first(2) %></p>
+    </div>
+  <% else %>
+    <div class="w-14 h-14 relative mr-4" >
+      <img src="https://cdn-icons-png.flaticon.com/512/5853/5853933.png" class="">
+      <p class="absolute left-5	top-5	text-white"><%= message.user.username.first(2) %></p>
+    </div>
+  <% end %>
+  
+  <div>
+    <div>
+      <span class="font-bold text-lg mr-2"><%= message.user.username %></span>
+      <span class="text-xs text-grey"><%= message.created_at.localtime.strftime("%m月%d日") %></span>
+    </div>
+    <p class="text-black"><%= message.content %></p>
+    </div>
 </div>
