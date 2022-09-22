@@ -124,10 +124,7 @@ ul {
 }
 // board
 .status_list{
-  background-color: #EDE8E4;
-}
-.board-list{
-  background-color: #fffcfa;
+  background-color: #f0f0f0;
 }
 .column_display{
   visibility: hidden;
@@ -139,7 +136,7 @@ ul {
   display: none;
 }
 input[type='text']{
-  text-align: center;
+  text-align: left;
 }
 .task_update{
   position: fixed;
