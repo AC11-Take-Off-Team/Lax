@@ -1,33 +1,33 @@
 <div class="flex flex-col bg-white">
   <%= form_with model: model,url: url do |form| %>
   <div class="relative">
-    <button data-action="click->task#closePost" class="absolute top-0 right-0 pl-1 text-lg rounded-lg">
-      <img class="inline p-2 w-9" alt="Lax" src="/assets/cross.png" />
+    <button data-action="click->task#closePost" class="absolute top-1 right-0 pl-1 text-lg rounded-lg ">
+      <span class="px-2 my-6 mr-4 text-lg text-gray-400 bg-white rounded-lg hover:bg-gray-300 hover:text-white">X</span>
     </button>
 
-    <div class="flex p-1 pt-2">
+    <div class="flex p-2 pt-8">
       <label class="items-center text-lg text-gray-700 w-28 h-9 text-icon">任務名稱：</label>
-      <%= form.text_field :title, :class=>"text-sm line-clamp-1 text-gray-700", placeholder: "輸入任務名稱 例：安排行程" %>
+      <%= form.text_field :title, :class=>"w-72 text-sm line-clamp-1 text-gray-700", placeholder: "輸入任務名稱 例：安排行程" %>
     </div>
 
-    <div class="flex p-1">
+    <div class="flex p-2">
       <label class="items-center text-lg text-gray-700 w-28 h-9 text-icon"> 任務日期：</label>
-      <%= form.text_field [:start_time, :end_time], data: { "task-target": "datepicker", action: "input->task#selectdate" }, placeholder: "輸入開始日期&截止日期",:class=>"text-sm line-clamp-1 text-gray-700" %>
+      <%= form.text_field [:start_time, :end_time], data: { "task-target": "datepicker", action: "input->task#selectdate" }, placeholder: "輸入開始日期&截止日期",:class=>"w-72 text-sm line-clamp-1 text-gray-700" %>
     </div>
 
-    <div class="flex p-1">
+    <div class="flex p-2">
       <label class="items-center text-lg text-gray-700 w-28 h-9 text-icon"> 指派任務：</label>
       <%= form.collection_select(:user_id, user, :id, :username, {:prompt => '無指派對象'},:class=>"text-sm line-clamp-1 text-gray-700") %>
     </div>
-    <div class="flex p-1">
+    <div class="flex p-2">
       <label class="items-center text-lg text-gray-700 w-28 h-9 text-icon"> 優先順序：</label>
       <%= form.select(:priority,[['高','高'],['中','中'],['低','低']],{:prompt => '-'})%>
     </div>
-    <div class="p-1">
+    <div class="p-2">
       <label class="items-center block text-lg text-gray-700 w-28 h-9 text-icon"> 任務描述：</label>
-      <%= form.text_area :content, :class=>"h-20 border border-transparent border-gray-300 focus:border-gray-400 rounded-md p-1 text-lg outline-none justify-center w-full resize-none", :cols=>"30", :rows=>"10", placeholder: "描述任務內容 例：安排三天兩夜行程"%>
+      <%= form.text_area :content, :class=>"resize-none h-20 border border-transparent border-gray-300 focus:border-gray-400 rounded-md p-1 text-lg outline-none justify-center w-full ", :cols=>"30", :rows=>"10", placeholder: "描述任務內容 例：安排三天兩夜行程", :class=>"w-72 text-sm line-clamp-1 text-gray-700 resize-none"%>
     </div>
-    <div class="p-2 text-center"><%= form.submit "送出任務", data: { action: "input->task#taskPost" }, :class=>" text-white no-underline bg-momo rounded hover:bg-kohbai text-lg p-2 cursor-pointer" %></div>
+    <div class="p-2 text-center"><%= form.submit "送出任務", data: { action: "input->task#taskPost" }, :class=>" w-72 text-white no-underline bg-momo rounded hover:bg-kohbai text-lg p-2 cursor-pointer" %></div>
   </div>
   <% end %>
 </div>
