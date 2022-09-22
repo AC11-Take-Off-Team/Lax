@@ -96,7 +96,12 @@ class ProjectsController < ApplicationController
       @task_done = 0
     end
     @task_doing = @task_sum - @task_done
-    @done_precent = (@task_done*100/@task_sum).to_i
+    if @task_done = 0
+      @done_precent = 0
+    else
+      @done_precent = (@task_done*100/@task_sum).to_i
+    end
+    
     @delay = @project.tasks.select{ |task| task if task.end_time < Time.now }.count
   end
 
