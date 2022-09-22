@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_user_project, only: %i[show edit update destroy board calendar gantt remove_owner change_owner]
+  before_action :find_user_project, only: %i[show edit update destroy board calendar gantt remove_owner change_owner progress]
 
   def index
     @projects = current_user.projects
@@ -86,6 +86,18 @@ class ProjectsController < ApplicationController
   def change_owner
     @project.update(owner_id: params[:user_id])
     redirect_to @project, notice: "成功更改專案所有者"
+  end
+
+  def progress
+    @task_sum = @project.tasks.count
+    if @project.columns.find_by(status: "完成")
+      @task_done = @project.columns.find_by(status: "完成").tasks.count
+    else
+      @task_done = 0
+    end
+    @task_doing = @task_sum - @task_done
+    @done_precent = (@task_done*100/@task_sum).to_i
+    @delay = @project.tasks.select{ |task| task if task.end_time < Time.now }.count
   end
 
   private

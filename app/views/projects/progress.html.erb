@@ -1,0 +1,31 @@
+<header class="h-[6.188rem] flex px-6 items-center justify-between border-b border-gray-200">
+  <h1 class="text-2xl bold"><%= @project.title %></h1>
+  <div class="flex items-center"><%= render "shared/header",project: @project %></div>
+</header>
+<h2></h2>
+<div
+  class="flex flex-wrap justify-center mx-auto progress rounded-3xl mt-28"
+  data-controller="progress"
+  data-done-precent="<%= @done_precent %>"
+  data-project-id="<%= @project.id%>"
+  data-task-doing="<%= @task_doing %>"
+  data-task-done="<%= @task_done %>"
+>
+  <div class="h-40 p-4 m-3 text-2xl font-semibold text-center border-2 rounded-md task_count">已完成的任務 <span class="block mt-3 text-6xl"><%= @task_done %></span></div>
+  <div class="h-40 p-4 m-3 text-2xl font-semibold text-center border-2 rounded-md task_count">未完成的任務 <span class="block mt-3 text-6xl"><%= @task_doing %></span></div>
+  <div class="h-40 p-4 m-3 text-2xl font-semibold text-center border-2 rounded-md task_count">逾期的任務 <span class="block mt-3 text-6xl"><%= @delay %></span></div>
+  <div class="h-40 p-4 m-3 text-2xl font-semibold text-center border-2 rounded-md task_count">任務總計 <span class="block mt-3 text-6xl"><%= @task_sum %></span></div>
+  <div class="flex flex-col justify-between p-4 m-3 border-2 rounded-md chart">
+    <h3 class="py-2 text-lg font-medium">按區段分組的任務</h3>
+    <canvas class="overflow-auto bar" data-progress-target="bar"></canvas>
+  </div>
+  <div class="p-4 m-3 border-2 rounded-md chart">
+    <h3 class="py-2 text-lg font-medium">完成任務總計圓餅圖</h3>
+    <div class="flex justify-center">
+      <div class="relative w-1/2">
+      <canvas class="overflow-auto doughnut" data-progress-target="doughnut"><%= @task_done %></canvas>
+    </div>
+    <span class="m-auto text-xl">完成比率：<%= @done_precent %>％</span>
+    </div>
+  </div>
+</div>

@@ -30,6 +30,13 @@ class Api::V1::ProjectsController < ApplicationController
     project.update(content: params[:content])
   end
 
+  def chart
+    project = Project.find(params[:id])
+    @column = project.columns
+    @count = @column.map{ |column| column.tasks.count }
+    render json: [@column,@count,@user]
+  end
+
   private
 
   def find_column
