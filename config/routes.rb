@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get :progress
       delete :remove_owner
       post :change_owner
+      get :files
     end
 
     resources :columns, shallow: true, only: [:create, :update, :destroy] do

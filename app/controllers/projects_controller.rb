@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_user_project, only: %i[show edit update destroy board calendar gantt remove_owner change_owner progress]
+  before_action :find_user_project, only: %i[show edit update destroy board calendar gantt remove_owner change_owner files progress]
 
   def index
     @projects = current_user.projects
@@ -68,6 +68,9 @@ class ProjectsController < ApplicationController
   def gantt
   end
 
+  def files
+  end
+
   def board
     @new_task = Task.new
     @new_column = Column.new
@@ -108,7 +111,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :content, :status, :deleted_at, :owner_id, :start_time, :end_time)
+    params.require(:project).permit(:title, :content, :status, :deleted_at, :owner_id, :start_time, :end_time, files:[])
   end
 
   def find_user_project

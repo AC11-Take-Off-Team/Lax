@@ -44,9 +44,9 @@ zh-TW:
       updated: "您已經成功的更新帳號資訊。"
       updated_but_not_signed_in: "您已經成功的更新帳號資訊。但因為您變更了密碼，請重新登入。"
     sessions:
-      signed_in: "成功登入"
-      signed_out: "成功登出"
-      already_signed_out: "成功登出"
+      signed_in: "成功登入了。"
+      signed_out: "成功登出了。"
+      already_signed_out: "成功登出了。"
     unlocks:
       send_instructions: "您將在幾分鐘後收到一封電子郵件，內有將帳號解除鎖定的步驟說明。"
       send_paranoid_instructions: "如果您的帳號已存在，您的電子信箱將會收到如何解鎖帳號的指示。"
@@ -93,3 +93,4 @@ zh-TW:
         updated_at: 更新於
     models:
       user: 使用者
+    
