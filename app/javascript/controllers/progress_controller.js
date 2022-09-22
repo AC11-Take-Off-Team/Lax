@@ -9,8 +9,6 @@ export default class extends Controller {
   connect(){
     const doughnut_data =[this.element.dataset.taskDone,this.element.dataset.taskDoing]
     const projectID = this.element.dataset.projectId;
-    // const done_precent = (this.element.dataset.donePrecent);
-    // this.done_valueTarget.style.width =`${done_precent}%`
     Rails.ajax({
       url: `/api/v1/projects/${projectID}/chart`,
       type: 'get',
