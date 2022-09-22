@@ -145,7 +145,6 @@ GEM
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
-    mini_magick (4.11.0)
     mini_mime (1.1.2)
     minitest (5.16.3)
     msgpack (1.5.6)
@@ -373,9 +372,12 @@ DEPENDENCIES
   foreman (~> 0.87.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
+<<<<<<< HEAD
   net-imap
   net-pop
   mini_magick (~> 4.5, >= 4.5.1)
+=======
+>>>>>>> 7b0168f9 (add_about)
   net-smtp (~> 0.3.1)
   omniauth
   omniauth-google-oauth2
