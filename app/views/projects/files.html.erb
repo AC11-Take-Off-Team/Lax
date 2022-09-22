@@ -4,14 +4,16 @@
     <%= render "shared/header",project: @project %>
   </div>
 </header>
-<section class="m-7">
-  <div class="mt-16 field">
-    <%= form_for(@project) do |form| %>
+<section class="m-10 ">
+  <%= form_for(@project) do |form| %>
+    <div class="mt-16 field">
       <%= form.label :files, '檔案上傳：' %>
       <%= form.file_field :files, multiple: true %> 
-      <%= form.submit '上傳檔案' %>
-    <% end %>
-  </div>
+      <button class="flex items-center px-4 mt-2 transition-all border rounded-md h-9 bg-momo hover:bg-kohbai">
+        <%= form.submit "上傳",class:"text-sm text-white mx-auto bg-transparent"%>
+      </button>
+    </div>
+  <% end %>
   <div class="mt-10">
     <% if @project.files.attached? %>
       <% @project.files.each do |file| %>

@@ -43,7 +43,6 @@ gem "acts_as_list", "~> 1.0"
 
 gem 'acts_as_paranoid'
 gem "aws-sdk-s3", require: false
-gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 
 
 group :development, :test do
