@@ -2,35 +2,6 @@
   <div class="body-wrap boxed-container">
     <header class="site-header">
       <div class="container">
-        <div class="site-header-inner">
-          <div class="brand header-brand">
-            <h1 class="m-0">
-              <a href="#">
-                <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="logo-gradient-b">
-                        <stop stop-color="#39D8C8" offset="0%"/>
-                        <stop stop-color="#BCE4F4" offset="47.211%"/>
-                        <stop stop-color="#838DEA" offset="100%"/>
-                    </linearGradient>
-                    <path d="M32 16H16v16H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h28a2 2 0 0 1 2 2v14z" id="logo-gradient-a"/>
-                    <linearGradient x1="23.065%" y1="25.446%" y2="100%" id="logo-gradient-c">
-                        <stop stop-color="#1274ED" stop-opacity="0" offset="0%"/>
-                        <stop stop-color="#1274ED" offset="100%"/>
-                    </linearGradient>
-                  </defs>
-                  <g fill="none" fill-rule="evenodd">
-                    <mask id="logo-gradient-d" fill="#fff">
-                        <use xlink:href="#logo-gradient-a"/>
-                    </mask>
-                    <use fill="url(#logo-gradient-b)" xlink:href="#logo-gradient-a"/>
-                    <path fill="url(#logo-gradient-c)" mask="url(#logo-gradient-d)" d="M-16-16h32v32h-32z"/>
-                  </g>
-                </svg>
-              </a>
-            </h1>
-          </div>
-        </div>
       </div>
     </header>
     <main>
@@ -41,7 +12,7 @@
           <p class="text-xl hero-paragraph is-revealing">小至細節，大至宏圖，LAX都能組織工作，讓團隊瞭解工作內容、目的和方式。</p>
           <div class="hero-form newsletter-form field field-grouped is-revealing">
             <div class="control ">
-              <button><%= link_to "登入" , home_index_path,:class=>" px-6 py-3 text-white transition duration-300 bg-momo border-b-4 rounded-lg hover:bg-kohbai text-base"%></button>
+              <button><%= link_to "登入" , home_index_path,:class=>" px-6 py-3 text-white bg-momo rounded-lg hover:bg-kohbai text-base"%></button>
             </div>
           </div>
           <div class="hero-browser">
@@ -69,9 +40,9 @@
                   <mask id="bubble-4-b" fill="#fff">
                       <use xlink:href="#bubble-4-a"/>
                   </mask>
-                  <use fill="#FFA3B5" xlink:href="#bubble-4-a"/>
-                  <circle fill="#fff" mask="url(#bubble-4-b)" cx="30" cy="108" r="108"/>
-                  <circle fill="#FEDFE1" opacity=".7" mask="url(#bubble-4-b)" cx="265" cy="88" r="108"/>
+                  <use fill="#f8ddb9" xlink:href="#bubble-4-a"/>
+                  <circle fill="#ebb98c" mask="url(#bubble-4-b)" cx="30" cy="108" r="108"/>
+                  <circle fill="#Fff" opacity=".7" mask="url(#bubble-4-b)" cx="265" cy="88" r="108"/>
                 </g>
               </svg>
             </div>
@@ -118,28 +89,28 @@
           <div class="features-wrap">
             <div class="feature is-revealing">
               <div class="feature-inner">
-                <h3 class="feature-title">即時通訊</h3>
-                <p class="text-sm">訊息同步、即時交談</p>
+                <h3 class="text-2xl feature-title">即時通訊</h3>
+                <p class="text-lg">訊息同步、即時交談</p>
               </div>
             </div>
             <div class="feature is-revealing">
               <div class="feature-inner">
-                <h3 class="feature-title">行程管理</h3>
-                <p class="text-sm">制定行程、需求切換</p>
+                <h3 class="text-2xl feature-title">行程管理</h3>
+                <p class="text-lg">制定行程、需求切換</p>
               </div>
             </div>
           </div>
           <div class="features-wrap">
             <div class="feature is-revealing">
               <div class="feature-inner">
-                <h3 class="feature-title">任務安排</h3>
-                <p class="text-sm">彈性指派、即時管理</p>
+                <h3 class="text-2xl feature-title">任務安排</h3>
+                <p class="text-lg">彈性指派、即時管理</p>
               </div>
             </div>
             <div class="feature is-revealing">
               <div class="feature-inner">
-                <h3 class="feature-title">圖表管理</h3>
-                <p class="text-sm">進度即時、視覺呈現</p>
+                <h3 class="text-2xl feature-title">圖表管理</h3>
+                <p class="text-lg">進度即時、視覺呈現</p>
               </div>
             </div>
           </div>
@@ -149,39 +120,49 @@
     </main>
     <div class="flex">
       <div class="w-1/5 p-6 bg-white rounded-lg shadow-lg ">
-        <h5 class="mb-2 text-xl font-medium leading-tight text-gray-900">冠誼</h5>
-        <p class="mb-4 text-base text-gray-700 break-all">
-          https://github.com/KathyLEEKUANYI
-        </p>
-        <span class="text-xs">✉ feather080300@gmail.com</span>
+        <div class="flex">
+          <span class="mb-2 text-xl font-medium leading-tight text-gray-900">冠誼</span>
+            <p class="mb-4 text-base text-gray-700 break-all">
+              <a href="https://github.com/KathyLEEKUANYI"><img src="assets/GitHub.jpeg" class="w-10"></a>
+            </p>
+          </div>
+          <span class="text-xs">✉ feather080300@gmail.com</span>
+        </div>
+      <div class="w-1/5 p-6 bg-white rounded-lg shadow-lg">
+        <div class="flex">
+          <span class="mb-2 text-xl font-medium leading-tight text-gray-900">逸群</span>
+            <p class="mb-4 text-base text-gray-700 break-all">
+              <a href="https://github.com/puyichun"><img src="assets/GitHub.jpeg" class="w-10"></a>
+            </p>
+        </div>
+          <span class="text-xs">✉ zero92137548@gmail.com</span>
       </div>
       <div class="w-1/5 p-6 bg-white rounded-lg shadow-lg">
-        <h5 class="mb-2 text-xl font-medium leading-tight text-gray-900">逸群</h5>
-        <p class="mb-4 text-base text-gray-700 break-all">
-        https://github.com/puyichun
-        </p>
-        <span class="text-xs">✉ zero92137548@gmail.com</span>
+        <div class="flex">
+          <span class="mb-2 text-xl font-medium leading-tight text-gray-900">弘毅</span>
+            <p class="mb-4 text-base text-gray-700 break-all">
+              <a href="https://github.com/DylanHHY"><img src="assets/GitHub.jpeg" class="w-10"></a>
+            </p>
+        </div>
+          <span class="text-xs">✉ dyan2009200@gmail.com</span>
       </div>
       <div class="w-1/5 p-6 bg-white rounded-lg shadow-lg">
-        <h5 class="mb-2 text-xl font-medium leading-tight text-gray-900">弘毅</h5>
-        <p class="mb-4 text-base text-gray-700 break-all">
-        https://github.com/DylanHHY
-        </p>
-        <span class="text-xs">✉ dyan2009200@gmail.com</span>
+        <div class="flex">
+          <span class="mb-2 text-xl font-medium leading-tight text-gray-900">珈寧</span>
+            <p class="mb-4 text-base text-gray-700 break-all">
+              <a href="https://github.com/cacachang"><img src="assets/GitHub.jpeg" class="w-10"></a>
+            </p>
+        </div>
+          <span class="text-xs">✉ ning@ninglab.com</span>
       </div>
       <div class="w-1/5 p-6 bg-white rounded-lg shadow-lg">
-        <h5 class="mb-2 text-xl font-medium leading-tight text-gray-900">珈寧</h5>
-        <p class="mb-4 text-base text-gray-700 break-all">
-          https://github.com/cacachang
-        </p>
-        <span class="text-xs">✉ ning@ninglab.com</span>
-      </div>
-      <div class="w-1/5 p-6 bg-white rounded-lg shadow-lg">
-        <h5 class="mb-2 text-xl font-medium leading-tight text-gray-900">昱廷</h5>
-        <p class="mb-4 text-base text-gray-700 break-all">
-          https://github.com/AilaLu
-        </p>
-        <span class="text-xs">✉ ailalutw@gmail.com</span>
+        <div class="flex">
+          <span class="mb-2 text-xl font-medium leading-tight text-gray-900">昱廷</span>
+            <p class="mb-4 text-base text-gray-700 break-all">
+              <a href="https://github.com/AilaLu"><img src="assets/GitHub.jpeg" class="w-10"></a>
+            </p>
+        </div>
+          <span class="text-xs">✉ ailalutw@gmail.com</span>
       </div>
     </div>
     <footer class="mt-20 site-footer text-light">
