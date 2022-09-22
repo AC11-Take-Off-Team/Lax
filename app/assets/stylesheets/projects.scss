@@ -124,10 +124,7 @@ ul {
 }
 // board
 .status_list{
-  background-color: #EDE8E4;
-}
-.board-list{
-  background-color: #fffcfa;
+  background-color: #f0f0f0;
 }
 .column_display{
   visibility: hidden;
@@ -139,7 +136,7 @@ ul {
   display: none;
 }
 input[type='text']{
-  text-align: center;
+  text-align: left;
 }
 .task_update{
   position: fixed;
@@ -169,4 +166,13 @@ input[type='text']{
 }
 .project_user{
   width: 768px;
+}
+.task_count{
+  width: 226px;
+}
+.chart{
+  width: 477px;
+}
+.progress{
+  width: 1100px;
 }

@@ -16,8 +16,10 @@ Rails.application.routes.draw do
       delete :kick_out
       get :board
       get :calendar
+      get :progress
       delete :remove_owner
       post :change_owner
+      get :files
     end
 
     resources :columns, shallow: true, only: [:create, :update, :destroy] do
@@ -37,6 +39,7 @@ Rails.application.routes.draw do
           patch :sort_task_position
           patch :sort_column_position
           patch :change_content
+          get :chart
         end
       end
       resources :tasks,only: [] do

@@ -42,6 +42,8 @@ gem 'omniauth-rails_csrf_protection'
 gem "acts_as_list", "~> 1.0"
 
 gem 'acts_as_paranoid'
+gem "aws-sdk-s3", require: false
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -82,6 +84,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "net-smtp", "~> 0.3.1",require: false
+gem 'net-pop', require: false
+gem 'net-imap', require: false
 
 
 gem 'paranoia', '~> 2.2'

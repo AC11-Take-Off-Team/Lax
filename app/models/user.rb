@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :channels
   has_many :groups, through: :channels
 
-  after_create :name
+  after_create :name_update
 
 
   def join?(group)
@@ -32,7 +32,9 @@ class User < ApplicationRecord
     user
   end
 
-  def name
+  private
+
+  def name_update
     self.update(username: self.email.split('@').first)
   end
 end

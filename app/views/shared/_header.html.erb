@@ -3,11 +3,11 @@
   <%= link_to "看板",board_project_path(project),:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-sm font-semibold pb-1.5" %>
   <%= link_to "甘特圖",gantt_project_path(project),:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-sm font-semibold pb-1.5" %>
 
-  <a href="#" class="text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-sm font-semibold pb-1.5">
-    燃盡圖
-  </a>
+  <%= link_to "儀表板",progress_project_path(project),:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-sm font-semibold pb-1.5" %>
 
   <%= link_to "行事曆",calendar_project_path(project),:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-sm font-semibold pb-1.5" %>
+
+  <%= link_to "檔案",files_project_path(project),:class=>"text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-sm font-semibold pb-1.5" %>
 
   <a href="/" class="text-icon border-b-2 border-transparent hover:border-gray-400 hover:text-gray-700 text-sm font-semibold pb-1.5">
     首頁

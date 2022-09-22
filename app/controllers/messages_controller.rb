@@ -25,6 +25,7 @@ class MessagesController < ApplicationController
     @message.user = current_user
     @message.save!
     SendMessageJob.perform_later(@message)
+    redirect_to group_path(@message.room.group)
   end
 
   # PATCH/PUT /messages/1 or /messages/1.json
