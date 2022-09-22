@@ -1,12 +1,12 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!
-  def index
 
+  def index
+    authenticate_user!
     @projects = current_user.projects
     @first_project = @projects.first
     @group = current_user.groups
     @groups = Group.all
-    
+
     @undo_list = []
     @doing_list = []
     @done_list = []
@@ -22,5 +22,9 @@ class HomeController < ApplicationController
         end
       end
     end
+  end
+
+  def about
+
   end
 end

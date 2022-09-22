@@ -1,12 +1,12 @@
-<section class="relative m-auto h-full overflow-auto">
-  <h1 class="text-xl font-extrabold ml-4 mt-8">首頁</h1>
-  <span class="text-lg block text-center mb-4"><%= Time.now.strftime("%Y年%m月%d日") %></span>
+<section class="relative h-full m-auto overflow-auto">
+  <h1 class="mt-8 ml-4 text-xl font-extrabold">首頁</h1>
+  <span class="block mb-4 text-lg text-center"><%= Time.now.strftime("%Y年%m月%d日") %></span>
   <% if current_user.username %>
     <h2 class="mb-8 text-4xl font-extrabold text-center">Hi, <%= current_user.username %></h2>
   <% else %>
     <h2 class="mb-8 text-4xl font-extrabold text-center">Hi, <%= current_user.email %></h2>
   <% end %>
-  
+
   <div class="flex justify-center w-3/5 p-4 mb-8 ml-auto mr-auto text-gray-700 border border-gray-500 border-solid rounded-full">
     <div class="">
       <button class="flex">
@@ -30,7 +30,7 @@
       <p><%= @group.count %> 個頻道</p>
     </div>
   </div>
-  
+
   <div class="flex gap-12 mb-8 justify-evenly">
     <div class="w-6/12 p-4 ml-8 text-gray-700 border border-gray-500 border-solid rounded-md h-96">
       <div class="flex mb-4 border-b border-gray-400">
@@ -46,11 +46,11 @@
       </div>
       <div>
         <div class="flex pb-4 pl-2 mb-4 border-b border-gray-400">
-          <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mr-2 mt-auto mb-auto opacity-30	">
-          <input type="text" class="focus: outline-none" data-controller="index-task-create" data-project-id="<%= @first_project[:id] if @first_project %>" data-action="keypress->index-task-create#createTask" data-index-task-create-target="createTask" placeholder="為第一個專案建立任務"></input>
+          <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mt-auto mb-auto mr-2 opacity-30 ">
+          <input type="text" class="outline-none focus:" data-controller="index-task-create" data-project-id="<%= @first_project[:id] if @first_project %>" data-action="keypress->index-task-create#createTask" data-index-task-create-target="createTask" placeholder="為第一個專案建立任務"></input>
         </div>
         <div data-controller="index-task-list">
-          <div data-index-task-list-target="undo" data-action="showTodo@window->index-task-list#showTodo" class="h-36 hidden overflow-auto" id="undo">
+          <div data-index-task-list-target="undo" data-action="showTodo@window->index-task-list#showTodo" class="hidden overflow-auto h-36" id="undo">
             <% @undo_list.each do |task| %>
               <div class="flex pb-4 pl-2 mb-4 border-b border-gray-400">
                 <img src="https://cdn-icons-png.flaticon.com/512/709/709510.png" class="h-4 mt-auto mb-auto mr-2">
@@ -87,7 +87,7 @@
       </div>
     </div>
   </div>
-    
+
     <div data-controller="button-project" class="w-6/12 p-4 mr-8 text-gray-700 border border-gray-500 border-solid rounded-md h-96">
       <p class="pl-4 mt-4 mb-6 text-xl">專案</p>
       <div data-controller="index-project">
@@ -130,8 +130,8 @@
       </div>
     </div>
   </div>
-  
-  
+
+
   <div class="p-4 m-auto ml-8 mr-8 text-gray-700 border border-gray-500 border-solid rounded-md w-12/12">
     <p class="mb-8 text-xl">頻道</p>
     <div class="overflow-x-scroll">
@@ -201,9 +201,9 @@
     </div>
   </div>
 
-  <section data-controller="index-project" data-index-project-target="popup" class="w-full h-full fixed left-0 top-0 mx-auto flex justify-center items-center bg-black bg-opacity-30 hidden">
-    <div class="absolute w-1/2 right-0 top-20" >
-      <button data-action="click->index-project#close open@window->index-project#open" class="absolute w-8 h-8 bg-gray-500 text-white text-xl border border-gray-300 border-solid rounded right-full hover:bg-gray-700">x</button>
+  <section data-controller="index-project" data-index-project-target="popup" class="fixed top-0 left-0 flex items-center justify-center hidden w-full h-full mx-auto bg-black bg-opacity-30">
+    <div class="absolute right-0 w-1/2 top-20" >
+      <button data-action="click->index-project#close open@window->index-project#open" class="absolute w-8 h-8 text-xl text-white bg-gray-500 border border-gray-300 border-solid rounded right-full hover:bg-gray-700">x</button>
       <div class="flex items-center justify-center p-12 bg-gray-50 ">
         <div class="mx-auto w-full max-w-[550px]">
           <form action="/projects" method="POST">
@@ -245,7 +245,7 @@
 <% if notice %>
   <section type="button" onclick="javascript:window.close()" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
     <div class="w-1/3 h-1/5 p-2.5 bg-white rounded-3xl bg-white">
-      <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100 "><%= link_to "X", root_path %></span>
+      <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100 "><%= link_to "X", home_index_path %></span>
       <div class="flex justify-between align-center">
         <span class="p-4 my-6 text-2xl font-semibold text-gray-900"><%= notice %></span>
         <img src="https://cdn-icons-png.flaticon.com/512/2804/2804579.png" class="w-20 h-20">

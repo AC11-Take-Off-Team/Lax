@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     get '/users', to: 'devise/registrations#new'
   end
 
-  root to: 'home#index'
+  root to: 'abouts#index'
+  resources :home, only: [:index]
+
 
   resources :projects do
     resources :tasks, shallow: true, only: [:index, :create, :update, :destroy]

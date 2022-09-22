@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between mt-auto">
       <div class="flex items-center p-2 gap-x-1">
         <img src="assets/logo.png" class="w-10">
-        <h1><%= link_to "LAX" ,root_path ,:class=>"text-xl font-medium text-gray-500" %></h1>
+        <h1><%= link_to "LAX" ,home_index_path ,:class=>"text-xl font-medium text-gray-500" %></h1>
       </div>
       <div class="flex items-center gap-x-3">
         <label class="relative z-30 group">
@@ -19,8 +19,8 @@
             <%= link_to "討論串" , messages_path , :class=>"flex items-center pl-8 pr-8 h-10 text-sm hover:bg-gradient-to-r group-scope hover:text-white from-[#ff5263] to-[#fcbd01]"%>
           </nav>
         </label>
-        <div class="relative group z-30">
-          <button class="w-7 h-7 rounded-full bg-primary text-xs text-white">
+        <div class="relative z-30 group">
+          <button class="text-xs text-white rounded-full w-7 h-7 bg-primary">
             <%= current_user.email.first(2) %>
           </button>
           <nav class="absolute top-full z-10 transition-all translate-y-2 text-sm right-0 bg-white rounded shadow-box w-[21.25rem] opacity-0 invisible group-focus-within:opacity-100 group-focus-within:visible">
