@@ -11,7 +11,9 @@
     <div class="text-lg text-gray-700"><%= task.title %></div>
   </div>
   <div class="flex flex-wrap gap-2 mb-3 h-7">
-    <span class="flex items-center h-5 p-2 text-sm rounded-lg" data-board-target="task-priority"><%= task.priority %></span>
+    <span class="flex items-center h-5 p-2 text-sm rounded-lg" data-board-target="task-priority">
+      <%= task.priority %>
+    </span>
   </div>
   <div class="flex items-center mb-3 gap-x-2">
     <% if task.user.blank? %>
