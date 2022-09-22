@@ -42,9 +42,9 @@ export default class extends Controller {
           icon: "error",
           title: "Oops...",
           text: "Something went wrong!",
-          footer: '<a href="/">Back to Home</a>'
+          footer: '<a href="/">Back to Home</a>',
         });
-      }
+      },
     });
   }
 
@@ -57,40 +57,22 @@ export default class extends Controller {
         time(event) {
           const { start, end, title } = event;
 
-          function formatTime(time) {
-            const hours = `${time.getHours()}`.padStart(2, "0");
-            const minutes = `${time.getMinutes()}`.padStart(2, "0");
-
-            return `${hours}:${minutes}`;
-          }
-          return `<span style="color: white;">${formatTime(start)}~${formatTime(
-            end
-          )} ${title} </span>`;
+          return `<span style="color: white;">${dayjs(start, "HH:mm")}~${dayjs(
+            end,
+            "HH:mm"
+          )} ${title}</span>`;
         },
         allday(event) {
-          return `<span style="color: black;">${event.title}</span>`;
-        }
+          return `<span style="color: gray;">${event.title}</span>`;
+        },
       },
       calendars: [
         {
           id: "cal1",
           name: "任務",
-          backgroundColor: "#F596AA"
-        }
-      ],
-      theme: {
-        common: {
-          backgroundColor: "rgb(250, 250, 250)",
-          border: "1px solid rgb(189, 189, 189)"
+          backgroundColor: "#00a9ff",
         },
-        week: {
-          today: {
-            color: "red",
-            backgroundColor: "rgb(239, 235, 233)",
-            border: "1px solid rgb(189, 189, 189)"
-          }
-        }
-      }
+      ],
     });
   }
 
@@ -119,7 +101,7 @@ export default class extends Controller {
         data,
         success: ({ task }) => {
           this.calendar.createEvents([
-            this.addTask({ ...task, category, calendarId })
+            this.addTask({ ...task, category, calendarId }),
           ]);
         },
         errors: () => {
@@ -128,9 +110,9 @@ export default class extends Controller {
             title: "Oops...",
             text: "Something went wrong!",
             footer:
-              '<a href="/projects/${this.projectId}/calendar">Try again</a>'
+              '<a href="/projects/${this.projectId}/calendar">Try again</a>',
           });
-        }
+        },
       });
     });
 
@@ -158,9 +140,9 @@ export default class extends Controller {
               title: "Oops...",
               text: "Something went wrong!",
               footer:
-                '<a href="/projects/${this.projectId}/calendar">Try again</a>'
+                '<a href="/projects/${this.projectId}/calendar">Try again</a>',
             });
-          }
+          },
         });
     });
 
@@ -179,9 +161,9 @@ export default class extends Controller {
             title: "Oops...",
             text: "Something went wrong!",
             footer:
-              '<a href="/projects/${this.projectId}/calendar">Try again</a>'
+              '<a href="/projects/${this.projectId}/calendar">Try again</a>',
           });
-        }
+        },
       });
     });
   }

@@ -1,14 +1,14 @@
 <section class="w-full">
   <div class="flex justify-between mt-8">
-    <h2 class="mx-4 my-4 text-xl font-semibold pl-4">所有頻道</h2>
-    <div class="mx-4 my-4 pl-4">
+    <h2 class="pl-4 mx-4 my-4 text-xl font-semibold">所有頻道</h2>
+    <div class="pl-4 mx-4 my-4">
       <%= link_to "創建頻道",new_group_path ,:class=>"w-full px-3 py-2 text-white transition duration-300 border-b-4 rounded-lg bg-deepBlue hover:bg-gray-400 text-sm" %>
     </div>
   </div>
   <hr class="mb-8">
-  <div class="mb-12 pl-4">
+  <div class="pl-4 mb-12">
     <%= search_form_for @group_query do |f| %>
-      <div class="flex relative">
+      <div class="relative flex">
         <%= f.search_field :title_or_description_cont, placeholder:"請輸入名稱或描述", :class=>"h-12 w-screen outline-none transition-all rounded-sm bg-transparent pl-8 pr-4 mr-4 text-sm border border-gray-300 " %>
         <button class="absolute bottom-3 left-1">
           <%= f.submit "search", :class=>"bg-transparent text-white rounded-sm p-3 ml-2" %>
@@ -17,28 +17,28 @@
       </div>
     <% end %>
   </div>
-  <span class="block p-2 text-gray-700 mb-2 pl-4">共 <%= Group.count %> 個頻道</span>
+  <span class="block p-2 pl-4 mb-2 text-gray-700">共 <%= Group.count %> 個頻道</span>
   <hr class="">
-      <% @groups.each do |group| %>
+      <% @group.each do |group| %>
         <% if current_user.join?(group) %>
-          <div class="py-4 px-6 transition bg-white hover:bg-gray-100 pl-8">
+          <div class="px-6 py-4 pl-8 transition bg-white hover:bg-gray-100">
             <div class="flex justify-between align-center">
               <div class="flex items-center">
                 <img src="https://cdn-icons-png.flaticon.com/512/2228/2228655.png" class="w-10 h-10 mr-8">
                 <div>
                   <div class="flex pb-2">
-                    <span class="bold text-xl pr-2 text-gray-500 ">#</span>
+                    <span class="pr-2 text-xl text-gray-500 bold ">#</span>
                     <p class="text-xl text-black"><%= link_to group.title, group %></p>
                   </div>
                   <div>
                     <span class="pr-2 text-sm text-green-700">✓ 已加入</span>
                     <span class="pr-2 text-sm"> | </span>
-                    <span class="text-sm text-gray-600 pr-2"><%= group.users.count %> 個成員</span>
+                    <span class="pr-2 text-sm text-gray-600"><%= group.users.count %> 個成員</span>
                     <span class="pr-2 text-sm"> | </span>
                     <% if group.description != "" %>
-                      <span class="text-sm pr-2 text-gray-600"><%= group.description %></span>
+                      <span class="pr-2 text-sm text-gray-600"><%= group.description %></span>
                     <% else %>
-                      <span class="text-sm pr-2 text-gray-600">這個頻道將會一直廣納多元的聲音。這裡很適合發布公告和進行團隊對話</span>
+                      <span class="pr-2 text-sm text-gray-600">這個頻道將會一直廣納多元的聲音。這裡很適合發布公告和進行團隊對話</span>
                     <% end %>
                   </div>
                 </div>
@@ -49,24 +49,24 @@
             </div>
           </div>
           <% else %>
-          <div class="py-4 px-6 transition bg-white hover:bg-gray-100 pl-8">
+          <div class="px-6 py-4 pl-8 transition bg-white hover:bg-gray-100">
             <div class="flex justify-between align-center">
               <div class="flex items-center">
                 <img src="https://cdn-icons-png.flaticon.com/512/2228/2228655.png" class="w-10 h-10 mr-8">
                 <div>
                   <div class="flex pb-2">
-                    <span class="bold text-xl pr-2 text-gray-500 ">#</span>
+                    <span class="pr-2 text-xl text-gray-500 bold ">#</span>
                     <p class="text-xl text-black"><%= link_to group.title, group %></p>
                   </div>
                   <div>
                     <span class="pr-2 text-sm text-red-700">▲ 未加入</span>
                     <span class="pr-2 text-sm"> | </span>
-                    <span class="text-sm text-gray-600 pr-2"><%= group.users.count %> 個成員</span>
+                    <span class="pr-2 text-sm text-gray-600"><%= group.users.count %> 個成員</span>
                     <span class="pr-2 text-sm"> | </span>
                     <% if group.description != "" %>
-                      <span class="text-sm pr-2 text-gray-600"><%= group.description %></span>
+                      <span class="pr-2 text-sm text-gray-600"><%= group.description %></span>
                     <% else %>
-                      <span class="text-sm pr-2 text-gray-600">快來加入我們。這裡很適合進行團隊對話</span>
+                      <span class="pr-2 text-sm text-gray-600">快來加入我們。這裡很適合進行團隊對話</span>
                     <% end %>
                   </div>
                 </div>
@@ -81,40 +81,14 @@
   </div>
 </section>
 
-<% if notice == "非本頻道成員" %>
-  <section type="button" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
-    <div class="w-1/3 h-1/3 bg-white rounded-3xl bg-white relative">
-      <span class="absolute right-2 px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-300 hover:text-white">
-        <%= link_to "X", groups_path %>
-      </span>
-      <div class="flex flex-col justify-center align-center items-center pt-12 pb-8">
-        <img src="https://cdn-icons-png.flaticon.com/512/3756/3756730.png" class="w-20 h-20">
-        <span class="p-4 my-6 text-2xl font-semibold text-gray-900"><%= notice %></span>
+<% if notice %>
+  <section  type="button" onclick="javascript:window.close()" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
+    <div class="w-1/3 h-1/5 p-2.5 bg-white rounded-3xl bg-white">
+      <div class="flex justify-end">
+        <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100"><%= link_to "X", groups_path %></span>
       </div>
-    </div>
-  </section>
-<% elsif notice == "此會員已在頻道中" %>
-  <section type="button" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
-    <div class="w-1/3 h-1/3 bg-white rounded-3xl bg-white relative">
-      <span class="absolute right-2 px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-300 hover:text-white">
-        <%= link_to "X", groups_path %>
-      </span>
-      <div class="flex flex-col justify-center align-center items-center pt-12 pb-8">
-        <img src="https://cdn-icons-png.flaticon.com/512/3756/3756730.png" class="w-20 h-20">
-        <span class="p-4 my-6 text-2xl font-semibold text-gray-900"><%= notice %></span>
+      <div class="flex flex-col justify-center align-center">
+        <span class="p-4 m-auto my-6 text-2xl font-semibold text-gray-900"><%= notice %></span>
       </div>
-    </div>
-  </section>
-<% elsif notice == "已將此會員加入頻道" %>
-  <section type="button" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
-    <div class="w-1/3 h-1/3 bg-white rounded-3xl bg-white relative">
-      <span class="absolute right-2 px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-300 hover:text-white">
-        <%= link_to "X", groups_path %>
-      </span>
-      <div class="flex flex-col justify-center align-center items-center pt-12 pb-8">
-        <img src="https://cdn-icons-png.flaticon.com/512/2804/2804579.png" class="w-20 h-20">
-        <span class="p-4 my-6 text-2xl font-semibold text-gray-900"><%= notice %></span>
-      </div>
-    </div>
   </section>
 <% end %>
