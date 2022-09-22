@@ -68,7 +68,6 @@
       <div class="w-11/12 m-auto bg-gray-800 opacity-60">
         <div class="p-2">
           <p class="text-sm text-white">我的工作空間目前正試用中。</p>
-          <a href="#" class="text-sm text-blue-400">深入瞭解</a>
           <p class="text-sm text-gray-300">還剩餘 29 天</p>
         </div>
       </div>
@@ -93,9 +92,11 @@
           <%= link_to "邀請人員", groups_path %>
         </button>
       </div>
-      <div class="flex items-center ml-4 mb-40">
-        <img src="https://cdn-icons-png.flaticon.com/512/5111/5111337.png" class="w-2">
-        <p class="pl-2 text-white">我們的第一個專案</p>
+      <div class="items-center ml-4 mb-40">
+        <a href="/projects/new" class="flex items-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/5111/5111337.png" class="w-4 h-4 p-1">
+          <p class="pl-2 text-white">建立專案</p>
+        </a>
       </div>
       <button class="mb-8 ml-4 flex items-center">
         <img src="https://cdn-icons-png.flaticon.com/512/609/609195.png" class="w-8">

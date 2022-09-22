@@ -13,7 +13,7 @@
             <%= column.status %>
           </p>
           <%= form_with model: @new_column ,url: column_path(column), method: "patch" do |form| %> 
-          <%= form.text_field :status, :class=>"display column_update text-xl text-center", placeholder: "輸入修改區段名稱" %>
+          <%= form.text_field :status, :class=>"display column_update text-xl text-center", placeholder: "輸入修改任務區塊名稱" %>
           <% end %>
           <div class="relative z-10 flex group">
             <button class="flex items-center justify-center rounded w-7 h-7 text-icon hover:bg-hover" data-action="click->task#display_change">
@@ -34,12 +34,12 @@
             <div class="flex border-b">
               <img class="inline p-2 w-9" alt="Lax" src="/assets/edit.png" />
               <button data-action="click->board#updateColumn" class="p-2 text-base hover:bg-gray-100">
-                修改區段
+                修改任務區塊
               </button>
             </div>
             <div class="flex">
               <img class="inline p-2 w-10 h-10" alt="Lax" src="/assets/delete.png" /> 
-              <%= link_to "刪除區段",column,method: "delete",data: {confirm: "是否刪除本區段"},:class=>"text-base text-red-500 hover:text-red-700 hover:bg-gray-100 p-2" %>
+              <%= link_to "刪除任務區塊",column,method: "delete",data: {confirm: "是否刪除本任務區塊"},:class=>"text-base text-red-500 hover:text-red-700 hover:bg-gray-100 p-2" %>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@
 <% if notice %>
   <section type="button" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
     <div class="w-1/3 h-1/3 bg-white rounded-3xl bg-white relative">
-      <span class="absolute right-2 px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100 ">
+      <span class="absolute right-2 px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-300 hover:text-white">
         <%= link_to "X", board_project_path(@project) %>
       </span>
       <div class="flex flex-col justify-center align-center items-center pt-12 pb-8">
