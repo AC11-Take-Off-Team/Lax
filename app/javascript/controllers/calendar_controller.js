@@ -42,9 +42,9 @@ export default class extends Controller {
           icon: "error",
           title: "Oops...",
           text: "Something went wrong!",
-          footer: '<a href="/">Back to Home</a>'
+          footer: '<a href="/home">Back to Home</a>',
         });
-      }
+      },
     });
   }
 
@@ -64,15 +64,15 @@ export default class extends Controller {
         },
         allday(event) {
           return `<span style="color: gray;">${event.title}</span>`;
-        }
+        },
       },
       calendars: [
         {
           id: "cal1",
           name: "任務",
-          backgroundColor: "#00a9ff"
-        }
-      ]
+          backgroundColor: "#00a9ff",
+        },
+      ],
     });
   }
 
@@ -101,7 +101,7 @@ export default class extends Controller {
         data,
         success: ({ task }) => {
           this.calendar.createEvents([
-            this.addTask({ ...task, category, calendarId })
+            this.addTask({ ...task, category, calendarId }),
           ]);
         },
         errors: () => {
@@ -110,9 +110,9 @@ export default class extends Controller {
             title: "Oops...",
             text: "Something went wrong!",
             footer:
-              '<a href="/projects/${this.projectId}/calendar">Try again</a>'
+              '<a href="/projects/${this.projectId}/calendar">Try again</a>',
           });
-        }
+        },
       });
     });
 
@@ -140,9 +140,9 @@ export default class extends Controller {
               title: "Oops...",
               text: "Something went wrong!",
               footer:
-                '<a href="/projects/${this.projectId}/calendar">Try again</a>'
+                '<a href="/projects/${this.projectId}/calendar">Try again</a>',
             });
-          }
+          },
         });
     });
 
@@ -161,9 +161,9 @@ export default class extends Controller {
             title: "Oops...",
             text: "Something went wrong!",
             footer:
-              '<a href="/projects/${this.projectId}/calendar">Try again</a>'
+              '<a href="/projects/${this.projectId}/calendar">Try again</a>',
           });
-        }
+        },
       });
     });
   }
