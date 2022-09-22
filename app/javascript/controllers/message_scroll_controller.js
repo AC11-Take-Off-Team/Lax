@@ -4,5 +4,9 @@ export default class extends Controller {
 
   connect() {}
 
-  scrollToBottom() {}
+  scrollToBottom() {
+    setTimeout(() => {
+      this.boxTarget.scrollTop = this.boxTarget.scrollHeight;
+    }, 150);
+  }
 }

@@ -1,5 +1,5 @@
 <div data-controller="message" class="relative">
-  <%= form_with(model: message , local:true) do |form| %>
+  <%= form_with(model: message , local:true, data: { action: "submit->message#sendMessage" }) do |form| %>
     <% if message.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
@@ -17,7 +17,8 @@
       </div>
       <%= form.hidden_field :room_id, value: room.id %>
       <div class="">
-        <%= form.submit "▶️",:class=>"text-2xl bg-transparent	text-white",data: { disable_with: false,action:"input=>message#submit" } %>
+        <%= form.submit "▶️",:class=>"text-2xl bg-transparent	text-white", 
+                            data: { disable_with: false} %>
       </div>
     <% end %>
   </div>
