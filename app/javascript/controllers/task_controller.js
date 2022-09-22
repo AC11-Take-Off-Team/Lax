@@ -34,7 +34,7 @@ export default class extends Controller {
   taskPost() {
     const projectID = this.element.dataset.projectId;
     Rails.ajax({
-      url: `/projects/${projectID}/tasks?status=${aaa}`,
+      url: `/projects/${projectID}/tasks`,
       type: 'post',
       success: () => {
       },
