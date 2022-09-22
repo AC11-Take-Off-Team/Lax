@@ -32,9 +32,10 @@ class Api::V1::ProjectsController < ApplicationController
 
   def chart
     project = Project.find(params[:id])
-    @column = project.columns
-    @count = @column.map{ |column| column.tasks.count }
-    render json: [@column,@count,@user]
+    column_done = project.columns.find_by(status: '完成')
+    @users = project.users
+    @task_count = @users.map{ |user| user.tasks.select{|task| task if task.column != column_done}.count}
+    render json: [@users,@task_count]
   end
 
   private

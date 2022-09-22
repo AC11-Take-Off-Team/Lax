@@ -15,8 +15,9 @@ export default class extends Controller {
       url: `/api/v1/projects/${projectID}/chart`,
       type: 'get',
       success: (resp) => {
+        console.log(resp);
         const label = resp[0].map(element => {
-          return element.status
+          return element.username
         });
         this.barChart(label,resp[1])
       },
@@ -33,7 +34,7 @@ export default class extends Controller {
       data: {
         labels: labels, // 標題
         datasets: [{
-          label: "區段任務數量", // 標籤
+          label: "任務數量", // 標籤
           data: data, // 資料
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
