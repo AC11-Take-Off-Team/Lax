@@ -38,7 +38,8 @@
       </div>
     </header>
     <div class="flex flex-col flex-1 p-3 overflow-auto rounded-lg gap-y-2 status_list" data-column-id="<%= column.id%>">
-      <div class="card-list" data-board-target="status_list" data-column-id="<%= column.id%>"><%= render "card", column: column, user: @user%></div>
+      <div class="card-list" data-board-target="status_list" data-column-id="<%= column.id%>">
+      <%= render "card", column: column, user: @user%></div>
       
       <button
         data-action="click->task#display_change"
