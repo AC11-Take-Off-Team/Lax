@@ -22,17 +22,30 @@ Step:
   $ yarn install
   $ foreman s
 ``` 
-:::warning
-因為現在還在開發階段，Google 登入以及忘記密碼寄信功能暫時無法使用。
-:::
+## 網站連結
+Lax https://laxproject.net
+## 主要畫面
+### 首頁
+<img width="1437" alt="截圖 2022-09-24 03 33 32" src="https://user-images.githubusercontent.com/98085617/192043823-85f39e3d-4ef8-468e-b5fc-c6184dbfdf23.png">
+
+### 我的專案
+<img width="1437" alt="截圖 2022-09-24 03 42 31" src="https://user-images.githubusercontent.com/98085617/192045159-6ad8f5dc-1374-49b4-83ee-b0e199a05ba1.png">
+
+### 專案資訊
+<img width="1437" alt="截圖 2022-09-24 03 48 42" src="https://user-images.githubusercontent.com/98085617/192046108-a4ff5d57-acc1-4563-b481-ec6066db8667.png">
+
+### 討論串
+<img width="1437" alt="截圖 2022-09-24 03 43 09" src="https://user-images.githubusercontent.com/98085617/192045247-a446ca7f-6dfd-49a7-b60c-25d2b021a4bf.png">
+
+
 ## 聯絡我們
 想要 Lax 一下嗎？
 趕快來聯絡我們
 Lax GitHub: https://github.com/AC11-Take-Off-Team/Lax
 
 ### 組員GitHub
-弘毅： https://github.com/DylanHHY
-珈寧： https://github.com/cacachang
-昱廷： https://github.com/AilaLu
-逸群： https://github.com/puyichun
-冠誼： https://github.com/KathyLEEKUANYI
+- 弘毅： https://github.com/DylanHHY
+- 珈寧： https://github.com/cacachang
+- 昱廷： https://github.com/AilaLu
+- 逸群： https://github.com/puyichun
+- 冠誼： https://github.com/KathyLEEKUANYI
