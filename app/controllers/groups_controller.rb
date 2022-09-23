@@ -30,6 +30,7 @@ class GroupsController < ApplicationController
       @group.room = Room.create(name: @group.title)
       current_user.groups << @group
     end
+    redirect_to groups_path
   end
 
   def edit; end

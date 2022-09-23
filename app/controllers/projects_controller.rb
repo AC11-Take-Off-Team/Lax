@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
+
     @project = current_user.projects.new(project_params.merge(owner_id: current_user.id))
 
     if @project.save
@@ -104,7 +105,7 @@ class ProjectsController < ApplicationController
     else
       @done_precent = (@task_done*100/@task_sum)&.to_i
     end
-    
+
     @delay = @project.tasks.select{ |task| task if task.end_time < Time.now }.count
   end
 
