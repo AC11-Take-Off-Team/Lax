@@ -88,7 +88,7 @@ export default class extends Controller {
   updateColumn(event) {
     const status =
       event.target.parentElement.parentElement.parentElement.parentElement.querySelector(
-        "h3"
+        ".column_status"
       );
     const column_update =
       event.target.parentElement.parentElement.parentElement.parentElement.querySelector(

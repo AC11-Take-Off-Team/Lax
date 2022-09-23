@@ -29,7 +29,6 @@ class GroupsController < ApplicationController
     if @group.save
       @group.room = Room.create(name: @group.title)
       current_user.groups << @group
-      redirect_to groups_path
     end
   end
 
