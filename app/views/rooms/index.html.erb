@@ -1,10 +1,10 @@
 <div id="room-id" data-room-id="<%= @room.try(:id) %>"></div>
 <div id="user-id" data-user-id="<%= current_user.id %>"></div>
-<div class="relative w-full h-screen">
-  <div class="flex items-center justify-between h-1/12">
-    <h1 class="mt-4 mb-4 ml-4 text-lg border-0 hover:bg-gray-300 hover:rounded-md "># <%= link_to @group.title, edit_group_path(@group) %> ▼ </h1>
-    <div class="flex items-center justify-around h-12 mr-4 border border-4 border-gray-500 border-solid rounded-md">
-      <p class="px-2 mr-2">頻道成員</p>
+<div class="h-screen w-full relative overflow-y-auto">
+  <div class="flex justify-between items-center h-1/12">
+    <h1 class="text-lg ml-4 mt-4 mb-4 border-0 hover:bg-gray-300 hover:rounded-md	"># <%= link_to @group.title, edit_group_path(@group) %> ▼ </h1>
+    <div class="border border-4 border-solid border-gray-500 h-12 flex justify-around mr-4 items-center rounded-md">
+      <p class="mr-2 px-2">頻道成員</p>
       <% @group.users.each do |user| %>
         <% if user.username %>
           <div class="relative w-10 p-1 mr-2">
@@ -55,12 +55,6 @@
           <% @room.messages.each do |message| %>
             <%= render 'messages/message', message: message %>
           <% end %>
-        <% else %>
-          <div class="mt-60">
-            <p>你正在 <span class="text-blue-800"># <%= @group.title %></span> 頻道中</p>
-            <p><%= @group.description %></p>
-            <p>頻道中目前還沒有任何訊息！快來跟你的夥伴們開啟討論吧！</p>
-          </div>
         <% end %>
       </div> 
     </div>
