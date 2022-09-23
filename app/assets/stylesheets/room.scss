@@ -1,0 +1,13 @@
+// Place all the styles related to the projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.message_input {
+  position: fixed;
+  width: calc(100% - 16.6%);
+  bottom: 0px;
+}
+
+.message_box {
+  height: 85%;
+}
