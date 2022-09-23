@@ -372,12 +372,8 @@ DEPENDENCIES
   foreman (~> 0.87.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
-<<<<<<< HEAD
   net-imap
   net-pop
-  mini_magick (~> 4.5, >= 4.5.1)
-=======
->>>>>>> 7b0168f9 (add_about)
   net-smtp (~> 0.3.1)
   omniauth
   omniauth-google-oauth2

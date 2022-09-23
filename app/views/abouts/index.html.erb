@@ -14,23 +14,13 @@
         </div>
       </div>
     </header>
-    <main>
     <section class="text-center hero">
       <div class="container-sm">
         <div class="hero-inner">
-<<<<<<< HEAD
-          <h1 class="mt-0 mb-6 text-3xl hero-title h2-mobile is-revealing">讓您的工作順利進行。</h1>
+          <h1 class="mt-0 mb-6 text-3xl hero-title h2-mobile is-revealing">即時掌握進度，陪你輕鬆面對</h1>
           <p class="text-xl hero-paragraph is-revealing">小至細節，大至宏圖，LAX都能組織工作，讓團隊瞭解工作內容、目的和方式。</p>
-          <div class="hero-form newsletter-form field field-grouped is-revealing">
-            <div class="control ">
-              <button><%= link_to "登入" , home_index_path,:class=>" px-6 py-3 text-white bg-momo rounded-lg hover:bg-kohbai text-base"%></button>
-            </div>
-=======
-          <h1 class="mt-0 mb-8 text-4xl hero-title h2-mobile is-revealing">即時掌握進度，陪你輕鬆面對</h1>
-          <p class="mb-12 text-2xl hero-paragraph is-revealing">小至細節，大至宏圖，LAX都能組織工作，讓團隊瞭解工作內容、目的和方式。</p>
           <div class="control ">
-            <button><%= link_to "登入" , home_index_path,:class=>" px-6 py-3 text-white bg-momo rounded-lg hover:bg-kohbai text-2xl shadow-xl"%></button>
->>>>>>> fcd6cb2f (update_about)
+            <button><%= link_to "登入" , home_index_path,:class=>" px-6 py-3 text-white bg-momo rounded-lg hover:bg-kohbai text-base shadow-xl"%></button>
           </div>
           <div class="hero-browser">
             <div class="bubble-3 is-revealing">
@@ -57,14 +47,14 @@
                   <mask id="bubble-4-b" fill="#fff">
                       <use xlink:href="#bubble-4-a"/>
                   </mask>
-                  <use fill="#f8ddb9" xlink:href="#bubble-4-a"/>
-                  <circle fill="#ebb98c" mask="url(#bubble-4-b)" cx="30" cy="108" r="108"/>
+                  <use fill="#FF6D8B" xlink:href="#bubble-4-a"/>
+                  <circle fill="#F596AA" mask="url(#bubble-4-b)" cx="30" cy="108" r="108"/>
                   <circle fill="#Fff" opacity=".7" mask="url(#bubble-4-b)" cx="265" cy="88" r="108"/>
                 </g>
               </svg>
             </div>
             <div class="hero-browser-inner is-revealing">
-              <img src="assets/home.png" >
+              <%= image_tag(("home.png"), class: "rounded shadow-xl")%>
             </div>
             <div class="bubble-1 is-revealing">
               <svg width="61" height="52" viewBox="0 0 61 52" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -100,37 +90,6 @@
         </div>
       </div>
     </section>
-<<<<<<< HEAD
-    <section class="text-center features section">
-      <div class="container">
-        <div class="features-inner section-inner has-bottom-divider">
-          <div class="features-wrap">
-            <div class="feature is-revealing">
-              <div class="feature-inner">
-                <h3 class="text-2xl feature-title">即時通訊</h3>
-                <p class="text-lg">訊息同步、即時交談</p>
-              </div>
-            </div>
-            <div class="feature is-revealing">
-              <div class="feature-inner">
-                <h3 class="text-2xl feature-title">行程管理</h3>
-                <p class="text-lg">制定行程、需求切換</p>
-              </div>
-            </div>
-          </div>
-          <div class="features-wrap">
-            <div class="feature is-revealing">
-              <div class="feature-inner">
-                <h3 class="text-2xl feature-title">任務安排</h3>
-                <p class="text-lg">彈性指派、即時管理</p>
-              </div>
-            </div>
-            <div class="feature is-revealing">
-              <div class="feature-inner">
-                <h3 class="text-2xl feature-title">圖表管理</h3>
-                <p class="text-lg">進度即時、視覺呈現</p>
-              </div>
-=======
     <section class="text-gray-700 body-font">
       <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-wrap -m-4 text-center">
@@ -156,92 +115,59 @@
             <div class="px-4 py-6 transition duration-500 transform border-2 border-gray-600 rounded-lg hover:scale-110">
               <h2 class="mt-4 text-2xl text-3xl font-medium text-gray-900 title-font">圖表管理</h2>
               <p class="mt-4 text-xl leading-relaxed">進度即時、視覺呈現</p>
->>>>>>> 6531e460 (update_about)
             </div>
           </div>
         </div>
       </div>
     </section>
-    </main>
-    <div class="flex">
-      <div class="w-1/5 p-6 bg-white rounded-lg shadow-lg ">
+    <div class="flex w-full h-24 mt-20 bg-blue-50">
+      <div class="w-1/5 p-6 bg-white rounded-lg shadow-lg bg-">
         <div class="flex">
-          <span class="mb-2 text-xl font-medium leading-tight text-gray-900">冠誼</span>
+          <span class="mb-2 mr-4 text-xl font-medium leading-tight text-gray-900">冠誼</span>
             <p class="mb-4 text-base text-gray-700 break-all">
               <a href="https://github.com/KathyLEEKUANYI"><img src="assets/GitHub.jpeg" class="w-10"></a>
             </p>
           </div>
-          <span class="text-xs">✉ feather080300@gmail.com</span>
+          <span class="text-ml">feather080300@gmail.com</span>
         </div>
       <div class="w-1/5 p-6 bg-white rounded-lg shadow-lg">
         <div class="flex">
-          <span class="mb-2 text-xl font-medium leading-tight text-gray-900">逸群</span>
+          <span class="mb-2 mr-4 text-xl font-medium leading-tight text-gray-900">逸群</span>
             <p class="mb-4 text-base text-gray-700 break-all">
               <a href="https://github.com/puyichun"><img src="assets/GitHub.jpeg" class="w-10"></a>
             </p>
         </div>
-          <span class="text-xs">✉ zero92137548@gmail.com</span>
+          <span class="text-ml">zero92137548@gmail.com</span>
       </div>
       <div class="w-1/5 p-6 bg-white rounded-lg shadow-lg">
         <div class="flex">
-          <span class="mb-2 text-xl font-medium leading-tight text-gray-900">弘毅</span>
+          <span class="mb-2 mr-4 text-xl font-medium leading-tight text-gray-900">弘毅</span>
             <p class="mb-4 text-base text-gray-700 break-all">
               <a href="https://github.com/DylanHHY"><img src="assets/GitHub.jpeg" class="w-10"></a>
             </p>
         </div>
-          <span class="text-xs">✉ dyan2009200@gmail.com</span>
+          <span class="text-ml">dyan2009200@gmail.com</span>
       </div>
       <div class="w-1/5 p-6 bg-white rounded-lg shadow-lg">
         <div class="flex">
-          <span class="mb-2 text-xl font-medium leading-tight text-gray-900">珈寧</span>
+          <span class="mb-2 mr-4 text-xl font-medium leading-tight text-gray-900">珈寧</span>
             <p class="mb-4 text-base text-gray-700 break-all">
               <a href="https://github.com/cacachang"><img src="assets/GitHub.jpeg" class="w-10"></a>
             </p>
         </div>
-          <span class="text-xs">✉ ning@ninglab.com</span>
+          <span class="text-ml">ning@ninglab.com</span>
       </div>
       <div class="w-1/5 p-6 bg-white rounded-lg shadow-lg">
         <div class="flex">
-          <span class="mb-2 text-xl font-medium leading-tight text-gray-900">昱廷</span>
+          <span class="mb-2 mr-4 text-xl font-medium leading-tight text-gray-900">昱廷</span>
             <p class="mb-4 text-base text-gray-700 break-all">
               <a href="https://github.com/AilaLu"><img src="assets/GitHub.jpeg" class="w-10"></a>
             </p>
         </div>
-          <span class="text-xs">✉ ailalutw@gmail.com</span>
+          <span class="text-ml">ailalutw@gmail.com</span>
       </div>
     </div>
-<<<<<<< HEAD
-    <footer class="mt-20 site-footer text-light">
-      <div class="container">
-        <div class="site-footer-inner">
-          <div class="brand footer-brand">
-            <a href="#">
-              <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                <title>Ava</title>
-                <defs>
-                  <path d="M32 16H16v16H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h28a2 2 0 0 1 2 2v14z" id="logo-gradient-footer-a"/>
-                  <linearGradient x1="50%" y1="50%" y2="100%" id="logo-gradient-footer-b">
-                    <stop stop-color="#FFF" stop-opacity="0" offset="0%"/>
-                    <stop stop-color="#FFF" offset="100%"/>
-                  </linearGradient>
-                </defs>
-                <g fill="none" fill-rule="evenodd">
-                  <mask id="logo-gradient-footer-c" fill="#fff">
-                    <use xlink:href="#logo-gradient-footer-a"/>
-                  </mask>
-                  <use fill-opacity=".32" fill="#FFF" xlink:href="#logo-gradient-footer-a"/>
-                  <path fill="url(#logo-gradient-footer-b)" mask="url(#logo-gradient-footer-c)" d="M-16-16h32v32h-32z"/>
-                </g>
-              </svg>
-            </a>
-          </div>
-          <div class="footer-copyright">&copy; 2022 Sep, LAX</div>
-        </div>
-      </div>
-    </footer>
-=======
->>>>>>> 6531e460 (update_about)
   </div>
-  <script src="dist/js/main.min.js"></script>
 </body>
+
 
