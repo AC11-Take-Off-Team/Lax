@@ -81,14 +81,40 @@
   </div>
 </section>
 
-<% if notice %>
-  <section  type="button" onclick="javascript:window.close()" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
-    <div class="w-1/3 h-1/5 p-2.5 bg-white rounded-3xl bg-white">
-      <div class="flex justify-end">
-        <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-100"><%= link_to "X", groups_path %></span>
+<% if notice == "非本頻道成員" %>
+  <section type="button" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
+    <div class="relative w-1/3 bg-white h-1/3 rounded-3xl">
+      <span class="absolute px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg right-2 hover:bg-gray-300 hover:text-white">
+        <%= link_to "X", groups_path %>
+      </span>
+      <div class="flex flex-col items-center justify-center pt-12 pb-8 align-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/3756/3756730.png" class="w-20 h-20">
+        <span class="p-4 my-6 text-2xl font-semibold text-gray-900"><%= notice %></span>
       </div>
-      <div class="flex flex-col justify-center align-center">
-        <span class="p-4 m-auto my-6 text-2xl font-semibold text-gray-900"><%= notice %></span>
+    </div>
+  </section>
+<% elsif notice == "此會員已在頻道中" %>
+  <section type="button" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
+    <div class="relative w-1/3 bg-white h-1/3 rounded-3xl">
+      <span class="absolute px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg right-2 hover:bg-gray-300 hover:text-white">
+        <%= link_to "X", groups_path %>
+      </span>
+      <div class="flex flex-col items-center justify-center pt-12 pb-8 align-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/3756/3756730.png" class="w-20 h-20">
+        <span class="p-4 my-6 text-2xl font-semibold text-gray-900"><%= notice %></span>
       </div>
+    </div>
+  </section>
+<% elsif notice == "已將此會員加入頻道" %>
+  <section type="button" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
+    <div class="relative w-1/3 bg-white h-1/3 rounded-3xl">
+      <span class="absolute px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg right-2 hover:bg-gray-300 hover:text-white">
+        <%= link_to "X", groups_path %>
+      </span>
+      <div class="flex flex-col items-center justify-center pt-12 pb-8 align-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/2804/2804579.png" class="w-20 h-20">
+        <span class="p-4 my-6 text-2xl font-semibold text-gray-900"><%= notice %></span>
+      </div>
+    </div>
   </section>
 <% end %>

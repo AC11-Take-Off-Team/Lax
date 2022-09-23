@@ -57,22 +57,40 @@ export default class extends Controller {
         time(event) {
           const { start, end, title } = event;
 
-          return `<span style="color: white;">${dayjs(start, "HH:mm")}~${dayjs(
-            end,
-            "HH:mm"
-          )} ${title}</span>`;
+          function formatTime(time) {
+            const hours = `${time.getHours()}`.padStart(2, "0");
+            const minutes = `${time.getMinutes()}`.padStart(2, "0");
+
+            return `${hours}:${minutes}`;
+          }
+          return `<span style="color: white;">${formatTime(start)}~${formatTime(
+            end
+          )} ${title} </span>`;
         },
         allday(event) {
-          return `<span style="color: gray;">${event.title}</span>`;
+          return `<span style="color: black;">${event.title}</span>`;
         },
       },
       calendars: [
         {
           id: "cal1",
           name: "任務",
-          backgroundColor: "#00a9ff",
+          backgroundColor: "#F596AA",
         },
       ],
+      theme: {
+        common: {
+          backgroundColor: "rgb(250, 250, 250)",
+          border: "1px solid rgb(189, 189, 189)",
+        },
+        week: {
+          today: {
+            color: "red",
+            backgroundColor: "rgb(239, 235, 233)",
+            border: "1px solid rgb(189, 189, 189)",
+          },
+        },
+      },
     });
   }
 
