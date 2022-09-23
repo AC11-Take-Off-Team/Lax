@@ -51,14 +51,14 @@
   </div>
   <nav class="absolute right-0 z-10 transition-all translate-y-1 rounded top-11 display bg-gray-50 group-scope-focus-within:opacity-100">
     <div class="flex border-b hover:bg-gray-100">
-      <img class="p-2 w-10 h-10" src="/assets/edit.png" /><button
+      <img class="p-2 w-10 h-10" src="https://cdn-icons-png.flaticon.com/512/2356/2356780.png" /><button
         data-action="click->board#updateBtn"
         class="p-2 text-base text-gray-800 transition-all updateBtn h-9">
         修改任務
       </button>
     </div>
     <div class="flex hover:text-red-700 hover:bg-gray-100">
-      <img class="inline p-2 w-10 h-10" src="/assets/delete.png" />
+      <img class="inline p-2 w-10 h-10" src="https://cdn-icons-png.flaticon.com/512/2907/2907762.png" />
       <%= link_to "刪除任務",destroy_task_column_path(column,task_id: task.id),method: "delete", data: { confirm: "是否刪除此任務" },:class=>"text-base text-red-500 p-2" %>
     </div>
   </nav>
