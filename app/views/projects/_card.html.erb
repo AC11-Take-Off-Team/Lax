@@ -45,7 +45,7 @@
         ></path>
       </svg>
     </button>
-    <div class="z-20 bg-white border-2 rounded shadow display task_form task_update relative">
+    <div class="relative z-20 bg-white border-2 rounded shadow display task_form task_update">
       <%= render "TaskForm", model: task,user: user, url: update_task_column_path(column,task_id: task.id),:class=>"task_form_item absolute top-48"%>
     </div>
   </div>
@@ -58,7 +58,7 @@
       </button>
     </div>
     <div class="flex hover:text-red-700 hover:bg-gray-100">
-      <img class="inline p-2 w-10 h-10" src="https://cdn-icons-png.flaticon.com/512/2907/2907762.png" />
+      <img class="inline w-10 h-10 p-2" src="https://cdn-icons-png.flaticon.com/512/2907/2907762.png" />
       <%= link_to "刪除任務",destroy_task_column_path(column,task_id: task.id),method: "delete", data: { confirm: "是否刪除此任務" },:class=>"text-base text-red-500 p-2" %>
     </div>
   </nav>
