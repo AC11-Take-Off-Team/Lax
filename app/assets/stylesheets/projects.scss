@@ -139,16 +139,7 @@ input[type='text']{
   text-align: left;
 }
 .task_update{
-  position: fixed;
-  max-height: 400px;
-  max-width: 300px;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-  @media screen and (min-width: 768px) {
-    left: auto;
-  }
+  width: 320px;
 }
 .column_update{
   background-color: #EDE8E4;

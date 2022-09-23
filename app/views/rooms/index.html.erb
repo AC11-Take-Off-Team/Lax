@@ -1,6 +1,6 @@
 <div id="room-id" data-room-id="<%= @room.try(:id) %>"></div>
 <div id="user-id" data-user-id="<%= current_user.id %>"></div>
-<div class="h-screen w-full relative">
+<div class="h-screen w-full relative overflow-hidden">
   <div class="flex justify-between items-center h-1/12">
     <h1 class="text-lg ml-4 mt-4 mb-4 border-0 hover:bg-gray-300 hover:rounded-md	"># <%= link_to @group.title, edit_group_path(@group) %> ▼ </h1>
     <div class="border border-4 border-solid border-gray-500 h-12 flex justify-around mr-4 items-center rounded-md">
@@ -15,7 +15,7 @@
           </div>
         <% else %>
           <% if user.email.include?('gmail') %>
-            <div class="w-10 p-1 relative mr-2">
+            <div class="relative w-10 p-1 mr-2">
               <img src="https://cdn-icons-png.flaticon.com/512/5111/5111178.png" class="">
               <p class="absolute text-white left-3 top-2">
                 <%= user.email.first(2) %>
@@ -45,26 +45,20 @@
   </div>
   <hr>
   <!-- Messages -->
-  <div class="bg-gray-100 h-full">
-    <div class="px-4 py-2 text-gray-800 border-b border-solid border-gray-500">
+  <div class="bg-gray-100 h-full ">
+    <div class="px-4 py-2 text-gray-800 border-b border-gray-500 border-solid">
       <%= Time.now.strftime("%m月%d日") %>
     </div>
-    <div class="px-6 -py-2 h-4/5 overflow-y-auto" data-controller="message-scroll" data-message-scroll-target="box" data-action="scrollToBottom@window->message-scroll#scrollToBottom">
+    <div class="px-6 -py-2 overflow-y-auto message_box" data-controller="message-scroll" data-message-scroll-target="box" data-action="scrollToBottom@window->message-scroll#scrollToBottom">
       <div id="messages">
         <% if @room.messages.count > 0 %>
           <% @room.messages.each do |message| %>
             <%= render 'messages/message', message: message %>
           <% end %>
-        <% else %>
-          <div class="mt-60">
-            <p>你正在 <span class="text-blue-800"># <%= @group.title %></span> 頻道中</p>
-            <p><%= @group.description %></p>
-            <p>頻道中目前還沒有任何訊息！快來跟你的夥伴們開啟討論吧！</p>
-          </div>
         <% end %>
       </div> 
     </div>
-    <div class="bg-gray-500 h-1/5 px-2 py-2">
+    <div class="bg-gray-500 h-14 px-2 pt-2 message_input">
       <%= render 'messages/form', message: Message.new, room: @room %>
     </div>
   </div>
@@ -72,7 +66,7 @@
 
 <% if notice %>
   <section type="button" class="fixed top-0 left-0 flex items-center justify-center w-full h-full mx-auto bg-black bg-opacity-30">
-    <div class="w-1/3 h-1/5 p-2.5 bg-white rounded-3xl bg-white">
+    <div class="w-1/3 h1/5 p-2.5  rounded-3xl bg-white">
       <div class="flex justify-end">
         <span class="px-2 py-1 my-6 mr-6 text-2xl text-gray-400 bg-white rounded-lg hover:bg-gray-300 hover:text-white"><%= link_to "X", groups_path %></span>
       </div>
