@@ -27,18 +27,18 @@
               </svg>
             </button>
             <div class="absolute z-10 w-96 pb-2 bg-white border-2 rounded resize-none display task_form top-10 right-0" data-task-target="task_display">
-              <%= render "taskForm", model: [@project,@new_task],user: @user, url: create_task_column_path(column)%>
+              <%= render "TaskForm", model: [@project,@new_task],user: @user, url: create_task_column_path(column)%>
             </div>
           </div>
           <div class="bottom-0 right-0 flex flex-col transition-all bg-white border rounded column_display">
             <div class="flex border-b">
-              <img class="inline p-2 w-9" alt="Lax" src="/assets/edit.png" />
+              <img class="inline p-2 w-9" alt="Lax" src="https://cdn-icons-png.flaticon.com/512/2356/2356780.png" />
               <button data-action="click->board#updateColumn" class="p-2 text-base hover:bg-gray-100">
                 修改任務區塊
               </button>
             </div>
             <div class="flex">
-              <img class="inline p-2 w-10 h-10" alt="Lax" src="/assets/delete.png" /> 
+              <img class="inline p-2 w-10 h-10" alt="Lax" src="https://cdn-icons-png.flaticon.com/512/2907/2907762.png" /> 
               <%= link_to "刪除任務區塊",column,method: "delete",data: {confirm: "是否刪除本任務區塊"},:class=>"text-base text-red-500 hover:text-red-700 hover:bg-gray-100 p-2" %>
             </div>
           </div>
