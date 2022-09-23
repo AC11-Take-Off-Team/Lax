@@ -34,7 +34,7 @@ class ColumnsController < ApplicationController
     if @task.save
       redirect_to board_project_path(@column.project)
     else
-      redirect_to board_project_path(@column.project), notice: '任務建立失敗'
+      redirect_to board_project_path(@column.project), notice: '任務名稱及日期要記得填哦！'
     end
   end
 
